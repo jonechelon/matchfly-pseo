@@ -1,0 +1,9 @@
+# Regras de Preservação de Design - Matchfly
+
+Ao editar arquivos neste projeto, siga estas regras estritamente:
+
+1. NUNCA altere a estrutura HTML ou as classes CSS (Tailwind) dos templates existentes em `public/`.
+2. O arquivo `public/index.html` deve ser gerado pelo `gerar_site.py` usando o código de matchfly.org como base absoluta.
+3. O arquivo `public/voo/voo-klm-0792-gru-atrasado.html` é o template mestre para as páginas internas.
+4. Qualquer alteração visual deve ser aprovada explicitamente. Sua tarefa é APENAS injetar dados dinâmicos do JSON nos locais corretos dos templates.
+5. Mantenha os scripts de animação (avatares) e FAQ intactos.

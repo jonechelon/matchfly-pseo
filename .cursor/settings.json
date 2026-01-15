@@ -1,0 +1,19 @@
+{
+  "cursor.general.openaiApiKey": "SET_IN_ENV_VARS",
+  "cursor.general.openaiBaseUrl": "https://api.perplexity.ai/v1",
+  "cursor.general.modelNames": [
+    "gpt-4o",
+    "gpt-4"
+  ],
+  "cursor.general.defaultModel": "gpt-4o",
+  "cursor.general.enableLocalModels": false,
+  "cursor.general.disableCloudRouting": true,
+  "openai.baseURL": "https://api.perplexity.ai/v1",
+  "openai.apiKey": "SET_IN_ENV_VARS",
+  "openai.allowedModelNames": [
+    "gpt-4o",
+    "gpt-4"
+  ],
+  "openai.defaultModel": "gpt-4o",
+  "openai.model": "gpt-4o"
+}

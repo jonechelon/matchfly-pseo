@@ -1,0 +1,51 @@
+name: Update Flights Database
+
+on:
+  schedule:
+    # Executa automaticamente a cada 2 horas
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+    # Permite execução manual via GitHub UI
+
+jobs:
+  update-flights:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: |
+          playwright install chromium
+          playwright install-deps chromium
+
+      - name: Execute scraper
+        run: |
+          echo "🔄 Iniciando scraper GRU..."
+          python src/scrapers/gru-scraper.py
+          echo "✅ Scraper executado com sucesso"
+
+      - name: Auto commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'chore: atualizar dados de voos - ${{ github.event_name }} @ ${{ github.sha }}'
+          file_pattern: 'data/flights-db.json'
+          commit_user_name: 'github-actions[bot]'
+          commit_user_email: 'github-actions[bot]@users.noreply.github.com'
+          skip_dirty_check: false
+          skip_fetch: false
