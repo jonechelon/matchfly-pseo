@@ -16,6 +16,7 @@ import logging
 import os
 import re
 import shutil
+import requests
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -44,6 +45,26 @@ TEMPLATE_VOO = Path("public/voo/voo-klm-0792-gru-atrasado.html")
 
 # Link de afiliado (lido de variável de ambiente)
 AFFILIATE_LINK = os.getenv("AFFILIATE_LINK", "").strip()
+
+
+def download_csv_from_url() -> bool:
+    """Baixa o CSV mais recente do repositório do monitoramento."""
+    url = "https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv"
+    local_path = Path("voos_atrasados_gru.csv")
+    
+    logger.info(f"⬇️ Baixando dados de: {url}")
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Garante que deu 200 OK
+        
+        with open(local_path, 'wb') as f:
+            f.write(response.content)
+            
+        logger.info("✅ CSV baixado com sucesso!")
+        return True
+    except Exception as e:
+        logger.error(f"❌ Falha ao baixar CSV: {e}")
+        return False
 
 
 def validate_json_integrity(json_file: Path) -> Tuple[bool, str, Optional[Dict]]:
@@ -999,6 +1020,14 @@ def main():
     """Função principal do script."""
     logger.info("🚀 Iniciando geração do site MatchFly (templates separados)...")
     
+    # --- NOVO BLOCO COMEÇA AQUI ---
+    # Passo 0: Baixar dados frescos da URL
+    if download_csv_from_url():
+        logger.info("Dados atualizados prontos para processamento.")
+    else:
+        logger.warning("Usando arquivos locais (se existirem) pois o download falhou.")
+    # --- NOVO BLOCO TERMINA AQUI ---
+
     # Verificar e criar pastas necessárias
     public_dir = Path("public")
     voo_dir = Path("public/voo")

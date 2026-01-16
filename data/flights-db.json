@@ -1,7 +1,153 @@
 {
-  "flights": [],
+  "flights": [
+    {
+      "flight_number": "3856",
+      "airline": "LATAM",
+      "status": "Cancelado",
+      "scheduled_time": "16:35",
+      "delay_hours": 0.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "16:35"
+    },
+    {
+      "flight_number": "5156",
+      "airline": "LATAM",
+      "status": "Cancelado",
+      "scheduled_time": "16:15",
+      "delay_hours": 0.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "16:15"
+    },
+    {
+      "flight_number": "6747",
+      "airline": "KLM",
+      "status": "Atrasado",
+      "scheduled_time": "21:00",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "21:00"
+    },
+    {
+      "flight_number": "8227",
+      "airline": "LATAM",
+      "status": "Cancelado",
+      "scheduled_time": "16:15",
+      "delay_hours": 0.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "16:15"
+    },
+    {
+      "flight_number": "8422",
+      "airline": "LATAM",
+      "status": "Cancelado",
+      "scheduled_time": "16:35",
+      "delay_hours": 0.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "16:35"
+    },
+    {
+      "flight_number": "RJ4548",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "15:20",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "15:20"
+    },
+    {
+      "flight_number": "RJ7355",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "15:20",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "15:20"
+    },
+    {
+      "flight_number": "RJ8490",
+      "airline": "LATAM",
+      "status": "Cancelado",
+      "scheduled_time": "14:30",
+      "delay_hours": 0.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-16",
+      "Operado_Por": "",
+      "Data_Partida": "16/01",
+      "Hora_Partida": "14:30"
+    },
+    {
+      "flight_number": "RJ1924",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "17:40",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-13",
+      "Operado_Por": "GOL",
+      "Data_Partida": "13/01",
+      "Hora_Partida": "17:40"
+    },
+    {
+      "flight_number": "RJ4227",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "17:40",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-13",
+      "Operado_Por": "GOL",
+      "Data_Partida": "13/01",
+      "Hora_Partida": "17:40"
+    },
+    {
+      "flight_number": "RJ4797",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "17:40",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-13",
+      "Operado_Por": "GOL",
+      "Data_Partida": "13/01",
+      "Hora_Partida": "17:40"
+    },
+    {
+      "flight_number": "RJ7741",
+      "airline": "LATAM",
+      "status": "Atrasado",
+      "scheduled_time": "17:40",
+      "delay_hours": 1.0,
+      "origin": "GRU",
+      "capture_date": "2026-01-13",
+      "Operado_Por": "GOL",
+      "Data_Partida": "13/01",
+      "Hora_Partida": "17:40"
+    }
+  ],
   "metadata": {
-    "scraped_at": "2026-01-13T23:11:43.307730+00:00",
-    "source": "playwright_intercept:GetVoos"
+    "scraped_at": "2026-01-16T16:05:59.347530+00:00",
+    "source": "csv_conversion:voos_atrasados_gru.csv",
+    "total_flights": 12
   }
 }
