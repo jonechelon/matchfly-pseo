@@ -612,10 +612,10 @@ def extract_flights_from_page(page) -> List[Dict[str, str]]:
 def scrape_gru_flights_html(
     max_load_more_clicks: int = 10,
     wait_between_clicks_ms: int = 2000,
-    headless: bool = False
+    headless: bool = True
 ) -> List[Dict[str, str]]:
     """
-    REQUISITO 4: Modo de execução com headless=False.
+    REQUISITO 4: Modo de execução com headless=True (sem interface gráfica).
     """
     VOOS_URL = "https://www.gru.com.br/pt/passageiro/voos"
     
@@ -1063,7 +1063,7 @@ def main():
     scraped_flights = scrape_gru_flights_html(
         max_load_more_clicks=10,
         wait_between_clicks_ms=2000,
-        headless=False
+        headless=True
     )
     
     if not scraped_flights:
