@@ -31,11 +31,8 @@ except ImportError:
     print("   Execute: pip install pandas")
     sys.exit(1)
 
-# PERMISSÕES: Define TMPDIR seguro (workspace local)
-# Usa diretório no workspace para compatibilidade com CI/CD
-safe_tmpdir = os.path.join(os.getcwd(), 'tmp')
-os.makedirs(safe_tmpdir, exist_ok=True)
-os.environ["TMPDIR"] = safe_tmpdir
+# PERMISSÕES macOS: Define TMPDIR para evitar erros de permissão
+os.environ["TMPDIR"] = os.path.expanduser("~/Downloads")
 
 # MODIFICAÇÃO 1: Cria diretório para logs imediatamente
 LOG_DIR = 'logs_voos_atrasados'
@@ -632,26 +629,19 @@ def scrape_gru_flights_html(
     
     flights = []
     
-    # CRITICO: Cria diretório de downloads seguro antes de iniciar o browser
-    downloads_path = os.path.join(os.getcwd(), 'downloads')
-    os.makedirs(downloads_path, exist_ok=True)
-    
-    # Argumentos para compatibilidade com CI/CD (GitHub Actions)
-    launch_args = ['--no-sandbox', '--disable-setuid-sandbox']
-    if headless:
-        launch_args.append('--disable-dev-shm-usage')
+    # FORÇA BRUTA: Criar diretório ~/Downloads do sistema que o Playwright exige
+    system_downloads = os.path.expanduser("~/Downloads")
+    os.makedirs(system_downloads, exist_ok=True)
+    print(f"📂 Diretório de sistema forçado: {system_downloads}")
     
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=headless, args=launch_args)
+        browser = p.chromium.launch(headless=headless)
         context = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) "
                 "AppleWebKit/605.1.15 (KHTML, like Gecko) "
                 "Version/17.2 Mobile/15E148 Safari/604.1"
-            ),
-            accept_downloads=True,
-            # Define explicitamente o caminho de downloads seguro
-            downloads_path=downloads_path
+            )
         )
         page = context.new_page()
         
