@@ -153,6 +153,9 @@ def migrate_old_csv_data() -> List[Dict[str, str]]:
     
     CSV antigo: Data_Captura, Horario, Companhia, Numero_Voo, Destino_Origem, Status
     Novo formato: databusca, Data, Horario_Previsto, Horario_Estimado, Voo, Companhia, Destino, Status, Alerta_1H, Alerta_2H, Status_Monitoramento
+    
+    NOTA: Esta função é para migração do formato antigo (com Destino_Origem) para o novo formato interno.
+    O CSV persistente agora usa Operado_Por, Data_Partida, Hora_Partida.
     """
     migrated_flights = []
     
@@ -169,7 +172,8 @@ def migrate_old_csv_data() -> List[Dict[str, str]]:
                 horario = str(row.get('Horario', '')).strip()
                 companhia = str(row.get('Companhia', '')).strip()
                 numero_voo = str(row.get('Numero_Voo', '')).strip()
-                destino_origem = str(row.get('Destino_Origem', '')).strip()
+                # Suporta tanto Destino_Origem (antigo) quanto Operado_Por (novo)
+                destino_origem = str(row.get('Destino_Origem', row.get('Operado_Por', ''))).strip()
                 status = str(row.get('Status', '')).strip()
                 
                 # Usa Data_Captura como databusca (se não tiver horário, adiciona 00:00:00)
@@ -897,6 +901,39 @@ def save_with_historical_persistence(scraped_flights: List[Dict[str, str]]) -> i
         try:
             print(f"   📖 Carregando dados históricos existentes...")
             df_historical = pd.read_csv(PERSISTENT_CSV_PATH, encoding='utf-8')
+            
+            # Migração: se existir coluna Destino_Origem, renomeia para Operado_Por
+            if 'Destino_Origem' in df_historical.columns and 'Operado_Por' not in df_historical.columns:
+                print(f"   🔄 Migrando coluna Destino_Origem → Operado_Por...")
+                df_historical = df_historical.rename(columns={'Destino_Origem': 'Operado_Por'})
+            
+            # Adiciona colunas Data_Partida e Hora_Partida se não existirem
+            if 'Data_Partida' not in df_historical.columns:
+                df_historical['Data_Partida'] = ''
+            if 'Hora_Partida' not in df_historical.columns:
+                df_historical['Hora_Partida'] = ''
+            
+            # Preenche Data_Partida e Hora_Partida para registros antigos que não têm
+            for idx, row in df_historical.iterrows():
+                if pd.isna(row.get('Data_Partida')) or str(row.get('Data_Partida', '')).strip() == '':
+                    try:
+                        if pd.notna(row.get('Data_Captura')):
+                            data_obj = datetime.strptime(str(row['Data_Captura']), "%Y-%m-%d")
+                            df_historical.at[idx, 'Data_Partida'] = data_obj.strftime("%d/%m")
+                    except:
+                        pass
+                
+                if pd.isna(row.get('Hora_Partida')) or str(row.get('Hora_Partida', '')).strip() == '':
+                    try:
+                        if pd.notna(row.get('Horario')):
+                            horario = str(row['Horario'])
+                            if ":" in horario:
+                                parts = horario.split(":")
+                                if len(parts) >= 2:
+                                    df_historical.at[idx, 'Hora_Partida'] = f"{parts[0].zfill(2)}:{parts[1].zfill(2)}"
+                    except:
+                        pass
+            
             print(f"   ✅ {len(df_historical)} registro(s) histórico(s) carregado(s)")
         except Exception as e:
             print(f"   ⚠️  Erro ao carregar CSV histórico: {e}")
@@ -922,7 +959,7 @@ def save_with_historical_persistence(scraped_flights: List[Dict[str, str]]) -> i
     print(f"   📋 Processando {len(problematic_flights)} voo(s) problemático(s)...")
     
     # 3. Converte novos dados para o formato do CSV persistente
-    # Formato: Data_Captura, Horario, Companhia, Numero_Voo, Destino_Origem, Status
+    # Formato: Data_Captura, Horario, Companhia, Numero_Voo, Operado_Por, Status, Data_Partida, Hora_Partida
     new_flights_data = []
     
     for flight in problematic_flights:
@@ -932,19 +969,53 @@ def save_with_historical_persistence(scraped_flights: List[Dict[str, str]]) -> i
         if voo == "N/A" or horario_previsto == "N/A" or not voo or not horario_previsto:
             continue
         
-        # Filtra destino incorreto (companhias aéreas)
+        companhia = str(flight.get('Companhia', 'N/A')).strip()
+        
+        # Extrai Operado_Por (anteriormente Destino_Origem - na verdade é codeshare)
+        # Se o destino for uma companhia conhecida, é codeshare
         destino = str(flight.get('Destino', 'N/A')).strip()
+        operado_por = ""
+        
         if destino in COMPANHIAS_CONHECIDAS:
-            destino = "N/A"
+            # É codeshare - usa como Operado_Por
+            operado_por = destino
+        else:
+            # Não é codeshare, deixa vazio
+            operado_por = ""
+        
+        # Se Operado_Por for vazio ou igual à companhia principal, define como "Própria Cia" ou vazio
+        if not operado_por or operado_por == companhia or operado_por == "N/A":
+            operado_por = ""  # Deixa em branco quando é própria companhia
+        
+        # Extrai Data_Partida (DD/MM) e Hora_Partida (HH:MM)
+        data_partida = ""
+        hora_partida = ""
+        
+        try:
+            # Data_Partida: converte Data_Captura (YYYY-MM-DD) para DD/MM
+            if data_captura:
+                data_obj = datetime.strptime(data_captura, "%Y-%m-%d")
+                data_partida = data_obj.strftime("%d/%m")
+            
+            # Hora_Partida: extrai HH:MM do Horario_Previsto
+            if horario_previsto and ":" in horario_previsto:
+                # Garante formato HH:MM
+                parts = horario_previsto.split(":")
+                if len(parts) >= 2:
+                    hora_partida = f"{parts[0].zfill(2)}:{parts[1].zfill(2)}"
+        except Exception as e:
+            print(f"   ⚠️  Erro ao processar data/hora para voo {voo}: {e}")
         
         # Prepara dados no formato do CSV persistente
         flight_row = {
             "Data_Captura": data_captura,
             "Horario": horario_previsto,
-            "Companhia": str(flight.get('Companhia', 'N/A')).strip(),
+            "Companhia": companhia,
             "Numero_Voo": voo,
-            "Destino_Origem": destino,
+            "Operado_Por": operado_por,
             "Status": str(flight.get('Status', 'N/A')).strip(),
+            "Data_Partida": data_partida,
+            "Hora_Partida": hora_partida,
         }
         
         new_flights_data.append(flight_row)
@@ -1034,8 +1105,11 @@ def save_with_historical_persistence(scraped_flights: List[Dict[str, str]]) -> i
         for flight_row in new_flights_data:
             voo = flight_row['Numero_Voo']
             companhia = flight_row['Companhia']
-            destino = flight_row['Destino_Origem']
-            print(f"      ✅ ADICIONADO: Voo {voo} da {companhia} → {destino}")
+            operado_por = flight_row.get('Operado_Por', '')
+            if operado_por:
+                print(f"      ✅ ADICIONADO: Voo {voo} da {companhia} (Operado por: {operado_por})")
+            else:
+                print(f"      ✅ ADICIONADO: Voo {voo} da {companhia}")
         
         return new_count
         
@@ -1088,6 +1162,37 @@ def main():
     print(f"📄 Arquivo CSV persistente: {os.path.abspath(PERSISTENT_CSV_PATH)}")
     print("=" * 70)
     print("✅ Scraping concluído com histórico persistente!")
+    print("=" * 70)
+    
+    # Automação: Gera o site automaticamente após o scraping
+    print(f"\n" + "=" * 70)
+    print("🌐 GERANDO SITE AUTOMATICAMENTE")
+    print("=" * 70)
+    try:
+        import subprocess
+        gerar_site_path = os.path.join(os.path.dirname(__file__), "gerar_site.py")
+        if os.path.exists(gerar_site_path):
+            print(f"   📄 Executando: {gerar_site_path}")
+            result = subprocess.run(
+                [sys.executable, gerar_site_path],
+                capture_output=True,
+                text=True,
+                cwd=os.path.dirname(__file__)
+            )
+            if result.returncode == 0:
+                print(f"   ✅ Site gerado com sucesso!")
+                if result.stdout:
+                    print(f"   📋 Saída: {result.stdout[:200]}...")
+            else:
+                print(f"   ⚠️  Aviso: Geração do site retornou código {result.returncode}")
+                if result.stderr:
+                    print(f"   📋 Erro: {result.stderr[:200]}...")
+        else:
+            print(f"   ⚠️  Arquivo gerar_site.py não encontrado em: {gerar_site_path}")
+    except Exception as e:
+        print(f"   ⚠️  Erro ao gerar site automaticamente: {e}")
+        print(f"   💡 Execute manualmente: python gerar_site.py")
+    
     print("=" * 70)
 
 

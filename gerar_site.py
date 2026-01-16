@@ -10,6 +10,7 @@ Autor: MatchFly Team
 Data: 2026-01-12
 """
 
+import csv
 import json
 import logging
 import os
@@ -222,6 +223,118 @@ def extract_valid_flights(content: str) -> Tuple[bool, str, Optional[Dict]]:
         return False, f"Erro ao extrair voos: {str(e)}", None
 
 
+def convert_csv_to_json_flights(csv_path: Path) -> List[Dict]:
+    """
+    Converte dados do CSV (voos_atrasados_gru.csv) para o formato JSON esperado.
+    
+    Mapeia campos do CSV para o formato do JSON:
+    - Data_Captura -> capture_date
+    - Horario -> scheduled_time
+    - Companhia -> airline
+    - Numero_Voo -> flight_number
+    - Operado_Por (ou Destino_Origem) -> Operado_Por
+    - Status -> status
+    - Data_Partida -> Data_Partida
+    - Hora_Partida -> Hora_Partida
+    
+    Args:
+        csv_path: Caminho para o arquivo CSV
+        
+    Returns:
+        Lista de voos no formato JSON
+    """
+    flights = []
+    
+    if not csv_path.exists():
+        return flights
+    
+    try:
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Extrai campos do CSV
+                data_captura = str(row.get('Data_Captura', '')).strip()
+                horario = str(row.get('Horario', '')).strip()
+                companhia = str(row.get('Companhia', 'N/A')).strip()
+                numero_voo = str(row.get('Numero_Voo', '')).strip()
+                status = str(row.get('Status', 'N/A')).strip()
+                data_partida = str(row.get('Data_Partida', '')).strip()
+                hora_partida = str(row.get('Hora_Partida', '')).strip()
+                
+                # FILTRO ANTI-N/A: Remove linhas sem companhia válida
+                # Se companhia estiver vazia, nula ou "N/A", pula esta linha
+                if not companhia or companhia.upper() == 'N/A' or companhia == '':
+                    continue
+                
+                # Suporta tanto Operado_Por (novo) quanto Destino_Origem (antigo)
+                # Se Destino_Origem for uma companhia conhecida, é codeshare (Operado_Por)
+                destino_origem = str(row.get('Destino_Origem', '')).strip()
+                operado_por_raw = str(row.get('Operado_Por', '')).strip()
+                
+                # Lista de companhias conhecidas (para identificar codeshare)
+                companhias_conhecidas = {
+                    "LATAM", "TAM", "GOL", "AZUL", "EMIRATES", "TURKISH", "TURKISH AIRLINES",
+                    "BRITISH", "BRITISH AIRWAYS", "AIR FRANCE", "AIRFRANCE", "KLM", "LUFTHANSA",
+                    "AMERICAN", "AMERICAN AIRLINES", "DELTA", "UNITED"
+                }
+                
+                # Determina Operado_Por
+                operado_por = ""
+                if operado_por_raw and operado_por_raw != 'N/A':
+                    operado_por = operado_por_raw
+                elif destino_origem in companhias_conhecidas:
+                    # É codeshare - usa como Operado_Por
+                    operado_por = destino_origem
+                
+                # Se Operado_Por for igual à companhia principal ou vazio, deixa em branco
+                if not operado_por or operado_por == companhia or operado_por == "N/A":
+                    operado_por = ""
+                
+                # Se não tiver Data_Partida, tenta extrair de Data_Captura
+                if not data_partida and data_captura:
+                    try:
+                        data_obj = datetime.strptime(data_captura, "%Y-%m-%d")
+                        data_partida = data_obj.strftime("%d/%m")
+                    except:
+                        pass
+                
+                # Se não tiver Hora_Partida, usa Horario
+                if not hora_partida and horario:
+                    hora_partida = horario
+                
+                # Calcula delay_hours (aproximado, baseado no status)
+                delay_hours = 0.0
+                if 'atrasado' in status.lower():
+                    # Aproximação: assume 1 hora de atraso se não tiver informação
+                    delay_hours = 1.0
+                
+                # Cria objeto de voo no formato JSON
+                flight = {
+                    'flight_number': numero_voo,
+                    'airline': companhia if companhia != 'N/A' else 'N/A',
+                    'status': status,
+                    'scheduled_time': hora_partida if hora_partida else horario,
+                    'delay_hours': delay_hours,
+                    'origin': 'GRU',
+                    'capture_date': data_captura,
+                    # Novos campos
+                    'Operado_Por': operado_por if operado_por and operado_por != 'N/A' else '',
+                    'Data_Partida': data_partida,
+                    'Hora_Partida': hora_partida if hora_partida else horario,
+                }
+                
+                flights.append(flight)
+        
+        logger.info(f"✅ {len(flights)} voo(s) convertido(s) do CSV")
+        
+    except Exception as e:
+        logger.error(f"❌ Erro ao converter CSV para JSON: {e}")
+        import traceback
+        logger.error(traceback.format_exc())
+    
+    return flights
+
+
 def load_flights_safely(json_file: Path) -> Tuple[bool, str, List[Dict]]:
     """
     Carrega voos do arquivo JSON com validação e correção automática.
@@ -359,24 +472,40 @@ def generate_flight_card_html(flight: Dict, filename: str) -> str:
     delay_hours = flight.get('delay_hours', 0)
     scheduled_time = flight.get('scheduled_time', '').strip() or 'N/A'
     
+    # Novos campos: Operado_Por, Data_Partida, Hora_Partida
+    operado_por = flight.get('Operado_Por', flight.get('operado_por', '')).strip()
+    data_partida = flight.get('Data_Partida', flight.get('data_partida', '')).strip()
+    hora_partida = flight.get('Hora_Partida', flight.get('hora_partida', '')).strip()
+    
+    # Se não tiver Data_Partida/Hora_Partida, tenta extrair de scheduled_time
+    if not data_partida or not hora_partida:
+        # Tenta extrair de scheduled_time se disponível
+        if scheduled_time and scheduled_time != 'N/A':
+            hora_partida = scheduled_time
+    
     # Status em português
     status_lower = status.lower()
     if 'cancelado' in status_lower:
         status_badge = 'Cancelado'
-        status_bg = 'bg-red-500'
+        status_bg = 'bg-red-100 text-red-800'
     elif 'atrasado' in status_lower:
         status_badge = 'Atrasado'
-        status_bg = 'bg-orange-500'
+        status_bg = 'bg-orange-500 text-white'
     else:
         status_badge = status
-        status_bg = 'bg-orange-500'
+        status_bg = 'bg-orange-500 text-white'
     
     delay_formatted = format_delay_hours(delay_hours)
     
     # URL do voo
     voo_url = f"/voo/{filename}"
     
-    # HTML do card (cópia exata do template)
+    # Sub-header "Operado por" (apenas se tiver valor)
+    operado_por_html = ""
+    if operado_por and operado_por != "N/A" and operado_por != "":
+        operado_por_html = f'<p class="text-xs text-gray-500 mt-1">Operado por: {operado_por}</p>'
+    
+    # HTML do card (cópia exata do template com melhorias)
     card_html = f'''            <a class='block bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 group hover:-translate-y-2' href='{voo_url}'>
                 
                 <!-- Header Card -->
@@ -388,9 +517,12 @@ def generate_flight_card_html(flight: Dict, filename: str) -> str:
                                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">{airline}</span>
+                            <div>
+                                <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">{airline}</span>
+                                {operado_por_html}
+                            </div>
                         </div>
-                        <span class="px-3 py-1 {status_bg} text-white text-[10px] font-black rounded-full uppercase tracking-wider shadow-md">
+                        <span class="px-3 py-1 {status_bg} text-[10px] font-black rounded-full uppercase tracking-wider shadow-md">
                             {status_badge}
                         </span>
                     </div>
@@ -415,15 +547,32 @@ def generate_flight_card_html(flight: Dict, filename: str) -> str:
                             </div>
                         </div>
                         
-                        <div class="flex items-center space-x-3 text-sm">
-                            <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
-                                </svg>
+                        <!-- Layout de duas colunas para Data e Hora -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <!-- Data Partida -->
+                            <div class="flex items-center space-x-2 text-sm">
+                                <div class="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-500 font-medium">Data</p>
+                                    <p class="text-xs font-semibold text-gray-700">{data_partida if data_partida else 'N/A'}</p>
+                                </div>
                             </div>
-                            <div>
-                                <p class="text-xs text-gray-500 font-medium">Horário Previsto</p>
-                                <p class="text-sm font-semibold text-gray-700">{scheduled_time}</p>
+                            
+                            <!-- Hora Partida -->
+                            <div class="flex items-center space-x-2 text-sm">
+                                <div class="w-6 h-6 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-4 h-4 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-gray-500 font-medium">Hora</p>
+                                    <p class="text-xs font-semibold text-gray-700">{hora_partida if hora_partida else scheduled_time}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -538,22 +687,48 @@ def generate_home_page(flights: List[Dict], output_path: Path) -> bool:
             logger.info("📋 Nenhum voo encontrado. Mantendo cards de exemplo do template.")
             # Não fazer nada, deixar os cards originais
         else:
-            # Ordenar voos: mais recentes primeiro
-            # Prioriza voos cancelados, depois ordena por data de captura (mais recente primeiro)
+            # Ordenar voos: mais recentes primeiro (ordenação cronológica rigorosa)
+            # Critério 1: Data_Captura (ou Data_Partida) -> Descendente (mais recente no topo)
+            # Critério 2: Horario -> Descendente
             def sort_key(flight):
-                status_priority = 0 if 'cancelado' in flight.get('status', '').lower() else 1
-                # Usa capture_date se disponível, senão scheduled_time
-                capture_date = flight.get('capture_date', '')
-                scheduled = flight.get('scheduled_time', '')
-                # Para ordenação: cancelados primeiro, depois por data (mais recente primeiro)
-                # Usa capture_date + scheduled_time para ordenação mais precisa
-                sort_date = capture_date if capture_date else scheduled
-                return (status_priority, sort_date)
+                # Converte Data_Captura para datetime para ordenação correta
+                capture_date_str = flight.get('capture_date', '')
+                data_partida_str = flight.get('Data_Partida', '')
+                horario = flight.get('scheduled_time', '') or flight.get('Hora_Partida', '') or ''
+                
+                # Tenta parsear Data_Captura (formato: YYYY-MM-DD)
+                try:
+                    if capture_date_str:
+                        date_obj = datetime.strptime(capture_date_str, "%Y-%m-%d")
+                    elif data_partida_str:
+                        # Data_Partida está no formato DD/MM, precisa inferir o ano
+                        # Usa ano atual como fallback
+                        day, month = data_partida_str.split('/')
+                        date_obj = datetime(datetime.now().year, int(month), int(day))
+                    else:
+                        # Se não tiver data, usa data muito antiga para ir para o final
+                        date_obj = datetime(1900, 1, 1)
+                except (ValueError, AttributeError):
+                    date_obj = datetime(1900, 1, 1)
+                
+                # Converte Horario para datetime (formato: HH:MM)
+                try:
+                    if horario and ':' in horario:
+                        hour, minute = map(int, horario.split(':'))
+                        time_obj = datetime(1900, 1, 1, hour, minute)
+                    else:
+                        time_obj = datetime(1900, 1, 1, 0, 0)
+                except (ValueError, AttributeError):
+                    time_obj = datetime(1900, 1, 1, 0, 0)
+                
+                # Retorna tupla para ordenação: (data, hora) em ordem reversa
+                # Mais recente primeiro = data mais recente + hora mais recente
+                return (date_obj, time_obj)
             
             flights_sorted = sorted(
                 flights,
                 key=sort_key,
-                reverse=True  # Mais recentes primeiro
+                reverse=True  # Mais recentes primeiro (descendente)
             )
             
             # Gerar cards reais
@@ -868,25 +1043,52 @@ def main():
     
     # 2. Carregar dados com VALIDAÇÃO DE INTEGRIDADE e CORREÇÃO AUTOMÁTICA
     logger.info("=" * 70)
-    logger.info("🔍 VALIDAÇÃO DE INTEGRIDADE DO JSON")
+    logger.info("🔍 CARREGANDO DADOS DE VOOS")
     logger.info("=" * 70)
     
-    if not data_file.exists():
-        logger.error(f"❌ Arquivo não encontrado: {data_file}")
-        logger.error("   O scraper precisa ser executado primeiro para criar o banco de dados.")
-        return
+    flights = []
     
-    # Carrega voos com validação e correção automática
-    success, message, flights = load_flights_safely(data_file)
+    # Tenta carregar do JSON primeiro
+    if data_file.exists():
+        logger.info(f"📄 Tentando carregar de: {data_file}")
+        success, message, flights_json = load_flights_safely(data_file)
+        
+        if success and flights_json:
+            flights = flights_json
+            logger.info(f"✅ {message}")
+            logger.info(f"📊 Total de voos carregados do JSON: {len(flights)}")
+        else:
+            logger.warning(f"⚠️  JSON vazio ou inválido: {message}")
     
-    if not success:
-        logger.error(f"❌ Falha ao carregar voos: {message}")
-        logger.error("   Verifique o arquivo manualmente ou execute o scraper novamente.")
-        return
-    
-    # Log do resultado
-    logger.info(f"✅ {message}")
-    logger.info(f"📊 Total de voos carregados: {len(flights)}")
+    # Se não tiver voos do JSON, tenta carregar do CSV
+    if not flights:
+        csv_path = Path("voos_atrasados_gru.csv")
+        if csv_path.exists():
+            logger.info(f"📄 Tentando carregar de: {csv_path}")
+            flights_csv = convert_csv_to_json_flights(csv_path)
+            if flights_csv:
+                flights = flights_csv
+                logger.info(f"✅ {len(flights)} voo(s) carregado(s) do CSV")
+                
+                # Salva no JSON para próxima vez
+                try:
+                    json_data = {
+                        "flights": flights,
+                        "metadata": {
+                            "scraped_at": datetime.now().isoformat() + "+00:00",
+                            "source": "csv_conversion:voos_atrasados_gru.csv",
+                            "total_flights": len(flights)
+                        }
+                    }
+                    with open(data_file, 'w', encoding='utf-8') as f:
+                        json.dump(json_data, f, ensure_ascii=False, indent=2)
+                    logger.info(f"💾 Dados salvos em {data_file} para próxima execução")
+                except Exception as e:
+                    logger.warning(f"⚠️  Não foi possível salvar JSON: {e}")
+            else:
+                logger.warning("⚠️  CSV não contém voos válidos")
+        else:
+            logger.warning(f"⚠️  CSV não encontrado: {csv_path}")
     
     # Proteção: se lista estiver vazia após carregar, avisa mas continua
     if not flights:
@@ -894,8 +1096,20 @@ def main():
         logger.warning("   Isso pode indicar que o scraper não capturou dados ainda.")
         logger.warning("   O site será gerado sem voos (mostrará apenas template).")
     else:
-        logger.info(f"✅ {len(flights)} voo(s) carregado(s) com sucesso do banco persistente")
+        logger.info(f"✅ {len(flights)} voo(s) carregado(s) com sucesso")
         logger.info("=" * 70)
+    
+    # 2.5. FILTRO ANTI-N/A: Remove voos sem companhia válida (limpeza de dados)
+    flights_before_filter = len(flights)
+    flights = [
+        f for f in flights
+        if f.get('airline', '').strip() and 
+           f.get('airline', '').strip().upper() != 'N/A' and
+           f.get('airline', '').strip() != ''
+    ]
+    flights_filtered = flights_before_filter - len(flights)
+    if flights_filtered > 0:
+        logger.info(f"🧹 Filtrados {flights_filtered} voo(s) sem companhia válida (N/A removidos)")
     
     # 3. Filtrar voos com problemas (Atrasado ou Cancelado)
     problematic_flights = [
@@ -977,16 +1191,43 @@ def main():
     
     all_flights_for_home = unique_flights
     
-    # Ordenar: mais recentes primeiro
-    # Prioriza cancelados, depois ordena por data de captura (mais recente primeiro)
+    # Ordenar: mais recentes primeiro (ordenação cronológica rigorosa)
+    # Critério 1: Data_Captura (ou Data_Partida) -> Descendente (mais recente no topo)
+    # Critério 2: Horario -> Descendente
     def home_sort_key(flight):
-        status_priority = 0 if 'cancelado' in flight.get('status', '').lower() else 1
-        # Usa capture_date se disponível, senão scheduled_time
-        capture_date = flight.get('capture_date', '')
-        scheduled = flight.get('scheduled_time', '')
-        # Para ordenação reversa: mais recentes primeiro
-        sort_date = capture_date if capture_date else scheduled
-        return (status_priority, sort_date)
+        # Converte Data_Captura para datetime para ordenação correta
+        capture_date_str = flight.get('capture_date', '')
+        data_partida_str = flight.get('Data_Partida', '')
+        horario = flight.get('scheduled_time', '') or flight.get('Hora_Partida', '') or ''
+        
+        # Tenta parsear Data_Captura (formato: YYYY-MM-DD)
+        try:
+            if capture_date_str:
+                date_obj = datetime.strptime(capture_date_str, "%Y-%m-%d")
+            elif data_partida_str:
+                # Data_Partida está no formato DD/MM, precisa inferir o ano
+                # Usa ano atual como fallback
+                day, month = data_partida_str.split('/')
+                date_obj = datetime(datetime.now().year, int(month), int(day))
+            else:
+                # Se não tiver data, usa data muito antiga para ir para o final
+                date_obj = datetime(1900, 1, 1)
+        except (ValueError, AttributeError):
+            date_obj = datetime(1900, 1, 1)
+        
+        # Converte Horario para datetime (formato: HH:MM)
+        try:
+            if horario and ':' in horario:
+                hour, minute = map(int, horario.split(':'))
+                time_obj = datetime(1900, 1, 1, hour, minute)
+            else:
+                time_obj = datetime(1900, 1, 1, 0, 0)
+        except (ValueError, AttributeError):
+            time_obj = datetime(1900, 1, 1, 0, 0)
+        
+        # Retorna tupla para ordenação: (data, hora) em ordem reversa
+        # Mais recente primeiro = data mais recente + hora mais recente
+        return (date_obj, time_obj)
     
     all_flights_for_home.sort(key=home_sort_key, reverse=True)
     
