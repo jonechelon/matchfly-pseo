@@ -629,19 +629,29 @@ def scrape_gru_flights_html(
     
     flights = []
     
-    # FORÇA BRUTA: Criar diretório ~/Downloads do sistema que o Playwright exige
-    system_downloads = os.path.expanduser("~/Downloads")
-    os.makedirs(system_downloads, exist_ok=True)
-    print(f"📂 Diretório de sistema forçado: {system_downloads}")
+    # CONFIGURAÇÃO DE SEGURANÇA CI/CD
+    # Define pasta de downloads dentro do projeto, não na raiz do sistema
+    download_path = os.path.join(os.getcwd(), "downloads_playwright")
+    os.makedirs(download_path, exist_ok=True)
+    print(f"📂 Diretório de downloads forçado: {download_path}")
     
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=headless)
+        browser = p.chromium.launch(
+            headless=headless,
+            args=[
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage"
+            ],
+            downloads_path=download_path  # Força o uso da pasta criada
+        )
         context = browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) "
                 "AppleWebKit/605.1.15 (KHTML, like Gecko) "
                 "Version/17.2 Mobile/15E148 Safari/604.1"
-            )
+            ),
+            accept_downloads=True
         )
         page = context.new_page()
         
