@@ -48,8 +48,8 @@ jobs:
         with:
           # Mensagem técnica para não levantar suspeitas
           commit_message: 'report: update operational metrics [skip ci]'
-          # Onde o ouro está escondido (seus CSVs de indenização)
-          file_pattern: 'matchfly-pseo/logs_voos_atrasados/*.csv'
+          # Inclui CSV na raiz e CSVs em subpastas
+          file_pattern: 'voos_atrasados_gru.csv matchfly-pseo/logs_voos_atrasados/*.csv'
           commit_user_name: 'Operational Bot'
           commit_user_email: 'ops-bot@users.noreply.github.com'
           skip_dirty_check: false
