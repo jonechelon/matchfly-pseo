@@ -635,6 +635,14 @@ def scrape_gru_flights_html(
     os.makedirs(download_path, exist_ok=True)
     print(f"📂 Diretório de downloads forçado: {download_path}")
     
+    # --- CORREÇÃO CRÍTICA PARA GITHUB ACTIONS ---
+    # O Playwright exige que ~/Downloads exista para artefatos temporários,
+    # independentemente de onde salvamos os arquivos finais.
+    system_downloads = os.path.expanduser("~/Downloads")
+    os.makedirs(system_downloads, exist_ok=True)
+    print(f"🔧 Pasta de Sistema Criada: {system_downloads}")
+    # ---------------------------------------------
+    
     with sync_playwright() as p:
         browser = p.chromium.launch(
             headless=headless,
