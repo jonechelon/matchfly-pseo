@@ -25,8 +25,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # Adicionei jinja2 pois geradores de site geralmente usam ele
-          pip install requests pandas jinja2
+          # LISTA COMPLETA DE DEPENDÊNCIAS PARA RODAR O GERADOR
+          pip install requests pandas jinja2 python-slugify
 
       - name: 1. Sync Data (Download & Convert)
         run: |
@@ -35,14 +35,12 @@ jobs:
       - name: 2. Generate HTML (Build Site)
         run: |
           echo "🎨 Rodando gerador de páginas..."
-          # Executa o mesmo script que estava no seu run_pipeline.sh
           python src/generator.py
 
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'deploy: update site content [skip ci]'
-          # Salva o CSV, o JSON e o HTML gerado na pasta public
           file_pattern: voos_atrasados_gru.csv data/flights-db.json public/*.html
           commit_user_name: 'Operational Bot'
           commit_user_email: 'ops-bot@users.noreply.github.com'
