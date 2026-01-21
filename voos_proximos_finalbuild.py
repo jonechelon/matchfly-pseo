@@ -7,8 +7,10 @@ Script de Sincronização e Build - MatchFly PSEO
 import sys
 import os
 import requests
-import pandas as pd # Usaremos pandas para converter CSV -> JSON
+import pandas as pd
+import json
 import logging
+import datetime
 
 # Configuração de Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -27,7 +29,7 @@ def ensure_directory(path):
 
 def main():
     logger.info("=" * 70)
-    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO DE DADOS (CSV + JSON)")
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO DE DADOS (CORREÇÃO DE FORMATO)")
     logger.info("=" * 70)
     
     base_dir = os.getcwd()
@@ -48,21 +50,38 @@ def main():
         logger.error(f"🛑 Erro fatal no download: {e}")
         sys.exit(1)
 
-    # 2. Conversão para JSON (Para compatibilidade com src/generator.py)
+    # 2. Conversão para JSON (Formato Compatível com Generator v2.0)
     try:
-        logger.info("🔄 Convertendo CSV para JSON...")
+        logger.info("🔄 Convertendo CSV para JSON estruturado...")
         ensure_directory(path_json)
         
         # Lê o CSV baixado
         df = pd.read_csv(path_csv)
         
-        # Salva como JSON (formato de lista de registros, padrão web)
-        df.to_json(path_json, orient='records', force_ascii=False, indent=2)
+        # Converte para lista de dicionários
+        flights_list = df.to_dict(orient='records')
         
-        logger.info(f"✅ JSON gerado: {path_json} ({len(df)} registros)")
+        # CRIA A ESTRUTURA ESPERADA PELO GENERATOR.PY
+        # O generator espera um objeto com a chave 'flights'
+        final_structure = {
+            "flights": flights_list,
+            "metadata": {
+                "generated_at": datetime.datetime.now().isoformat(),
+                "count": len(flights_list),
+                "source": "gru-flight-reliability-monitor"
+            }
+        }
+        
+        # Salva como JSON
+        with open(path_json, 'w', encoding='utf-8') as f:
+            json.dump(final_structure, f, indent=2, ensure_ascii=False)
+        
+        logger.info(f"✅ JSON gerado corretamente: {path_json}")
+        logger.info(f"📊 Total de voos processados: {len(flights_list)}")
         
     except Exception as e:
-        logger.warning(f"⚠️ Erro na conversão JSON (o site pode não atualizar se depender disso): {e}")
+        logger.error(f"🛑 Erro na conversão JSON: {e}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
