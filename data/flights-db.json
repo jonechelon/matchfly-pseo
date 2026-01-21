@@ -62,9 +62,29 @@
     },
     {
       "data_captura": "2026-01-21",
+      "scheduled_time": "20:15",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7967",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "21/01",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
       "scheduled_time": "08:10",
       "airline": "LATAM",
       "flight_number": "8349",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "21/01",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
+      "scheduled_time": "20:10",
+      "airline": "LATAM",
+      "flight_number": "RJ1924",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
@@ -1422,7 +1442,7 @@
     }
   ],
   "metadata": {
-    "generated_at": "2026-01-21T23:01:39.361314",
-    "count": 142
+    "generated_at": "2026-01-21T23:41:52.787755",
+    "count": 144
   }
 }
