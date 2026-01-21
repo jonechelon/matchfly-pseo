@@ -2,10 +2,10 @@ name: GRU Operational Monitor
 
 on:
   schedule:
-    # Executa automaticamente a cada 15 minutos
+    # Executa a cada 15 minutos
     - cron: '*/15 * * * *'
   workflow_dispatch:
-    # Permite execução manual via botão no GitHub
+    # Botão para rodar manual
 
 jobs:
   monitor-operations:
@@ -27,27 +27,23 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # Instala apenas o necessário para o novo script de download
+          # Aqui instalamos apenas o que o seu script novo precisa
           pip install requests pandas
 
-      # REMOVIDO: Etapa do Playwright (não é mais necessária)
+      # REMOVI A ETAPA "Install Playwright" QUE ESTAVA DANDO ERRO
 
       - name: Execute Operational Monitor
         env:
-          # Mantido caso você use no futuro, mas o script atual não exige
           PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
         run: |
-          echo "📡 Starting operational data sync..."
+          echo "📡 Baixando dados atualizados..."
           python voos_proximos_finalbuild.py
-          echo "✅ Data synced successfully."
+          echo "✅ Dados sincronizados!"
 
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'report: update operational metrics [skip ci]'
-          # Garante que o CSV baixado seja salvo no repositório
-          file_pattern: voos_atrasados_gru.csv public/index.html
+          commit_message: 'fix: update csv data [skip ci]'
+          file_pattern: voos_atrasados_gru.csv
           commit_user_name: 'Operational Bot'
           commit_user_email: 'ops-bot@users.noreply.github.com'
-          skip_dirty_check: false
-          skip_fetch: false
