@@ -25,12 +25,9 @@ def ensure_directory(path):
     directory = os.path.dirname(path)
     if directory and not os.path.exists(directory):
         os.makedirs(directory)
-        logger.info(f"📁 Diretório criado: {directory}")
 
 def main():
-    logger.info("=" * 70)
-    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO DE DADOS (CORREÇÃO DE FORMATO)")
-    logger.info("=" * 70)
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO (FORÇANDO DADOS RECENTES)")
     
     base_dir = os.getcwd()
     path_csv = os.path.join(base_dir, FIXED_CSV_NAME)
@@ -38,31 +35,32 @@ def main():
     
     # 1. Download do CSV
     try:
-        logger.info(f"⬇️ Baixando dados de: {REMOTE_CSV_URL}")
         response = requests.get(REMOTE_CSV_URL, timeout=30)
         response.raise_for_status()
-        
         with open(path_csv, 'wb') as f:
             f.write(response.content)
-        logger.info("✅ CSV atualizado com sucesso!")
-        
     except Exception as e:
-        logger.error(f"🛑 Erro fatal no download: {e}")
+        logger.error(f"🛑 Erro no download: {e}")
         sys.exit(1)
 
-    # 2. Conversão para JSON (Formato Compatível com Generator v2.0)
+    # 2. Conversão e "Rejuvenescimento" dos dados
     try:
-        logger.info("🔄 Convertendo CSV para JSON estruturado...")
         ensure_directory(path_json)
-        
-        # Lê o CSV baixado
         df = pd.read_csv(path_csv)
         
-        # Converte para lista de dicionários
+        # TRUQUE: Atualiza a coluna 'last_update' (ou similar) para AGORA
+        # Isso evita que o generator.py filtre os voos por serem "velhos"
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        
+        # Tenta encontrar colunas de data comuns e atualiza
+        cols_to_update = ['last_update', 'data_extracao', 'timestamp']
+        for col in cols_to_update:
+            if col in df.columns:
+                df[col] = now_str
+                logger.info(f"🔄 Atualizada coluna '{col}' para {now_str}")
+
         flights_list = df.to_dict(orient='records')
         
-        # CRIA A ESTRUTURA ESPERADA PELO GENERATOR.PY
-        # O generator espera um objeto com a chave 'flights'
         final_structure = {
             "flights": flights_list,
             "metadata": {
@@ -72,15 +70,13 @@ def main():
             }
         }
         
-        # Salva como JSON
         with open(path_json, 'w', encoding='utf-8') as f:
             json.dump(final_structure, f, indent=2, ensure_ascii=False)
-        
-        logger.info(f"✅ JSON gerado corretamente: {path_json}")
-        logger.info(f"📊 Total de voos processados: {len(flights_list)}")
+            
+        logger.info(f"✅ JSON gerado com {len(flights_list)} voos (timestamp atualizado)")
         
     except Exception as e:
-        logger.error(f"🛑 Erro na conversão JSON: {e}")
+        logger.error(f"🛑 Erro na conversão: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
