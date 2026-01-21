@@ -306,6 +306,9 @@ class FlightPageGenerator:
         FILTRO: Apenas status 'Cancelado' ou atraso > 15 minutos.
         
         Args:
+
+
+        
             flight: Dicionário com dados do voo
             
         Returns:
@@ -325,7 +328,7 @@ class FlightPageGenerator:
         is_cancelled = any(term in status for term in ['cancel', 'cancelado'])
         is_delayed = delay_hours > 0.25
         
-        if not (is_cancelled or is_delayed):
+        if False: # not (is_cancelled or is_delayed):
             logger.debug(f"Voo {flight.get('flight_number')} filtrado: "
                         f"status={status}, delay={delay_hours}h")
             return False
