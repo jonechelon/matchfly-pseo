@@ -52,11 +52,31 @@
     },
     {
       "data_captura": "2026-01-21",
+      "scheduled_time": "22:15",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7213",
+      "operado_por": NaN,
+      "status": "Cancelado",
+      "data_partida": "21/01",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
       "scheduled_time": "08:10",
       "airline": "LATAM",
       "flight_number": "8349",
       "operado_por": NaN,
       "status": "Atrasado",
+      "data_partida": "21/01",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
+      "scheduled_time": "19:45",
+      "airline": "LATAM",
+      "flight_number": "RJ2357",
+      "operado_por": NaN,
+      "status": "Cancelado",
       "data_partida": "21/01",
       "origin": "GRU"
     },
@@ -132,11 +152,11 @@
     },
     {
       "data_captura": "2026-01-21",
-      "scheduled_time": "19:15",
+      "scheduled_time": "19:45",
       "airline": "LATAM",
       "flight_number": "RJ6690",
       "operado_por": NaN,
-      "status": "Atrasado",
+      "status": "Cancelado",
       "data_partida": "21/01",
       "origin": "GRU"
     },
@@ -1402,7 +1422,7 @@
     }
   ],
   "metadata": {
-    "generated_at": "2026-01-21T22:38:30.636143",
-    "count": 140
+    "generated_at": "2026-01-21T23:01:39.361314",
+    "count": 142
   }
 }
