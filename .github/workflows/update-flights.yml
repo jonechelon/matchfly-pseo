@@ -40,7 +40,7 @@ jobs:
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'deploy: update site content [skip ci]'
+          commit_message: 'deploy: update site content'
           file_pattern: voos_atrasados_gru.csv data/flights-db.json public/*.html
           commit_user_name: 'Operational Bot'
           commit_user_email: 'ops-bot@users.noreply.github.com'
