@@ -6,63 +6,63 @@ Script de Sincronização e Build - MatchFly PSEO
 
 import sys
 import os
-import shutil
 import requests
-import datetime
-
-# Adiciona o diretório raiz ao path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-# Configurações de URL
-REMOTE_CSV_URL = "https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv"
-FIXED_FILENAME = "voos_atrasados_gru.csv"
-
-# Configuração de Logger simples local para evitar dependência de arquivo externo que possa pedir Playwright
+import pandas as pd # Usaremos pandas para converter CSV -> JSON
 import logging
+
+# Configuração de Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-def download_remote_csv(url, dest_path):
-    """Baixa o CSV do repositório de dados."""
-    try:
-        logger.info(f"⬇️ Iniciando download de: {url}")
-        response = requests.get(url, timeout=30)
-        response.raise_for_status() 
-        
-        with open(dest_path, 'wb') as f:
-            f.write(response.content)
-            
-        file_size = os.path.getsize(dest_path) / 1024
-        logger.info(f"✅ Download concluído! Tamanho: {file_size:.2f} KB")
-        return True
-    except Exception as e:
-        logger.error(f"❌ Erro ao baixar CSV remoto: {e}")
-        return False
+# Configurações
+REMOTE_CSV_URL = "https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv"
+FIXED_CSV_NAME = "voos_atrasados_gru.csv"
+JSON_OUTPUT_PATH = "data/flights-db.json"
+
+def ensure_directory(path):
+    directory = os.path.dirname(path)
+    if directory and not os.path.exists(directory):
+        os.makedirs(directory)
+        logger.info(f"📁 Diretório criado: {directory}")
 
 def main():
     logger.info("=" * 70)
-    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO DE DADOS (VERSÃO DOWNLOAD)")
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO DE DADOS (CSV + JSON)")
     logger.info("=" * 70)
     
-    # Caminhos
     base_dir = os.getcwd()
-    path_fixed = os.path.join(base_dir, FIXED_FILENAME)
+    path_csv = os.path.join(base_dir, FIXED_CSV_NAME)
+    path_json = os.path.join(base_dir, JSON_OUTPUT_PATH)
     
-    # Execução: Download dos dados
-    success = download_remote_csv(REMOTE_CSV_URL, path_fixed)
-
-    if not success:
-        logger.error("🛑 Falha crítica: Não foi possível obter dados.")
+    # 1. Download do CSV
+    try:
+        logger.info(f"⬇️ Baixando dados de: {REMOTE_CSV_URL}")
+        response = requests.get(REMOTE_CSV_URL, timeout=30)
+        response.raise_for_status()
+        
+        with open(path_csv, 'wb') as f:
+            f.write(response.content)
+        logger.info("✅ CSV atualizado com sucesso!")
+        
+    except Exception as e:
+        logger.error(f"🛑 Erro fatal no download: {e}")
         sys.exit(1)
 
-    # Validação
-    if os.path.exists(path_fixed):
-        with open(path_fixed, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-        logger.info(f"✅ Arquivo pronto com {len(lines)} linhas.")
-    else:
-        logger.error("❌ Arquivo não encontrado após download.")
-        sys.exit(1)
+    # 2. Conversão para JSON (Para compatibilidade com src/generator.py)
+    try:
+        logger.info("🔄 Convertendo CSV para JSON...")
+        ensure_directory(path_json)
+        
+        # Lê o CSV baixado
+        df = pd.read_csv(path_csv)
+        
+        # Salva como JSON (formato de lista de registros, padrão web)
+        df.to_json(path_json, orient='records', force_ascii=False, indent=2)
+        
+        logger.info(f"✅ JSON gerado: {path_json} ({len(df)} registros)")
+        
+    except Exception as e:
+        logger.warning(f"⚠️ Erro na conversão JSON (o site pode não atualizar se depender disso): {e}")
 
 if __name__ == "__main__":
     main()
