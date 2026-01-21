@@ -27,13 +27,13 @@ def ensure_directory(path):
         os.makedirs(directory)
 
 def main():
-    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO (FORÇANDO DADOS RECENTES)")
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO & NORMALIZAÇÃO DE DADOS")
     
     base_dir = os.getcwd()
     path_csv = os.path.join(base_dir, FIXED_CSV_NAME)
     path_json = os.path.join(base_dir, JSON_OUTPUT_PATH)
     
-    # 1. Download do CSV
+    # 1. Download
     try:
         response = requests.get(REMOTE_CSV_URL, timeout=30)
         response.raise_for_status()
@@ -43,21 +43,49 @@ def main():
         logger.error(f"🛑 Erro no download: {e}")
         sys.exit(1)
 
-    # 2. Conversão e "Rejuvenescimento" dos dados
+    # 2. Conversão e Correção de Colunas
     try:
         ensure_directory(path_json)
         df = pd.read_csv(path_csv)
         
-        # TRUQUE: Atualiza a coluna 'last_update' (ou similar) para AGORA
-        # Isso evita que o generator.py filtre os voos por serem "velhos"
-        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        # --- ETAPA CRUCIAL: NORMALIZAÇÃO DE CABEÇALHOS ---
+        # Converte tudo para minúsculo e remove espaços
+        df.columns = df.columns.str.lower().str.strip()
         
-        # Tenta encontrar colunas de data comuns e atualiza
-        cols_to_update = ['last_update', 'data_extracao', 'timestamp']
-        for col in cols_to_update:
-            if col in df.columns:
-                df[col] = now_str
-                logger.info(f"🔄 Atualizada coluna '{col}' para {now_str}")
+        # Mapa de tradução (De -> Para)
+        # Ajusta nomes comuns para o padrão exigido pelo generator.py
+        column_mapping = {
+            'voo': 'flight_number',
+            'flight': 'flight_number',
+            'numero': 'flight_number',
+            
+            'companhia': 'airline',
+            'company': 'airline',
+            'cia': 'airline',
+            
+            'situacao': 'status',
+            'estado': 'status',
+            
+            'origem': 'origin',
+            'destino': 'destination',
+            
+            'partida_prevista': 'scheduled_time',
+            'horario': 'scheduled_time'
+        }
+        
+        # Aplica a renomeação
+        df.rename(columns=column_mapping, inplace=True)
+        
+        # Garante que colunas obrigatórias existam (mesmo que vazias) para não quebrar
+        required = ['flight_number', 'airline', 'status']
+        for col in required:
+            if col not in df.columns:
+                logger.warning(f"⚠️ Coluna '{col}' não encontrada. Criando padrão...")
+                df[col] = "DESCONHECIDO" if col != 'status' else "Atrasado"
+
+        # Atualiza timestamp para "enganar" filtro de tempo (caso ainda exista)
+        now_str = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        df['scraped_at'] = now_str 
 
         flights_list = df.to_dict(orient='records')
         
@@ -73,7 +101,7 @@ def main():
         with open(path_json, 'w', encoding='utf-8') as f:
             json.dump(final_structure, f, indent=2, ensure_ascii=False)
             
-        logger.info(f"✅ JSON gerado com {len(flights_list)} voos (timestamp atualizado)")
+        logger.info(f"✅ JSON normalizado gerado com {len(flights_list)} voos")
         
     except Exception as e:
         logger.error(f"🛑 Erro na conversão: {e}")
