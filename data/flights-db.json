@@ -2,1640 +2,1397 @@
   "flights": [
     {
       "data_captura": "2026-01-21",
+      "scheduled_time": "22:15",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0063",
+      "operado_por": NaN,
+      "status": "Cancelado",
+      "data_partida": "21/01",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
       "scheduled_time": "08:45",
-      "airline": NaN,
-      "numero_voo": "1146",
+      "airline": "DESCONHECIDO",
+      "flight_number": "1146",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "15:35",
       "airline": "LATAM",
-      "numero_voo": "3354",
+      "flight_number": "3354",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "15:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "07:45",
       "airline": "LATAM",
-      "numero_voo": "3828",
+      "flight_number": "3828",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "07:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "08:10",
       "airline": "LATAM",
-      "numero_voo": "8349",
+      "flight_number": "8349",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "15:35",
       "airline": "LATAM",
-      "numero_voo": "RJ3874",
+      "flight_number": "RJ3874",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "15:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "08:10",
       "airline": "LATAM",
-      "numero_voo": "RJ3947",
+      "flight_number": "RJ3947",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "08:30",
       "airline": "LATAM",
-      "numero_voo": "RJ4065",
+      "flight_number": "RJ4065",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "08:10",
       "airline": "LATAM",
-      "numero_voo": "RJ4653",
+      "flight_number": "RJ4653",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "08:30",
       "airline": "LATAM",
-      "numero_voo": "RJ4796",
+      "flight_number": "RJ4796",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "08:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
+      "scheduled_time": "18:05",
+      "airline": "LATAM",
+      "flight_number": "RJ4797",
+      "operado_por": NaN,
+      "status": "Cancelado",
+      "data_partida": "21/01",
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "07:35",
       "airline": "LATAM",
-      "numero_voo": "RJ6199",
+      "flight_number": "RJ6199",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "07:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-21",
+      "scheduled_time": "18:05",
+      "airline": "LATAM",
+      "flight_number": "RJ6690",
+      "operado_por": NaN,
+      "status": "Cancelado",
+      "data_partida": "21/01",
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-21",
       "scheduled_time": "15:35",
       "airline": "LATAM",
-      "numero_voo": "RJ6721",
+      "flight_number": "RJ6721",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "21/01",
-      "hora_partida": "15:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "23:00",
-      "airline": NaN,
-      "numero_voo": "0962",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0962",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "19:00",
       "airline": "LATAM",
-      "numero_voo": "3316",
+      "flight_number": "3316",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "19:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "18:20",
       "airline": "LATAM",
-      "numero_voo": "3346",
+      "flight_number": "3346",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "18:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "19:20",
       "airline": "LATAM",
-      "numero_voo": "3562",
+      "flight_number": "3562",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "19:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "14:10",
       "airline": "LATAM",
-      "numero_voo": "3620",
+      "flight_number": "3620",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "14:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "17:00",
       "airline": "LATAM",
-      "numero_voo": "4666",
+      "flight_number": "4666",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "17:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "22:55",
       "airline": "LATAM",
-      "numero_voo": "5152",
+      "flight_number": "5152",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "22:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:25",
       "airline": "LATAM",
-      "numero_voo": "8089",
+      "flight_number": "8089",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "17:45",
       "airline": "LATAM",
-      "numero_voo": "8416",
+      "flight_number": "8416",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "17:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:30",
       "airline": "LATAM",
-      "numero_voo": "8497",
+      "flight_number": "8497",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "23:00",
       "airline": "KLM",
-      "numero_voo": "9326",
+      "flight_number": "9326",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "22:45",
       "airline": "EMIRATES",
-      "numero_voo": "RJ0624",
+      "flight_number": "RJ0624",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "22:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "23:30",
       "airline": "AZUL",
-      "numero_voo": "RJ1268",
+      "flight_number": "RJ1268",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "23:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "19:20",
       "airline": "LATAM",
-      "numero_voo": "RJ1924",
+      "flight_number": "RJ1924",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "19:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "19:00",
       "airline": "LATAM",
-      "numero_voo": "RJ2328",
+      "flight_number": "RJ2328",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "19:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "16:55",
       "airline": "LATAM",
-      "numero_voo": "RJ3874",
+      "flight_number": "RJ3874",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "16:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:15",
       "airline": "LATAM",
-      "numero_voo": "RJ6242",
+      "flight_number": "RJ6242",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "16:55",
       "airline": "LATAM",
-      "numero_voo": "RJ6721",
+      "flight_number": "RJ6721",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "16:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:55",
       "airline": "LATAM",
-      "numero_voo": "RJ7355",
+      "flight_number": "RJ7355",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "17:30",
       "airline": "LATAM",
-      "numero_voo": "RJ7536",
+      "flight_number": "RJ7536",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "17:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "18:20",
       "airline": "LATAM",
-      "numero_voo": "RJ7741",
+      "flight_number": "RJ7741",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "18:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:15",
       "airline": "LATAM",
-      "numero_voo": "RJ8475",
+      "flight_number": "RJ8475",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-20",
       "scheduled_time": "13:55",
       "airline": "LATAM",
-      "numero_voo": "RJ8490",
+      "flight_number": "RJ8490",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "20/01",
-      "hora_partida": "13:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "23:00",
-      "airline": NaN,
-      "numero_voo": "0962",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0962",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "16:25",
       "airline": "LATAM",
-      "numero_voo": "3268",
+      "flight_number": "3268",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "16:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "16:05",
       "airline": "LATAM",
-      "numero_voo": "3288",
+      "flight_number": "3288",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "16:05",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "23:00",
       "airline": "KLM",
-      "numero_voo": "4172",
+      "flight_number": "4172",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "16:25",
       "airline": "LATAM",
-      "numero_voo": "5126",
+      "flight_number": "5126",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "16:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "13:55",
-      "airline": NaN,
-      "numero_voo": "7330",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7330",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "13:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "13:15",
-      "airline": NaN,
-      "numero_voo": "7335",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7335",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "13:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "17:55",
       "airline": "LATAM",
-      "numero_voo": "8121",
+      "flight_number": "8121",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "17:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "13:45",
       "airline": "LATAM",
-      "numero_voo": "RJ1070",
+      "flight_number": "RJ1070",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "13:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "17:30",
       "airline": "LATAM",
-      "numero_voo": "RJ1924",
+      "flight_number": "RJ1924",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "17:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "22:55",
       "airline": "LATAM",
-      "numero_voo": "RJ3945",
+      "flight_number": "RJ3945",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "22:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "12:15",
       "airline": "LATAM",
-      "numero_voo": "RJ3974",
+      "flight_number": "RJ3974",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "12:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "17:30",
       "airline": "LATAM",
-      "numero_voo": "RJ4126",
+      "flight_number": "RJ4126",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "17:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "RJ4797",
+      "flight_number": "RJ4797",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "12:35",
       "airline": "LATAM",
-      "numero_voo": "RJ5357",
+      "flight_number": "RJ5357",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "12:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "22:55",
       "airline": "LATAM",
-      "numero_voo": "RJ6719",
+      "flight_number": "RJ6719",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "22:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "RJ7741",
+      "flight_number": "RJ7741",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "12:35",
       "airline": "LATAM",
-      "numero_voo": "RJ9173",
+      "flight_number": "RJ9173",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "12:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-19",
       "scheduled_time": "13:45",
       "airline": "LATAM",
-      "numero_voo": "RJ9813",
+      "flight_number": "RJ9813",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "19/01",
-      "hora_partida": "13:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "01:20",
-      "airline": NaN,
-      "numero_voo": "0248",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0248",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "01:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:20",
-      "airline": NaN,
-      "numero_voo": "1164",
+      "airline": "DESCONHECIDO",
+      "flight_number": "1164",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:10",
       "airline": "EMIRATES",
-      "numero_voo": "1636",
+      "flight_number": "1636",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "16:00",
       "airline": "LATAM",
-      "numero_voo": "3832",
+      "flight_number": "3832",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "16:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:00",
       "airline": "LATAM",
-      "numero_voo": "5223",
+      "flight_number": "5223",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "04:25",
-      "airline": NaN,
-      "numero_voo": "6061",
+      "airline": "DESCONHECIDO",
+      "flight_number": "6061",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "04:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "17:30",
-      "airline": NaN,
-      "numero_voo": "6124",
+      "airline": "DESCONHECIDO",
+      "flight_number": "6124",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "17:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "11:35",
       "airline": "LATAM",
-      "numero_voo": "6240",
+      "flight_number": "6240",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "11:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:10",
-      "airline": NaN,
-      "numero_voo": "6719",
+      "airline": "DESCONHECIDO",
+      "flight_number": "6719",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:00",
       "airline": "LATAM",
-      "numero_voo": "7110",
+      "flight_number": "7110",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "17:30",
-      "airline": NaN,
-      "numero_voo": "7534",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7534",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "17:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:30",
       "airline": "LATAM",
-      "numero_voo": "9746",
+      "flight_number": "9746",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:30",
       "airline": "LATAM",
-      "numero_voo": "RJ1070",
+      "flight_number": "RJ1070",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "04:25",
       "airline": "LATAM",
-      "numero_voo": "RJ4070",
+      "flight_number": "RJ4070",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "04:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:10",
       "airline": "LATAM",
-      "numero_voo": "RJ4305",
+      "flight_number": "RJ4305",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "01:20",
       "airline": "EMIRATES",
-      "numero_voo": "RJ4771",
+      "flight_number": "RJ4771",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "01:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "RJ5357",
+      "flight_number": "RJ5357",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "11:35",
       "airline": "LATAM",
-      "numero_voo": "RJ6193",
+      "flight_number": "RJ6193",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "11:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:10",
       "airline": "LATAM",
-      "numero_voo": "RJ6603",
+      "flight_number": "RJ6603",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "11:35",
       "airline": "LATAM",
-      "numero_voo": "RJ6647",
+      "flight_number": "RJ6647",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "11:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:00",
       "airline": "LATAM",
-      "numero_voo": "RJ6719",
+      "flight_number": "RJ6719",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "23:00",
       "airline": "LATAM",
-      "numero_voo": "RJ7260",
+      "flight_number": "RJ7260",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "23:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "15:55",
       "airline": "LATAM",
-      "numero_voo": "RJ7347",
+      "flight_number": "RJ7347",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "15:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "04:25",
       "airline": "LATAM",
-      "numero_voo": "RJ9072",
+      "flight_number": "RJ9072",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "04:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "RJ9173",
+      "flight_number": "RJ9173",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-18",
       "scheduled_time": "13:30",
       "airline": "LATAM",
-      "numero_voo": "RJ9253",
+      "flight_number": "RJ9253",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "18/01",
-      "hora_partida": "13:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "08:50",
-      "airline": NaN,
-      "numero_voo": "0092",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0092",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "08:50",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "21:30",
-      "airline": NaN,
-      "numero_voo": "0148",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0148",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "21:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "18:35",
-      "airline": NaN,
-      "numero_voo": "0631",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0631",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "18:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "21:45",
-      "airline": NaN,
-      "numero_voo": "0844",
+      "airline": "DESCONHECIDO",
+      "flight_number": "0844",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "21:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "17:55",
       "airline": "LATAM",
-      "numero_voo": "3790",
+      "flight_number": "3790",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "17:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "15:35",
       "airline": "LATAM",
-      "numero_voo": "6219",
+      "flight_number": "6219",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "15:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "12:35",
       "airline": "LATAM",
-      "numero_voo": "6270",
+      "flight_number": "6270",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "12:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "13:15",
       "airline": "LATAM",
-      "numero_voo": "7255",
+      "flight_number": "7255",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "13:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "21:45",
-      "airline": NaN,
-      "numero_voo": "7257",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7257",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "21:45",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "13:55",
-      "airline": NaN,
-      "numero_voo": "7456",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7456",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "13:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "06:10",
       "airline": "LATAM",
-      "numero_voo": "RJ3340",
+      "flight_number": "RJ3340",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "06:10",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "20:30",
       "airline": "LATAM",
-      "numero_voo": "RJ3368",
+      "flight_number": "RJ3368",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "20:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "15:30",
       "airline": "LATAM",
-      "numero_voo": "RJ3874",
+      "flight_number": "RJ3874",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "15:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "08:25",
       "airline": "LATAM",
-      "numero_voo": "RJ3947",
+      "flight_number": "RJ3947",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "08:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "13:05",
       "airline": "LATAM",
-      "numero_voo": "RJ4305",
+      "flight_number": "RJ4305",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "13:05",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "07:55",
       "airline": "LATAM",
-      "numero_voo": "RJ4653",
+      "flight_number": "RJ4653",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "07:55",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "18:30",
       "airline": "LATAM",
-      "numero_voo": "RJ4797",
+      "flight_number": "RJ4797",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "18:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "15:30",
       "airline": "LATAM",
-      "numero_voo": "RJ6099",
+      "flight_number": "RJ6099",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "15:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "20:30",
       "airline": "LATAM",
-      "numero_voo": "RJ6603",
+      "flight_number": "RJ6603",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "20:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "07:20",
       "airline": "LATAM",
-      "numero_voo": "RJ7120",
+      "flight_number": "RJ7120",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "07:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "13:05",
       "airline": "LATAM",
-      "numero_voo": "RJ7277",
+      "flight_number": "RJ7277",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "13:05",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "08:25",
       "airline": "LATAM",
-      "numero_voo": "RJ7361",
+      "flight_number": "RJ7361",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "08:25",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "12:30",
       "airline": "LATAM",
-      "numero_voo": "RJ8471",
+      "flight_number": "RJ8471",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "12:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "07:20",
       "airline": "LATAM",
-      "numero_voo": "RJ8643",
+      "flight_number": "RJ8643",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "17/01",
-      "hora_partida": "07:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-17",
       "scheduled_time": "18:30",
       "airline": "LATAM",
-      "numero_voo": "RJ9809",
+      "flight_number": "RJ9809",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "17/01",
-      "hora_partida": "18:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:00",
       "airline": "KLM",
-      "numero_voo": "0792",
+      "flight_number": "0792",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "21:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "3604",
+      "flight_number": "3604",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "16:35",
       "airline": "LATAM",
-      "numero_voo": "3856",
+      "flight_number": "3856",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "16:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "18:00",
       "airline": "LATAM",
-      "numero_voo": "4413",
+      "flight_number": "4413",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "18:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "5156",
+      "flight_number": "5156",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:00",
       "airline": "KLM",
-      "numero_voo": "5500",
+      "flight_number": "5500",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "21:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:15",
       "airline": "DELTA",
-      "numero_voo": "6375",
+      "flight_number": "6375",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "21:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:00",
       "airline": "KLM",
-      "numero_voo": "6718",
+      "flight_number": "6718",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "21:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:00",
       "airline": "KLM",
-      "numero_voo": "6747",
+      "flight_number": "6747",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "21:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:00",
       "airline": "KLM",
-      "numero_voo": "6849",
+      "flight_number": "6849",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "21:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "21:15",
       "airline": "DELTA",
-      "numero_voo": "7280",
+      "flight_number": "7280",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "21:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "15:20",
-      "airline": NaN,
-      "numero_voo": "7355",
+      "airline": "DESCONHECIDO",
+      "flight_number": "7355",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "15:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "18:00",
       "airline": "LATAM",
-      "numero_voo": "8072",
+      "flight_number": "8072",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "18:00",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "16:15",
       "airline": "LATAM",
-      "numero_voo": "8227",
+      "flight_number": "8227",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "16:15",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "16:35",
       "airline": "LATAM",
-      "numero_voo": "8422",
+      "flight_number": "8422",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "16:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "20:35",
       "airline": "LATAM",
-      "numero_voo": "RJ3368",
+      "flight_number": "RJ3368",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "20:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "17:20",
       "airline": "LATAM",
-      "numero_voo": "RJ3874",
+      "flight_number": "RJ3874",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "17:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "18:20",
       "airline": "LATAM",
-      "numero_voo": "RJ4126",
+      "flight_number": "RJ4126",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "18:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "19:20",
       "airline": "LATAM",
-      "numero_voo": "RJ4227",
+      "flight_number": "RJ4227",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "19:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "15:20",
       "airline": "LATAM",
-      "numero_voo": "RJ4548",
+      "flight_number": "RJ4548",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "15:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "17:20",
       "airline": "LATAM",
-      "numero_voo": "RJ6099",
+      "flight_number": "RJ6099",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "17:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "20:35",
       "airline": "LATAM",
-      "numero_voo": "RJ7269",
+      "flight_number": "RJ7269",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "20:35",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "15:20",
       "airline": "LATAM",
-      "numero_voo": "RJ7355",
+      "flight_number": "RJ7355",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "15:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "19:20",
       "airline": "LATAM",
-      "numero_voo": "RJ7741",
+      "flight_number": "RJ7741",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "16/01",
-      "hora_partida": "19:20",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-16",
       "scheduled_time": "14:30",
       "airline": "LATAM",
-      "numero_voo": "RJ8490",
+      "flight_number": "RJ8490",
       "operado_por": NaN,
       "status": "Cancelado",
       "data_partida": "16/01",
-      "hora_partida": "14:30",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
-      "airline": NaN,
-      "numero_voo": "3529",
+      "airline": "DESCONHECIDO",
+      "flight_number": "3529",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
-      "airline": NaN,
-      "numero_voo": "5219",
+      "airline": "DESCONHECIDO",
+      "flight_number": "5219",
       "operado_por": NaN,
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
       "airline": "LATAM",
-      "numero_voo": "RJ1924",
+      "flight_number": "RJ1924",
       "operado_por": "GOL",
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
-      "airline": NaN,
-      "numero_voo": "RJ2328",
+      "airline": "DESCONHECIDO",
+      "flight_number": "RJ2328",
       "operado_por": "CIA",
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
       "airline": "LATAM",
-      "numero_voo": "RJ4227",
+      "flight_number": "RJ4227",
       "operado_por": "GOL",
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
       "airline": "LATAM",
-      "numero_voo": "RJ4797",
+      "flight_number": "RJ4797",
       "operado_por": "GOL",
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     },
     {
       "data_captura": "2026-01-13",
       "scheduled_time": "17:40",
       "airline": "LATAM",
-      "numero_voo": "RJ7741",
+      "flight_number": "RJ7741",
       "operado_por": "GOL",
       "status": "Atrasado",
       "data_partida": "13/01",
-      "hora_partida": "17:40",
-      "flight_number": "DESCONHECIDO",
-      "scraped_at": "2026-01-21 20:57:46"
+      "origin": "GRU"
     }
   ],
   "metadata": {
-    "generated_at": "2026-01-21T20:57:46.072015",
-    "count": 136,
-    "source": "gru-flight-reliability-monitor"
+    "generated_at": "2026-01-21T21:37:48.073623",
+    "count": 139
   }
 }
