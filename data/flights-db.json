@@ -1,6 +1,54 @@
 {
   "flights": [
     {
+      "data_captura": "2026-01-22",
+      "horario": "01:50",
+      "airline": "DELTA",
+      "flight_number": "0629",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "22/01",
+      "hora_partida": "01:50",
+      "scheduled_time": "2026-01-22 01:50",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-22",
+      "horario": "01:50",
+      "airline": "DESCONHECIDO",
+      "flight_number": "6314",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "22/01",
+      "hora_partida": "01:50",
+      "scheduled_time": "2026-01-22 01:50",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-22",
+      "horario": "23:05",
+      "airline": "KLM",
+      "flight_number": "RJ4656",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "22/01",
+      "hora_partida": "23:05",
+      "scheduled_time": "2026-01-22 23:05",
+      "origin": "GRU"
+    },
+    {
+      "data_captura": "2026-01-22",
+      "horario": "23:05",
+      "airline": "KLM",
+      "flight_number": "RJ6719",
+      "operado_por": NaN,
+      "status": "Atrasado",
+      "data_partida": "22/01",
+      "hora_partida": "23:05",
+      "scheduled_time": "2026-01-22 23:05",
+      "origin": "GRU"
+    },
+    {
       "data_captura": "2026-01-21",
       "horario": "22:15",
       "airline": "DESCONHECIDO",
@@ -1754,7 +1802,7 @@
     }
   ],
   "metadata": {
-    "generated_at": "2026-01-21T23:19:32.146201",
-    "count": 146
+    "generated_at": "2026-01-22T02:31:14.875713",
+    "count": 150
   }
 }
