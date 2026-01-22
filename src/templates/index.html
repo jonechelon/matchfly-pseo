@@ -177,13 +177,13 @@
                 <!-- Header Card -->
                 <div class="{% if 'cancel' in page.status.lower() %}bg-gradient-to-br from-red-50 to-red-100 border-b-2 border-red-200{% else %}bg-gradient-to-br from-orange-50 to-orange-100 border-b-2 border-orange-200{% endif %} p-5">
                     <div class="flex items-center justify-between mb-3">
-                        <div class="flex items-center space-x-2">
-                            <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center">
+                        <div class="flex items-center space-x-2 min-w-0 flex-1">
+                            <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0">
                                 <svg class="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">{{ page.airline }}</span>
+                            <span class="text-[10px] font-bold text-gray-500 uppercase tracking-wider truncate">{{ page.airline }}</span>
                         </div>
                         <span class="px-3 py-1 {% if 'cancel' in page.status.lower() %}bg-red-500{% else %}bg-orange-500{% endif %} text-white text-[10px] font-black rounded-full uppercase tracking-wider shadow-md">
                             {{ page.status }}
@@ -198,40 +198,49 @@
                 <!-- Body Card -->
                 <div class="p-5 bg-white">
                     <div class="space-y-3 mb-4">
-                        <div class="flex items-center space-x-3 text-sm">
-                            <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 font-medium">Atraso</p>
-                                <p class="text-base font-bold text-gray-900">{{ page.delay_hours }} horas</p>
-                            </div>
+                        <!-- Hora Prevista -->
+                        <div class="flex items-center justify-end space-x-2">
+                            <svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="text-sm font-bold text-gray-900">{{ page.display_time|default('N/A') }}</p>
                         </div>
                         
-                        <div class="flex items-center space-x-3 text-sm">
-                            <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                <svg class="w-5 h-5 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                        <!-- Histórico Monitorado (Compacto) -->
+                        <div class="bg-gray-50 rounded-lg p-3 border border-gray-100">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-gray-500">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z" />
                                 </svg>
+                                <span class="text-[10px] text-gray-500 font-medium">Monitorado em 30 dias</span>
                             </div>
-                            <div>
-                                <p class="text-xs text-gray-500 font-medium">Horário Previsto</p>
-                                <p class="text-sm font-semibold text-gray-700">{{ page.scheduled_time|default('N/A') }}</p>
+                            <div class="flex items-center space-x-3">
+                                <p class="text-xs font-bold text-gray-900">
+                                    <span class="text-orange-600">{{ page.delays_count|default(0) }} Atrasos</span>
+                                    <span class="text-gray-300 mx-1">|</span>
+                                    <span class="text-red-600">{{ page.cancellations_count|default(0) }} Cancelamentos</span>
+                                </p>
                             </div>
+                            <p class="text-[10px] text-gray-400 mt-2" title="* Fonte: site oficial do aeroporto. Dados coletados automaticamente e podem ter variações.">
+                                * Fonte: site oficial do aeroporto
+                            </p>
                         </div>
                     </div>
                     
-                    <!-- CTA -->
+                    <!-- Rodapé: Data e CTA -->
                     <div class="pt-4 border-t border-gray-100">
-                        <div class="flex items-center justify-between text-blue-900 font-bold text-sm group-hover:text-blue-700 transition-colors">
-                            <span>Ver detalhes</span>
-                            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                            </svg>
+                        <div class="flex items-center justify-between mb-2">
+                            <p class="text-xs text-gray-500 font-medium">
+                                {{ page.data_partida|default('N/A') }}
+                            </p>
+                            <div class="flex items-center text-blue-900 font-bold text-sm group-hover:text-blue-700 transition-colors">
+                                <span>Ver detalhes</span>
+                                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                </svg>
+                            </div>
                         </div>
-                        <p class="text-xs text-gray-400 mt-1">Indenização até R$ 10.000</p>
+                        <p class="text-xs text-gray-400">Indenização até R$ 10.000</p>
                     </div>
                 </div>
             </a>

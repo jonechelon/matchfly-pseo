@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Script de Sincronização - MatchFly PSEO
-Versão: Blindada (Auto-Detect Separator + Explicit Mapping)
+Versão: DateTime Sort Fix (Combina Data + Hora para ordenação correta)
 """
 
 import sys
@@ -11,7 +11,6 @@ import pandas as pd
 import json
 import logging
 import datetime
-import io
 
 # Configuração de Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -23,7 +22,7 @@ FIXED_CSV_NAME = "voos_atrasados_gru.csv"
 JSON_OUTPUT_PATH = "data/flights-db.json"
 
 def main():
-    logger.info("🚀 MATCHFLY - INICIANDO SINCRONIZAÇÃO BLINDADA")
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO COM CORREÇÃO DE DATA/HORA")
     
     base_dir = os.getcwd()
     path_csv = os.path.join(base_dir, FIXED_CSV_NAME)
@@ -34,84 +33,97 @@ def main():
         logger.info(f"⬇️ Baixando CSV...")
         response = requests.get(REMOTE_CSV_URL, timeout=30)
         response.raise_for_status()
-        
-        # Salva o conteúdo cru para análise se precisar
-        content = response.content
         with open(path_csv, 'wb') as f:
-            f.write(content)
-            
+            f.write(response.content)
     except Exception as e:
         logger.error(f"🛑 Erro no download: {e}")
         sys.exit(1)
 
-    # 2. Leitura Inteligente (Detecta ; ou ,)
+    # 2. Leitura Inteligente
     try:
-        # Tenta ler com pandas detectando automaticamente, mas forçando engine python
+        # Tenta detectar separador automaticamente, fallback para ';'
         try:
             df = pd.read_csv(path_csv, sep=None, engine='python')
         except:
-            # Fallback para ponto-e-vírgula explícito (comum no Brasil/Excel)
-            logger.warning("⚠️ Falha na detecção automática. Tentando separador ';'")
             df = pd.read_csv(path_csv, sep=';')
 
+        # Normaliza colunas
+        df.columns = df.columns.str.strip().str.lower()
         logger.info(f"📋 Colunas detectadas: {list(df.columns)}")
         
-        # 3. Normalização de Nomes
-        # Remove espaços e converte para minúsculo para facilitar o match
-        df.columns = df.columns.str.strip().str.lower()
-        
-        # Mapa Explicito baseado no seu CSV (Numero_Voo -> flight_number)
+        # --- CORREÇÃO CRÍTICA DE DATA/HORA ---
+        # Tenta encontrar colunas de data e hora para combinar
+        col_date = next((c for c in df.columns if 'data_partida' in c), None)
+        if not col_date:
+            col_date = next((c for c in df.columns if 'data_captura' in c), None)
+            
+        col_time = next((c for c in df.columns if 'hora_partida' in c), None)
+        if not col_time:
+            col_time = next((c for c in df.columns if 'horario' in c), None)
+            
+        # Função para criar timestamp completo ISO (YYYY-MM-DD HH:MM)
+        def make_iso_timestamp(row):
+            try:
+                d_str = str(row[col_date]).strip()
+                t_str = str(row[col_time]).strip()
+                
+                # Trata data DD/MM (ex: 21/01) -> assume 2026
+                if len(d_str) <= 5 and '/' in d_str:
+                    parts = d_str.split('/')
+                    d_iso = f"2026-{parts[1]}-{parts[0]}"
+                # Trata data YYYY-MM-DD
+                else:
+                    d_iso = d_str
+                
+                return f"{d_iso} {t_str}"
+            except:
+                return datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
+        # Se achou as colunas, cria o campo combinado
+        if col_date and col_time:
+            logger.info(f"🕒 Combinando colunas '{col_date}' + '{col_time}' para ordenação...")
+            df['scheduled_time_iso'] = df.apply(make_iso_timestamp, axis=1)
+        else:
+            logger.warning("⚠️ Colunas de data/hora não encontradas para combinação.")
+            df['scheduled_time_iso'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
+        # 3. Mapeamento de Colunas (Atualizado para usar o campo ISO)
         rename_map = {
             'numero_voo': 'flight_number',
             'numero': 'flight_number',
             'voo': 'flight_number',
-            
             'companhia': 'airline',
             'operadora': 'airline',
-            
             'status': 'status',
             'situacao': 'status',
-            
             'origem': 'origin',
-            
-            # Caso não tenha destino, vamos inferir ou deixar vazio
             'destino': 'destination',
             
-            'horario': 'scheduled_time',
-            'hora_partida': 'scheduled_time'
+            # AGORA MAPEAMOS O CAMPO NOVO PARA SER O OFICIAL DE TEMPO
+            'scheduled_time_iso': 'scheduled_time'
         }
         
-        # Aplica a renomeação
         df.rename(columns=rename_map, inplace=True)
         
-        # Validação Pós-Renomeação
-        logger.info(f"✅ Colunas após mapeamento: {list(df.columns)}")
-
         # Garante colunas obrigatórias
         if 'flight_number' not in df.columns:
-            logger.error("🛑 ERRO CRÍTICO: Não encontrei a coluna do número do voo (Numero_Voo)!")
-            # Tenta encontrar a coluna 'number' ou similar na força bruta
+            # Fallback de emergência
             for col in df.columns:
-                if 'num' in col or 'voo' in col:
-                    logger.info(f"🔧 Tentando usar '{col}' como flight_number de emergência")
+                if 'num' in col: 
                     df.rename(columns={col: 'flight_number'}, inplace=True)
                     break
         
-        # Preenche valores vazios
         required = ['flight_number', 'airline', 'status']
         for col in required:
             if col not in df.columns:
                 df[col] = "DESCONHECIDO"
             else:
                 df[col] = df[col].fillna("DESCONHECIDO")
+                
+        if 'origin' not in df.columns: df['origin'] = 'GRU'
 
-        # Garante ORIGEM (GRU por padrão se não vier)
-        if 'origin' not in df.columns:
-            df['origin'] = 'GRU'
-
-        # Atualiza timestamp
+        # Exporta
         flights_list = df.to_dict(orient='records')
-        
         final_structure = {
             "flights": flights_list,
             "metadata": {
@@ -124,11 +136,10 @@ def main():
         with open(path_json, 'w', encoding='utf-8') as f:
             json.dump(final_structure, f, indent=2, ensure_ascii=False)
             
-        logger.info(f"✅ JSON gerado com sucesso: {path_json}")
-        logger.info(f"📊 Total de voos processados: {len(flights_list)}")
-        
+        logger.info(f"✅ JSON gerado com {len(flights_list)} voos.")
+
     except Exception as e:
-        logger.error(f"🛑 Erro no processamento: {e}")
+        logger.error(f"🛑 Erro: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
