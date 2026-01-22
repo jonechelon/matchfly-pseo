@@ -1,11 +1,11 @@
 #!/bin/bash
-# MatchFly Complete Pipeline
-# Scraping → Generation → Deploy
+# MatchFly Complete Pipeline (Updated)
+# Scraping → Generation → Ready to Push
 
 set -e  # Exit on error
 
 echo "============================================================"
-echo "  🚀 MatchFly Complete Pipeline"
+echo "  🚀 MatchFly Pipeline Local (Sincronizado)"
 echo "============================================================"
 echo ""
 
@@ -19,15 +19,15 @@ NC='\033[0m' # No Color
 echo -e "${YELLOW}📦 Ativando ambiente virtual...${NC}"
 source venv/bin/activate
 
-# Step 1: Run scraper
+# Step 1: Run scraper (ATUALIZADO PARA O SCRIPT CERTO)
 echo ""
-echo -e "${YELLOW}🛫 Passo 1: Executando scraper GRU...${NC}"
-python3 run_gru_scraper.py
+echo -e "${YELLOW}🛫 Passo 1: Executando scraper oficial (voos_proximos_finalbuild.py)...${NC}"
+python3 voos_proximos_finalbuild.py
 
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Scraping concluído!${NC}"
+    echo -e "${GREEN}✅ Scraping concluído com sucesso!${NC}"
 else
-    echo -e "${RED}❌ Erro no scraping!${NC}"
+    echo -e "${RED}❌ Erro no scraping! Verifique o script voos_proximos_finalbuild.py${NC}"
     exit 1
 fi
 
@@ -37,7 +37,7 @@ echo -e "${YELLOW}🎨 Passo 2: Gerando páginas HTML...${NC}"
 python3 src/generator.py
 
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}✅ Páginas geradas!${NC}"
+    echo -e "${GREEN}✅ Páginas geradas na pasta /public!${NC}"
 else
     echo -e "${RED}❌ Erro na geração!${NC}"
     exit 1
@@ -59,7 +59,7 @@ echo "Diretório: $(pwd)/public/"
 
 # Optional: Open in browser
 echo ""
-read -p "Abrir no navegador? (y/n) " -n 1 -r
+read -p "Abrir no navegador para testar? (y/n) " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -71,12 +71,11 @@ fi
 
 echo ""
 echo "============================================================"
-echo -e "${GREEN}✅ Pipeline completo executado com sucesso!${NC}"
+echo -e "${GREEN}✅ Tudo pronto! Seu ambiente local está igual ao servidor.${NC}"
 echo "============================================================"
 echo ""
-echo "Próximos passos:"
-echo "  1. Testar páginas em public/"
-echo "  2. Fazer deploy (Netlify, Vercel, etc)"
-echo "  3. Configurar cronjob para execução automática"
+echo "Para publicar as mudanças, rode:"
+echo -e "${YELLOW}  git add .${NC}"
+echo -e "${YELLOW}  git commit -m \"update: dados atualizados localmente\"${NC}"
+echo -e "${YELLOW}  git push origin main${NC}"
 echo ""
-
