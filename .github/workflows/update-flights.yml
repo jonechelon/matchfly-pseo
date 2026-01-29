@@ -3,13 +3,13 @@ name: GRU Operational Monitor
 on:
   schedule:
     - cron: '*/20 * * * *' # Executa a cada 20 minutos
-  workflow_dispatch:      # Permite rodar manualmente via interface do GitHub
+  workflow_dispatch:      # Permite rodar manualmente
 
 jobs:
   monitor-operations:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Permissão CRÍTICA para fazer o commit de volta
+      contents: write
     
     steps:
       - name: Checkout repository
@@ -25,27 +25,26 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          # Dependências do Sistema (Scraper + Gerador)
           pip install requests pandas jinja2 python-slugify
-          # Dependências da Google Indexing API
           pip install google-auth google-auth-oauthlib google-auth-httplib2 requests
 
-      - name: 1. Sync Data (Download & Convert)
+      # MUDANÇA CRÍTICA AQUI: Baixar o CSV do outro repositório
+      - name: 1. Sync Data (Download from Monitor Repo)
         run: |
-          echo "📥 Baixando e processando dados de voos..."
-          # Este script roda na raiz e salva em data/voos_atrasados_gru.csv
-          python voos_proximos_finalbuild.py
+          echo "📥 Baixando CSV atualizado do repositório Monitor..."
+          # Cria a pasta data se não existir
+          mkdir -p data
+          # Baixa o arquivo RAW atualizado
+          curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
 
       - name: 2. Sanitize Database (Fix SCL Bias)
         run: |
           echo "🧹 Higienizando banco de dados (Correção Santiago)..."
-          # Aplica as correções do scl_corrections.py no JSON antes de gerar o site
           python scripts/fix_database.py
 
       - name: 3. Generate HTML (Build Site)
         run: |
           echo "🎨 Rodando gerador de páginas estáticas..."
-          # Gera o site em public/ usando dados limpos de data/
           python src/generator.py
 
       - name: 4. Setup Google Credentials
@@ -55,20 +54,17 @@ jobs:
           mkdir -p credentials
           echo "${{ secrets.GOOGLE_INDEXING_JSON }}" > credentials/service_account.json
           chmod 600 credentials/service_account.json
-          echo "✅ Credenciais salvas com segurança temporária."
 
       - name: 5. Index URLs to Google
         if: secrets.GOOGLE_INDEXING_JSON != ''
         run: |
           echo "🔍 Enviando URLs para Google Indexing API..."
-          # O "|| echo" garante que o deploy não falhe se a API der erro
           python src/indexer.py || echo "⚠️ Indexação falhou, mas continuando o deploy..."
 
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'deploy: update site content (sanitized) [skip ci]'
-          # Monitoramos a pasta data/ e public/ para salvar as alterações
+          commit_message: 'deploy: update site content (from monitor repo) [skip ci]'
           file_pattern: 'data/flights-db.json data/voos_atrasados_gru.csv public/'
           commit_user_name: 'MatchFly Bot'
           commit_user_email: 'bot@matchfly.org'
