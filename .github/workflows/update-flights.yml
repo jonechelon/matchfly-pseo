@@ -37,6 +37,11 @@ jobs:
           # Baixa o arquivo RAW atualizado
           curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
 
+      - name: 1.5. Convert CSV to JSON
+        run: |
+          echo "🔄 Convertendo dados (CSV -> JSON Formatado)..."
+          python scripts/sync_data.py
+
       - name: 2. Sanitize Database (Fix SCL Bias)
         run: |
           echo "🧹 Higienizando banco de dados (Correção Santiago)..."
