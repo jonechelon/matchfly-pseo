@@ -62,6 +62,16 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def safe_str(val):
+    """Converte qualquer valor para string limpa, evitando erro de float/None."""
+    if val is None:
+        return ""
+    s = str(val).strip()
+    if s.lower() == 'nan':
+        return ""
+    return s
+
+
 def parse_flight_time(flight: Dict) -> datetime:
     """
     Converte data/hora do voo em datetime para ordenação (mais recente primeiro).
@@ -69,8 +79,10 @@ def parse_flight_time(flight: Dict) -> datetime:
     Retorna datetime.min em caso de falha (voos sem data vão ao final).
     """
     try:
-        date_str = (flight.get('date_raw') or flight.get('data_partida') or '').strip()
-        time_str = (flight.get('scheduled_time') or '00:00').strip()
+        date_str = safe_str(flight.get('date_raw') or flight.get('data_partida') or '')
+        time_str = safe_str(flight.get('scheduled_time') or '00:00')
+        if not time_str:
+            time_str = '00:00'
         if not date_str:
             return datetime.min
         date_str = date_str.split()[0]
@@ -299,6 +311,8 @@ for k, v in CITY_TO_IATA.items():
 
 def resolve_city_name(iata: str, current_name: str) -> str:
     """Retorna o nome da cidade baseado no IATA se o atual for inválido."""
+    iata = safe_str(iata)
+    current_name = safe_str(current_name)
     if current_name and current_name not in ["N/A", "Aguardando atualização", "VAZIO"]:
         return current_name
     return IATA_TO_CITY.get(iata, current_name or "")
@@ -536,20 +550,18 @@ def get_iata_code(city_name: str) -> str:
     Returns:
         Código IATA (ex: "CDG", "GIG") ou string vazia se não encontrado
     """
-    if not city_name or city_name.strip() == "":
+    city_name = safe_str(city_name)
+    if not city_name:
         return ""
     
-    # Remove espaços extras e converte para lowercase para busca case-insensitive
-    city_clean = city_name.strip().lower()
-    
-    # Busca no dicionário (case-insensitive)
+    city_clean = city_name.lower()
     iata_code = CITY_TO_IATA.get(city_clean, "")
-    
+
     if iata_code:
-        logger.debug(f"Mapeamento IATA: {city_name.strip()} → {iata_code}")
+        logger.debug(f"Mapeamento IATA: {city_name} → {iata_code}")
     else:
-        logger.debug(f"Cidade não mapeada: {city_name.strip()} (fallback: campo vazio no funil)")
-    
+        logger.debug(f"Cidade não mapeada: {city_name} (fallback: campo vazio no funil)")
+
     return iata_code
 
 
@@ -577,14 +589,16 @@ def infer_airline(flight_number: str, airline: Optional[str] = None) -> str:
     Returns:
         Nome da companhia aérea deduzida ou "Não Informado" se não conseguir deduzir
     """
-    # Se airline já está preenchida e não é "DESCONHECIDO", retorna ela
-    if airline and airline.strip().upper() not in ["DESCONHECIDO", "N/A", ""]:
-        return airline.strip()
-    
+    airline = safe_str(airline)
+    flight_number = safe_str(flight_number)
+
+    if airline and airline.upper() not in ["DESCONHECIDO", "N/A", ""]:
+        return airline
+
     if not flight_number:
         return "Não Informado"
-    
-    flight_number_upper = flight_number.strip().upper()
+
+    flight_number_upper = flight_number.upper()
     
     # Mapeamento de prefixos de companhias aéreas
     airline_prefixes = {
@@ -707,7 +721,11 @@ class FlightPageGenerator:
         except Exception as e:
             logger.error(f"❌ Erro carregando ANAC DB: {e}")
             return {}
-    
+
+    def safe_str(self, val):
+        """Converte qualquer valor para string limpa, evitando erro de float/None."""
+        return safe_str(val)
+
     def setup_and_validate(self) -> bool:
         """
         STEP 1: Setup & Validação.
@@ -721,7 +739,7 @@ class FlightPageGenerator:
         logger.info("=" * 70)
         
         # Validação e fallback: Affiliate Link
-        if not self.affiliate_link or self.affiliate_link.strip() == "":
+        if not safe_str(self.affiliate_link):
             # Usar link padrão em vez de interromper o build
             self.affiliate_link = "https://www.compensair.com/"
             logger.warning("⚠️  AFFILIATE_LINK não configurada - usando link padrão")
@@ -794,31 +812,36 @@ class FlightPageGenerator:
 
                 norm = fdata.copy()
 
-                # Mapeia chaves PT -> EN se necessário
+                # Mapeia chaves PT -> EN se necessário (safe_str evita float/None)
                 if 'Numero_Voo' in fdata:
-                    norm['flight_number'] = str(fdata.get('Numero_Voo') or '').strip()
+                    norm['flight_number'] = safe_str(fdata.get('Numero_Voo'))
                 if 'Companhia' in fdata:
-                    norm['airline'] = str(fdata.get('Companhia') or '').strip()
+                    norm['airline'] = safe_str(fdata.get('Companhia'))
                 if 'Status' in fdata:
-                    norm['status'] = str(fdata.get('Status') or '').strip()
+                    norm['status'] = safe_str(fdata.get('Status'))
                 if 'Horario' in fdata:
-                    norm['scheduled_time'] = str(fdata.get('Horario') or '').strip()
+                    norm['scheduled_time'] = safe_str(fdata.get('Horario'))
                 if 'Destino' in fdata:
-                    norm['destination'] = str(fdata.get('Destino') or '').strip()
+                    norm['destination'] = safe_str(fdata.get('Destino'))
                 if 'Data_Partida' in fdata:
-                    norm['data_partida'] = str(fdata.get('Data_Partida') or '').strip()
+                    norm['data_partida'] = safe_str(fdata.get('Data_Partida'))
 
                 # Sinônimos comuns (robustez extra)
                 if not norm.get('flight_number') and 'Número Voo' in fdata:
-                    norm['flight_number'] = str(fdata.get('Número Voo') or '').strip()
+                    norm['flight_number'] = safe_str(fdata.get('Número Voo'))
                 if not norm.get('airline') and 'Cia' in fdata:
-                    norm['airline'] = str(fdata.get('Cia') or '').strip()
+                    norm['airline'] = safe_str(fdata.get('Cia'))
                 if not norm.get('scheduled_time') and 'Hora' in fdata:
-                    norm['scheduled_time'] = str(fdata.get('Hora') or '').strip()
+                    norm['scheduled_time'] = safe_str(fdata.get('Hora'))
+
+                # Garante campos string para chaves já existentes (ex.: JSON com floats)
+                for key in ('flight_number', 'airline', 'status', 'scheduled_time', 'data_partida', 'destination'):
+                    if key in norm and not isinstance(norm[key], str):
+                        norm[key] = safe_str(norm[key])
 
                 # Garante que delay_hours exista (para não filtrar tudo)
                 if 'delay_hours' not in norm:
-                    status_lower = str(norm.get('status', '')).lower()
+                    status_lower = safe_str(norm.get('status', '')).lower()
                     if 'cancel' in status_lower:
                         norm['delay_hours'] = 0.0
                     elif 'atras' in status_lower:
@@ -853,15 +876,14 @@ class FlightPageGenerator:
         Returns:
             True se deve gerar página, False caso contrário
         """
-        # Validação de campos obrigatórios
+        # Validação de campos obrigatórios (safe_str evita float/None)
         required_fields = ['flight_number', 'airline', 'status']
         for field in required_fields:
-            if not flight.get(field):
+            if not safe_str(flight.get(field)):
                 logger.debug(f"Voo inválido: campo '{field}' ausente")
                 return False
-        
-        # FILTRO: Cancelado ou atraso > 15 minutos (0.25 horas)
-        status = flight.get('status', '').lower()
+
+        status = safe_str(flight.get('status', '')).lower()
         delay_hours = flight.get('delay_hours', 0)
         
         is_cancelled = any(term in status for term in ['cancel', 'cancelado'])
@@ -899,35 +921,21 @@ class FlightPageGenerator:
     def generate_slug(self, flight: Dict) -> str:
         """
         Gera slug de URL amigável para SEO.
-        
-        Formato: voo-{airline}-{flight_number}-{origin}-cancelado
-        Exemplo: voo-latam-la3090-gru-cancelado
-        
-        Args:
-            flight: Dados do voo
-            
-        Returns:
-            Slug formatado
+        Proteção total contra floats/Nones antes de slugify.
         """
-        airline = flight.get('airline', 'airline')
-        flight_number = flight.get('flight_number', 'XXX')
-        origin = flight.get('origin', 'gru')
-        status = flight.get('status', 'problema')
-        
-        # Normaliza status para palavra-chave
-        status_normalized = 'cancelado' if 'cancel' in status.lower() else 'atrasado'
-        
-        # Cria slug base
-        slug_parts = [
-            'voo',
-            slugify(airline),
-            slugify(flight_number),
-            slugify(origin),
-            status_normalized
-        ]
-        
-        slug = '-'.join(slug_parts)
-        return slug
+        airline = self.safe_str(flight.get('airline', ''))
+        number = self.safe_str(flight.get('flight_number', ''))
+        origin = self.safe_str(flight.get('origin', 'GRU'))
+        dest = self.safe_str(flight.get('destination_iata', ''))
+
+        if not airline:
+            airline = "voo"
+        if not number:
+            number = "desconhecido"
+        if not dest:
+            dest = "atrasado"  # fallback quando não há IATA
+
+        return f"voo-{slugify(airline)}-{slugify(number)}-{slugify(origin)}-{slugify(dest)}"
     
     def prepare_template_context(self, flight: Dict, metadata: Dict) -> Dict:
         """
@@ -940,38 +948,30 @@ class FlightPageGenerator:
         Returns:
             Dicionário com todas as variáveis para o template
         """
-        # Calcula hours_ago
-        scraped_at = metadata.get('scraped_at', datetime.now(timezone.utc).isoformat())
+        scraped_at = safe_str(metadata.get('scraped_at') or '') or datetime.now(timezone.utc).isoformat()
         hours_ago = self.calculate_hours_ago(scraped_at)
-        
-        # Extrai campos do voo
-        flight_number = flight.get('flight_number', 'N/A')
-        origin = flight.get('origin', 'GRU')
-        destination = flight.get('destination', 'N/A')
-        
-        # Deduz companhia aérea se necessário
-        airline_raw = flight.get('airline', '')
+
+        flight_number = self.safe_str(flight.get('flight_number')) or 'N/A'
+        origin = self.safe_str(flight.get('origin')) or 'GRU'
+        destination = self.safe_str(flight.get('destination')) or 'N/A'
+        airline_raw = self.safe_str(flight.get('airline', ''))
+
         airline = infer_airline(flight_number, airline_raw)
-        
-        # Extrai display_time (apenas hora:minuto) do scheduled_time
-        scheduled_time = flight.get('scheduled_time', '')
+
+        scheduled_time = self.safe_str(flight.get('scheduled_time', ''))
         display_time = 'N/A'
         if scheduled_time:
             try:
-                # Tenta extrair hora:minuto de formatos como "2026-01-21 22:15" ou "22:15"
                 if ' ' in scheduled_time:
-                    # Formato: "2026-01-21 22:15"
                     display_time = scheduled_time.split(' ')[-1]
                 elif ':' in scheduled_time and len(scheduled_time) <= 5:
-                    # Formato: "22:15"
                     display_time = scheduled_time
                 else:
-                    # Tenta parsear como datetime
                     dt = datetime.fromisoformat(scheduled_time.replace('Z', '').split('+')[0].split('.')[0])
                     display_time = dt.strftime('%H:%M')
             except Exception as e:
                 logger.debug(f"Erro ao extrair display_time de '{scheduled_time}': {e}")
-                display_time = scheduled_time  # Fallback: usa o valor original
+                display_time = scheduled_time
         
         # ============================================================
         # PARTE 2: CONSTRUÇÃO DO DEEP LINK OTIMIZADO (FUNIL AIRHELP)
@@ -1012,87 +1012,61 @@ class FlightPageGenerator:
         
         context = {
             'flight_number': flight_number,
-            'airline': airline,  # Usa a companhia deduzida
-            'status': flight.get('status', 'Problema'),
-            'scheduled_time': flight.get('scheduled_time', 'N/A'),
-            'display_time': display_time,  # Hora limpa (sem data)
-            'data_partida': flight.get('data_partida', ''),
-            'actual_time': flight.get('actual_time', 'N/A'),
+            'airline': airline,
+            'status': self.safe_str(flight.get('status')) or 'Problema',
+            'scheduled_time': scheduled_time or 'N/A',
+            'display_time': display_time,
+            'data_partida': self.safe_str(flight.get('data_partida', '')),
+            'actual_time': self.safe_str(flight.get('actual_time')) or 'N/A',
             'delay_hours': flight.get('delay_hours', 0),
             'origin': origin,
             'destination': destination,
-            
-            # Dados de destino para CRO
             'destination_iata': destination_iata,
             'is_domestic': is_domestic,
             'regulation': regulation,
-            
-            # Metadados
             'hours_ago': hours_ago,
             'scraped_at': scraped_at,
             'generated_at': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            
-            # Monetização - Deep Link do Funil AirHelp Otimizado
             'affiliate_link': affiliate_link_with_flight,
-            
-            # Dados adicionais para schema
-            'departure_time': flight.get('scheduled_time', datetime.now().isoformat()),
+            'departure_time': scheduled_time or datetime.now().isoformat(),
         }
         
         return context
     
     def generate_page_resilient(self, flight: Dict, metadata: Dict) -> bool:
         try:
-            # 1. Validação Mínima
-            raw_fnum = str(flight.get('flight_number', ''))
-            status = flight.get('status')
-            
+            raw_fnum = self.safe_str(flight.get('flight_number'))
+            status = self.safe_str(flight.get('status'))
+
             if not raw_fnum or not status:
                 return False
 
-            # --- LÓGICA DE DESTINO BLINDADA (v3.0) ---
-
-            # 1. Limpa o número do voo (remove RJ, LA, etc)
-            raw_fnum = str(flight.get('flight_number', ''))
             clean_fnum = "".join(filter(str.isdigit, raw_fnum))
 
-            # 2. Fonte da Verdade 1: Correções Manuais (Override SCL)
             correction_iata = CORRECTIONS_DICT.get(clean_fnum)
-
-            # 3. Fonte da Verdade 2: Banco ANAC
             anac_iata = ANAC_DB.get(clean_fnum)
 
-            # 4. Decisão Final (Prioridade: Correção > ANAC > Original)
-            # Se a correção existir, ela vence (para tirar o viés de SCL)
             if correction_iata:
                 dest_iata = correction_iata
             elif anac_iata:
                 dest_iata = anac_iata
             else:
-                # Se não achar nada, usa o original (mesmo que seja SCL errado, paciência)
-                dest_iata = flight.get('destination_iata') or ''
+                dest_iata = self.safe_str(flight.get('destination_iata')) or ''
 
-            # 5. Resolve Nome da Cidade (Display)
             dest_city = IATA_TO_CITY_NAME.get(dest_iata)
-
-            # Fallback de Cidade
             if not dest_city:
-                dest_city = flight.get('destination') or dest_iata or "Destino Desconhecido"
+                dest_city = self.safe_str(flight.get('destination')) or dest_iata or "Destino Desconhecido"
 
-            # --- FIM DA LÓGICA ---
-
-            # 3. Preparar Contexto
             context = self.prepare_template_context(flight, metadata)
             context.update({
                 'destination': dest_city,
                 'destination_iata': dest_iata,
                 'destination_city': dest_city,
                 'is_multiple': flight.get('occurrences_count', 1) > 1,
-                # Garantir variáveis explícitas para o template (cabeçalho e detalhes)
-                'data_partida': context.get('data_partida', flight.get('data_partida', '')),
-                'scheduled_time': flight.get('scheduled_time', context.get('scheduled_time', '')),
+                'data_partida': context.get('data_partida') or self.safe_str(flight.get('data_partida')),
+                'scheduled_time': self.safe_str(flight.get('scheduled_time')) or context.get('scheduled_time', ''),
                 'display_time': context.get('display_time', ''),
-                'status': flight.get('status', ''),
+                'status': status,
             })
 
             # 4. Gerar HTML
@@ -1121,24 +1095,24 @@ class FlightPageGenerator:
                 'flight_number': raw_fnum,
                 'airline': context.get('airline', 'N/A'),
                 'status': status,
-                'scheduled_time': flight.get('scheduled_time'),
-                'display_time': context.get('display_time') or flight.get('scheduled_time') or '',
+                'scheduled_time': self.safe_str(flight.get('scheduled_time')) or context.get('scheduled_time', ''),
+                'display_time': context.get('display_time') or self.safe_str(flight.get('scheduled_time')) or '',
                 'destination': dest_city,
                 'destination_iata': dest_iata,
                 'destination_city': dest_city,
-                'data_partida': flight.get('data_partida') or context.get('data_partida', ''),
+                'data_partida': self.safe_str(flight.get('data_partida')) or context.get('data_partida', ''),
                 'delays_count': flight.get('occurrences_count', 0),
                 'cancelamentos_30d': canc_30d,
                 'atrasos_30d': atrasos_30d,
                 'url': f"/voo/{filename}",
                 'quality_score': quality
             })
-            
+
             self.stats['successes'] += 1
             return True
 
         except Exception as e:
-            logger.error(f"❌ Erro voo {flight.get('flight_number')}: {e}")
+            logger.error(f"❌ Erro voo {self.safe_str(flight.get('flight_number'))}: {e}")
             return False
     
     def manage_orphans(self) -> None:
@@ -1378,25 +1352,21 @@ class FlightPageGenerator:
         
         # Se já existem os campos, usa eles
         if 'cancelamentos_30d' not in enriched or enriched.get('cancelamentos_30d') is None:
-            # Calcula baseado no status
-            status_lower = str(enriched.get('status', '')).lower()
+            status_lower = safe_str(enriched.get('status', '')).lower()
             if 'cancel' in status_lower:
                 enriched['cancelamentos_30d'] = enriched.get('cancellations_count', random.randint(1, 5))
             else:
                 enriched['cancelamentos_30d'] = enriched.get('cancellations_count', 0)
-        
+
         if 'atrasos_30d' not in enriched or enriched.get('atrasos_30d') is None:
-            # Calcula baseado no status
-            status_lower = str(enriched.get('status', '')).lower()
+            status_lower = safe_str(enriched.get('status', '')).lower()
             if 'atras' in status_lower or enriched.get('delay_hours', 0) > 0:
                 enriched['atrasos_30d'] = enriched.get('delays_count', random.randint(1, 8))
             else:
                 enriched['atrasos_30d'] = enriched.get('delays_count', 0)
         
-        # Garante que destination_iata existe
         if 'destination_iata' not in enriched or not enriched.get('destination_iata'):
-            destination = enriched.get('destination', '')
-            enriched['destination_iata'] = get_iata_code(destination)
+            enriched['destination_iata'] = get_iata_code(safe_str(enriched.get('destination', '')))
         
         return enriched
     
@@ -1511,17 +1481,16 @@ class FlightPageGenerator:
         logger.info("=" * 70)
         logger.info("STEP 3.7: GERAÇÃO DE PÁGINAS DE CIDADE")
         
-        # Agrupar voos por destination_city
         city_groups = {}
         for flight in flights:
-            city = flight.get('destination_city', '') or flight.get('destination', '')
+            city = safe_str(flight.get('destination_city') or flight.get('destination'))
             if not city or city in ('Aguardando atualização', 'N/A', 'VAZIO'):
                 continue
-            
+
             if city not in city_groups:
                 city_groups[city] = {
                     'name': city,
-                    'iata': flight.get('destination_iata', ''),
+                    'iata': safe_str(flight.get('destination_iata')),
                     'flights': [],
                     'total_impact': 0
                 }
@@ -1663,21 +1632,22 @@ class FlightPageGenerator:
             # Prepara voos para o template (adiciona slug e dados necessários)
             template_flights = []
             for flight in top_flights:
-                # FILTRO DE QUALIDADE CATEGORIAS:
-                airline = infer_airline(flight.get('flight_number', ''), flight.get('airline', ''))
+                airline = infer_airline(
+                    safe_str(flight.get('flight_number')),
+                    safe_str(flight.get('airline')),
+                )
                 if airline in ["Não Informado", "DESCONHECIDO", "N/A"]:
                     continue
-                raw_dest = flight.get('destination', '')
-                if raw_dest == "Aguardando atualização" and not flight.get('destination_iata'):
+                raw_dest = safe_str(flight.get('destination', ''))
+                if raw_dest == "Aguardando atualização" and not safe_str(flight.get('destination_iata')):
                     continue
 
                 enriched = self.enrich_flight_with_30d_stats(flight)
                 enriched['slug'] = self.generate_slug(enriched)
                 enriched['airline'] = airline
 
-                # CORREÇÃO DE DISPLAY:
-                iata = enriched.get('destination_iata', '')
-                raw_dest = enriched.get('destination', '')
+                iata = safe_str(enriched.get('destination_iata', ''))
+                raw_dest = safe_str(enriched.get('destination', ''))
                 final_city = resolve_city_name(iata, raw_dest)
 
                 enriched['destination_city'] = final_city
@@ -1688,20 +1658,15 @@ class FlightPageGenerator:
                 else:
                     enriched['display_destination'] = iata or final_city
 
-                # Calcula total de problemas
                 enriched['total_problemas'] = (
                     int(enriched.get('cancelamentos_30d', 0) or 0) +
                     int(enriched.get('atrasos_30d', 0) or 0)
                 )
-                # Data e hora para cards (mesmo formato da Home)
                 enriched['cancelamentos_30d'] = int(enriched.get('cancelamentos_30d', 0) or 0)
                 enriched['atrasos_30d'] = int(enriched.get('atrasos_30d', 0) or 0)
-                _st = enriched.get('scheduled_time', '')
-                if _st and ' ' in str(_st):
-                    enriched['display_time'] = str(_st).split(' ')[-1]
-                else:
-                    enriched['display_time'] = _st or ''
-                enriched['data_partida'] = enriched.get('data_partida', '')
+                _st = safe_str(enriched.get('scheduled_time', ''))
+                enriched['display_time'] = _st.split(' ')[-1] if (_st and ' ' in _st) else (_st or '')
+                enriched['data_partida'] = safe_str(enriched.get('data_partida', ''))
 
                 template_flights.append(enriched)
             
@@ -1804,7 +1769,7 @@ class FlightPageGenerator:
             # Verifica se existem voos sem destination_iata
             flights_without_destination = [
                 f for f in flights
-                if not f.get('destination_iata', '').strip()
+                if not safe_str(f.get('destination_iata'))
             ]
             
             if flights_without_destination:
