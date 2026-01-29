@@ -40,12 +40,21 @@ jobs:
       - name: 4. Generate Site
         run: python src/generator.py
 
-      - name: 5. Google Indexing (Optional)
-        if: secrets.GOOGLE_INDEXING_JSON != ''
+      - name: 5. Google Setup & Indexing (Optional)
+        env:
+          GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
         run: |
+          if [ -z "$GOOGLE_JSON" ]; then
+            echo "⚠️ Secret GOOGLE_INDEXING_JSON não configurado ou vazio. Pulando indexação..."
+            exit 0
+          fi
+
+          echo "🔐 Configurando credenciais..."
           mkdir -p credentials
-          echo "${{ secrets.GOOGLE_INDEXING_JSON }}" > credentials/service_account.json
-          python src/indexer.py || echo "Indexing skipped"
+          echo "$GOOGLE_JSON" > credentials/service_account.json
+
+          echo "🔍 Tentando indexar..."
+          python src/indexer.py || echo "⚠️ Erro na indexação, mas continuando deploy..."
 
       - name: Commit & Deploy
         uses: stefanzweifel/git-auto-commit-action@v5
