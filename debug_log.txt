@@ -1,0 +1,3813 @@
+2026-01-27 13:27:58,224 - INFO - 
+2026-01-27 13:27:58,224 - INFO - ╔════════════════════════════════════════════════════════════════════╗
+2026-01-27 13:27:58,224 - INFO - ║               🚀 MATCHFLY PAGE GENERATOR v2.0                      ║
+2026-01-27 13:27:58,224 - INFO - ╚════════════════════════════════════════════════════════════════════╝
+2026-01-27 13:27:58,224 - INFO - 
+2026-01-27 13:27:58,225 - INFO - ======================================================================
+2026-01-27 13:27:58,225 - INFO - STEP 1: SETUP & VALIDAÇÃO
+2026-01-27 13:27:58,225 - INFO - ======================================================================
+2026-01-27 13:27:58,225 - INFO - ✅ Affiliate link configurada: https://www.airhelp.com/pt-br/verificar-indenizaca...
+2026-01-27 13:27:58,225 - INFO - ✅ Pasta public/voo pronta
+2026-01-27 13:27:58,225 - INFO - 
+2026-01-27 13:27:58,225 - INFO - ======================================================================
+2026-01-27 13:27:58,225 - INFO - STEP 2: INITIAL CLEANUP (Auditoria)
+2026-01-27 13:27:58,225 - INFO - ======================================================================
+2026-01-27 13:27:58,226 - INFO - 🗑️  Removido: public/index.html (será regenerado)
+2026-01-27 13:27:58,227 - INFO - 📊 Detectados 183 arquivos antigos em public/voo/
+2026-01-27 13:27:58,227 - INFO -    Serão removidos automaticamente quando não regenerados.
+2026-01-27 13:27:58,227 - INFO - 
+2026-01-27 13:27:58,227 - INFO - ======================================================================
+2026-01-27 13:27:58,227 - INFO - STEP 3: WORKFLOW DE GERAÇÃO
+2026-01-27 13:27:58,227 - INFO - ======================================================================
+2026-01-27 13:27:58,228 - INFO - ✅ Dados carregados: data/flights-db.json
+2026-01-27 13:27:58,228 - INFO - 📊 Total de voos carregados: 227
+2026-01-27 13:27:58,229 - INFO - 
+2026-01-27 13:27:58,229 - INFO - ======================================================================
+2026-01-27 13:27:58,229 - INFO - STEP 3.0: ENRIQUECIMENTO DE DESTINOS
+2026-01-27 13:27:58,229 - INFO - ======================================================================
+2026-01-27 13:27:58,229 - INFO - 📊 Encontrados 62 voos sem destination_iata
+2026-01-27 13:27:58,229 - INFO -    Iniciando enriquecimento com fallback estático...
+2026-01-27 13:27:58,232 - INFO - ✅ Enriquecimento concluído: 20 recuperados.
+2026-01-27 13:27:58,240 - INFO - ✅ Dados enriquecidos salvos em: data/flights-db.json
+2026-01-27 13:27:58,240 - INFO - 
+2026-01-27 13:27:58,240 - INFO - 🔄 Iniciando renderização resiliente...
+2026-01-27 13:27:58,240 - INFO - ----------------------------------------------------------------------
+2026-01-27 13:27:58,240 - INFO - [1/227] Processando 0962...
+2026-01-27 13:27:58,270 - INFO - ✅ Sucesso: voo-desconhecido-0962-gru-cancelado.html
+2026-01-27 13:27:58,270 - INFO - [2/227] Processando 1522...
+2026-01-27 13:27:58,271 - INFO - ✅ Sucesso: voo-ek-1522-gru-atrasado.html
+2026-01-27 13:27:58,271 - INFO - [3/227] Processando 2858...
+2026-01-27 13:27:58,273 - INFO - ✅ Sucesso: voo-desconhecido-2858-gru-atrasado.html
+2026-01-27 13:27:58,273 - INFO - [4/227] Processando 3611...
+2026-01-27 13:27:58,274 - INFO - ✅ Sucesso: voo-klm-3611-gru-atrasado.html
+2026-01-27 13:27:58,274 - INFO - [5/227] Processando 3683...
+2026-01-27 13:27:58,275 - INFO - ✅ Sucesso: voo-klm-3683-gru-atrasado.html
+2026-01-27 13:27:58,275 - INFO - [6/227] Processando 4067...
+2026-01-27 13:27:58,276 - INFO - ✅ Sucesso: voo-ek-4067-gru-atrasado.html
+2026-01-27 13:27:58,276 - INFO - [7/227] Processando 4070...
+2026-01-27 13:27:58,277 - INFO - ✅ Sucesso: voo-desconhecido-4070-gru-atrasado.html
+2026-01-27 13:27:58,277 - INFO - [8/227] Processando 5563...
+2026-01-27 13:27:58,278 - INFO - ✅ Sucesso: voo-desconhecido-5563-gru-atrasado.html
+2026-01-27 13:27:58,279 - INFO - [9/227] Processando 6238...
+2026-01-27 13:27:58,280 - INFO - ✅ Sucesso: voo-desconhecido-6238-gru-atrasado.html
+2026-01-27 13:27:58,280 - INFO - [10/227] Processando 7454...
+2026-01-27 13:27:58,281 - INFO - ✅ Sucesso: voo-klm-7454-gru-atrasado.html
+2026-01-27 13:27:58,281 - INFO - [11/227] Processando 7586...
+2026-01-27 13:27:58,282 - INFO - ✅ Sucesso: voo-desconhecido-7586-gru-atrasado.html
+2026-01-27 13:27:58,282 - INFO - [12/227] Processando 9298...
+2026-01-27 13:27:58,283 - INFO - ✅ Sucesso: voo-klm-9298-gru-atrasado.html
+2026-01-27 13:27:58,283 - INFO - [13/227] Processando RJ3340...
+2026-01-27 13:27:58,284 - INFO - ✅ Sucesso: voo-latam-rj3340-gru-atrasado.html
+2026-01-27 13:27:58,284 - INFO - [14/227] Processando RJ3698...
+2026-01-27 13:27:58,285 - INFO - ✅ Sucesso: voo-ek-rj3698-gru-atrasado.html
+2026-01-27 13:27:58,285 - INFO - [15/227] Processando RJ3947...
+2026-01-27 13:27:58,287 - INFO - ✅ Sucesso: voo-latam-rj3947-gru-atrasado.html
+2026-01-27 13:27:58,287 - INFO - [16/227] Processando RJ4070...
+2026-01-27 13:27:58,288 - INFO - ✅ Sucesso: voo-latam-rj4070-gru-atrasado.html
+2026-01-27 13:27:58,288 - INFO - [17/227] Processando RJ4656...
+2026-01-27 13:27:58,289 - INFO - ✅ Sucesso: voo-ek-rj4656-gru-atrasado.html
+2026-01-27 13:27:58,289 - INFO - [18/227] Processando RJ4771...
+2026-01-27 13:27:58,291 - INFO - ✅ Sucesso: voo-latam-rj4771-gru-atrasado.html
+2026-01-27 13:27:58,291 - INFO - [19/227] Processando RJ5538...
+2026-01-27 13:27:58,292 - INFO - ✅ Sucesso: voo-latam-rj5538-gru-atrasado.html
+2026-01-27 13:27:58,292 - INFO - [20/227] Processando RJ6238...
+2026-01-27 13:27:58,293 - INFO - ✅ Sucesso: voo-klm-rj6238-gru-atrasado.html
+2026-01-27 13:27:58,293 - INFO - [21/227] Processando RJ7299...
+2026-01-27 13:27:58,294 - INFO - ✅ Sucesso: voo-ek-rj7299-gru-atrasado.html
+2026-01-27 13:27:58,294 - INFO - [22/227] Processando RJ7350...
+2026-01-27 13:27:58,295 - INFO - ✅ Sucesso: voo-latam-rj7350-gru-atrasado.html
+2026-01-27 13:27:58,295 - INFO - [23/227] Processando RJ7361...
+2026-01-27 13:27:58,296 - INFO - ✅ Sucesso: voo-latam-rj7361-gru-atrasado.html
+2026-01-27 13:27:58,297 - INFO - [24/227] Processando RJ7586...
+2026-01-27 13:27:58,297 - INFO - ✅ Sucesso: voo-klm-rj7586-gru-atrasado.html
+2026-01-27 13:27:58,298 - INFO - [25/227] Processando RJ7702...
+2026-01-27 13:27:58,298 - INFO - ✅ Sucesso: voo-latam-rj7702-gru-atrasado.html
+2026-01-27 13:27:58,298 - INFO - [26/227] Processando RJ9700...
+2026-01-27 13:27:58,299 - INFO - ✅ Sucesso: voo-ek-rj9700-gru-atrasado.html
+2026-01-27 13:27:58,299 - INFO - [27/227] Processando 0063...
+2026-01-27 13:27:58,300 - INFO - ✅ Sucesso: voo-desconhecido-0063-gru-cancelado.html
+2026-01-27 13:27:58,300 - INFO - [28/227] Processando 0160...
+2026-01-27 13:27:58,301 - INFO - ✅ Sucesso: voo-desconhecido-0160-gru-atrasado.html
+2026-01-27 13:27:58,301 - INFO - [29/227] Processando 0962...
+2026-01-27 13:27:58,302 - INFO - ✅ Sucesso: voo-desconhecido-0962-gru-cancelado.html
+2026-01-27 13:27:58,302 - INFO - [30/227] Processando 1560...
+2026-01-27 13:27:58,303 - INFO - ✅ Sucesso: voo-desconhecido-1560-gru-atrasado.html
+2026-01-27 13:27:58,303 - INFO - [31/227] Processando 3556...
+2026-01-27 13:27:58,304 - INFO - ✅ Sucesso: voo-latam-3556-gru-atrasado.html
+2026-01-27 13:27:58,305 - INFO - [32/227] Processando 3558...
+2026-01-27 13:27:58,306 - INFO - ✅ Sucesso: voo-desconhecido-3558-gru-atrasado.html
+2026-01-27 13:27:58,306 - INFO - [33/227] Processando 3724...
+2026-01-27 13:27:58,306 - INFO - ✅ Sucesso: voo-desconhecido-3724-gru-atrasado.html
+2026-01-27 13:27:58,307 - INFO - [34/227] Processando 5172...
+2026-01-27 13:27:58,307 - INFO - ✅ Sucesso: voo-latam-5172-gru-atrasado.html
+2026-01-27 13:27:58,307 - INFO - [35/227] Processando 5176...
+2026-01-27 13:27:58,308 - INFO - ✅ Sucesso: voo-latam-5176-gru-atrasado.html
+2026-01-27 13:27:58,308 - INFO - [36/227] Processando 5896...
+2026-01-27 13:27:58,309 - INFO - ✅ Sucesso: voo-desconhecido-5896-gru-atrasado.html
+2026-01-27 13:27:58,309 - INFO - [37/227] Processando 6051...
+2026-01-27 13:27:58,310 - INFO - ✅ Sucesso: voo-latam-6051-gru-cancelado.html
+2026-01-27 13:27:58,310 - INFO - [38/227] Processando 7614...
+2026-01-27 13:27:58,312 - INFO - ✅ Sucesso: voo-desconhecido-7614-gru-atrasado.html
+2026-01-27 13:27:58,312 - INFO - [39/227] Processando 8135...
+2026-01-27 13:27:58,313 - INFO - ✅ Sucesso: voo-desconhecido-8135-gru-atrasado.html
+2026-01-27 13:27:58,313 - INFO - [40/227] Processando 8490...
+2026-01-27 13:27:58,314 - INFO - ✅ Sucesso: voo-desconhecido-8490-gru-atrasado.html
+2026-01-27 13:27:58,314 - INFO - [41/227] Processando 9961...
+2026-01-27 13:27:58,315 - INFO - ✅ Sucesso: voo-klm-9961-gru-atrasado.html
+2026-01-27 13:27:58,315 - INFO - [42/227] Processando RJ3368...
+2026-01-27 13:27:58,315 - INFO - ✅ Sucesso: voo-latam-rj3368-gru-atrasado.html
+2026-01-27 13:27:58,315 - INFO - [43/227] Processando RJ3874...
+2026-01-27 13:27:58,316 - INFO - ✅ Sucesso: voo-latam-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,316 - INFO - [44/227] Processando RJ3974...
+2026-01-27 13:27:58,317 - INFO - ✅ Sucesso: voo-latam-rj3974-gru-atrasado.html
+2026-01-27 13:27:58,317 - INFO - [45/227] Processando RJ4126...
+2026-01-27 13:27:58,318 - INFO - ✅ Sucesso: voo-latam-rj4126-gru-atrasado.html
+2026-01-27 13:27:58,318 - INFO - [46/227] Processando RJ4227...
+2026-01-27 13:27:58,319 - INFO - ✅ Sucesso: voo-latam-rj4227-gru-atrasado.html
+2026-01-27 13:27:58,319 - INFO - [47/227] Processando RJ4540...
+2026-01-27 13:27:58,320 - INFO - ✅ Sucesso: voo-klm-rj4540-gru-cancelado.html
+2026-01-27 13:27:58,321 - INFO - [48/227] Processando RJ4548...
+2026-01-27 13:27:58,321 - INFO - ✅ Sucesso: voo-dl-rj4548-gru-atrasado.html
+2026-01-27 13:27:58,321 - INFO - [49/227] Processando RJ6603...
+2026-01-27 13:27:58,322 - INFO - ✅ Sucesso: voo-latam-rj6603-gru-atrasado.html
+2026-01-27 13:27:58,322 - INFO - [50/227] Processando RJ6690...
+2026-01-27 13:27:58,323 - INFO - ✅ Sucesso: voo-latam-rj6690-gru-cancelado.html
+2026-01-27 13:27:58,323 - INFO - [51/227] Processando RJ6721...
+2026-01-27 13:27:58,324 - INFO - ✅ Sucesso: voo-latam-rj6721-gru-atrasado.html
+2026-01-27 13:27:58,324 - INFO - [52/227] Processando RJ7269...
+2026-01-27 13:27:58,325 - INFO - ✅ Sucesso: voo-latam-rj7269-gru-atrasado.html
+2026-01-27 13:27:58,325 - INFO - [53/227] Processando RJ7344...
+2026-01-27 13:27:58,325 - INFO - ✅ Sucesso: voo-latam-rj7344-gru-atrasado.html
+2026-01-27 13:27:58,326 - INFO - [54/227] Processando RJ7355...
+2026-01-27 13:27:58,326 - INFO - ✅ Sucesso: voo-latam-rj7355-gru-atrasado.html
+2026-01-27 13:27:58,326 - INFO - [55/227] Processando RJ7586...
+2026-01-27 13:27:58,327 - INFO - ✅ Sucesso: voo-latam-rj7586-gru-atrasado.html
+2026-01-27 13:27:58,327 - INFO - [56/227] Processando RJ8490...
+2026-01-27 13:27:58,328 - INFO - ✅ Sucesso: voo-dl-rj8490-gru-atrasado.html
+2026-01-27 13:27:58,328 - INFO - [57/227] Processando RJ9173...
+2026-01-27 13:27:58,329 - INFO - ✅ Sucesso: voo-latam-rj9173-gru-atrasado.html
+2026-01-27 13:27:58,329 - INFO - [58/227] Processando RJ9254...
+2026-01-27 13:27:58,331 - INFO - ✅ Sucesso: voo-latam-rj9254-gru-atrasado.html
+2026-01-27 13:27:58,331 - INFO - [59/227] Processando 0629...
+2026-01-27 13:27:58,332 - INFO - ✅ Sucesso: voo-dl-0629-gru-atrasado.html
+2026-01-27 13:27:58,332 - INFO - [60/227] Processando 2316...
+2026-01-27 13:27:58,333 - INFO - ✅ Sucesso: voo-desconhecido-2316-gru-atrasado.html
+2026-01-27 13:27:58,333 - INFO - [61/227] Processando 2429...
+2026-01-27 13:27:58,334 - INFO - ✅ Sucesso: voo-dl-2429-gru-atrasado.html
+2026-01-27 13:27:58,335 - INFO - [62/227] Processando 3316...
+2026-01-27 13:27:58,336 - INFO - ✅ Sucesso: voo-latam-3316-gru-atrasado.html
+2026-01-27 13:27:58,337 - INFO - [63/227] Processando 6051...
+2026-01-27 13:27:58,338 - INFO - ✅ Sucesso: voo-latam-6051-gru-cancelado.html
+2026-01-27 13:27:58,338 - INFO - [64/227] Processando 6314...
+2026-01-27 13:27:58,339 - INFO - ✅ Sucesso: voo-desconhecido-6314-gru-atrasado.html
+2026-01-27 13:27:58,340 - INFO - [65/227] Processando 8125...
+2026-01-27 13:27:58,341 - INFO - ✅ Sucesso: voo-latam-8125-gru-atrasado.html
+2026-01-27 13:27:58,341 - INFO - [66/227] Processando 8190...
+2026-01-27 13:27:58,342 - INFO - ✅ Sucesso: voo-latam-8190-gru-cancelado.html
+2026-01-27 13:27:58,342 - INFO - [67/227] Processando 8200...
+2026-01-27 13:27:58,344 - INFO - ✅ Sucesso: voo-latam-8200-gru-atrasado.html
+2026-01-27 13:27:58,344 - INFO - [68/227] Processando RJ2357...
+2026-01-27 13:27:58,345 - INFO - ✅ Sucesso: voo-dl-rj2357-gru-cancelado.html
+2026-01-27 13:27:58,345 - INFO - [69/227] Processando RJ3366...
+2026-01-27 13:27:58,347 - INFO - ✅ Sucesso: voo-latam-rj3366-gru-atrasado.html
+2026-01-27 13:27:58,347 - INFO - [70/227] Processando RJ3368...
+2026-01-27 13:27:58,349 - INFO - ✅ Sucesso: voo-klm-rj3368-gru-cancelado.html
+2026-01-27 13:27:58,350 - INFO - [71/227] Processando RJ3874...
+2026-01-27 13:27:58,352 - INFO - ✅ Sucesso: voo-dl-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,353 - INFO - [72/227] Processando RJ4548...
+2026-01-27 13:27:58,355 - INFO - ✅ Sucesso: voo-latam-rj4548-gru-atrasado.html
+2026-01-27 13:27:58,355 - INFO - [73/227] Processando RJ4656...
+2026-01-27 13:27:58,358 - INFO - ✅ Sucesso: voo-klm-rj4656-gru-atrasado.html
+2026-01-27 13:27:58,358 - INFO - [74/227] Processando RJ4797...
+2026-01-27 13:27:58,360 - INFO - ✅ Sucesso: voo-latam-rj4797-gru-cancelado.html
+2026-01-27 13:27:58,360 - INFO - [75/227] Processando RJ6271...
+2026-01-27 13:27:58,362 - INFO - ✅ Sucesso: voo-latam-rj6271-gru-atrasado.html
+2026-01-27 13:27:58,362 - INFO - [76/227] Processando RJ6603...
+2026-01-27 13:27:58,363 - INFO - ✅ Sucesso: voo-klm-rj6603-gru-cancelado.html
+2026-01-27 13:27:58,364 - INFO - [77/227] Processando RJ6690...
+2026-01-27 13:27:58,365 - INFO - ✅ Sucesso: voo-dl-rj6690-gru-cancelado.html
+2026-01-27 13:27:58,365 - INFO - [78/227] Processando RJ6719...
+2026-01-27 13:27:58,368 - INFO - ✅ Sucesso: voo-klm-rj6719-gru-atrasado.html
+2026-01-27 13:27:58,368 - INFO - [79/227] Processando RJ6721...
+2026-01-27 13:27:58,369 - INFO - ✅ Sucesso: voo-dl-rj6721-gru-atrasado.html
+2026-01-27 13:27:58,370 - INFO - [80/227] Processando RJ7269...
+2026-01-27 13:27:58,371 - INFO - ✅ Sucesso: voo-ek-rj7269-gru-cancelado.html
+2026-01-27 13:27:58,372 - INFO - [81/227] Processando RJ8476...
+2026-01-27 13:27:58,373 - INFO - ✅ Sucesso: voo-latam-rj8476-gru-atrasado.html
+2026-01-27 13:27:58,375 - INFO - [82/227] Processando 0063...
+2026-01-27 13:27:58,376 - INFO - ✅ Sucesso: voo-desconhecido-0063-gru-cancelado.html
+2026-01-27 13:27:58,376 - INFO - [83/227] Processando 1146...
+2026-01-27 13:27:58,377 - INFO - ✅ Sucesso: voo-desconhecido-1146-gru-atrasado.html
+2026-01-27 13:27:58,378 - INFO - [84/227] Processando 3354...
+2026-01-27 13:27:58,379 - INFO - ✅ Sucesso: voo-latam-3354-gru-atrasado.html
+2026-01-27 13:27:58,379 - INFO - [85/227] Processando 3562...
+2026-01-27 13:27:58,382 - INFO - ✅ Sucesso: voo-latam-3562-gru-atrasado.html
+2026-01-27 13:27:58,382 - INFO - [86/227] Processando 3828...
+2026-01-27 13:27:58,385 - INFO - ✅ Sucesso: voo-latam-3828-gru-atrasado.html
+2026-01-27 13:27:58,385 - INFO - [87/227] Processando 7213...
+2026-01-27 13:27:58,388 - INFO - ✅ Sucesso: voo-desconhecido-7213-gru-cancelado.html
+2026-01-27 13:27:58,388 - INFO - [88/227] Processando 7967...
+2026-01-27 13:27:58,389 - INFO - ✅ Sucesso: voo-desconhecido-7967-gru-atrasado.html
+2026-01-27 13:27:58,390 - INFO - [89/227] Processando 8349...
+2026-01-27 13:27:58,391 - INFO - ✅ Sucesso: voo-latam-8349-gru-atrasado.html
+2026-01-27 13:27:58,391 - INFO - [90/227] Processando RJ1924...
+2026-01-27 13:27:58,393 - INFO - ✅ Sucesso: voo-latam-rj1924-gru-atrasado.html
+2026-01-27 13:27:58,393 - INFO - [91/227] Processando RJ2357...
+2026-01-27 13:27:58,394 - INFO - ✅ Sucesso: voo-latam-rj2357-gru-cancelado.html
+2026-01-27 13:27:58,394 - INFO - [92/227] Processando RJ3368...
+2026-01-27 13:27:58,395 - INFO - ✅ Sucesso: voo-latam-rj3368-gru-cancelado.html
+2026-01-27 13:27:58,396 - INFO - [93/227] Processando RJ3874...
+2026-01-27 13:27:58,397 - INFO - ✅ Sucesso: voo-latam-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,398 - INFO - [94/227] Processando RJ3947...
+2026-01-27 13:27:58,400 - INFO - ✅ Sucesso: voo-latam-rj3947-gru-atrasado.html
+2026-01-27 13:27:58,400 - INFO - [95/227] Processando RJ4065...
+2026-01-27 13:27:58,401 - INFO - ✅ Sucesso: voo-latam-rj4065-gru-atrasado.html
+2026-01-27 13:27:58,402 - INFO - [96/227] Processando RJ4653...
+2026-01-27 13:27:58,403 - INFO - ✅ Sucesso: voo-latam-rj4653-gru-atrasado.html
+2026-01-27 13:27:58,404 - INFO - [97/227] Processando RJ4796...
+2026-01-27 13:27:58,405 - INFO - ✅ Sucesso: voo-latam-rj4796-gru-atrasado.html
+2026-01-27 13:27:58,406 - INFO - [98/227] Processando RJ4797...
+2026-01-27 13:27:58,407 - INFO - ✅ Sucesso: voo-latam-rj4797-gru-atrasado.html
+2026-01-27 13:27:58,407 - INFO - [99/227] Processando RJ6199...
+2026-01-27 13:27:58,408 - INFO - ✅ Sucesso: voo-latam-rj6199-gru-atrasado.html
+2026-01-27 13:27:58,409 - INFO - [100/227] Processando RJ6603...
+2026-01-27 13:27:58,410 - INFO - ✅ Sucesso: voo-latam-rj6603-gru-cancelado.html
+2026-01-27 13:27:58,410 - INFO - [101/227] Processando RJ6690...
+2026-01-27 13:27:58,412 - INFO - ✅ Sucesso: voo-latam-rj6690-gru-cancelado.html
+2026-01-27 13:27:58,412 - INFO - [102/227] Processando RJ6721...
+2026-01-27 13:27:58,414 - INFO - ✅ Sucesso: voo-latam-rj6721-gru-atrasado.html
+2026-01-27 13:27:58,414 - INFO - [103/227] Processando 0962...
+2026-01-27 13:27:58,416 - INFO - ✅ Sucesso: voo-desconhecido-0962-gru-atrasado.html
+2026-01-27 13:27:58,416 - INFO - [104/227] Processando 3316...
+2026-01-27 13:27:58,417 - INFO - ✅ Sucesso: voo-latam-3316-gru-atrasado.html
+2026-01-27 13:27:58,418 - INFO - [105/227] Processando 3346...
+2026-01-27 13:27:58,419 - INFO - ✅ Sucesso: voo-latam-3346-gru-atrasado.html
+2026-01-27 13:27:58,419 - INFO - [106/227] Processando 3562...
+2026-01-27 13:27:58,421 - INFO - ✅ Sucesso: voo-latam-3562-gru-atrasado.html
+2026-01-27 13:27:58,422 - INFO - [107/227] Processando 3620...
+2026-01-27 13:27:58,423 - INFO - ✅ Sucesso: voo-latam-3620-gru-atrasado.html
+2026-01-27 13:27:58,423 - INFO - [108/227] Processando 4666...
+2026-01-27 13:27:58,425 - INFO - ✅ Sucesso: voo-latam-4666-gru-atrasado.html
+2026-01-27 13:27:58,425 - INFO - [109/227] Processando 5152...
+2026-01-27 13:27:58,426 - INFO - ✅ Sucesso: voo-latam-5152-gru-atrasado.html
+2026-01-27 13:27:58,426 - INFO - [110/227] Processando 8089...
+2026-01-27 13:27:58,428 - INFO - ✅ Sucesso: voo-latam-8089-gru-atrasado.html
+2026-01-27 13:27:58,428 - INFO - [111/227] Processando 8416...
+2026-01-27 13:27:58,429 - INFO - ✅ Sucesso: voo-latam-8416-gru-atrasado.html
+2026-01-27 13:27:58,429 - INFO - [112/227] Processando 8497...
+2026-01-27 13:27:58,431 - INFO - ✅ Sucesso: voo-latam-8497-gru-atrasado.html
+2026-01-27 13:27:58,432 - INFO - [113/227] Processando 9326...
+2026-01-27 13:27:58,433 - INFO - ✅ Sucesso: voo-klm-9326-gru-atrasado.html
+2026-01-27 13:27:58,433 - INFO - [114/227] Processando RJ0624...
+2026-01-27 13:27:58,435 - INFO - ✅ Sucesso: voo-ek-rj0624-gru-atrasado.html
+2026-01-27 13:27:58,435 - INFO - [115/227] Processando RJ1268...
+2026-01-27 13:27:58,441 - INFO - ✅ Sucesso: voo-azul-rj1268-gru-atrasado.html
+2026-01-27 13:27:58,441 - INFO - [116/227] Processando RJ1924...
+2026-01-27 13:27:58,443 - INFO - ✅ Sucesso: voo-latam-rj1924-gru-atrasado.html
+2026-01-27 13:27:58,443 - INFO - [117/227] Processando RJ2328...
+2026-01-27 13:27:58,444 - INFO - ✅ Sucesso: voo-latam-rj2328-gru-atrasado.html
+2026-01-27 13:27:58,444 - INFO - [118/227] Processando RJ3874...
+2026-01-27 13:27:58,445 - INFO - ✅ Sucesso: voo-latam-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,446 - INFO - [119/227] Processando RJ6242...
+2026-01-27 13:27:58,447 - INFO - ✅ Sucesso: voo-latam-rj6242-gru-atrasado.html
+2026-01-27 13:27:58,448 - INFO - [120/227] Processando RJ6721...
+2026-01-27 13:27:58,449 - INFO - ✅ Sucesso: voo-latam-rj6721-gru-atrasado.html
+2026-01-27 13:27:58,449 - INFO - [121/227] Processando RJ7355...
+2026-01-27 13:27:58,450 - INFO - ✅ Sucesso: voo-latam-rj7355-gru-atrasado.html
+2026-01-27 13:27:58,451 - INFO - [122/227] Processando RJ7536...
+2026-01-27 13:27:58,452 - INFO - ✅ Sucesso: voo-latam-rj7536-gru-atrasado.html
+2026-01-27 13:27:58,452 - INFO - [123/227] Processando RJ7741...
+2026-01-27 13:27:58,455 - INFO - ✅ Sucesso: voo-latam-rj7741-gru-atrasado.html
+2026-01-27 13:27:58,455 - INFO - [124/227] Processando RJ8475...
+2026-01-27 13:27:58,457 - INFO - ✅ Sucesso: voo-latam-rj8475-gru-atrasado.html
+2026-01-27 13:27:58,457 - INFO - [125/227] Processando RJ8490...
+2026-01-27 13:27:58,458 - INFO - ✅ Sucesso: voo-latam-rj8490-gru-atrasado.html
+2026-01-27 13:27:58,458 - INFO - [126/227] Processando 0962...
+2026-01-27 13:27:58,460 - INFO - ✅ Sucesso: voo-desconhecido-0962-gru-atrasado.html
+2026-01-27 13:27:58,460 - INFO - [127/227] Processando 3268...
+2026-01-27 13:27:58,463 - INFO - ✅ Sucesso: voo-latam-3268-gru-atrasado.html
+2026-01-27 13:27:58,463 - INFO - [128/227] Processando 3288...
+2026-01-27 13:27:58,465 - INFO - ✅ Sucesso: voo-latam-3288-gru-atrasado.html
+2026-01-27 13:27:58,465 - INFO - [129/227] Processando 4172...
+2026-01-27 13:27:58,468 - INFO - ✅ Sucesso: voo-klm-4172-gru-atrasado.html
+2026-01-27 13:27:58,469 - INFO - [130/227] Processando 5126...
+2026-01-27 13:27:58,472 - INFO - ✅ Sucesso: voo-latam-5126-gru-atrasado.html
+2026-01-27 13:27:58,472 - INFO - [131/227] Processando 7330...
+2026-01-27 13:27:58,473 - INFO - ✅ Sucesso: voo-desconhecido-7330-gru-atrasado.html
+2026-01-27 13:27:58,474 - INFO - [132/227] Processando 7335...
+2026-01-27 13:27:58,475 - INFO - ✅ Sucesso: voo-desconhecido-7335-gru-atrasado.html
+2026-01-27 13:27:58,475 - INFO - [133/227] Processando 8121...
+2026-01-27 13:27:58,476 - INFO - ✅ Sucesso: voo-latam-8121-gru-atrasado.html
+2026-01-27 13:27:58,477 - INFO - [134/227] Processando RJ1070...
+2026-01-27 13:27:58,479 - INFO - ✅ Sucesso: voo-latam-rj1070-gru-atrasado.html
+2026-01-27 13:27:58,479 - INFO - [135/227] Processando RJ1924...
+2026-01-27 13:27:58,481 - INFO - ✅ Sucesso: voo-latam-rj1924-gru-atrasado.html
+2026-01-27 13:27:58,481 - INFO - [136/227] Processando RJ3945...
+2026-01-27 13:27:58,483 - INFO - ✅ Sucesso: voo-latam-rj3945-gru-atrasado.html
+2026-01-27 13:27:58,483 - INFO - [137/227] Processando RJ3974...
+2026-01-27 13:27:58,484 - INFO - ✅ Sucesso: voo-latam-rj3974-gru-atrasado.html
+2026-01-27 13:27:58,484 - INFO - [138/227] Processando RJ4126...
+2026-01-27 13:27:58,485 - INFO - ✅ Sucesso: voo-latam-rj4126-gru-atrasado.html
+2026-01-27 13:27:58,487 - INFO - [139/227] Processando RJ4797...
+2026-01-27 13:27:58,488 - INFO - ✅ Sucesso: voo-latam-rj4797-gru-atrasado.html
+2026-01-27 13:27:58,489 - INFO - [140/227] Processando RJ5357...
+2026-01-27 13:27:58,490 - INFO - ✅ Sucesso: voo-latam-rj5357-gru-atrasado.html
+2026-01-27 13:27:58,490 - INFO - [141/227] Processando RJ6719...
+2026-01-27 13:27:58,492 - INFO - ✅ Sucesso: voo-latam-rj6719-gru-atrasado.html
+2026-01-27 13:27:58,492 - INFO - [142/227] Processando RJ7741...
+2026-01-27 13:27:58,493 - INFO - ✅ Sucesso: voo-latam-rj7741-gru-atrasado.html
+2026-01-27 13:27:58,493 - INFO - [143/227] Processando RJ9173...
+2026-01-27 13:27:58,494 - INFO - ✅ Sucesso: voo-latam-rj9173-gru-atrasado.html
+2026-01-27 13:27:58,495 - INFO - [144/227] Processando RJ9813...
+2026-01-27 13:27:58,496 - INFO - ✅ Sucesso: voo-latam-rj9813-gru-atrasado.html
+2026-01-27 13:27:58,496 - INFO - [145/227] Processando 0248...
+2026-01-27 13:27:58,498 - INFO - ✅ Sucesso: voo-desconhecido-0248-gru-atrasado.html
+2026-01-27 13:27:58,498 - INFO - [146/227] Processando 1164...
+2026-01-27 13:27:58,499 - INFO - ✅ Sucesso: voo-desconhecido-1164-gru-atrasado.html
+2026-01-27 13:27:58,499 - INFO - [147/227] Processando 1636...
+2026-01-27 13:27:58,501 - INFO - ✅ Sucesso: voo-ek-1636-gru-atrasado.html
+2026-01-27 13:27:58,501 - INFO - [148/227] Processando 3832...
+2026-01-27 13:27:58,502 - INFO - ✅ Sucesso: voo-latam-3832-gru-atrasado.html
+2026-01-27 13:27:58,503 - INFO - [149/227] Processando 5223...
+2026-01-27 13:27:58,505 - INFO - ✅ Sucesso: voo-latam-5223-gru-atrasado.html
+2026-01-27 13:27:58,505 - INFO - [150/227] Processando 6061...
+2026-01-27 13:27:58,507 - INFO - ✅ Sucesso: voo-desconhecido-6061-gru-atrasado.html
+2026-01-27 13:27:58,507 - INFO - [151/227] Processando 6124...
+2026-01-27 13:27:58,508 - INFO - ✅ Sucesso: voo-desconhecido-6124-gru-atrasado.html
+2026-01-27 13:27:58,508 - INFO - [152/227] Processando 6240...
+2026-01-27 13:27:58,510 - INFO - ✅ Sucesso: voo-latam-6240-gru-atrasado.html
+2026-01-27 13:27:58,510 - INFO - [153/227] Processando 6719...
+2026-01-27 13:27:58,511 - INFO - ✅ Sucesso: voo-desconhecido-6719-gru-atrasado.html
+2026-01-27 13:27:58,512 - INFO - [154/227] Processando 7110...
+2026-01-27 13:27:58,514 - INFO - ✅ Sucesso: voo-latam-7110-gru-atrasado.html
+2026-01-27 13:27:58,514 - INFO - [155/227] Processando 7534...
+2026-01-27 13:27:58,515 - INFO - ✅ Sucesso: voo-desconhecido-7534-gru-atrasado.html
+2026-01-27 13:27:58,515 - INFO - [156/227] Processando 9746...
+2026-01-27 13:27:58,516 - INFO - ✅ Sucesso: voo-latam-9746-gru-atrasado.html
+2026-01-27 13:27:58,516 - INFO - [157/227] Processando RJ1070...
+2026-01-27 13:27:58,517 - INFO - ✅ Sucesso: voo-latam-rj1070-gru-atrasado.html
+2026-01-27 13:27:58,517 - INFO - [158/227] Processando RJ4070...
+2026-01-27 13:27:58,519 - INFO - ✅ Sucesso: voo-latam-rj4070-gru-atrasado.html
+2026-01-27 13:27:58,519 - INFO - [159/227] Processando RJ4305...
+2026-01-27 13:27:58,520 - INFO - ✅ Sucesso: voo-latam-rj4305-gru-atrasado.html
+2026-01-27 13:27:58,520 - INFO - [160/227] Processando RJ4771...
+2026-01-27 13:27:58,522 - INFO - ✅ Sucesso: voo-ek-rj4771-gru-atrasado.html
+2026-01-27 13:27:58,522 - INFO - [161/227] Processando RJ5357...
+2026-01-27 13:27:58,523 - INFO - ✅ Sucesso: voo-latam-rj5357-gru-atrasado.html
+2026-01-27 13:27:58,523 - INFO - [162/227] Processando RJ6193...
+2026-01-27 13:27:58,525 - INFO - ✅ Sucesso: voo-latam-rj6193-gru-atrasado.html
+2026-01-27 13:27:58,525 - INFO - [163/227] Processando RJ6603...
+2026-01-27 13:27:58,526 - INFO - ✅ Sucesso: voo-latam-rj6603-gru-atrasado.html
+2026-01-27 13:27:58,526 - INFO - [164/227] Processando RJ6647...
+2026-01-27 13:27:58,527 - INFO - ✅ Sucesso: voo-latam-rj6647-gru-atrasado.html
+2026-01-27 13:27:58,528 - INFO - [165/227] Processando RJ6719...
+2026-01-27 13:27:58,529 - INFO - ✅ Sucesso: voo-latam-rj6719-gru-atrasado.html
+2026-01-27 13:27:58,529 - INFO - [166/227] Processando RJ7260...
+2026-01-27 13:27:58,530 - INFO - ✅ Sucesso: voo-latam-rj7260-gru-atrasado.html
+2026-01-27 13:27:58,530 - INFO - [167/227] Processando RJ7347...
+2026-01-27 13:27:58,533 - INFO - ✅ Sucesso: voo-latam-rj7347-gru-atrasado.html
+2026-01-27 13:27:58,533 - INFO - [168/227] Processando RJ9072...
+2026-01-27 13:27:58,535 - INFO - ✅ Sucesso: voo-latam-rj9072-gru-atrasado.html
+2026-01-27 13:27:58,535 - INFO - [169/227] Processando RJ9173...
+2026-01-27 13:27:58,538 - INFO - ✅ Sucesso: voo-latam-rj9173-gru-atrasado.html
+2026-01-27 13:27:58,538 - INFO - [170/227] Processando RJ9253...
+2026-01-27 13:27:58,539 - INFO - ✅ Sucesso: voo-latam-rj9253-gru-atrasado.html
+2026-01-27 13:27:58,539 - INFO - [171/227] Processando 0092...
+2026-01-27 13:27:58,541 - INFO - ✅ Sucesso: voo-desconhecido-0092-gru-cancelado.html
+2026-01-27 13:27:58,541 - INFO - [172/227] Processando 0148...
+2026-01-27 13:27:58,542 - INFO - ✅ Sucesso: voo-desconhecido-0148-gru-atrasado.html
+2026-01-27 13:27:58,542 - INFO - [173/227] Processando 0631...
+2026-01-27 13:27:58,543 - INFO - ✅ Sucesso: voo-desconhecido-0631-gru-atrasado.html
+2026-01-27 13:27:58,543 - INFO - [174/227] Processando 0844...
+2026-01-27 13:27:58,544 - INFO - ✅ Sucesso: voo-desconhecido-0844-gru-atrasado.html
+2026-01-27 13:27:58,545 - INFO - [175/227] Processando 3790...
+2026-01-27 13:27:58,546 - INFO - ✅ Sucesso: voo-latam-3790-gru-atrasado.html
+2026-01-27 13:27:58,546 - INFO - [176/227] Processando 6219...
+2026-01-27 13:27:58,547 - INFO - ✅ Sucesso: voo-latam-6219-gru-atrasado.html
+2026-01-27 13:27:58,548 - INFO - [177/227] Processando 6270...
+2026-01-27 13:27:58,550 - INFO - ✅ Sucesso: voo-latam-6270-gru-atrasado.html
+2026-01-27 13:27:58,551 - INFO - [178/227] Processando 7255...
+2026-01-27 13:27:58,553 - INFO - ✅ Sucesso: voo-latam-7255-gru-atrasado.html
+2026-01-27 13:27:58,553 - INFO - [179/227] Processando 7257...
+2026-01-27 13:27:58,554 - INFO - ✅ Sucesso: voo-desconhecido-7257-gru-atrasado.html
+2026-01-27 13:27:58,555 - INFO - [180/227] Processando 7456...
+2026-01-27 13:27:58,556 - INFO - ✅ Sucesso: voo-desconhecido-7456-gru-atrasado.html
+2026-01-27 13:27:58,556 - INFO - [181/227] Processando RJ3340...
+2026-01-27 13:27:58,557 - INFO - ✅ Sucesso: voo-latam-rj3340-gru-cancelado.html
+2026-01-27 13:27:58,558 - INFO - [182/227] Processando RJ3368...
+2026-01-27 13:27:58,559 - INFO - ✅ Sucesso: voo-latam-rj3368-gru-atrasado.html
+2026-01-27 13:27:58,559 - INFO - [183/227] Processando RJ3874...
+2026-01-27 13:27:58,560 - INFO - ✅ Sucesso: voo-latam-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,560 - INFO - [184/227] Processando RJ3947...
+2026-01-27 13:27:58,561 - INFO - ✅ Sucesso: voo-latam-rj3947-gru-cancelado.html
+2026-01-27 13:27:58,562 - INFO - [185/227] Processando RJ4305...
+2026-01-27 13:27:58,563 - INFO - ✅ Sucesso: voo-latam-rj4305-gru-atrasado.html
+2026-01-27 13:27:58,563 - INFO - [186/227] Processando RJ4653...
+2026-01-27 13:27:58,565 - INFO - ✅ Sucesso: voo-latam-rj4653-gru-cancelado.html
+2026-01-27 13:27:58,565 - INFO - [187/227] Processando RJ4797...
+2026-01-27 13:27:58,567 - INFO - ✅ Sucesso: voo-latam-rj4797-gru-atrasado.html
+2026-01-27 13:27:58,567 - INFO - [188/227] Processando RJ6099...
+2026-01-27 13:27:58,568 - INFO - ✅ Sucesso: voo-latam-rj6099-gru-atrasado.html
+2026-01-27 13:27:58,568 - INFO - [189/227] Processando RJ6603...
+2026-01-27 13:27:58,571 - INFO - ✅ Sucesso: voo-latam-rj6603-gru-atrasado.html
+2026-01-27 13:27:58,571 - INFO - [190/227] Processando RJ7120...
+2026-01-27 13:27:58,572 - INFO - ✅ Sucesso: voo-latam-rj7120-gru-cancelado.html
+2026-01-27 13:27:58,572 - INFO - [191/227] Processando RJ7277...
+2026-01-27 13:27:58,573 - INFO - ✅ Sucesso: voo-latam-rj7277-gru-atrasado.html
+2026-01-27 13:27:58,573 - INFO - [192/227] Processando RJ7361...
+2026-01-27 13:27:58,574 - INFO - ✅ Sucesso: voo-latam-rj7361-gru-cancelado.html
+2026-01-27 13:27:58,575 - INFO - [193/227] Processando RJ8471...
+2026-01-27 13:27:58,576 - INFO - ✅ Sucesso: voo-latam-rj8471-gru-atrasado.html
+2026-01-27 13:27:58,576 - INFO - [194/227] Processando RJ8643...
+2026-01-27 13:27:58,577 - INFO - ✅ Sucesso: voo-latam-rj8643-gru-cancelado.html
+2026-01-27 13:27:58,578 - INFO - [195/227] Processando RJ9809...
+2026-01-27 13:27:58,579 - INFO - ✅ Sucesso: voo-latam-rj9809-gru-atrasado.html
+2026-01-27 13:27:58,580 - INFO - [196/227] Processando 0792...
+2026-01-27 13:27:58,581 - INFO - ✅ Sucesso: voo-klm-0792-gru-atrasado.html
+2026-01-27 13:27:58,582 - INFO - [197/227] Processando 3604...
+2026-01-27 13:27:58,583 - INFO - ✅ Sucesso: voo-latam-3604-gru-cancelado.html
+2026-01-27 13:27:58,583 - INFO - [198/227] Processando 3856...
+2026-01-27 13:27:58,584 - INFO - ✅ Sucesso: voo-latam-3856-gru-cancelado.html
+2026-01-27 13:27:58,585 - INFO - [199/227] Processando 4413...
+2026-01-27 13:27:58,587 - INFO - ✅ Sucesso: voo-latam-4413-gru-atrasado.html
+2026-01-27 13:27:58,588 - INFO - [200/227] Processando 5156...
+2026-01-27 13:27:58,589 - INFO - ✅ Sucesso: voo-latam-5156-gru-cancelado.html
+2026-01-27 13:27:58,589 - INFO - [201/227] Processando 5500...
+2026-01-27 13:27:58,590 - INFO - ✅ Sucesso: voo-klm-5500-gru-atrasado.html
+2026-01-27 13:27:58,590 - INFO - [202/227] Processando 6375...
+2026-01-27 13:27:58,591 - INFO - ✅ Sucesso: voo-dl-6375-gru-cancelado.html
+2026-01-27 13:27:58,592 - INFO - [203/227] Processando 6718...
+2026-01-27 13:27:58,593 - INFO - ✅ Sucesso: voo-klm-6718-gru-atrasado.html
+2026-01-27 13:27:58,593 - INFO - [204/227] Processando 6747...
+2026-01-27 13:27:58,594 - INFO - ✅ Sucesso: voo-klm-6747-gru-atrasado.html
+2026-01-27 13:27:58,595 - INFO - [205/227] Processando 6849...
+2026-01-27 13:27:58,596 - INFO - ✅ Sucesso: voo-klm-6849-gru-atrasado.html
+2026-01-27 13:27:58,596 - INFO - [206/227] Processando 7280...
+2026-01-27 13:27:58,598 - INFO - ✅ Sucesso: voo-dl-7280-gru-cancelado.html
+2026-01-27 13:27:58,598 - INFO - [207/227] Processando 7355...
+2026-01-27 13:27:58,599 - INFO - ✅ Sucesso: voo-desconhecido-7355-gru-atrasado.html
+2026-01-27 13:27:58,600 - INFO - [208/227] Processando 8072...
+2026-01-27 13:27:58,601 - INFO - ✅ Sucesso: voo-latam-8072-gru-atrasado.html
+2026-01-27 13:27:58,601 - INFO - [209/227] Processando 8227...
+2026-01-27 13:27:58,603 - INFO - ✅ Sucesso: voo-latam-8227-gru-cancelado.html
+2026-01-27 13:27:58,604 - INFO - [210/227] Processando 8422...
+2026-01-27 13:27:58,605 - INFO - ✅ Sucesso: voo-latam-8422-gru-cancelado.html
+2026-01-27 13:27:58,605 - INFO - [211/227] Processando RJ3368...
+2026-01-27 13:27:58,606 - INFO - ✅ Sucesso: voo-latam-rj3368-gru-atrasado.html
+2026-01-27 13:27:58,606 - INFO - [212/227] Processando RJ3874...
+2026-01-27 13:27:58,607 - INFO - ✅ Sucesso: voo-latam-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,608 - INFO - [213/227] Processando RJ4126...
+2026-01-27 13:27:58,609 - INFO - ✅ Sucesso: voo-latam-rj4126-gru-atrasado.html
+2026-01-27 13:27:58,609 - INFO - [214/227] Processando RJ4227...
+2026-01-27 13:27:58,610 - INFO - ✅ Sucesso: voo-latam-rj4227-gru-atrasado.html
+2026-01-27 13:27:58,610 - INFO - [215/227] Processando RJ4548...
+2026-01-27 13:27:58,612 - INFO - ✅ Sucesso: voo-latam-rj4548-gru-atrasado.html
+2026-01-27 13:27:58,612 - INFO - [216/227] Processando RJ6099...
+2026-01-27 13:27:58,613 - INFO - ✅ Sucesso: voo-latam-rj6099-gru-atrasado.html
+2026-01-27 13:27:58,613 - INFO - [217/227] Processando RJ7269...
+2026-01-27 13:27:58,615 - INFO - ✅ Sucesso: voo-latam-rj7269-gru-atrasado.html
+2026-01-27 13:27:58,616 - INFO - [218/227] Processando RJ7355...
+2026-01-27 13:27:58,618 - INFO - ✅ Sucesso: voo-latam-rj7355-gru-atrasado.html
+2026-01-27 13:27:58,618 - INFO - [219/227] Processando RJ7741...
+2026-01-27 13:27:58,621 - INFO - ✅ Sucesso: voo-latam-rj7741-gru-atrasado.html
+2026-01-27 13:27:58,621 - INFO - [220/227] Processando RJ8490...
+2026-01-27 13:27:58,622 - INFO - ✅ Sucesso: voo-latam-rj8490-gru-cancelado.html
+2026-01-27 13:27:58,623 - INFO - [221/227] Processando 3529...
+2026-01-27 13:27:58,624 - INFO - ✅ Sucesso: voo-desconhecido-3529-gru-atrasado.html
+2026-01-27 13:27:58,624 - INFO - [222/227] Processando 5219...
+2026-01-27 13:27:58,625 - INFO - ✅ Sucesso: voo-desconhecido-5219-gru-atrasado.html
+2026-01-27 13:27:58,625 - INFO - [223/227] Processando RJ1924...
+2026-01-27 13:27:58,627 - INFO - ✅ Sucesso: voo-latam-rj1924-gru-atrasado.html
+2026-01-27 13:27:58,627 - INFO - [224/227] Processando RJ2328...
+2026-01-27 13:27:58,629 - INFO - ✅ Sucesso: voo-desconhecido-rj2328-gru-atrasado.html
+2026-01-27 13:27:58,629 - INFO - [225/227] Processando RJ4227...
+2026-01-27 13:27:58,631 - INFO - ✅ Sucesso: voo-latam-rj4227-gru-atrasado.html
+2026-01-27 13:27:58,631 - INFO - [226/227] Processando RJ4797...
+2026-01-27 13:27:58,632 - INFO - ✅ Sucesso: voo-latam-rj4797-gru-atrasado.html
+2026-01-27 13:27:58,633 - INFO - [227/227] Processando RJ7741...
+2026-01-27 13:27:58,633 - INFO - ✅ Sucesso: voo-latam-rj7741-gru-atrasado.html
+2026-01-27 13:27:58,634 - INFO - 
+2026-01-27 13:27:58,634 - INFO - ======================================================================
+2026-01-27 13:27:58,634 - INFO - STEP 3.2: GESTÃO DE ÓRFÃOS
+2026-01-27 13:27:58,634 - INFO - ======================================================================
+2026-01-27 13:27:58,636 - INFO - 🗑️  Encontrados 20 arquivos órfãos para remoção:
+2026-01-27 13:27:58,637 - INFO -    • Removido: voo-delta-0629-gru-atrasado.html
+2026-01-27 13:27:58,638 - INFO -    • Removido: voo-delta-2429-gru-atrasado.html
+2026-01-27 13:27:58,638 - INFO -    • Removido: voo-delta-6375-gru-cancelado.html
+2026-01-27 13:27:58,638 - INFO -    • Removido: voo-delta-7280-gru-cancelado.html
+2026-01-27 13:27:58,638 - INFO -    • Removido: voo-delta-rj2357-gru-cancelado.html
+2026-01-27 13:27:58,639 - INFO -    • Removido: voo-delta-rj3874-gru-atrasado.html
+2026-01-27 13:27:58,640 - INFO -    • Removido: voo-delta-rj4548-gru-atrasado.html
+2026-01-27 13:27:58,640 - INFO -    • Removido: voo-delta-rj6690-gru-cancelado.html
+2026-01-27 13:27:58,640 - INFO -    • Removido: voo-delta-rj6721-gru-atrasado.html
+2026-01-27 13:27:58,640 - INFO -    • Removido: voo-delta-rj8490-gru-atrasado.html
+2026-01-27 13:27:58,641 - INFO -    • Removido: voo-emirates-1522-gru-atrasado.html
+2026-01-27 13:27:58,641 - INFO -    • Removido: voo-emirates-1636-gru-atrasado.html
+2026-01-27 13:27:58,642 - INFO -    • Removido: voo-emirates-4067-gru-atrasado.html
+2026-01-27 13:27:58,642 - INFO -    • Removido: voo-emirates-rj0624-gru-atrasado.html
+2026-01-27 13:27:58,643 - INFO -    • Removido: voo-emirates-rj3698-gru-atrasado.html
+2026-01-27 13:27:58,643 - INFO -    • Removido: voo-emirates-rj4656-gru-atrasado.html
+2026-01-27 13:27:58,644 - INFO -    • Removido: voo-emirates-rj4771-gru-atrasado.html
+2026-01-27 13:27:58,645 - INFO -    • Removido: voo-emirates-rj7269-gru-cancelado.html
+2026-01-27 13:27:58,645 - INFO -    • Removido: voo-emirates-rj7299-gru-atrasado.html
+2026-01-27 13:27:58,646 - INFO -    • Removido: voo-emirates-rj9700-gru-atrasado.html
+2026-01-27 13:27:58,646 - INFO - 
+2026-01-27 13:27:58,646 - INFO - ======================================================================
+2026-01-27 13:27:58,646 - INFO - STEP 3.3: GERAÇÃO DE SITEMAP
+2026-01-27 13:27:58,646 - INFO - ======================================================================
+2026-01-27 13:27:58,681 - INFO - ✅ Sitemap gerado: public/sitemap.xml
+2026-01-27 13:27:58,681 - INFO -    • URLs incluídas: 230 (1 home + 2 categorias + 227 voos)
+2026-01-27 13:27:58,682 - INFO - 
+2026-01-27 13:27:58,682 - INFO - ======================================================================
+2026-01-27 13:27:58,682 - INFO - STEP 3.4: GERAÇÃO DE HOME PAGE
+2026-01-27 13:27:58,682 - INFO - ======================================================================
+2026-01-27 13:27:58,703 - INFO - ✅ Home page gerada: public/index.html
+2026-01-27 13:27:58,703 - INFO -    • Voos exibidos: 20 (dos 227 totais)
+2026-01-27 13:27:58,704 - INFO -    • Growth Variables:
+2026-01-27 13:27:58,704 - INFO -      - Heróis (social proof): 431
+2026-01-27 13:27:58,704 - INFO -      - Gate context: Portão C21
+2026-01-27 13:27:58,704 - INFO -      - UTM suffix: ?utm_source=hero_gru
+2026-01-27 13:27:58,704 - INFO - 
+2026-01-27 13:27:58,704 - INFO - ======================================================================
+2026-01-27 13:27:58,704 - INFO - STEP 3.5: GERAÇÃO DE SMART TICKER
+2026-01-27 13:27:58,704 - INFO - ======================================================================
+2026-01-27 13:27:58,706 - INFO - ✅ Smart Ticker gerado: 10 voos selecionados
+2026-01-27 13:27:58,706 - INFO - 
+2026-01-27 13:27:58,706 - INFO - ======================================================================
+2026-01-27 13:27:58,706 - INFO - STEP 3.6: GERAÇÃO DE PÁGINAS DE CATEGORIA
+2026-01-27 13:27:58,706 - INFO - ======================================================================
+2026-01-27 13:27:58,707 - INFO - 📊 Voos cancelados filtrados: 29
+2026-01-27 13:27:58,708 - INFO - 📊 Voos atrasados filtrados: 156
+2026-01-27 13:27:58,748 - INFO - ✅ Página de categoria gerada: public/cancelados.html
+2026-01-27 13:27:58,769 - INFO - ✅ Página de categoria gerada: public/atrasados.html
+2026-01-27 13:27:58,769 - INFO - 
+2026-01-27 13:27:58,769 - INFO - ╔════════════════════════════════════════════════════════════════════╗
+2026-01-27 13:27:58,769 - INFO - ║                       ✅ BUILD FINALIZADO!                        ║
+2026-01-27 13:27:58,770 - INFO - ╚════════════════════════════════════════════════════════════════════╝
+2026-01-27 13:27:58,770 - INFO - 
+2026-01-27 13:27:58,770 - INFO - 📊 SUMÁRIO DO BUILD:
+2026-01-27 13:27:58,770 - INFO -    • Voos processados:     227
+2026-01-27 13:27:58,770 - INFO -    • Sucessos:             227 páginas
+2026-01-27 13:27:58,770 - INFO -    • Falhas:               0 páginas
+2026-01-27 13:27:58,770 - INFO -    • Filtrados (< 15min):  0 voos
+2026-01-27 13:27:58,771 - INFO -    • Órfãos removidos:     20 arquivos
+2026-01-27 13:27:58,771 - INFO -    • Sitemap:              Atualizado com 227 URLs
+2026-01-27 13:27:58,771 - INFO - 
+2026-01-27 13:27:58,771 - INFO - 📁 Output:
+2026-01-27 13:27:58,771 - INFO -    • Páginas de voos:      public/voo/
+2026-01-27 13:27:58,771 - INFO -    • Home page:            public/index.html
+2026-01-27 13:27:58,771 - INFO -    • Sitemap:              public/sitemap.xml
+2026-01-27 13:27:58,771 - INFO - 
+2026-01-27 13:27:58,771 - INFO - 🎉 Build concluído com sucesso!
+2026-01-27 13:27:58,771 - INFO - 🌐 Abra public/index.html no navegador
+2026-01-27 13:27:58,772 - INFO - 
+2026-01-27 13:27:58,772 - INFO - ✅ MatchFly: Dicionário IATA expandido com sucesso!
+2026-01-27 13:28:00,961 - INFO - 
+2026-01-27 13:28:00,962 - INFO - ======================================================================
+✅ Dicionários validados com sucesso.
+📊 ANTES: Sem Destino: 62/227 (27.3%) | Cia Desconhecida: 42/227
+
+============================================================
+🔍 PROCESSANDO #0: 0962 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0962'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0962'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0962'
+  ❌ Não é codeshare
+  lookup_fnum: '0962'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0962') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0962'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0962' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0962'
+  lookup_fnum final: 'DESCONHECIDO0962'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0962' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0962') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #0 CONCLUÍDO: 0962 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #1: 1522 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '1522'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: '1522'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: '1522'
+  ❌ Não é codeshare
+  lookup_fnum: '1522'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '1522'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '1522' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK1522'
+  lookup_fnum final: 'EK1522'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK1522' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #1 CONCLUÍDO: 1522 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #2: 2858 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '2858'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '2858'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '2858'
+  ❌ Não é codeshare
+  lookup_fnum: '2858'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('2858') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '2858'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '2858' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO2858'
+  lookup_fnum final: 'DESCONHECIDO2858'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO2858' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO2858') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #2 CONCLUÍDO: 2858 | failed
+============================================================
+
+⏭️  VOO PULADO #3: 3611 - Já possui AMS
+⏭️  VOO PULADO #4: 3683 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #5: 4067 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '4067'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: '4067'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: '4067'
+  ❌ Não é codeshare
+  lookup_fnum: '4067'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '4067'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '4067' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK4067'
+  lookup_fnum final: 'EK4067'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK4067' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #5 CONCLUÍDO: 4067 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #6: 4070 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '4070'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '4070'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '4070'
+  ❌ Não é codeshare
+  lookup_fnum: '4070'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('4070') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '4070'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '4070' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO4070'
+  lookup_fnum final: 'DESCONHECIDO4070'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO4070' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO4070') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #6 CONCLUÍDO: 4070 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #7: 5563 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '5563'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '5563'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '5563'
+  ❌ Não é codeshare
+  lookup_fnum: '5563'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('5563') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '5563'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '5563' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO5563'
+  lookup_fnum final: 'DESCONHECIDO5563'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO5563' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO5563') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #7 CONCLUÍDO: 5563 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #8: 6238 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6238'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '6238'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '6238'
+  ❌ Não é codeshare
+  lookup_fnum: '6238'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('6238') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6238'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6238' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO6238'
+  lookup_fnum final: 'DESCONHECIDO6238'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO6238' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO6238') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #8 CONCLUÍDO: 6238 | failed
+============================================================
+
+⏭️  VOO PULADO #9: 7454 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #10: 7586 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7586'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7586'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7586'
+  ❌ Não é codeshare
+  lookup_fnum: '7586'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7586') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7586'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7586' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7586'
+  lookup_fnum final: 'DESCONHECIDO7586'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7586' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7586') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #10 CONCLUÍDO: 7586 | failed
+============================================================
+
+⏭️  VOO PULADO #11: 9298 - Já possui AMS
+⏭️  VOO PULADO #12: RJ3340 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #13: RJ3698 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ3698'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ3698'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ3698'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ3698'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ3698'
+  ✅ RJ removido: '3698'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '3698' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK3698'
+  lookup_fnum final: 'EK3698'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK3698' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #13 CONCLUÍDO: RJ3698 | success
+============================================================
+
+⏭️  VOO PULADO #14: RJ3947 - Já possui SCL
+⏭️  VOO PULADO #15: RJ4070 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #16: RJ4656 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ4656'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ4656'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ4656'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ4656'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ4656'
+  ✅ RJ removido: '4656'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '4656' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK4656'
+  lookup_fnum final: 'EK4656'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK4656' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #16 CONCLUÍDO: RJ4656 | success
+============================================================
+
+⏭️  VOO PULADO #17: RJ4771 - Já possui SCL
+⏭️  VOO PULADO #18: RJ5538 - Já possui SCL
+⏭️  VOO PULADO #19: RJ6238 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #20: RJ7299 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ7299'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ7299'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ7299'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ7299'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ7299'
+  ✅ RJ removido: '7299'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7299' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK7299'
+  lookup_fnum final: 'EK7299'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK7299' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #20 CONCLUÍDO: RJ7299 | success
+============================================================
+
+⏭️  VOO PULADO #21: RJ7350 - Já possui SCL
+⏭️  VOO PULADO #22: RJ7361 - Já possui SCL
+⏭️  VOO PULADO #23: RJ7586 - Já possui AMS
+⏭️  VOO PULADO #24: RJ7702 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #25: RJ9700 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ9700'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ9700'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ9700'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ9700'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ9700'
+  ✅ RJ removido: '9700'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '9700' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK9700'
+  lookup_fnum final: 'EK9700'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK9700' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #25 CONCLUÍDO: RJ9700 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #26: 0063 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0063'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0063'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0063'
+  ❌ Não é codeshare
+  lookup_fnum: '0063'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0063') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0063'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0063' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0063'
+  lookup_fnum final: 'DESCONHECIDO0063'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0063' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0063') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #26 CONCLUÍDO: 0063 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #27: 0160 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0160'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0160'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0160'
+  ❌ Não é codeshare
+  lookup_fnum: '0160'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0160') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0160'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0160' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0160'
+  lookup_fnum final: 'DESCONHECIDO0160'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0160' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0160') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #27 CONCLUÍDO: 0160 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #28: 0962 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0962'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0962'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0962'
+  ❌ Não é codeshare
+  lookup_fnum: '0962'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0962') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0962'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0962' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0962'
+  lookup_fnum final: 'DESCONHECIDO0962'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0962' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0962') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #28 CONCLUÍDO: 0962 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #29: 1560 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '1560'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '1560'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '1560'
+  ❌ Não é codeshare
+  lookup_fnum: '1560'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('1560') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '1560'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '1560' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO1560'
+  lookup_fnum final: 'DESCONHECIDO1560'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO1560' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO1560') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #29 CONCLUÍDO: 1560 | failed
+============================================================
+
+⏭️  VOO PULADO #30: 3556 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #31: 3558 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '3558'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '3558'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '3558'
+  ❌ Não é codeshare
+  lookup_fnum: '3558'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('3558') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '3558'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '3558' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO3558'
+  lookup_fnum final: 'DESCONHECIDO3558'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO3558' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO3558') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #31 CONCLUÍDO: 3558 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #32: 3724 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '3724'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '3724'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '3724'
+  ❌ Não é codeshare
+  lookup_fnum: '3724'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('3724') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '3724'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '3724' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO3724'
+  lookup_fnum final: 'DESCONHECIDO3724'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO3724' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO3724') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #32 CONCLUÍDO: 3724 | failed
+============================================================
+
+⏭️  VOO PULADO #33: 5172 - Já possui SCL
+⏭️  VOO PULADO #34: 5176 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #35: 5896 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '5896'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '5896'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '5896'
+  ❌ Não é codeshare
+  lookup_fnum: '5896'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('5896') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '5896'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '5896' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO5896'
+  lookup_fnum final: 'DESCONHECIDO5896'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO5896' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO5896') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #35 CONCLUÍDO: 5896 | failed
+============================================================
+
+⏭️  VOO PULADO #36: 6051 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #37: 7614 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7614'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7614'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7614'
+  ❌ Não é codeshare
+  lookup_fnum: '7614'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7614') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7614'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7614' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7614'
+  lookup_fnum final: 'DESCONHECIDO7614'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7614' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7614') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #37 CONCLUÍDO: 7614 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #38: 8135 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '8135'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '8135'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '8135'
+  ❌ Não é codeshare
+  lookup_fnum: '8135'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('8135') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '8135'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '8135' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO8135'
+  lookup_fnum final: 'DESCONHECIDO8135'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO8135' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO8135') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #38 CONCLUÍDO: 8135 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #39: 8490 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '8490'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '8490'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '8490'
+  ❌ Não é codeshare
+  lookup_fnum: '8490'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('8490') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '8490'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '8490' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO8490'
+  lookup_fnum final: 'DESCONHECIDO8490'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO8490' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO8490') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #39 CONCLUÍDO: 8490 | failed
+============================================================
+
+⏭️  VOO PULADO #40: 9961 - Já possui AMS
+⏭️  VOO PULADO #41: RJ3368 - Já possui SCL
+⏭️  VOO PULADO #42: RJ3874 - Já possui SCL
+⏭️  VOO PULADO #43: RJ3974 - Já possui SCL
+⏭️  VOO PULADO #44: RJ4126 - Já possui SCL
+⏭️  VOO PULADO #45: RJ4227 - Já possui SCL
+⏭️  VOO PULADO #46: RJ4540 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #47: RJ4548 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ4548'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ4548'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ4548'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ4548'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ4548'
+  ✅ RJ removido: '4548'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '4548' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL4548'
+  lookup_fnum final: 'DL4548'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL4548' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #47 CONCLUÍDO: RJ4548 | success
+============================================================
+
+⏭️  VOO PULADO #48: RJ6603 - Já possui SCL
+⏭️  VOO PULADO #49: RJ6690 - Já possui SCL
+⏭️  VOO PULADO #50: RJ6721 - Já possui SCL
+⏭️  VOO PULADO #51: RJ7269 - Já possui SCL
+⏭️  VOO PULADO #52: RJ7344 - Já possui SCL
+⏭️  VOO PULADO #53: RJ7355 - Já possui SCL
+⏭️  VOO PULADO #54: RJ7586 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #55: RJ8490 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ8490'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ8490'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ8490'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ8490'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ8490'
+  ✅ RJ removido: '8490'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '8490' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL8490'
+  lookup_fnum final: 'DL8490'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL8490' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #55 CONCLUÍDO: RJ8490 | success
+============================================================
+
+⏭️  VOO PULADO #56: RJ9173 - Já possui SCL
+⏭️  VOO PULADO #57: RJ9254 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #58: 0629 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0629'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: '0629'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: '0629'
+  ❌ Não é codeshare
+  lookup_fnum: '0629'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0629'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0629' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL0629'
+  lookup_fnum final: 'DL0629'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL0629' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #58 CONCLUÍDO: 0629 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #59: 2316 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '2316'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '2316'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '2316'
+  ❌ Não é codeshare
+  lookup_fnum: '2316'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('2316') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '2316'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '2316' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO2316'
+  lookup_fnum final: 'DESCONHECIDO2316'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO2316' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO2316') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #59 CONCLUÍDO: 2316 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #60: 2429 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '2429'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: '2429'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: '2429'
+  ❌ Não é codeshare
+  lookup_fnum: '2429'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '2429'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '2429' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL2429'
+  lookup_fnum final: 'DL2429'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL2429' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #60 CONCLUÍDO: 2429 | success
+============================================================
+
+⏭️  VOO PULADO #61: 3316 - Já possui SCL
+⏭️  VOO PULADO #62: 6051 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #63: 6314 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6314'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '6314'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '6314'
+  ❌ Não é codeshare
+  lookup_fnum: '6314'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('6314') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6314'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6314' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO6314'
+  lookup_fnum final: 'DESCONHECIDO6314'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO6314' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO6314') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #63 CONCLUÍDO: 6314 | failed
+============================================================
+
+⏭️  VOO PULADO #64: 8125 - Já possui SCL
+⏭️  VOO PULADO #65: 8190 - Já possui SCL
+⏭️  VOO PULADO #66: 8200 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #67: RJ2357 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ2357'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ2357'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ2357'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ2357'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ2357'
+  ✅ RJ removido: '2357'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '2357' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL2357'
+  lookup_fnum final: 'DL2357'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL2357' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #67 CONCLUÍDO: RJ2357 | success
+============================================================
+
+⏭️  VOO PULADO #68: RJ3366 - Já possui SCL
+⏭️  VOO PULADO #69: RJ3368 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #70: RJ3874 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ3874'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ3874'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ3874'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ3874'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ3874'
+  ✅ RJ removido: '3874'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '3874' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL3874'
+  lookup_fnum final: 'DL3874'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL3874' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #70 CONCLUÍDO: RJ3874 | success
+============================================================
+
+⏭️  VOO PULADO #71: RJ4548 - Já possui SCL
+⏭️  VOO PULADO #72: RJ4656 - Já possui AMS
+⏭️  VOO PULADO #73: RJ4797 - Já possui SCL
+⏭️  VOO PULADO #74: RJ6271 - Já possui SCL
+⏭️  VOO PULADO #75: RJ6603 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #76: RJ6690 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ6690'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ6690'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ6690'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ6690'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ6690'
+  ✅ RJ removido: '6690'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6690' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL6690'
+  lookup_fnum final: 'DL6690'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL6690' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #76 CONCLUÍDO: RJ6690 | success
+============================================================
+
+⏭️  VOO PULADO #77: RJ6719 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #78: RJ6721 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ6721'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: 'RJ6721'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ6721'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ6721'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ6721'
+  ✅ RJ removido: '6721'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6721' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL6721'
+  lookup_fnum final: 'DL6721'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL6721' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #78 CONCLUÍDO: RJ6721 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #79: RJ7269 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ7269'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ7269'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ7269'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ7269'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ7269'
+  ✅ RJ removido: '7269'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7269' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK7269'
+  lookup_fnum final: 'EK7269'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK7269' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #79 CONCLUÍDO: RJ7269 | success
+============================================================
+
+⏭️  VOO PULADO #80: RJ8476 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #81: 0063 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0063'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0063'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0063'
+  ❌ Não é codeshare
+  lookup_fnum: '0063'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0063') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0063'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0063' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0063'
+  lookup_fnum final: 'DESCONHECIDO0063'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0063' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0063') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #81 CONCLUÍDO: 0063 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #82: 1146 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '1146'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '1146'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '1146'
+  ❌ Não é codeshare
+  lookup_fnum: '1146'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('1146') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '1146'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '1146' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO1146'
+  lookup_fnum final: 'DESCONHECIDO1146'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO1146' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO1146') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #82 CONCLUÍDO: 1146 | failed
+============================================================
+
+⏭️  VOO PULADO #83: 3354 - Já possui SCL
+⏭️  VOO PULADO #84: 3562 - Já possui SCL
+⏭️  VOO PULADO #85: 3828 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #86: 7213 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7213'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7213'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7213'
+  ❌ Não é codeshare
+  lookup_fnum: '7213'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7213') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7213'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7213' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7213'
+  lookup_fnum final: 'DESCONHECIDO7213'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7213' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7213') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #86 CONCLUÍDO: 7213 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #87: 7967 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7967'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7967'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7967'
+  ❌ Não é codeshare
+  lookup_fnum: '7967'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7967') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7967'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7967' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7967'
+  lookup_fnum final: 'DESCONHECIDO7967'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7967' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7967') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #87 CONCLUÍDO: 7967 | failed
+============================================================
+
+⏭️  VOO PULADO #88: 8349 - Já possui SCL
+⏭️  VOO PULADO #89: RJ1924 - Já possui SCL
+⏭️  VOO PULADO #90: RJ2357 - Já possui SCL
+⏭️  VOO PULADO #91: RJ3368 - Já possui SCL
+⏭️  VOO PULADO #92: RJ3874 - Já possui SCL
+⏭️  VOO PULADO #93: RJ3947 - Já possui SCL
+⏭️  VOO PULADO #94: RJ4065 - Já possui SCL
+⏭️  VOO PULADO #95: RJ4653 - Já possui SCL
+⏭️  VOO PULADO #96: RJ4796 - Já possui SCL
+⏭️  VOO PULADO #97: RJ4797 - Já possui SCL
+⏭️  VOO PULADO #98: RJ6199 - Já possui SCL
+⏭️  VOO PULADO #99: RJ6603 - Já possui SCL
+⏭️  VOO PULADO #100: RJ6690 - Já possui SCL
+⏭️  VOO PULADO #101: RJ6721 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #102: 0962 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0962'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0962'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0962'
+  ❌ Não é codeshare
+  lookup_fnum: '0962'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0962') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0962'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0962' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0962'
+  lookup_fnum final: 'DESCONHECIDO0962'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0962' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0962') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #102 CONCLUÍDO: 0962 | failed
+============================================================
+
+⏭️  VOO PULADO #103: 3316 - Já possui SCL
+⏭️  VOO PULADO #104: 3346 - Já possui SCL
+⏭️  VOO PULADO #105: 3562 - Já possui SCL
+⏭️  VOO PULADO #106: 3620 - Já possui SCL
+⏭️  VOO PULADO #107: 4666 - Já possui SCL
+⏭️  VOO PULADO #108: 5152 - Já possui SCL
+⏭️  VOO PULADO #109: 8089 - Já possui SCL
+⏭️  VOO PULADO #110: 8416 - Já possui SCL
+⏭️  VOO PULADO #111: 8497 - Já possui SCL
+⏭️  VOO PULADO #112: 9326 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #113: RJ0624 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ0624'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ0624'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ0624'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ0624'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ0624'
+  ✅ RJ removido: '0624'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0624' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK0624'
+  lookup_fnum final: 'EK0624'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK0624' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #113 CONCLUÍDO: RJ0624 | success
+============================================================
+
+⏭️  VOO PULADO #114: RJ1268 - Já possui FCO
+⏭️  VOO PULADO #115: RJ1924 - Já possui SCL
+⏭️  VOO PULADO #116: RJ2328 - Já possui SCL
+⏭️  VOO PULADO #117: RJ3874 - Já possui SCL
+⏭️  VOO PULADO #118: RJ6242 - Já possui SCL
+⏭️  VOO PULADO #119: RJ6721 - Já possui SCL
+⏭️  VOO PULADO #120: RJ7355 - Já possui SCL
+⏭️  VOO PULADO #121: RJ7536 - Já possui SCL
+⏭️  VOO PULADO #122: RJ7741 - Já possui SCL
+⏭️  VOO PULADO #123: RJ8475 - Já possui SCL
+⏭️  VOO PULADO #124: RJ8490 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #125: 0962 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0962'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0962'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0962'
+  ❌ Não é codeshare
+  lookup_fnum: '0962'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0962') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0962'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0962' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0962'
+  lookup_fnum final: 'DESCONHECIDO0962'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0962' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0962') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #125 CONCLUÍDO: 0962 | failed
+============================================================
+
+⏭️  VOO PULADO #126: 3268 - Já possui SCL
+⏭️  VOO PULADO #127: 3288 - Já possui SCL
+⏭️  VOO PULADO #128: 4172 - Já possui AMS
+⏭️  VOO PULADO #129: 5126 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #130: 7330 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7330'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7330'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7330'
+  ❌ Não é codeshare
+  lookup_fnum: '7330'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7330') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7330'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7330' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7330'
+  lookup_fnum final: 'DESCONHECIDO7330'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7330' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7330') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #130 CONCLUÍDO: 7330 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #131: 7335 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7335'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7335'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7335'
+  ❌ Não é codeshare
+  lookup_fnum: '7335'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7335') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7335'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7335' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7335'
+  lookup_fnum final: 'DESCONHECIDO7335'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7335' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7335') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #131 CONCLUÍDO: 7335 | failed
+============================================================
+
+⏭️  VOO PULADO #132: 8121 - Já possui SCL
+⏭️  VOO PULADO #133: RJ1070 - Já possui SCL
+⏭️  VOO PULADO #134: RJ1924 - Já possui SCL
+⏭️  VOO PULADO #135: RJ3945 - Já possui SCL
+⏭️  VOO PULADO #136: RJ3974 - Já possui SCL
+⏭️  VOO PULADO #137: RJ4126 - Já possui SCL
+⏭️  VOO PULADO #138: RJ4797 - Já possui SCL
+⏭️  VOO PULADO #139: RJ5357 - Já possui SCL
+⏭️  VOO PULADO #140: RJ6719 - Já possui SCL
+⏭️  VOO PULADO #141: RJ7741 - Já possui SCL
+⏭️  VOO PULADO #142: RJ9173 - Já possui SCL
+⏭️  VOO PULADO #143: RJ9813 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #144: 0248 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0248'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0248'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0248'
+  ❌ Não é codeshare
+  lookup_fnum: '0248'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0248') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0248'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0248' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0248'
+  lookup_fnum final: 'DESCONHECIDO0248'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0248' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0248') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #144 CONCLUÍDO: 0248 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #145: 1164 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '1164'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '1164'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '1164'
+  ❌ Não é codeshare
+  lookup_fnum: '1164'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('1164') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '1164'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '1164' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO1164'
+  lookup_fnum final: 'DESCONHECIDO1164'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO1164' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO1164') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #145 CONCLUÍDO: 1164 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #146: 1636 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '1636'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: '1636'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: '1636'
+  ❌ Não é codeshare
+  lookup_fnum: '1636'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '1636'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '1636' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK1636'
+  lookup_fnum final: 'EK1636'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK1636' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #146 CONCLUÍDO: 1636 | success
+============================================================
+
+⏭️  VOO PULADO #147: 3832 - Já possui SCL
+⏭️  VOO PULADO #148: 5223 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #149: 6061 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6061'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '6061'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '6061'
+  ❌ Não é codeshare
+  lookup_fnum: '6061'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('6061') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6061'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6061' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO6061'
+  lookup_fnum final: 'DESCONHECIDO6061'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO6061' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO6061') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #149 CONCLUÍDO: 6061 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #150: 6124 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6124'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '6124'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '6124'
+  ❌ Não é codeshare
+  lookup_fnum: '6124'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('6124') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6124'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6124' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO6124'
+  lookup_fnum final: 'DESCONHECIDO6124'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO6124' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO6124') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #150 CONCLUÍDO: 6124 | failed
+============================================================
+
+⏭️  VOO PULADO #151: 6240 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #152: 6719 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6719'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '6719'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '6719'
+  ❌ Não é codeshare
+  lookup_fnum: '6719'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('6719') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6719'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6719' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO6719'
+  lookup_fnum final: 'DESCONHECIDO6719'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO6719' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO6719') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #152 CONCLUÍDO: 6719 | failed
+============================================================
+
+⏭️  VOO PULADO #153: 7110 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #154: 7534 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7534'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7534'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7534'
+  ❌ Não é codeshare
+  lookup_fnum: '7534'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7534') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7534'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7534' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7534'
+  lookup_fnum final: 'DESCONHECIDO7534'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7534' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7534') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #154 CONCLUÍDO: 7534 | failed
+============================================================
+
+⏭️  VOO PULADO #155: 9746 - Já possui SCL
+⏭️  VOO PULADO #156: RJ1070 - Já possui SCL
+⏭️  VOO PULADO #157: RJ4070 - Já possui SCL
+⏭️  VOO PULADO #158: RJ4305 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #159: RJ4771 | Airline: EMIRATES
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ4771'
+  airline: 'EMIRATES'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'EMIRATES'
+  flight_number_original: 'RJ4771'
+[ETAPA 2] Normalização:
+  Antes: 'EMIRATES'
+  ✅ NORMALIZADA: 'EK'
+  Airline final: 'EK'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ4771'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ4771'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'EK')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ4771'
+  ✅ RJ removido: '4771'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '4771' | É numérico? True
+  Airline: 'EK'
+  ✅ Reconstruído: 'EK4771'
+  lookup_fnum final: 'EK4771'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'EK4771' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'EK'
+    ✅ ENCONTRADO: EK → DXB
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: DXB (Dubai)
+  Fonte: airline_hub
+============================================================
+✅ VOO #159 CONCLUÍDO: RJ4771 | success
+============================================================
+
+⏭️  VOO PULADO #160: RJ5357 - Já possui SCL
+⏭️  VOO PULADO #161: RJ6193 - Já possui SCL
+⏭️  VOO PULADO #162: RJ6603 - Já possui SCL
+⏭️  VOO PULADO #163: RJ6647 - Já possui SCL
+⏭️  VOO PULADO #164: RJ6719 - Já possui SCL
+⏭️  VOO PULADO #165: RJ7260 - Já possui SCL
+⏭️  VOO PULADO #166: RJ7347 - Já possui SCL
+⏭️  VOO PULADO #167: RJ9072 - Já possui SCL
+⏭️  VOO PULADO #168: RJ9173 - Já possui SCL
+⏭️  VOO PULADO #169: RJ9253 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #170: 0092 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0092'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0092'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0092'
+  ❌ Não é codeshare
+  lookup_fnum: '0092'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0092') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0092'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0092' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0092'
+  lookup_fnum final: 'DESCONHECIDO0092'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0092' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0092') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #170 CONCLUÍDO: 0092 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #171: 0148 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0148'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0148'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0148'
+  ❌ Não é codeshare
+  lookup_fnum: '0148'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0148') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0148'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0148' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0148'
+  lookup_fnum final: 'DESCONHECIDO0148'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0148' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0148') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #171 CONCLUÍDO: 0148 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #172: 0631 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0631'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0631'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0631'
+  ❌ Não é codeshare
+  lookup_fnum: '0631'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0631') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0631'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0631' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0631'
+  lookup_fnum final: 'DESCONHECIDO0631'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0631' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0631') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #172 CONCLUÍDO: 0631 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #173: 0844 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '0844'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '0844'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '0844'
+  ❌ Não é codeshare
+  lookup_fnum: '0844'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('0844') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '0844'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '0844' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO0844'
+  lookup_fnum final: 'DESCONHECIDO0844'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO0844' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO0844') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #173 CONCLUÍDO: 0844 | failed
+============================================================
+
+⏭️  VOO PULADO #174: 3790 - Já possui SCL
+⏭️  VOO PULADO #175: 6219 - Já possui SCL
+⏭️  VOO PULADO #176: 6270 - Já possui SCL
+⏭️  VOO PULADO #177: 7255 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #178: 7257 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7257'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7257'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7257'
+  ❌ Não é codeshare
+  lookup_fnum: '7257'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7257') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7257'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7257' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7257'
+  lookup_fnum final: 'DESCONHECIDO7257'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7257' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7257') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #178 CONCLUÍDO: 7257 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #179: 7456 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7456'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7456'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7456'
+  ❌ Não é codeshare
+  lookup_fnum: '7456'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7456') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7456'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7456' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7456'
+  lookup_fnum final: 'DESCONHECIDO7456'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7456' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7456') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #179 CONCLUÍDO: 7456 | failed
+============================================================
+
+⏭️  VOO PULADO #180: RJ3340 - Já possui SCL
+⏭️  VOO PULADO #181: RJ3368 - Já possui SCL
+⏭️  VOO PULADO #182: RJ3874 - Já possui SCL
+⏭️  VOO PULADO #183: RJ3947 - Já possui SCL
+⏭️  VOO PULADO #184: RJ4305 - Já possui SCL
+⏭️  VOO PULADO #185: RJ4653 - Já possui SCL
+⏭️  VOO PULADO #186: RJ4797 - Já possui SCL
+⏭️  VOO PULADO #187: RJ6099 - Já possui SCL
+⏭️  VOO PULADO #188: RJ6603 - Já possui SCL
+⏭️  VOO PULADO #189: RJ7120 - Já possui SCL
+⏭️  VOO PULADO #190: RJ7277 - Já possui SCL
+⏭️  VOO PULADO #191: RJ7361 - Já possui SCL
+⏭️  VOO PULADO #192: RJ8471 - Já possui SCL
+⏭️  VOO PULADO #193: RJ8643 - Já possui SCL
+⏭️  VOO PULADO #194: RJ9809 - Já possui SCL
+⏭️  VOO PULADO #195: 0792 - Já possui AMS
+⏭️  VOO PULADO #196: 3604 - Já possui SCL
+⏭️  VOO PULADO #197: 3856 - Já possui SCL
+⏭️  VOO PULADO #198: 4413 - Já possui SCL
+⏭️  VOO PULADO #199: 5156 - Já possui SCL
+⏭️  VOO PULADO #200: 5500 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #201: 6375 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '6375'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: '6375'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: '6375'
+  ❌ Não é codeshare
+  lookup_fnum: '6375'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '6375'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '6375' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL6375'
+  lookup_fnum final: 'DL6375'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL6375' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #201 CONCLUÍDO: 6375 | success
+============================================================
+
+⏭️  VOO PULADO #202: 6718 - Já possui AMS
+⏭️  VOO PULADO #203: 6747 - Já possui AMS
+⏭️  VOO PULADO #204: 6849 - Já possui AMS
+
+============================================================
+🔍 PROCESSANDO #205: 7280 | Airline: DELTA
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7280'
+  airline: 'DELTA'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DELTA'
+  flight_number_original: '7280'
+[ETAPA 2] Normalização:
+  Antes: 'DELTA'
+  ✅ NORMALIZADA: 'DL'
+  Airline final: 'DL'
+[ETAPA 3] Codeshare:
+  fnum original: '7280'
+  ❌ Não é codeshare
+  lookup_fnum: '7280'
+[ETAPA 4] Inferência:
+  Precisa inferir: NÃO (já tem 'DL')
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7280'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7280' | É numérico? True
+  Airline: 'DL'
+  ✅ Reconstruído: 'DL7280'
+  lookup_fnum final: 'DL7280'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DL7280' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DL'
+    ✅ ENCONTRADO: DL → ATL
+
+[ETAPA 8] RESULTADO FINAL:
+  ✅ SUCESSO: ATL (Atlanta)
+  Fonte: airline_hub
+============================================================
+✅ VOO #205 CONCLUÍDO: 7280 | success
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #206: 7355 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '7355'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '7355'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '7355'
+  ❌ Não é codeshare
+  lookup_fnum: '7355'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('7355') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '7355'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '7355' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO7355'
+  lookup_fnum final: 'DESCONHECIDO7355'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO7355' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO7355') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #206 CONCLUÍDO: 7355 | failed
+============================================================
+
+⏭️  VOO PULADO #207: 8072 - Já possui SCL
+⏭️  VOO PULADO #208: 8227 - Já possui SCL
+⏭️  VOO PULADO #209: 8422 - Já possui SCL
+⏭️  VOO PULADO #210: RJ3368 - Já possui SCL
+⏭️  VOO PULADO #211: RJ3874 - Já possui SCL
+⏭️  VOO PULADO #212: RJ4126 - Já possui SCL
+⏭️  VOO PULADO #213: RJ4227 - Já possui SCL
+⏭️  VOO PULADO #214: RJ4548 - Já possui SCL
+⏭️  VOO PULADO #215: RJ6099 - Já possui SCL
+⏭️  VOO PULADO #216: RJ7269 - Já possui SCL
+⏭️  VOO PULADO #217: RJ7355 - Já possui SCL
+⏭️  VOO PULADO #218: RJ7741 - Já possui SCL
+⏭️  VOO PULADO #219: RJ8490 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #220: 3529 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '3529'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '3529'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '3529'
+  ❌ Não é codeshare
+  lookup_fnum: '3529'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('3529') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '3529'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '3529' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO3529'
+  lookup_fnum final: 'DESCONHECIDO3529'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO3529' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO3529') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #220 CONCLUÍDO: 3529 | failed
+============================================================
+
+
+============================================================
+🔍 PROCESSANDO #221: 5219 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: '5219'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: '5219'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: '5219'
+  ❌ Não é codeshare
+  lookup_fnum: '5219'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('5219') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: '5219'
+  Não começa com RJ
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '5219' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO5219'
+  lookup_fnum final: 'DESCONHECIDO5219'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO5219' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO5219') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #221 CONCLUÍDO: 5219 | failed
+============================================================
+
+⏭️  VOO PULADO #222: RJ1924 - Já possui SCL
+
+============================================================
+🔍 PROCESSANDO #223: RJ2328 | Airline: DESCONHECIDO
+============================================================
+[ETAPA 0] Estado inicial:
+  flight_number: 'RJ2328'
+  airline: 'DESCONHECIDO'
+  destination_iata: 'VAZIO'
+[ETAPA 1] Backup criado:
+  airline_original: 'DESCONHECIDO'
+  flight_number_original: 'RJ2328'
+[ETAPA 2] Normalização:
+  Antes: 'DESCONHECIDO'
+  ⚠️ NÃO ENCONTRADA em AIRLINE_NAME_TO_CODE
+  Airline final: 'DESCONHECIDO'
+[ETAPA 3] Codeshare:
+  fnum original: 'RJ2328'
+  ❌ Não é codeshare
+  lookup_fnum: 'RJ2328'
+[ETAPA 4] Inferência:
+  Precisa inferir: SIM
+  _infer_airline_safe('RJ2328') → 'None'
+  ❌ Inferência falhou - sem prefixo alfabético
+[ETAPA 5] Limpeza RJ:
+  lookup_fnum: 'RJ2328'
+  ✅ RJ removido: '2328'
+[ETAPA 6] Reconstrução:
+  lookup_fnum: '2328' | É numérico? True
+  Airline: 'DESCONHECIDO'
+  ✅ Reconstruído: 'DESCONHECIDO2328'
+  lookup_fnum final: 'DESCONHECIDO2328'
+
+[ETAPA 7] LOOKUP CASCATA:
+  7.1 SPECIFIC_ROUTES:
+    ❌ 'DESCONHECIDO2328' NÃO está em SPECIFIC_ROUTES
+  7.2 AIRLINE_HUBS:
+    Prefixo: 'DE'
+    ❌ 'DE' NÃO está em AIRLINE_HUBS
+  7.3 DOMÉSTICA:
+    _infer_domestic_brazil('DESCONHECIDO', 'DESCONHECIDO2328') → 'None'
+    ❌ Rejeitado (não existe ou não é brasileira)
+  7.4 API FALLBACK:
+    ENABLE_API_FALLBACK: False
+    API chamadas: 0/10
+    ❌ API fallback desabilitado via env var
+
+[ETAPA 8] RESULTADO FINAL:
+  ❌ FALHOU - Motivo: nenhum lookup funcionou
+============================================================
+✅ VOO #223 CONCLUÍDO: RJ2328 | failed
+============================================================
+
+⏭️  VOO PULADO #224: RJ4227 - Já possui SCL
+⏭️  VOO PULADO #225: RJ4797 - Já possui SCL
+⏭️  VOO PULADO #226: RJ7741 - Já possui SCL
+
+============================================================
+📊 RESUMO FINAL
+============================================================
+Total: 227
+Sucesso: 20 ✅
+Falhou: 42 ❌
+Taxa: 8.8%
+
+BREAKDOWN:
+  specific_route: 0
+  airline_hub: 20
+  domestic_heuristic: 0
+  api_fallback: 0
+============================================================
+📊 DEPOIS: Sem Destino: 42/227 (18.5%) | Cia Desconhecida: 42/227

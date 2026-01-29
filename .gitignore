@@ -28,21 +28,30 @@ ENV/
 env.bak/
 venv.bak/
 
+# Logs
+logs/*.log
+*.log
+*.log.*
+logs_voos_atrasados/
+logs_voos_proximos/
+logs_operational_metrics/
+
+# Dados Gerados/Temporários
+data/*.csv
+!data/.gitkeep
+data/*.backup.json
+
+# Mantemos flights-db.json e specificroutes_anac.json versionados (não ignorar data/*.json)
+
+# Sistema Operacional
+.DS_Store
+
 # IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.DS_Store
-
-# Logs
-*.log
-*.log.*
-logs/
-logs_voos_atrasados/
-logs_voos_proximos/
-logs_operational_metrics/
 
 # Environment variables
 .env
@@ -52,7 +61,7 @@ logs_operational_metrics/
 playwright-report/
 test-results/
 
-# Data files (manter apenas flights-db.json rastreado)
+# Data (tokens e temporários)
 data/*.log
 data/.azion_tokens.json
 
@@ -60,3 +69,4 @@ data/.azion_tokens.json
 *.tmp
 *.bak
 debug_*.html
+credentials/

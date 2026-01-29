@@ -1,0 +1,128 @@
+======================================================================
+RELATÓRIO DE ENRIQUECIMENTO DE DESTINOS - MATCHFLY
+======================================================================
+
+Data de geração: 2026-01-23 16:08:22
+
+ESTATÍSTICAS GERAIS
+----------------------------------------------------------------------
+Total de voos processados:        150
+Voos com destination_iata:         76 (50.7%)
+Voos sem destination_iata:         74 (49.3%)
+
+DETALHAMENTO POR STATUS
+----------------------------------------------------------------------
+  failed: 74
+  success: 76
+
+VOOS ENRIQUECIDOS COM SUCESSO
+----------------------------------------------------------------------
+  • RJ1924 (LATAM) → SCL (Santiago)
+  • RJ2357 (LATAM) → SCL (Santiago)
+  • RJ3368 (LATAM) → SCL (Santiago)
+  • RJ3874 (LATAM) → SCL (Santiago)
+  • RJ3947 (LATAM) → SCL (Santiago)
+  • RJ4065 (LATAM) → SCL (Santiago)
+  • RJ4653 (LATAM) → SCL (Santiago)
+  • RJ4796 (LATAM) → SCL (Santiago)
+  • RJ4797 (LATAM) → SCL (Santiago)
+  • RJ6199 (LATAM) → SCL (Santiago)
+  • RJ6603 (LATAM) → SCL (Santiago)
+  • RJ6690 (LATAM) → SCL (Santiago)
+  • RJ6721 (LATAM) → SCL (Santiago)
+  • RJ1924 (LATAM) → SCL (Santiago)
+  • RJ2328 (LATAM) → SCL (Santiago)
+  • RJ3874 (LATAM) → SCL (Santiago)
+  • RJ6242 (LATAM) → SCL (Santiago)
+  • RJ6721 (LATAM) → SCL (Santiago)
+  • RJ7355 (LATAM) → SCL (Santiago)
+  • RJ7536 (LATAM) → SCL (Santiago)
+  • RJ7741 (LATAM) → SCL (Santiago)
+  • RJ8475 (LATAM) → SCL (Santiago)
+  • RJ8490 (LATAM) → SCL (Santiago)
+  • RJ1070 (LATAM) → SCL (Santiago)
+  • RJ1924 (LATAM) → SCL (Santiago)
+  • RJ3945 (LATAM) → SCL (Santiago)
+  • RJ3974 (LATAM) → SCL (Santiago)
+  • RJ4126 (LATAM) → SCL (Santiago)
+  • RJ4797 (LATAM) → SCL (Santiago)
+  • RJ5357 (LATAM) → SCL (Santiago)
+  • RJ6719 (LATAM) → SCL (Santiago)
+  • RJ7741 (LATAM) → SCL (Santiago)
+  • RJ9173 (LATAM) → SCL (Santiago)
+  • RJ9813 (LATAM) → SCL (Santiago)
+  • RJ1070 (LATAM) → SCL (Santiago)
+  • RJ4070 (LATAM) → SCL (Santiago)
+  • RJ4305 (LATAM) → SCL (Santiago)
+  • RJ5357 (LATAM) → SCL (Santiago)
+  • RJ6193 (LATAM) → SCL (Santiago)
+  • RJ6603 (LATAM) → SCL (Santiago)
+  • RJ6647 (LATAM) → SCL (Santiago)
+  • RJ6719 (LATAM) → SCL (Santiago)
+  • RJ7260 (LATAM) → SCL (Santiago)
+  • RJ7347 (LATAM) → SCL (Santiago)
+  • RJ9072 (LATAM) → SCL (Santiago)
+  • RJ9173 (LATAM) → SCL (Santiago)
+  • RJ9253 (LATAM) → SCL (Santiago)
+  • RJ3340 (LATAM) → SCL (Santiago)
+  • RJ3368 (LATAM) → SCL (Santiago)
+  • RJ3874 (LATAM) → SCL (Santiago)
+  ... e mais 26 voos enriquecidos
+
+VOOS SEM DESTINO (FALHARAM NO ENRIQUECIMENTO)
+----------------------------------------------------------------------
+  • 0629 (DELTA)
+  • 6314 (DESCONHECIDO)
+  • RJ4656 (KLM)
+  • RJ6719 (KLM)
+  • 0063 (DESCONHECIDO)
+  • 1146 (DESCONHECIDO)
+  • 3354 (LATAM)
+  • 3562 (LATAM)
+  • 3828 (LATAM)
+  • 7213 (DESCONHECIDO)
+  • 7967 (DESCONHECIDO)
+  • 8349 (LATAM)
+  • 0962 (DESCONHECIDO)
+  • 3316 (LATAM)
+  • 3346 (LATAM)
+  • 3562 (LATAM)
+  • 3620 (LATAM)
+  • 4666 (LATAM)
+  • 5152 (LATAM)
+  • 8089 (LATAM)
+  • 8416 (LATAM)
+  • 8497 (LATAM)
+  • 9326 (KLM)
+  • RJ0624 (EMIRATES)
+  • RJ1268 (AZUL)
+  • 0962 (DESCONHECIDO)
+  • 3268 (LATAM)
+  • 3288 (LATAM)
+  • 4172 (KLM)
+  • 5126 (LATAM)
+  • 7330 (DESCONHECIDO)
+  • 7335 (DESCONHECIDO)
+  • 8121 (LATAM)
+  • 0248 (DESCONHECIDO)
+  • 1164 (DESCONHECIDO)
+  • 1636 (EMIRATES)
+  • 3832 (LATAM)
+  • 5223 (LATAM)
+  • 6061 (DESCONHECIDO)
+  • 6124 (DESCONHECIDO)
+  • 6240 (LATAM)
+  • 6719 (DESCONHECIDO)
+  • 7110 (LATAM)
+  • 7534 (DESCONHECIDO)
+  • 9746 (LATAM)
+  • RJ4771 (EMIRATES)
+  • 0092 (DESCONHECIDO)
+  • 0148 (DESCONHECIDO)
+  • 0631 (DESCONHECIDO)
+  • 0844 (DESCONHECIDO)
+  ... e mais 24 voos sem destino
+
+======================================================================
+FIM DO RELATÓRIO
+======================================================================

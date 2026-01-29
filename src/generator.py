@@ -18,6 +18,8 @@ import logging
 import random
 import sys
 import subprocess
+import hashlib
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Set
@@ -26,16 +28,117 @@ from jinja2 import Environment, FileSystemLoader, Template
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 
-# Configuração de logging
+# Importa módulo de enriquecimento
+import copy
+try:
+    import enrichment as enrichment_module
+except ImportError:
+    # Fallback para quando executado como módulo
+    import src.enrichment as enrichment_module
+
+# Exposição explícita do banco ANAC carregado no módulo de enrichment
+ANAC_DB = getattr(enrichment_module, "ANAC_DB", {})
+
+# Correções de destino (viés SCL) — prioridade máxima no pipeline
+try:
+    from src.scl_corrections import CORRECTIONS_DICT
+except ImportError:
+    from scl_corrections import CORRECTIONS_DICT
+
+# Diretório do projeto (raiz) para paths relativos
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# Configuração de logging (logs em logs/generator.log)
+LOG_DIR = PROJECT_ROOT / "logs"
+LOG_DIR.mkdir(exist_ok=True)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('generator.log'),
+        logging.FileHandler(LOG_DIR / 'generator.log'),
         logging.StreamHandler()
     ]
 )
 logger = logging.getLogger(__name__)
+
+
+# ==============================================================================
+# DICIONÁRIOS DE TRADUÇÃO (ANAC -> IATA -> CIDADE)
+# ==============================================================================
+
+# 1. Tradutor ICAO (4 letras) -> IATA (3 letras)
+ICAO_TO_IATA = {
+    # Principais Capitais Brasileiras
+    'SBGR': 'GRU', 'SBSP': 'CGH', 'SBGL': 'GIG', 'SBRJ': 'SDU', 'SBBR': 'BSB',
+    'SBCF': 'CNF', 'SBSV': 'SSA', 'SBRF': 'REC', 'SBCT': 'CWB', 'SBPA': 'POA',
+    'SBFL': 'FLN', 'SBEG': 'MAO', 'SBGO': 'GYN', 'SBVT': 'VIX', 'SBNF': 'NVT',
+    'SBCY': 'CGB', 'SBBE': 'BEL', 'SBMO': 'MCZ', 'SBFI': 'IGU', 'SBPS': 'BPS',
+    'SBJP': 'JPA', 'SBKG': 'CKG', 'SBAR': 'AJU', 'SBPL': 'PNZ', 'SBSL': 'SLZ',
+    'SBTE': 'THE', 'SBPV': 'PVH', 'SBRB': 'RBR', 'SBMQ': 'MCP', 'SBBV': 'BVB',
+    'SBSR': 'SJP', 'SBJU': 'JDO', 'SBIL': 'IOS', 'SBCG': 'CGR', 'SBUL': 'UDI',
+    # Internacionais Comuns em GRU
+    'KMIA': 'MIA', 'KJFK': 'JFK', 'KMCO': 'MCO', 'KATL': 'ATL', 'KLAX': 'LAX',
+    'EGLL': 'LHR', 'LFPG': 'CDG', 'LEMD': 'MAD', 'EDDF': 'FRA', 'EHAM': 'AMS',
+    'LPPT': 'LIS', 'LIMC': 'MXP', 'LIRF': 'FCO', 'LEBL': 'BCN', 'LSZH': 'ZRH',
+    'SAEZ': 'EZE', 'SABE': 'AEP', 'SCEL': 'SCL', 'SPJC': 'LIM', 'SKBO': 'BOG',
+    'SUMU': 'MVD', 'SGAS': 'ASU', 'SLVR': 'VVI', 'OMDB': 'DXB', 'OTHH': 'DOH'
+}
+
+# 2. Tradutor IATA (3 letras) -> Nome da Cidade (Display)
+IATA_TO_CITY_NAME = {
+    # --- BRASIL (Capitais e Principais) ---
+    "GIG": "Rio de Janeiro", "SDU": "Rio de Janeiro", 
+    "CGH": "São Paulo", "GRU": "São Paulo", "VCP": "Campinas",
+    "BSB": "Brasília", "CNF": "Belo Horizonte", "SSA": "Salvador", 
+    "REC": "Recife", "POA": "Porto Alegre", "CWB": "Curitiba", 
+    "FLN": "Florianópolis", "MAO": "Manaus", "GYN": "Goiânia", 
+    "VIX": "Vitória", "NVT": "Navegantes", "CGB": "Cuiabá",
+    "BEL": "Belém", "MCZ": "Maceió", "IGU": "Foz do Iguaçu", 
+    "BPS": "Porto Seguro", "JPA": "João Pessoa", "AJU": "Aracaju", 
+    "NAT": "Natal", "THE": "Teresina", "SLZ": "São Luís", 
+    "CGR": "Campo Grande", "UDI": "Uberlândia", "LDB": "Londrina",
+    "MGF": "Maringá", "RAO": "Ribeirão Preto", "SJP": "São José do Rio Preto",
+    "JOI": "Joinville", "XAP": "Chapecó", "PVH": "Porto Velho",
+    "RBR": "Rio Branco", "MCP": "Macapá", "PMW": "Palmas",
+    "JDO": "Juazeiro do Norte", "IOS": "Ilhéus", "FEN": "Fernando de Noronha",
+    
+    # --- AMÉRICA DO SUL ---
+    "EZE": "Buenos Aires", "AEP": "Buenos Aires", # Argentina
+    "MVD": "Montevidéu", # Uruguai
+    "SCL": "Santiago", # Chile
+    "LIM": "Lima", # Peru
+    "BOG": "Bogotá", # Colômbia
+    "ASU": "Assunção", # Paraguai
+    "VVI": "Santa Cruz de la Sierra", # Bolívia
+    "COR": "Córdoba", "ROS": "Rosário", "MDZ": "Mendoza", # Argentina Interior
+    "CLO": "Cali", "MDE": "Medellín", # Colômbia Interior
+    "UIO": "Quito", "GYE": "Guayaquil", # Equador
+    "CCS": "Caracas", # Venezuela
+    
+    # --- AMÉRICA DO NORTE ---
+    "MIA": "Miami", "MCO": "Orlando", "JFK": "Nova York", 
+    "EWR": "Nova York (Newark)", "ATL": "Atlanta", "LAX": "Los Angeles",
+    "BOS": "Boston", "IAD": "Washington", "ORD": "Chicago",
+    "IAH": "Houston", "DFW": "Dallas", "LAS": "Las Vegas",
+    "SFO": "San Francisco", "YUL": "Montreal", "YYZ": "Toronto",
+    "MEX": "Cidade do México", "CUN": "Cancún", "PTY": "Panamá",
+    
+    # --- EUROPA ---
+    "LIS": "Lisboa", "OPO": "Porto", # Portugal
+    "MAD": "Madrid", "BCN": "Barcelona", # Espanha
+    "CDG": "Paris", "ORY": "Paris", # França
+    "LHR": "Londres", "LGW": "Londres", # Reino Unido
+    "AMS": "Amsterdã", # Holanda
+    "FRA": "Frankfurt", "MUC": "Munique", # Alemanha
+    "FCO": "Roma", "MXP": "Milão", # Itália
+    "ZRH": "Zurique", # Suíça
+    "IST": "Istambul", # Turquia
+    
+    # --- ORIENTE MÉDIO E ÁFRICA ---
+    "DXB": "Dubai", "DOH": "Doha", "TLV": "Tel Aviv",
+    "JNB": "Joanesburgo", "CPT": "Cidade do Cabo", 
+    "ADD": "Adis Abeba", "LAD": "Luanda"
+}
 
 
 # ============================================================
@@ -116,11 +219,280 @@ CITY_TO_IATA = {
     "campo grande": "CGR",
 }
 
+# Mapeamento Reverso (IATA -> Cidade) para Display
+IATA_TO_CITY = {
+    "DXB": "Dubai",
+    "ATL": "Atlanta",
+    "JFK": "Nova York",
+    "MIA": "Miami",
+    "MCO": "Orlando",
+    "CDG": "Paris",
+    "LIS": "Lisboa",
+    "MAD": "Madrid",
+    "LHR": "Londres",
+    "AMS": "Amsterdã",
+    "FRA": "Frankfurt",
+    "SCL": "Santiago",
+    "EZE": "Buenos Aires",
+    "MVD": "Montevidéu",
+    "PTY": "Panamá",
+    "MEX": "Cidade do México",
+    "BOG": "Bogotá",
+    "LIM": "Lima",
+    "GIG": "Rio de Janeiro",
+    "GRU": "São Paulo",
+    "BSB": "Brasília",
+    "CNF": "Belo Horizonte",
+    "SSA": "Salvador",
+    "REC": "Recife",
+    "FOR": "Fortaleza",
+    "CWB": "Curitiba",
+    "POA": "Porto Alegre",
+    "MAO": "Manaus",
+    "BEL": "Belém",
+    "FLN": "Florianópolis",
+    "GYN": "Goiânia",
+    "VIX": "Vitória",
+    "CGB": "Cuiabá",
+    "NAT": "Natal",
+    "MCZ": "Maceió",
+    "IGU": "Foz do Iguaçu",
+    "AEP": "Buenos Aires (Aeroparque)",
+    "CGH": "São Paulo (Congonhas)",
+    "SDU": "Rio (Santos Dumont)",
+}
+# Popula o restante automaticamente do dicionário original
+for k, v in CITY_TO_IATA.items():
+    if v and v not in IATA_TO_CITY:
+        IATA_TO_CITY[v] = k.title()
+
+
+def resolve_city_name(iata: str, current_name: str) -> str:
+    """Retorna o nome da cidade baseado no IATA se o atual for inválido."""
+    if current_name and current_name not in ["N/A", "Aguardando atualização", "VAZIO"]:
+        return current_name
+    return IATA_TO_CITY.get(iata, current_name or "")
+
+
 # Lista de códigos IATA brasileiros para identificar voos nacionais
 BRAZILIAN_AIRPORTS = {
     "GRU", "GIG", "BSB", "SSA", "FOR", "REC", "POA", "CWB", "CNF",
     "MAO", "BEL", "FLN", "VIX", "NAT", "JPA", "MCZ", "AJU", "SLZ",
     "THE", "CGR", "CGB", "GYN", "VCP", "CGH", "SDU"
+}
+
+
+# ==============================================================================
+# ROTAS REAIS E CONFIRMADAS DE GUARULHOS (GRU) - BASE ANAC + LATAM MANUAL
+# Mapeia Número do Voo -> Código IATA do Destino
+# ==============================================================================
+KNOWN_ROUTES = {
+    "104": "ATL", "1070": "GIG", "1071": "AJU", "1105": "MVD", "1112": "MGF", "1118": "CWB",
+    "1128": "CWB", "1135": "SCL", "1144": "GIG", "1146": "JJD", "1148": "CWB", "1152": "REC",
+    "1156": "XAP", "1160": "SSA", "1164": "CWB", "1166": "SSA", "1170": "IGU", "1172": "IGU",
+    "1174": "IGU", "1178": "JPA", "1190": "FEN", "1203": "AEP", "1220": "NVT", "1224": "POA",
+    "1226": "FLN", "1234": "NVT", "1236": "POA", "1237": "AEP", "1241": "AEP", "1243": "AEP",
+    "1244": "POA", "1249": "AEP", "1250": "NVT", "1252": "NVT", "1258": "NVT", "1262": "NVT",
+    "1268": "AEP", "1274": "POA", "1276": "POA", "1284": "CNF", "1290": "CNF", "1296": "CNF",
+    "1300": "CNF", "1306": "CNF", "1314": "VCP", "1316": "VCP", "1320": "VCP", "1322": "VCP",
+    "1324": "VCP", "1326": "VCP", "1328": "VCP", "1330": "VCP", "1332": "VCP", "1334": "VCP",
+    "1338": "VCP", "1342": "VCP", "1344": "VCP", "1346": "VCP", "1360": "UDI", "1366": "UDI",
+    "1374": "SSA", "1376": "SSA", "1380": "SSA", "1384": "SSA", "1386": "SSA", "1392": "ILH",
+    "1396": "ILH", "1402": "BPS", "1406": "BPS", "1412": "VIX", "1414": "VIX", "1416": "VIX",
+    "1420": "VIX", "1422": "VIX", "1430": "GYN", "1432": "GYN", "1436": "GYN", "1438": "GYN",
+    "1440": "GYN", "1442": "BSB", "1446": "BSB", "1448": "BSB", "1450": "BSB", "1452": "BSB",
+    "1454": "BSB", "1464": "CGB", "1468": "CGB", "1472": "CGB", "1486": "RAO", "1490": "RAO",
+    "1492": "RAO", "1494": "RAO", "1498": "SJP", "1500": "SJP", "1504": "SJP", "1506": "SJP",
+    "1510": "CXJ", "1512": "CXJ", "1520": "REC", "1522": "DXB", "1524": "REC", "1530": "REC",
+    "1532": "REC", "1534": "MCZ", "1544": "FOR", "1554": "NAT", "1558": "NAT", "1560": "JJG",
+    "1566": "JPA", "1574": "AJU", "1578": "CNF", "1588": "FLN", "1598": "IGU", "1602": "BEL",
+    "1622": "MAO", "1636": "DXB", "1660": "SLZ", "1680": "THE", "1682": "THE", "1720": "CGR",
+    "1722": "CGR", "1730": "LDB", "1734": "LDB", "1736": "LDB", "1746": "MGF", "1748": "MGF",
+    "1754": "JDO", "1762": "PNZ", "1774": "PVH", "1802": "GIG", "1806": "GIG", "1808": "GIG",
+    "1810": "GIG", "1812": "GIG", "1856": "IOS", "1872": "REC", "1878": "FOR", "1902": "REC",
+    "1908": "FOR", "1924": "MAO", "1940": "IMP", "1944": "XAP", "1948": "JOI", "1954": "VIX",
+    "1956": "VIX", "1958": "VIX", "1960": "VIX", "1980": "MAB", "1988": "ATM", "2000": "REC",
+    "2002": "REC", "2013": "REC", "2014": "REC", "2024": "REC", "2032": "REC", "2046": "REC",
+    "2076": "MCZ", "2100": "SSA", "2110": "SSA", "2116": "SSA", "2122": "SSA", "2128": "SSA",
+    "2130": "SSA", "2148": "BPS", "2150": "BPS", "2154": "BPS", "2162": "JPA", "2164": "JPA",
+    "2166": "JPA", "2176": "AJU", "2180": "AJU", "2196": "NAT", "2198": "NAT", "2202": "NAT",
+    "2224": "FOR", "2226": "FOR", "2228": "FOR", "2244": "FOR", "2248": "FOR", "2286": "THE",
+    "2298": "SLZ", "2306": "BEL", "2308": "BEL", "2312": "BEL", "2316": "BEL", "2320": "MAO",
+    "2324": "MAO", "2328": "MAO", "2338": "GIG", "2340": "GIG", "2344": "GIG", "2354": "CGB",
+    "2357": "CGB", "2380": "VIX", "2382": "VIX", "2386": "VIX", "2390": "VIX", "2402": "CNF",
+    "2404": "CNF", "2408": "CNF", "2410": "CNF", "2414": "CDG", "2416": "CDG", "2420": "BSB",
+    "2422": "BSB", "2424": "BSB", "2426": "BSB", "2429": "BSB", "2430": "BSB", "2434": "BSB",
+    "2436": "BSB", "2446": "POA", "2454": "POA", "2456": "POA", "2462": "POA", "2466": "POA",
+    "2470": "POA", "2472": "POA", "2474": "POA", "2476": "POA", "2478": "POA", "2480": "POA",
+    "2482": "POA", "2486": "CWB", "2488": "CWB", "2492": "CWB", "2496": "CWB", "2498": "CWB",
+    "2500": "CWB", "2502": "CWB", "2510": "FLN", "2514": "FLN", "2516": "FLN", "2522": "FLN",
+    "2524": "FLN", "2526": "FLN", "2532": "NVT", "2536": "NVT", "2538": "NVT", "2540": "NVT",
+    "2542": "NVT", "2552": "IGU", "2554": "IGU", "2556": "IGU", "2558": "IGU", "2566": "GYN",
+    "2568": "GYN", "2572": "GYN", "2574": "GYN", "2576": "GYN", "2578": "GYN", "2580": "GYN",
+    "2609": "OPO", "2612": "RAO", "2614": "RAO", "2616": "RAO", "2618": "RAO", "2626": "SJP",
+    "2628": "SJP", "2632": "SJP", "2636": "LDB", "2640": "LDB", "2642": "LDB", "2644": "LDB",
+    "2646": "MGF", "2648": "MGF", "2650": "MGF", "2654": "JOI", "2656": "JOI", "2658": "JOI",
+    "2660": "XAP", "2662": "XAP", "2672": "UDI", "2674": "UDI", "2676": "UDI", "2680": "CGR",
+    "2684": "CGR", "2686": "CGR", "2696": "JDO", "2698": "CPV", "2702": "IOS", "2712": "VDC",
+    "2722": "MOC", "2726": "IPN", "2730": "GVR", "2738": "CLV", "2746": "CAW", "2748": "CAW",
+    "2754": "PET", "2758": "PET", "2768": "CAC", "2776": "JJG", "2782": "FEN", "2790": "JJD",
+    "2792": "JJD", "2808": "CXJ", "2816": "UBA", "2826": "BYO", "2828": "BYO", "2834": "CFB",
+    "2858": "CGB", "2868": "PVH", "2870": "PVH", "2874": "RBR", "2882": "PMW", "2884": "PMW",
+    "2888": "MCP", "2892": "OPS", "2894": "OPS", "2916": "CKS", "2918": "CKS", "2926": "JDF",
+    "2932": "QNS", "2936": "AFL", "2944": "GUZ", "2946": "GUZ", "2964": "RIA", "2976": "BVB",
+    "2982": "MVF", "2986": "TFF", "2988": "TFF", "3000": "MAO", "3001": "MAO", "3002": "MAO",
+    "3003": "MAO", "3006": "MAO", "3008": "MAO", "3009": "MAO", "3010": "MAO", "3012": "MAO",
+    "3015": "MAO", "3023": "BSB", "3024": "BSB", "3025": "BSB", "3026": "BSB", "3028": "BSB",
+    "3030": "BSB", "3032": "BSB", "3033": "BSB", "3034": "BSB", "3036": "BSB", "3038": "BSB",
+    "3041": "BSB", "3042": "BSB", "3044": "BSB", "3046": "BSB", "3047": "BSB", "3048": "BSB",
+    "3051": "BSB", "3052": "BSB", "3053": "BSB", "3054": "BSB", "3055": "BSB", "3056": "BSB",
+    "3057": "BSB", "3062": "BSB", "3064": "CGB", "3066": "CGB", "3068": "CGB", "3076": "GYN",
+    "3078": "GYN", "3080": "GYN", "3083": "GYN", "3086": "GYN", "3088": "GYN", "3090": "GYN",
+    "3092": "GYN", "3094": "GYN", "3095": "GYN", "3100": "POA", "3104": "POA", "3106": "POA",
+    "3110": "POA", "3112": "POA", "3114": "POA", "3116": "POA", "3118": "POA", "3120": "POA",
+    "3121": "POA", "3123": "POA", "3124": "POA", "3126": "POA", "3128": "POA", "3130": "POA",
+    "3131": "POA", "3132": "POA", "3135": "POA", "3136": "POA", "3138": "CWB", "3140": "CWB",
+    "3142": "CWB", "3144": "CWB", "3146": "CWB", "3147": "CWB", "3148": "CWB", "3151": "CWB",
+    "3152": "CWB", "3154": "CWB", "3156": "CWB", "3158": "CWB", "3166": "GIG", "3169": "GIG",
+    "3172": "GIG", "3176": "GIG", "3180": "FLN", "3182": "FLN", "3183": "FLN", "3184": "FLN",
+    "3185": "FLN", "3186": "FLN", "3187": "FLN", "3188": "FLN", "3189": "FLN", "3196": "NVT",
+    "3198": "NVT", "3200": "NVT", "3202": "NVT", "3204": "NVT", "3206": "NVT", "3208": "NVT",
+    "3210": "NVT", "3216": "VIX", "3218": "VIX", "3219": "VIX", "3220": "VIX", "3222": "VIX",
+    "3223": "VIX", "3224": "VIX", "3226": "VIX", "3228": "IGU", "3232": "IGU", "3234": "IGU",
+    "3236": "IGU", "3238": "IGU", "3240": "IGU", "3245": "FLN", "3246": "CGR", "3248": "CGR",
+    "3252": "CGR", "3254": "CGR", "3256": "CGR", "3258": "JOI", "3260": "JOI", "3262": "JOI",
+    "3266": "LDB", "3268": "LDB", "3270": "LDB", "3274": "FOR", "3275": "FOR", "3276": "FOR",
+    "3277": "FOR", "3278": "FOR", "3280": "FOR", "3282": "FOR", "3284": "FOR", "3286": "FOR",
+    "3288": "FOR", "3290": "FOR", "3292": "FOR", "3294": "FOR", "3296": "MGF", "3298": "MGF",
+    "3300": "CNF", "3302": "CNF", "3306": "CNF", "3308": "CNF", "3310": "CNF", "3312": "CNF",
+    "3314": "CNF", "3316": "CNF", "3318": "CNF", "3320": "CNF", "3322": "CNF", "3326": "CNF",
+    "3332": "CNF", "3334": "CNF", "3336": "CNF", "3338": "CNF", "3340": "CNF", "3342": "CNF",
+    "3344": "CNF", "3346": "CNF", "3347": "CNF", "3354": "REC", "3355": "REC", "3356": "REC",
+    "3357": "REC", "3358": "REC", "3360": "REC", "3362": "REC", "3364": "REC", "3366": "REC",
+    "3368": "REC", "3370": "REC", "3372": "REC", "3374": "REC", "3376": "SSA", "3378": "SSA",
+    "3380": "SSA", "3382": "SSA", "3384": "SSA", "3386": "SSA", "3388": "SSA", "3390": "SSA",
+    "3392": "SSA", "3394": "SSA", "3396": "SSA", "3398": "SSA", "3400": "SSA", "3404": "SSA",
+    "3406": "SSA", "3408": "SSA", "3409": "SSA", "3412": "NAT", "3414": "NAT", "3416": "NAT",
+    "3418": "NAT", "3420": "NAT", "3422": "NAT", "3424": "NAT", "3426": "NAT", "3430": "MCZ",
+    "3432": "MCZ", "3434": "MCZ", "3436": "MCZ", "3438": "MCZ", "3440": "MCZ", "3444": "JPA",
+    "3446": "JPA", "3448": "JPA", "3450": "AJU", "3452": "AJU", "3454": "AJU", "3456": "AJU",
+    "3460": "BEL", "3461": "BEL", "3462": "BEL", "3464": "BEL", "3466": "BEL", "3468": "BEL",
+    "3470": "BEL", "3472": "SLZ", "3474": "SLZ", "3476": "SLZ", "3478": "SLZ", "3482": "UDI",
+    "3484": "UDI", "3486": "SJP", "3488": "SJP", "3490": "SJP", "3492": "SJP", "3496": "XAP",
+    "3498": "XAP", "3502": "RAO", "3504": "RAO", "3506": "RAO", "3508": "RAO", "3510": "RAO",
+    "3512": "THE", "3514": "THE", "3516": "THE", "3520": "PVH", "3522": "PVH", "3529": "BSB",
+    "3530": "IOS", "3532": "IOS", "3536": "IOS", "3540": "BPS", "3542": "BPS", "3544": "BPS",
+    "3546": "BPS", "3548": "BPS", "3550": "BPS", "3552": "BPS", "3554": "BPS", "3556": "BPS",
+    "3558": "BPS", "3562": "JJD", "3564": "JJD", "3566": "JJD", "3570": "FEN", "3572": "FEN",
+    "3576": "IMP", "3578": "IMP", "3584": "MCP", "3586": "MCP", "3590": "RBR", "3594": "PMW",
+    "3596": "PMW", "3598": "PMW", "3600": "PMW", "3604": "CWB", "3605": "CWB", "3610": "CXJ",
+    "3611": "AMS", "3612": "CXJ", "3616": "JDO", "3618": "JDO", "3620": "JDO", "3624": "PNZ",
+    "3626": "PNZ", "3632": "VDC", "3634": "VDC", "3642": "CPV", "3646": "JJG", "3648": "JJG",
+    "3652": "MVF", "3654": "IPN", "3656": "IPN", "3658": "UNA", "3662": "JDF", "3666": "SIN",
+    "3668": "OPS", "3672": "RIA", "3674": "RIA", "3683": "AMS", "3685": "MOC", "3686": "MOC",
+    "3700": "PET", "3702": "PET", "3708": "CLV", "3709": "CLV", "3712": "CAW", "3714": "CAW",
+    "3724": "JJG", "3738": "GVR", "3742": "UBA", "3758": "BYO", "3760": "BYO", "3770": "BVB",
+    "3778": "JJD", "3790": "CAC", "3794": "CKS", "3796": "CKS", "3802": "IZA", "3824": "AFL",
+    "3828": "GUZ", "3832": "TFF", "3834": "TFF", "3842": "MII", "3856": "ATM", "3904": "GIG",
+    "3908": "GIG", "3910": "GIG", "3912": "GIG", "3914": "GIG", "3916": "GIG", "3918": "GIG",
+    "3920": "GIG", "3922": "GIG", "3924": "GIG", "3926": "GIG", "3928": "GIG", "3930": "GIG",
+    "3932": "GIG", "3934": "GIG", "3936": "GIG", "3938": "GIG", "3940": "GIG", "3942": "GIG",
+    "3944": "GIG", "3947": "GIG", "3948": "GIG", "3949": "GIG", "3956": "SDU", "3958": "SDU",
+    "3960": "SDU", "3962": "SDU", "3966": "SDU", "3968": "SDU", "3970": "SDU", "3972": "SDU",
+    "3974": "SDU", "3976": "SDU", "3978": "SDU", "3980": "SDU", "3982": "SDU", "3984": "SDU",
+    "3986": "SDU", "3988": "SDU", "3994": "SDU", "4018": "GIG", "4067": "DXB", "4070": "SCL",
+    "4117": "SCL", "4152": "LHR", "4172": "AMS", "4227": "SCL", "4235": "JFK", "4247": "SCL",
+    "4277": "JFK", "4301": "SCL", "4305": "SCL", "4351": "CPT", "4355": "JNB", "4361": "ADD",
+    "4364": "IST", "4366": "IST", "4382": "POA", "4413": "SCL", "4516": "LIS", "4522": "LIS",
+    "4540": "MIA", "4548": "CDG", "4550": "JFK", "457": "CDG", "4587": "CPT", "4610": "FRA",
+    "4632": "LHR", "4640": "ZRH", "4653": "JNB", "4656": "AMS", "4666": "DXB", "4690": "MAD",
+    "4700": "FCO", "4715": "JFK", "4722": "BOS", "4724": "JFK", "4732": "MIA", "4741": "MCO",
+    "4746": "MIA", "4752": "MIA", "4754": "MIA", "4767": "JFK", "4771": "DXB", "4777": "MCO",
+    "4781": "JFK", "4783": "JFK", "4785": "MIA", "4793": "JFK", "4797": "DXB", "4834": "CNF",
+    "5038": "LHR", "5046": "DOH", "5101": "FOR", "5117": "BCN", "5126": "LHR", "5133": "POA",
+    "5134": "BSB", "5138": "BCN", "5148": "BPS", "5152": "LHR", "5156": "MIA", "5167": "CGR",
+    "5172": "MIA", "5176": "MIA", "5191": "CGB", "5192": "MCZ", "5194": "CWB", "5203": "MCZ",
+    "5205": "MCZ", "5216": "IGU", "5217": "JPA", "5219": "LHR", "5223": "MIA", "5242": "POA",
+    "5279": "BCN", "5282": "MCZ", "5285": "VDC", "5290": "MCZ", "5291": "BPS", "5295": "POA",
+    "5357": "DOH", "5500": "AMS", "5538": "MXP", "5563": "JUL", "5726": "MIA", "5896": "JFK",
+    "5939": "MIA", "5949": "SCL", "5963": "MEX", "6023": "MIA", "6029": "MIA", "6035": "MIA",
+    "6051": "JFK", "6059": "MIA", "6061": "PUJ", "6193": "MXP", "6199": "MXP", "6200": "MIA",
+    "6204": "JFK", "6219": "MAD", "6238": "AMS", "6240": "BCN", "6242": "BCN", "6246": "FRA",
+    "6248": "JFK", "6270": "MIA", "6271": "CDG", "6314": "CDG", "6315": "CDG", "6375": "ATL",
+    "6403": "MIA", "6434": "MAD", "6548": "CDG", "6572": "CDG", "6603": "AMS", "6635": "SDU",
+    "6647": "CDG", "6690": "ATL", "6718": "AMS", "6719": "AMS", "6721": "ATL", "6747": "AMS",
+    "6849": "AMS", "7000": "MIA", "7002": "MIA", "7006": "MIA", "7014": "MIA", "7048": "CDG",
+    "7056": "CDG", "7058": "CDG", "7081": "FCO", "7085": "FCO", "7087": "FCO", "7110": "MIA",
+    "7120": "FRA", "7134": "JFK", "7140": "MIA", "7213": "IAH", "7255": "EWR", "7257": "ORD",
+    "7260": "LHR", "7269": "DXB", "7277": "LHR", "7280": "ATL", "7283": "POA", "7289": "CNF",
+    "7299": "DXB", "7314": "VCP", "7330": "CWB", "7332": "CWB", "7335": "SDU", "7344": "FRA",
+    "7347": "LHR", "7350": "JFK", "7355": "GIG", "7361": "MAD", "7454": "AMS", "7456": "BSB",
+    "7477": "MIA", "750": "SCL", "751": "SCL", "7534": "CWB", "7536": "EZE", "7586": "AMS",
+    "7610": "EZE", "7611": "EZE", "7614": "COR", "7620": "EZE", "7621": "EZE", "7622": "EZE",
+    "7626": "EZE", "7630": "SCL", "7631": "SCL", "7634": "SCL", "7635": "SCL", "7636": "SCL",
+    "7640": "SCL", "7641": "SCL", "7642": "SCL", "7643": "SCL", "7652": "SCL", "7656": "SCL",
+    "7658": "SCL", "7660": "SCL", "7661": "SCL", "7662": "SCL", "7664": "SCL", "7665": "CWB",
+    "7669": "GYN", "7670": "MDZ", "7672": "FLN", "7673": "MCZ", "7675": "FLN", "7679": "REC",
+    "7685": "SSA", "7686": "FLN", "7689": "MAO", "7690": "BPS", "7696": "GYN", "7700": "CGR",
+    "7702": "JFK", "7703": "AEP", "7707": "EZE", "7710": "CWB", "7711": "AEP", "7714": "VVI",
+    "7721": "BSB", "7724": "IGU", "7730": "PUJ", "7741": "GIG", "7744": "NVT", "7746": "MVD",
+    "7757": "FLN", "7761": "MCZ", "7763": "GIG", "7766": "VIX", "7774": "REC", "7780": "SLZ",
+    "7844": "JFK", "7848": "SJO", "7850": "BOG", "7852": "BOG", "7854": "BOG", "7858": "LIM",
+    "7860": "LIM", "7862": "LIM", "7864": "LIM", "7866": "LIM", "7868": "LIM", "7870": "MVD",
+    "7872": "MVD", "7874": "MVD", "7876": "ASU", "7878": "ASU", "7880": "AEP", "7882": "AEP",
+    "7884": "AEP", "7886": "AEP", "7890": "AEP", "7894": "MDZ", "7900": "BOG", "7908": "MIA",
+    "7967": "MAD", "8000": "BOG", "8001": "BOG", "8012": "SCL", "8013": "SCL", "8020": "EZE",
+    "8021": "EZE", "8026": "EZE", "8027": "EZE", "8028": "EZE", "8029": "EZE", "8032": "EZE",
+    "8033": "EZE", "8038": "LIM", "8039": "LIM", "8044": "MVD", "8045": "MVD", "8050": "SCL",
+    "8051": "SCL", "8058": "CDG", "8059": "CDG", "8062": "MXP", "8063": "MXP", "8064": "MAD",
+    "8065": "MAD", "8066": "MAD", "8070": "FRA", "8071": "FRA", "8072": "FCO", "8073": "FCO",
+    "8082": "LHR", "8084": "LHR", "8085": "LHR", "8089": "MCO", "8104": "ASU", "8112": "BCN",
+    "8113": "BCN", "8114": "BOS", "8115": "BOS", "8121": "MCO", "8125": "MCO", "8126": "MCO",
+    "8127": "MCO", "8128": "MCO", "8134": "MVD", "8135": "CNF", "8146": "LIS", "8147": "LIS",
+    "8148": "LAX", "8180": "JFK", "8181": "JFK", "8182": "JFK", "8190": "MIA", "8191": "MIA",
+    "8194": "MIA", "8200": "MIA", "8227": "MCO", "8349": "SCL", "8416": "SCL", "8422": "SCL",
+    "8471": "SCL", "8475": "SCL", "8476": "SCL", "8490": "JUL", "8497": "SCL", "8643": "SCL",
+    "9072": "SCL", "9173": "SCL", "9253": "SCL", "9254": "SCL", "9298": "AMS", "9326": "AMS",
+    "9700": "DXB", "9746": "MIA", "9809": "SCL", "9813": "SCL", "9961": "AMS", "AA906": "MIA",
+    "AA930": "MIA", "AA950": "JFK", "AC90": "YYZ", "AC91": "YYZ", "AF454": "CDG", "AF457": "CDG",
+    "AM14": "MEX", "AM15": "MEX", "BA246": "LHR", "BA247": "LHR", "ET506": "ADD", "ET507": "ADD",
+    "IB6824": "MAD", "IB6827": "MAD", "LA3000": "MAO", "LA3001": "MAO", "LA3056": "BSB", "LA3130": "POA",
+    "LA3131": "POA", "LA3245": "FLN", "LA3274": "FOR", "LA3275": "FOR", "LA3346": "CNF", "LA3347": "CNF",
+    "LA3354": "REC", "LA3355": "REC", "LA3408": "SSA", "LA3409": "SSA", "LA3529": "BSB", "LA3604": "CWB",
+    "LA3605": "CWB", "LA3947": "GIG", "LA3948": "GIG", "LA4540": "MIA", "LA750": "SCL", "LA751": "SCL",
+    "LA8000": "BOG", "LA8001": "BOG", "LA8028": "EZE", "LA8029": "EZE", "LA8032": "EZE", "LA8033": "EZE",
+    "LA8038": "LIM", "LA8039": "LIM", "LA8044": "MVD", "LA8045": "MVD", "LA8050": "SCL", "LA8051": "SCL",
+    "LA8058": "CDG", "LA8059": "CDG", "LA8062": "MXP", "LA8063": "MXP", "LA8064": "MAD", "LA8065": "MAD",
+    "LA8066": "MAD", "LA8070": "FRA", "LA8071": "FRA", "LA8072": "FCO", "LA8073": "FCO", "LA8084": "LHR",
+    "LA8085": "LHR", "LA8104": "ASU", "LA8112": "BCN", "LA8113": "BCN", "LA8114": "BOS", "LA8115": "BOS",
+    "LA8126": "MCO", "LA8127": "MCO", "LA8128": "MCO", "LA8146": "LIS", "LA8147": "LIS", "LA8148": "LAX",
+    "LA8180": "JFK", "LA8181": "JFK", "LA8182": "JFK", "LA8190": "MIA", "LA8191": "MIA", "LA8194": "MIA",
+    "LH506": "FRA", "LH507": "FRA", "LX92": "ZRH", "LX93": "ZRH", "QR773": "DOH", "QR774": "DOH",
+    "TK15": "IST", "TK16": "IST", "TP82": "OPO", "TP83": "LIS", "TP84": "LIS", "UA148": "EWR",
+    "UA844": "ORD", "UA860": "IAD"
+}
+
+
+# Dicionário Massivo de Conversão ICAO -> IATA (Focado em GRU/Brasil/Latam)
+ICAO_TO_IATA = {
+    # Brasil - Capitais e Hubs
+    'SBGR': 'GRU', 'SBSP': 'CGH', 'SBGL': 'GIG', 'SBRJ': 'SDU', 'SBBR': 'BSB',
+    'SBCF': 'CNF', 'SBSV': 'SSA', 'SBRF': 'REC', 'SBCT': 'CWB', 'SBPA': 'POA',
+    'SBFL': 'FLN', 'SBEG': 'MAO', 'SBGO': 'GYN', 'SBVT': 'VIX', 'SBNF': 'NVT',
+    'SBCY': 'CGB', 'SBBE': 'BEL', 'SBMO': 'MCZ', 'SBFI': 'IGU', 'SBPS': 'BPS',
+    'SBJP': 'JPA', 'SBKG': 'CKG', 'SBAR': 'AJU', 'SBPL': 'PNZ', 'SBSL': 'SLZ',
+    'SBTE': 'THE', 'SBPV': 'PVH', 'SBRB': 'RBR', 'SBMQ': 'MCP', 'SBBV': 'BVB',
+    'SBSR': 'SJP', 'SBJU': 'JDO', 'SBIL': 'IOS', 'SBCG': 'CGR', 'SBUL': 'UDI',
+    'SBUR': 'UBA', 'SBRP': 'RAO', 'SBKP': 'VCP', 'SBLO': 'LDB', 'SBMG': 'MGF',
+    # América do Sul
+    'SAEZ': 'EZE', 'SABE': 'AEP', 'SCEL': 'SCL', 'SPJC': 'LIM', 'SKBO': 'BOG',
+    'SUMU': 'MVD', 'SGAS': 'ASU', 'SLVR': 'VVI', 'SEGU': 'GYE', 'SEQM': 'UIO',
+    'SVMI': 'CCS', 'SAME': 'MDZ', 'SACO': 'COR', 'SAAR': 'ROS',
+    # EUA e Europa
+    'KMIA': 'MIA', 'KJFK': 'JFK', 'KMCO': 'MCO', 'KATL': 'ATL', 'KLAX': 'LAX',
+    'EGLL': 'LHR', 'LFPG': 'CDG', 'LEMD': 'MAD', 'EDDF': 'FRA', 'EHAM': 'AMS',
+    'LPPT': 'LIS', 'LIMC': 'MXP', 'LIRF': 'FCO', 'LEBL': 'BCN', 'LSZH': 'ZRH',
+    'EDDM': 'MUC', 'LTFM': 'IST', 'OMDB': 'DXB', 'OTHH': 'DOH'
 }
 
 
@@ -271,6 +643,41 @@ class FlightPageGenerator:
         self.success_files: Set[str] = set()
         self.success_pages: List[Dict] = []
     
+        # Banco de rotas da ANAC (já traduzido para IATA)
+        self.anac_db: Dict[str, str] = self.load_anac_database()
+    
+    def load_anac_database(self) -> Dict[str, str]:
+        """Carrega ANAC DB e converte ICAO -> IATA na memória."""
+        try:
+            path = PROJECT_ROOT / 'data' / 'specificroutes_anac.json'
+            if not path.exists():
+                logger.warning("⚠️ Arquivo specificroutes_anac.json não encontrado.")
+                return {}
+            
+            with open(path, 'r', encoding='utf-8') as f:
+                raw = json.load(f)
+            
+            clean_db: Dict[str, str] = {}
+            for k, v in raw.items():
+                # Limpa chave (apenas números)
+                clean_k = "".join(filter(str.isdigit, str(k)))
+                
+                # TRADUÇÃO: ICAO -> IATA
+                iata = ICAO_TO_IATA.get(v, v)  # Tenta traduzir, senão mantém original
+                
+                # Remove prefixo 'K' de aeroportos dos EUA (ex: KORD -> ORD)
+                if len(iata) == 4 and iata.startswith('K'):
+                    iata = iata[1:]
+                
+                if clean_k:
+                    clean_db[clean_k] = iata
+            
+            logger.info(f"✅ ANAC DB carregado e traduzido: {len(clean_db)} rotas.")
+            return clean_db
+        except Exception as e:
+            logger.error(f"❌ Erro carregando ANAC DB: {e}")
+            return {}
+    
     def setup_and_validate(self) -> bool:
         """
         STEP 1: Setup & Validação.
@@ -333,20 +740,66 @@ class FlightPageGenerator:
     
     def load_flight_data(self) -> Optional[Dict]:
         """
-        Carrega dados de voos do arquivo JSON.
-        
+        Carrega e NORMALIZA chaves do JSON (PT -> EN).
+
+        Suporta dados brutos (CSV PT-BR exportado para JSON) onde as colunas vêm
+        com nomes como `Companhia`, `Numero_Voo`, etc.
+
         Returns:
-            Dicionário com dados ou None em caso de erro
+            Dicionário com dados normalizados ou None em caso de erro
         """
         try:
             if not self.data_file.exists():
-                logger.error(f"Arquivo de dados não encontrado: {self.data_file}")
                 return None
             
             with open(self.data_file, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
-            logger.info(f"✅ Dados carregados: {self.data_file}")
+            # Normalização de Chaves (Polyglot)
+            normalized_flights: List[Dict] = []
+            for fdata in data.get('flights', []):
+                # Segurança: alguns pipelines podem trazer linhas como strings/None
+                if not isinstance(fdata, dict):
+                    continue
+
+                norm = fdata.copy()
+
+                # Mapeia chaves PT -> EN se necessário
+                if 'Numero_Voo' in fdata:
+                    norm['flight_number'] = str(fdata.get('Numero_Voo') or '').strip()
+                if 'Companhia' in fdata:
+                    norm['airline'] = str(fdata.get('Companhia') or '').strip()
+                if 'Status' in fdata:
+                    norm['status'] = str(fdata.get('Status') or '').strip()
+                if 'Horario' in fdata:
+                    norm['scheduled_time'] = str(fdata.get('Horario') or '').strip()
+                if 'Destino' in fdata:
+                    norm['destination'] = str(fdata.get('Destino') or '').strip()
+                if 'Data_Partida' in fdata:
+                    norm['data_partida'] = str(fdata.get('Data_Partida') or '').strip()
+
+                # Sinônimos comuns (robustez extra)
+                if not norm.get('flight_number') and 'Número Voo' in fdata:
+                    norm['flight_number'] = str(fdata.get('Número Voo') or '').strip()
+                if not norm.get('airline') and 'Cia' in fdata:
+                    norm['airline'] = str(fdata.get('Cia') or '').strip()
+                if not norm.get('scheduled_time') and 'Hora' in fdata:
+                    norm['scheduled_time'] = str(fdata.get('Hora') or '').strip()
+
+                # Garante que delay_hours exista (para não filtrar tudo)
+                if 'delay_hours' not in norm:
+                    status_lower = str(norm.get('status', '')).lower()
+                    if 'cancel' in status_lower:
+                        norm['delay_hours'] = 0.0
+                    elif 'atras' in status_lower:
+                        norm['delay_hours'] = 1.0  # Default para atraso
+                    else:
+                        norm['delay_hours'] = 0.0
+
+                normalized_flights.append(norm)
+
+            data['flights'] = normalized_flights
+            logger.info(f"✅ Dados carregados e normalizados: {len(normalized_flights)} voos")
             return data
             
         except json.JSONDecodeError as e:
@@ -533,6 +986,7 @@ class FlightPageGenerator:
             'status': flight.get('status', 'Problema'),
             'scheduled_time': flight.get('scheduled_time', 'N/A'),
             'display_time': display_time,  # Hora limpa (sem data)
+            'data_partida': flight.get('data_partida', ''),
             'actual_time': flight.get('actual_time', 'N/A'),
             'delay_hours': flight.get('delay_hours', 0),
             'origin': origin,
@@ -558,94 +1012,103 @@ class FlightPageGenerator:
         return context
     
     def generate_page_resilient(self, flight: Dict, metadata: Dict) -> bool:
-        """
-        Gera página HTML com resiliência (try/except).
-        
-        Args:
-            flight: Dados do voo
-            metadata: Metadados do scraping
-            
-        Returns:
-            True se sucesso, False se falha
-        """
-        flight_number = flight.get('flight_number', 'UNKNOWN')
-        
         try:
-            # Prepara contexto
+            # 1. Validação Mínima
+            raw_fnum = str(flight.get('flight_number', ''))
+            status = flight.get('status')
+            
+            if not raw_fnum or not status:
+                return False
+
+            # --- LÓGICA DE DESTINO BLINDADA (v3.0) ---
+
+            # 1. Limpa o número do voo (remove RJ, LA, etc)
+            raw_fnum = str(flight.get('flight_number', ''))
+            clean_fnum = "".join(filter(str.isdigit, raw_fnum))
+
+            # 2. Fonte da Verdade 1: Correções Manuais (Override SCL)
+            correction_iata = CORRECTIONS_DICT.get(clean_fnum)
+
+            # 3. Fonte da Verdade 2: Banco ANAC
+            anac_iata = ANAC_DB.get(clean_fnum)
+
+            # 4. Decisão Final (Prioridade: Correção > ANAC > Original)
+            # Se a correção existir, ela vence (para tirar o viés de SCL)
+            if correction_iata:
+                dest_iata = correction_iata
+            elif anac_iata:
+                dest_iata = anac_iata
+            else:
+                # Se não achar nada, usa o original (mesmo que seja SCL errado, paciência)
+                dest_iata = flight.get('destination_iata') or ''
+
+            # 5. Resolve Nome da Cidade (Display)
+            dest_city = IATA_TO_CITY_NAME.get(dest_iata)
+
+            # Fallback de Cidade
+            if not dest_city:
+                dest_city = flight.get('destination') or dest_iata or "Destino Desconhecido"
+
+            # --- FIM DA LÓGICA ---
+
+            # 3. Preparar Contexto
             context = self.prepare_template_context(flight, metadata)
-            
-            # Carrega template
-            template = self.jinja_env.get_template(self.template_file.name)
-            
-            # Renderiza HTML
-            html_content = template.render(**context)
-            
-            # Gera slug e caminho do arquivo
+            context.update({
+                'destination': dest_city,
+                'destination_iata': dest_iata,
+                'destination_city': dest_city,
+                'is_multiple': flight.get('occurrences_count', 1) > 1,
+                # Garantir variáveis explícitas para o template (cabeçalho e detalhes)
+                'data_partida': context.get('data_partida', flight.get('data_partida', '')),
+                'scheduled_time': flight.get('scheduled_time', context.get('scheduled_time', '')),
+                'display_time': context.get('display_time', ''),
+                'status': flight.get('status', ''),
+            })
+
+            # 4. Gerar HTML
             slug = self.generate_slug(flight)
             filename = f"{slug}.html"
-            output_file = self.voo_dir / filename
             
-            # Salva arquivo
-            with open(output_file, 'w', encoding='utf-8') as f:
-                f.write(html_content)
-            
-            # Registra sucesso
+            template = self.jinja_env.get_template(self.template_file.name)
+            with open(self.voo_dir / filename, 'w', encoding='utf-8') as f:
+                f.write(template.render(**context))
             self.success_files.add(filename)
+
+            # 5. Indexação (Home/Cidades)
+            # Regra: Só indexa se tiver cidade válida (não for "Destino Desconhecido")
+            is_valid_city = dest_city not in ["Destino Desconhecido", "Aguardando atualização", "N/A"]
             
-            # Extrai display_time do contexto
-            display_time = context.get('display_time', 'N/A')
+            # Penalidade se não tiver IATA
+            quality = 100 if dest_iata and is_valid_city else 50
             
-            # Simula dados de histórico (baseado no status do voo)
-            # Em produção, isso viria de um banco de dados histórico
-            status_lower = flight.get('status', '').lower()
-            is_cancelled = 'cancel' in status_lower
-            is_delayed = 'atras' in status_lower
-            
-            # Gera valores mockados baseados no status atual
-            # Se cancelado, tem mais chance de ter cancelamentos no histórico
-            # Se atrasado, tem mais chance de ter atrasos no histórico
-            if is_cancelled:
-                cancellations_count = random.randint(1, 5)
-                delays_count = random.randint(0, 3)
-            elif is_delayed:
-                delays_count = random.randint(2, 8)
-                cancellations_count = random.randint(0, 2)
-            else:
-                delays_count = random.randint(1, 4)
-                cancellations_count = random.randint(0, 2)
-            
-            # Extrai data no formato DD/MM
-            data_partida = flight.get('data_partida', '')
-            if not data_partida and scheduled_time:
-                try:
-                    # Tenta extrair data do scheduled_time
-                    dt = datetime.fromisoformat(scheduled_time.replace('Z', '').split('+')[0].split('.')[0])
-                    data_partida = dt.strftime('%d/%m')
-                except Exception:
-                    data_partida = ''
-            
+            # Garante que as estatísticas de 30 dias existam (inteiros para o frontend)
+            canc_30d = int(flight.get('cancelamentos_30d', 0) or 0)
+            atrasos_30d = int(flight.get('atrasos_30d', 0) or 0)
+
             self.success_pages.append({
                 'filename': filename,
                 'slug': slug,
-                'flight_number': flight.get('flight_number'),
-                'airline': context.get('airline'),  # Usa a companhia deduzida
-                'status': flight.get('status'),
-                'delay_hours': flight.get('delay_hours', 0),
+                'flight_number': raw_fnum,
+                'airline': context.get('airline', 'N/A'),
+                'status': status,
                 'scheduled_time': flight.get('scheduled_time'),
-                'display_time': display_time,  # Hora limpa (sem data)
-                'data_partida': data_partida,  # Data no formato DD/MM
-                'delays_count': delays_count,  # Histórico de atrasos
-                'cancellations_count': cancellations_count,  # Histórico de cancelamentos
-                'url': f"/voo/{filename}"
+                'display_time': context.get('display_time') or flight.get('scheduled_time') or '',
+                'destination': dest_city,
+                'destination_iata': dest_iata,
+                'destination_city': dest_city,
+                'data_partida': flight.get('data_partida') or context.get('data_partida', ''),
+                'delays_count': flight.get('occurrences_count', 0),
+                'cancelamentos_30d': canc_30d,
+                'atrasos_30d': atrasos_30d,
+                'url': f"/voo/{filename}",
+                'quality_score': quality
             })
             
-            logger.info(f"✅ Sucesso: {filename}")
             self.stats['successes'] += 1
             return True
-            
+
         except Exception as e:
-            logger.error(f"❌ Falha ao gerar {flight_number}: {e}")
-            self.stats['failures'] += 1
+            logger.error(f"❌ Erro voo {flight.get('flight_number')}: {e}")
             return False
     
     def manage_orphans(self) -> None:
@@ -698,6 +1161,36 @@ class FlightPageGenerator:
             ET.SubElement(url_home, 'changefreq').text = 'hourly'
             ET.SubElement(url_home, 'priority').text = '1.0'
             
+            # Adiciona páginas de categoria
+            category_pages = ['cancelados', 'atrasados']
+            for category in category_pages:
+                category_file = self.output_dir / f"{category}.html"
+                if category_file.exists():
+                    url_elem = ET.SubElement(urlset, 'url')
+                    ET.SubElement(url_elem, 'loc').text = self.base_url + f"/{category}.html"
+                    ET.SubElement(url_elem, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+                    ET.SubElement(url_elem, 'changefreq').text = 'hourly'
+                    ET.SubElement(url_elem, 'priority').text = '0.9'
+            
+            # Adiciona página institucional de Política de Privacidade (se existir)
+            privacy_file = self.output_dir / "privacy.html"
+            privacy_count = 0
+            if privacy_file.exists():
+                url_priv = ET.SubElement(urlset, 'url')
+                ET.SubElement(url_priv, 'loc').text = self.base_url + "/privacy.html"
+                ET.SubElement(url_priv, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+                ET.SubElement(url_priv, 'changefreq').text = 'yearly'
+                ET.SubElement(url_priv, 'priority').text = '0.4'
+                privacy_count = 1
+            
+            # Adiciona páginas de destino (cidades)
+            for city in getattr(self, 'generated_cities', []):
+                url_elem = ET.SubElement(urlset, 'url')
+                ET.SubElement(url_elem, 'loc').text = self.base_url + "/" + city['url']
+                ET.SubElement(url_elem, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+                ET.SubElement(url_elem, 'changefreq').text = 'daily'
+                ET.SubElement(url_elem, 'priority').text = '0.85'
+            
             # Adiciona páginas de voos
             for page in self.success_pages:
                 url_elem = ET.SubElement(urlset, 'url')
@@ -717,15 +1210,21 @@ class FlightPageGenerator:
             with open(sitemap_file, 'w', encoding='utf-8') as f:
                 f.write(xml_str)
             
+            category_count = sum(1 for cat in category_pages if (self.output_dir / f"{cat}.html").exists())
+            city_count = len(getattr(self, 'generated_cities', []))
+            total_urls = 1 + category_count + city_count + len(self.success_pages) + privacy_count
             logger.info(f"✅ Sitemap gerado: {sitemap_file}")
-            logger.info(f"   • URLs incluídas: {len(self.success_pages) + 1} (1 home + {len(self.success_pages)} voos)")
+            logger.info(
+                f"   • URLs incluídas: {total_urls} (1 home + {category_count} categorias + "
+                f"{city_count} destinos + {len(self.success_pages)} voos + {privacy_count} institucionais)"
+            )
             
         except Exception as e:
             logger.error(f"❌ Erro ao gerar sitemap: {e}")
     
     def generate_homepage(self) -> None:
         """
-        STEP 3.4: Gera public/index.html com 20 voos mais recentes.
+        STEP 3.4: Gera public/index.html agrupado por cidades (top destinos).
         Usa template Jinja2 com variáveis dinâmicas para Growth/Referral.
         """
         logger.info("")
@@ -734,31 +1233,24 @@ class FlightPageGenerator:
         logger.info("=" * 70)
         
         try:
-            # Ordena por data (mais recentes primeiro)
-            sorted_pages = sorted(
+            # Top cidades (gera agora caso não exista)
+            if not hasattr(self, 'generated_cities'):
+                self.generated_cities = self.generate_city_pages(self.success_pages)
+            top_cities = getattr(self, 'generated_cities', [])
+            recent_pages = sorted(
                 self.success_pages,
                 key=lambda x: x.get('scheduled_time', ''),
                 reverse=True
             )
             
-            # Pega 20 mais recentes
-            recent_pages = sorted_pages[:20]
-            
             # ============================================================
             # VARIÁVEIS DINÂMICAS PARA GROWTH/REFERRAL
             # ============================================================
             
-            # 1. voos_hoje_count: Total de voos com problemas
             voos_hoje_count = len(self.success_pages)
-            
-            # 2. herois_count: Fórmula com random para "social proof"
             herois_count = int(voos_hoje_count * 1.8) + random.randint(20, 35)
-            
-            # 3. gate_context: Escolha aleatória de contexto de aeroporto
             gate_options = ['Portão B12', 'Terminal 3', 'Embarque Sul', 'Portão C21']
             gate_context = random.choice(gate_options)
-            
-            # 4. utm_suffix: Parâmetro de rastreamento para links virais
             utm_suffix = '?utm_source=hero_gru'
             
             # ============================================================
@@ -766,21 +1258,18 @@ class FlightPageGenerator:
             # ============================================================
             
             context = {
-                # Dados de voos
-                'recent_pages': recent_pages,
+                # Exibe mais cidades e voos recentes na home
+                'top_cities': top_cities[:20],
+                'recent_pages': recent_pages[:12],
                 'voos_hoje_count': voos_hoje_count,
-                
-                # Growth/Referral variables
                 'herois_count': herois_count,
                 'gate_context': gate_context,
                 'utm_suffix': utm_suffix,
-                
-                # Monetização
                 'affiliate_link': self.affiliate_link,
-                
-                # Timestamps
+                'ticker_flights': getattr(self, 'ticker_flights', []),
                 'current_time': datetime.now().strftime('%d/%m/%Y %H:%M'),
                 'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
+                'base_url': self.base_url,
             }
             
             # ============================================================
@@ -803,7 +1292,7 @@ class FlightPageGenerator:
             # ============================================================
             
             logger.info(f"✅ Home page gerada: {index_file}")
-            logger.info(f"   • Voos exibidos: {len(recent_pages)} (dos {len(self.success_pages)} totais)")
+            logger.info(f"   • Top cidades exibidas: {len(top_cities)} (dos {len(getattr(self, 'generated_cities', []))} destinos)")
             logger.info(f"   • Growth Variables:")
             logger.info(f"     - Heróis (social proof): {herois_count}")
             logger.info(f"     - Gate context: {gate_context}")
@@ -812,75 +1301,419 @@ class FlightPageGenerator:
         except Exception as e:
             logger.error(f"❌ Erro ao gerar home page: {e}")
     
-    def generate_index(self, generated_pages: List[Dict]) -> None:
+    def generate_privacy_page(self) -> None:
         """
-        Gera página index.html listando todos os voos.
+        Gera página institucional de Política de Privacidade em public/privacy.html.
+        Usa o template Jinja2 privacy.html baseado em base.html.
+        """
+        logger.info("")
+        logger.info("=" * 70)
+        logger.info("STEP 3.8: GERAÇÃO DE PÁGINA DE PRIVACIDADE")
+        logger.info("=" * 70)
+
+        try:
+            context = {
+                'title': "Política de Privacidade - MatchFly",
+                'meta_desc': (
+                    "Entenda como o MatchFly trata sua privacidade e o uso de dados ao "
+                    "acessar informações sobre voos atrasados e cancelados."
+                ),
+                'page_type': 'privacy',
+                'base_url': self.base_url,
+                'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
+                'request_path': '/privacy.html',
+            }
+
+            template = self.jinja_env.get_template('privacy.html')
+            html_content = template.render(**context)
+
+            output_file = self.output_dir / "privacy.html"
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+
+            logger.info(f"✅ Página de privacidade gerada: {output_file}")
+
+        except Exception as e:
+            logger.error(f"❌ Erro ao gerar página de privacidade: {e}")
+    
+    def enrich_flight_with_30d_stats(self, flight: Dict) -> Dict:
+        """
+        Enriquece voo com contadores de 30 dias.
+        Se não existirem, calcula baseado no status atual.
         
         Args:
-            generated_pages: Lista de páginas geradas
+            flight: Dicionário com dados do voo
+            
+        Returns:
+            Voo enriquecido com cancelamentos_30d e atrasos_30d
+        """
+        enriched = flight.copy()
+        
+        # Se já existem os campos, usa eles
+        if 'cancelamentos_30d' not in enriched or enriched.get('cancelamentos_30d') is None:
+            # Calcula baseado no status
+            status_lower = str(enriched.get('status', '')).lower()
+            if 'cancel' in status_lower:
+                enriched['cancelamentos_30d'] = enriched.get('cancellations_count', random.randint(1, 5))
+            else:
+                enriched['cancelamentos_30d'] = enriched.get('cancellations_count', 0)
+        
+        if 'atrasos_30d' not in enriched or enriched.get('atrasos_30d') is None:
+            # Calcula baseado no status
+            status_lower = str(enriched.get('status', '')).lower()
+            if 'atras' in status_lower or enriched.get('delay_hours', 0) > 0:
+                enriched['atrasos_30d'] = enriched.get('delays_count', random.randint(1, 8))
+            else:
+                enriched['atrasos_30d'] = enriched.get('delays_count', 0)
+        
+        # Garante que destination_iata existe
+        if 'destination_iata' not in enriched or not enriched.get('destination_iata'):
+            destination = enriched.get('destination', '')
+            enriched['destination_iata'] = get_iata_code(destination)
+        
+        return enriched
+    
+    def get_lista_cancelados(self, flights: List[Dict]) -> List[Dict]:
+        """
+        Filtra e ordena voos cancelados com destination_iata.
+        
+        Args:
+            flights: Lista de voos
+            
+        Returns:
+            Lista filtrada e ordenada por cancelamentos_30d (desc), atrasos_30d (desc)
+        """
+        enriched_flights = [self.enrich_flight_with_30d_stats(f) for f in flights]
+        
+        # Filtra: cancelamentos_30d > 0 E destination_iata presente
+        filtered = [
+            f for f in enriched_flights
+            if f.get('cancelamentos_30d', 0) > 0
+            and f.get('destination_iata')
+        ]
+        
+        # Ordena: 1. cancelamentos_30d (desc), 2. atrasos_30d (desc)
+        sorted_list = sorted(
+            filtered,
+            key=lambda x: (x.get('cancelamentos_30d', 0), x.get('atrasos_30d', 0)),
+            reverse=True
+        )
+        
+        return sorted_list
+    
+    def get_lista_atrasados(self, flights: List[Dict]) -> List[Dict]:
+        """
+        Filtra e ordena voos atrasados com destination_iata.
+        
+        Args:
+            flights: Lista de voos
+            
+        Returns:
+            Lista filtrada e ordenada por atrasos_30d (desc), cancelamentos_30d (desc)
+        """
+        enriched_flights = [self.enrich_flight_with_30d_stats(f) for f in flights]
+        
+        # Filtra: atrasos_30d > 0 E destination_iata presente
+        filtered = [
+            f for f in enriched_flights
+            if f.get('atrasos_30d', 0) > 0
+            and f.get('destination_iata')
+        ]
+        
+        # Ordena: 1. atrasos_30d (desc), 2. cancelamentos_30d (desc)
+        sorted_list = sorted(
+            filtered,
+            key=lambda x: (x.get('atrasos_30d', 0), x.get('cancelamentos_30d', 0)),
+            reverse=True
+        )
+        
+        return sorted_list
+    
+    def generate_smart_ticker(self, flights: List[Dict]) -> List[Dict]:
+        """
+        Gera Smart Ticker com 10 voos aleatórios do TOP 20 com maior impacto.
+        Usa hashlib e hora atual como seed para seleção determinística.
+        
+        Args:
+            flights: Lista de voos
+            
+        Returns:
+            Lista de 10 voos para o ticker (com slug)
+        """
+        # Enriquece voos
+        enriched_flights = [self.enrich_flight_with_30d_stats(f) for f in flights]
+        
+        # Filtra apenas voos com destination_iata
+        valid_flights = [f for f in enriched_flights if f.get('destination_iata')]
+        
+        # Calcula score: cancelamentos*3 + atrasos
+        for flight in valid_flights:
+            flight['_impact_score'] = (
+                flight.get('cancelamentos_30d', 0) * 3 +
+                flight.get('atrasos_30d', 0)
+            )
+        
+        # Ordena por score (desc) e pega TOP 20
+        top_20 = sorted(
+            valid_flights,
+            key=lambda x: x.get('_impact_score', 0),
+            reverse=True
+        )[:20]
+        
+        if not top_20:
+            return []
+        
+        # Gera seed baseado na hora atual
+        hour_seed = datetime.now().strftime('%Y-%m-%d-%H')
+        seed_hash = hashlib.md5(hour_seed.encode()).hexdigest()
+        random.seed(int(seed_hash[:8], 16))  # Usa primeiros 8 chars como int
+        
+        # Seleciona 10 aleatórios do TOP 20
+        ticker_flights = random.sample(top_20, min(10, len(top_20)))
+        
+        # Adiciona slug para cada voo
+        for flight in ticker_flights:
+            flight['slug'] = self.generate_slug(flight)
+        
+        return ticker_flights
+    
+    def generate_city_pages(self, flights: List[Dict], metadata: Optional[Dict] = None) -> List[Dict]:
+        """
+        Gera páginas específicas por cidade de destino e retorna dados para a Home.
+        """
+        logger.info("=" * 70)
+        logger.info("STEP 3.7: GERAÇÃO DE PÁGINAS DE CIDADE")
+        
+        # Agrupar voos por destination_city
+        city_groups = {}
+        for flight in flights:
+            city = flight.get('destination_city', '') or flight.get('destination', '')
+            if not city or city in ('Aguardando atualização', 'N/A', 'VAZIO'):
+                continue
+            
+            if city not in city_groups:
+                city_groups[city] = {
+                    'name': city,
+                    'iata': flight.get('destination_iata', ''),
+                    'flights': [],
+                    'total_impact': 0
+                }
+            
+            enriched = self.enrich_flight_with_30d_stats(flight)
+            enriched['slug'] = self.generate_slug(enriched)
+            enriched['filename'] = enriched['slug'] + '.html'
+            city_groups[city]['flights'].append(enriched)
+            
+            impact = enriched.get('cancelamentos_30d', 0) * 3 + enriched.get('atrasos_30d', 0)
+            city_groups[city]['total_impact'] += impact
+
+        dest_dir = self.output_dir / "destino"
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        generated_cities = []
+
+        for city_name, data in city_groups.items():
+            data['flights'].sort(
+                key=lambda x: (x.get('cancelamentos_30d', 0), x.get('atrasos_30d', 0)),
+                reverse=True
+            )
+            city_slug = slugify(city_name)
+            filename = f"{city_slug}.html"
+            
+            context = {
+                'title': f"Voos para {city_name} com Problemas | MatchFly",
+                'h1': f"Voos para {city_name}: Relatório de Atrasos e Cancelamentos",
+                'h2': f"Monitore voos para {city_name} ({data['iata']}) e peça indenização",
+                'meta_desc': f"Lista de voos para {city_name} que atrasaram ou cancelaram recentemente. Veja se você tem direito a R$ 10.000.",
+                'page_type': 'cidade',
+                'city_name': city_name,
+                'flights': data['flights'],
+                'base_url': self.base_url,
+                'current_time': datetime.now().strftime('%d/%m/%Y %H:%M'),
+                'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
+                'request_path': f'/destino/{filename}'
+            }
+            
+            template = self.jinja_env.get_template('atrasados.html')
+            html_content = template.render(**context)
+            
+            with open(dest_dir / filename, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            
+            generated_cities.append({
+                'name': city_name,
+                'iata': data['iata'],
+                'url': f"destino/{filename}",
+                'total_impact': data['total_impact'],
+                'top_flights': data['flights'][:2],
+                'flight_count': len(data['flights'])
+            })
+        
+        generated_cities.sort(key=lambda x: x['total_impact'], reverse=True)
+        logger.info(f"✅ Geradas {len(generated_cities)} páginas de destino")
+        return generated_cities
+
+    def generate_faq_schema(self, category: str) -> str:
+        """
+        Gera FAQ Schema (JSON-LD) baseado na categoria.
+        
+        Args:
+            category: 'cancelados' ou 'atrasados'
+            
+        Returns:
+            String JSON-LD formatada
+        """
+        if category == 'cancelados':
+            faq_data = {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "Tenho direito a indenização por voo cancelado?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sim! Segundo a resolução 400 da ANAC, se seu voo foi cancelado sem aviso prévio de 72h ou por problemas operacionais, você pode ter direito a uma compensação de até R$ 10.000. Verifique seu caso aqui na AirHelp: https://www.airhelp.com/en-int/?ref=matchfly"
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "Como pedir reembolso integral?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Em caso de cancelamento pela companhia, você tem direito a escolher entre reacomodação, execução por outro meio de transporte ou reembolso integral do valor pago."
+                        }
+                    }
+                ]
+            }
+        else:  # atrasados
+            faq_data = {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "A partir de quanto tempo de atraso gera indenização?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Atrasos superiores a 4 horas permitem que o passageiro solicite indenização por danos morais. Além disso, a companhia deve fornecer assistência material (alimentação e comunicação) conforme o tempo de espera. Calcule sua compensação agora: https://www.airhelp.com/en-int/?ref=matchfly"
+                        }
+                    }
+                ]
+            }
+        
+        return json.dumps(faq_data, ensure_ascii=False, indent=2)
+    
+    def generate_category_page(self, category: str, flights: List[Dict], metadata: Dict) -> bool:
+        """
+        Gera página de categoria (cancelados.html ou atrasados.html).
+        
+        Args:
+            category: 'cancelados' ou 'atrasados'
+            flights: Lista de voos filtrados
+            metadata: Metadados do scraping
+            
+        Returns:
+            True se sucesso, False caso contrário
         """
         try:
-            html = f"""<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MatchFly - Voos com Problemas | Indenização ANAC 400</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50">
-    <div class="container mx-auto px-4 py-12 max-w-6xl">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold text-blue-900 mb-4">
-                ✈️ MatchFly - Voos com Problemas
-            </h1>
-            <p class="text-lg text-gray-600">
-                Verifique se você tem direito a indenização de até R$ 10.000
-            </p>
-        </header>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-"""
+            # Determina configurações baseado na categoria
+            if category == 'cancelados':
+                title = "Voos Cancelados GRU - Indenização até R$ 10.000 | MatchFly"
+                h1 = "Voos Cancelados em Guarulhos (GRU): Histórico e Como Receber Indenização"
+                h2 = "Lista Atualizada dos Últimos 30 Dias + Compensação ANAC"
+                meta_desc = "Veja o histórico dos voos mais cancelados em Guarulhos. Verifique se seu voo foi cancelado e receba compensação de até R$ 10.000 via AirHelp. Atualizado a cada 15min."
+                page_type = "cancelados"
+            else:  # atrasados
+                title = "Voos Atrasados GRU - Monitoramento e Direitos | MatchFly"
+                h1 = "Voos que Mais Atrasam em Guarulhos: Monitoramento em Tempo Real"
+                h2 = "Evite Conexões Perdidas e Garanta Seus Direitos (EC 261 + ANAC 400)"
+                meta_desc = "Monitoramento em tempo real dos voos mais atrasados em Guarulhos. Verifique seus direitos e receba compensação de até R$ 10.000. Atualizado a cada 15min."
+                page_type = "atrasados"
             
-            for page in generated_pages:
-                html += f"""
-            <a href="{page['filename']}" class="block bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 border-l-4 border-red-500">
-                <div class="flex items-start justify-between mb-3">
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-900">{page['flight_number']}</h2>
-                        <p class="text-sm text-gray-600">{page['airline']}</p>
-                    </div>
-                    <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-semibold rounded-full">
-                        {page['status']}
-                    </span>
-                </div>
-                <div class="text-sm text-gray-500 space-y-1">
-                    <p>⏱️ Atraso: {page['delay_hours']}h</p>
-                    <p>🔗 <span class="text-blue-600 font-medium">Ver detalhes →</span></p>
-                </div>
-            </a>
-"""
+            # Pega top 20 voos
+            top_flights = flights[:20]
             
-            html += f"""
-        </div>
-        
-        <footer class="mt-12 text-center text-sm text-gray-500">
-            <p>Gerado em: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
-            <p class="mt-2">Total de voos: {len(generated_pages)}</p>
-        </footer>
-    </div>
-</body>
-</html>
-"""
+            # Prepara voos para o template (adiciona slug e dados necessários)
+            template_flights = []
+            for flight in top_flights:
+                # FILTRO DE QUALIDADE CATEGORIAS:
+                airline = infer_airline(flight.get('flight_number', ''), flight.get('airline', ''))
+                if airline in ["Não Informado", "DESCONHECIDO", "N/A"]:
+                    continue
+                raw_dest = flight.get('destination', '')
+                if raw_dest == "Aguardando atualização" and not flight.get('destination_iata'):
+                    continue
+
+                enriched = self.enrich_flight_with_30d_stats(flight)
+                enriched['slug'] = self.generate_slug(enriched)
+                enriched['airline'] = airline
+
+                # CORREÇÃO DE DISPLAY:
+                iata = enriched.get('destination_iata', '')
+                raw_dest = enriched.get('destination', '')
+                final_city = resolve_city_name(iata, raw_dest)
+
+                enriched['destination_city'] = final_city
+                enriched['destination'] = final_city
+
+                if iata and final_city and final_city != iata:
+                    enriched['display_destination'] = f"{iata} ({final_city})"
+                else:
+                    enriched['display_destination'] = iata or final_city
+
+                # Calcula total de problemas
+                enriched['total_problemas'] = (
+                    int(enriched.get('cancelamentos_30d', 0) or 0) +
+                    int(enriched.get('atrasos_30d', 0) or 0)
+                )
+                # Data e hora para cards (mesmo formato da Home)
+                enriched['cancelamentos_30d'] = int(enriched.get('cancelamentos_30d', 0) or 0)
+                enriched['atrasos_30d'] = int(enriched.get('atrasos_30d', 0) or 0)
+                _st = enriched.get('scheduled_time', '')
+                if _st and ' ' in str(_st):
+                    enriched['display_time'] = str(_st).split(' ')[-1]
+                else:
+                    enriched['display_time'] = _st or ''
+                enriched['data_partida'] = enriched.get('data_partida', '')
+
+                template_flights.append(enriched)
             
-            index_file = self.output_dir / "index.html"
-            with open(index_file, 'w', encoding='utf-8') as f:
-                f.write(html)
+            # Gera FAQ Schema
+            faq_schema = self.generate_faq_schema(category)
             
-            logger.info(f"✅ Índice gerado: {index_file}")
+            # Contexto para template
+            context = {
+                'title': title,
+                'h1': h1,
+                'h2': h2,
+                'meta_desc': meta_desc,
+                'page_type': page_type,
+                'flights': template_flights,
+                'base_url': self.base_url,
+                'current_time': datetime.now().strftime('%d/%m/%Y %H:%M'),
+                'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
+                'request_path': f'/{category}.html',
+                'ticker_flights': getattr(self, 'ticker_flights', []),  # Ticker já gerado
+                'faq_schema': faq_schema,  # FAQ Schema para JSON-LD no head
+            }
+            
+            # Carrega template de categoria
+            template = self.jinja_env.get_template(f'{category}.html')
+            
+            # Renderiza HTML
+            html_content = template.render(**context)
+            
+            # Salva arquivo
+            output_file = self.output_dir / f"{category}.html"
+            with open(output_file, 'w', encoding='utf-8') as f:
+                f.write(html_content)
+            
+            logger.info(f"✅ Página de categoria gerada: {output_file}")
+            return True
             
         except Exception as e:
-            logger.error(f"❌ Erro ao gerar index: {e}")
+            logger.error(f"❌ Erro ao gerar página de categoria {category}: {e}")
+            return False
     
     def run(self) -> Dict:
         """
@@ -934,6 +1767,56 @@ class FlightPageGenerator:
                 return self.stats
             
             # ============================================================
+            # STEP 3.0: ENRIQUECIMENTO DE DADOS (FALLBACK ESTÁTICO)
+            # ============================================================
+            logger.info("")
+            logger.info("=" * 70)
+            logger.info("STEP 3.0: ENRIQUECIMENTO DE DESTINOS")
+            logger.info("=" * 70)
+            
+            # Verifica se existem voos sem destination_iata
+            flights_without_destination = [
+                f for f in flights
+                if not f.get('destination_iata', '').strip()
+            ]
+            
+            if flights_without_destination:
+                logger.info(f"📊 Encontrados {len(flights_without_destination)} voos sem destination_iata")
+                logger.info("   Iniciando enriquecimento com fallback estático...")
+                
+                # Validação pré-enriquecimento
+                if not enrichment_module.validate_dictionaries():
+                    raise Exception("Abortando: Dados estáticos inválidos.")
+                
+                # Análise antes do enriquecimento
+                enrichment_module.analyze_failure_rate(flights, "ANTES")
+                
+                # Backup obrigatório para regressão
+                flights_backup = copy.deepcopy(flights)
+                
+                # Enriquece voos (modifica in-place)
+                stats = enrichment_module.enrich_missing_destinations(flights)
+                
+                # Teste de regressão
+                if not enrichment_module.regression_test(flights_backup, flights):
+                    logger.warning("⚠️  Aviso: Regressões encontradas, verifique os logs.")
+                
+                # Análise depois do enriquecimento
+                enrichment_module.analyze_failure_rate(flights, "DEPOIS")
+                logger.info(f"✅ Enriquecimento concluído: {stats['enriched']} recuperados.")
+                
+                # Salva dados enriquecidos de volta no JSON (Persistência Permanente)
+                try:
+                    data['flights'] = flights
+                    with open(self.data_file, 'w', encoding='utf-8') as f:
+                        json.dump(data, f, ensure_ascii=False, indent=2)
+                    logger.info(f"✅ Dados enriquecidos salvos em: {self.data_file}")
+                except Exception as e:
+                    logger.error(f"❌ Erro ao salvar dados enriquecidos: {e}")
+            else:
+                logger.info("✅ Todos os voos já têm destination_iata - pulando enriquecimento")
+            
+            # ============================================================
             # STEP 3.1: RENDERIZAÇÃO RESILIENTE
             # ============================================================
             logger.info("")
@@ -958,6 +1841,20 @@ class FlightPageGenerator:
             self.manage_orphans()
             
             # ============================================================
+            # STEP 3.7: PÁGINAS DE CIDADE (antes do sitemap e da home)
+            # ============================================================
+            if self.success_pages:
+                self.generated_cities = self.generate_city_pages(self.success_pages, metadata)
+            else:
+                self.generated_cities = []
+            
+            # ============================================================
+            # STEP 3.8: PÁGINA INSTITUCIONAL (POLÍTICA DE PRIVACIDADE)
+            # ============================================================
+            # Gera privacy.html sempre que houver build bem-sucedido
+            self.generate_privacy_page()
+            
+            # ============================================================
             # STEP 3.3: SITEMAP
             # ============================================================
             if self.success_pages:
@@ -972,6 +1869,46 @@ class FlightPageGenerator:
                 self.generate_homepage()
             else:
                 logger.warning("⚠️  Nenhuma página gerada, home page não criada")
+            
+            # ============================================================
+            # STEP 3.5: SMART TICKER (gerado antes para uso nas páginas)
+            # ============================================================
+            logger.info("")
+            logger.info("=" * 70)
+            logger.info("STEP 3.5: GERAÇÃO DE SMART TICKER")
+            logger.info("=" * 70)
+            
+            ticker_flights = self.generate_smart_ticker(flights)
+            logger.info(f"✅ Smart Ticker gerado: {len(ticker_flights)} voos selecionados")
+            
+            # Armazena ticker para uso em templates
+            self.ticker_flights = ticker_flights
+            
+            # ============================================================
+            # STEP 3.6: PÁGINAS DE CATEGORIA (pSEO)
+            # ============================================================
+            logger.info("")
+            logger.info("=" * 70)
+            logger.info("STEP 3.6: GERAÇÃO DE PÁGINAS DE CATEGORIA")
+            logger.info("=" * 70)
+            
+            # Gera listas filtradas e ordenadas
+            lista_cancelados = self.get_lista_cancelados(flights)
+            lista_atrasados = self.get_lista_atrasados(flights)
+            
+            logger.info(f"📊 Voos cancelados filtrados: {len(lista_cancelados)}")
+            logger.info(f"📊 Voos atrasados filtrados: {len(lista_atrasados)}")
+            
+            # Gera páginas de categoria
+            if lista_cancelados:
+                self.generate_category_page('cancelados', lista_cancelados, metadata)
+            else:
+                logger.warning("⚠️  Nenhum voo cancelado encontrado para gerar página")
+            
+            if lista_atrasados:
+                self.generate_category_page('atrasados', lista_atrasados, metadata)
+            else:
+                logger.warning("⚠️  Nenhum voo atrasado encontrado para gerar página")
             
             # ============================================================
             # STEP 4: LOG FINAL

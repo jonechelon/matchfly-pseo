@@ -16,16 +16,18 @@ import datetime
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Configurações
+# Configurações (CSV e JSON em data/)
 REMOTE_CSV_URL = "https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv"
-FIXED_CSV_NAME = "voos_atrasados_gru.csv"
+DATA_DIR = "data"
+CSV_OUTPUT_NAME = "voos_atrasados_gru.csv"
 JSON_OUTPUT_PATH = "data/flights-db.json"
 
 def main():
     logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO COM CORREÇÃO DE DATA/HORA")
     
     base_dir = os.getcwd()
-    path_csv = os.path.join(base_dir, FIXED_CSV_NAME)
+    os.makedirs(os.path.join(base_dir, DATA_DIR), exist_ok=True)
+    path_csv = os.path.join(base_dir, DATA_DIR, CSV_OUTPUT_NAME)
     path_json = os.path.join(base_dir, JSON_OUTPUT_PATH)
     
     # 1. Download

@@ -1,3 +1,9 @@
 requests>=2.25.0
 pandas>=1.0.0
 playwright
+jinja2>=3.0.0
+python-slugify>=5.0.0
+# Google Indexing API dependencies
+google-auth>=2.23.0
+google-auth-oauthlib>=1.0.0
+google-auth-httplib2>=0.1.1

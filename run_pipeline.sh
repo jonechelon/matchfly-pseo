@@ -43,6 +43,21 @@ else
     exit 1
 fi
 
+# Step 2.5: Index URLs to Google (Optional)
+echo ""
+echo -e "${YELLOW}🔍 Passo 2.5: Indexando URLs na Google Indexing API (opcional)...${NC}"
+if [ -f "credentials/service_account.json" ]; then
+    python3 src/indexer.py
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ URLs indexadas com sucesso!${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Indexação falhou ou não configurada (continuando...)${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️  Credenciais não encontradas. Pulando indexação.${NC}"
+    echo -e "${YELLOW}   Para habilitar, adicione credentials/service_account.json${NC}"
+fi
+
 # Step 3: Show statistics
 echo ""
 echo -e "${YELLOW}📊 Passo 3: Estatísticas${NC}"

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voos Atrasados GRU - Monitoramento e Direitos | MatchFly</title>
+    <meta name="description" content="Monitoramento em tempo real dos voos mais atrasados em Guarulhos. Verifique seus direitos e receba compensação de até R$ 10.000. Atualizado a cada 15min.">
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://matchfly.org/atrasados.html">
+    
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://matchfly.org/destino/sbvc.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://matchfly.org/destino/sbvc.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Voos para SBVC com Problemas | MatchFly">
+    <meta property="og:description" content="Lista de voos para SBVC que atrasaram ou cancelaram recentemente. Veja se você tem direito a R$ 10.000.">
+    <meta property="og:url" content="https://matchfly.org/destino/sbvc.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Voos para SBVC com Problemas | MatchFly">
+    <meta name="twitter:description" content="Lista de voos para SBVC que atrasaram ou cancelaram recentemente. Veja se você tem direito a R$ 10.000.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
+    
+    <!-- Animação de Marquee (Barra de Alertas) -->
+    <style>
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: fit-content;
+            animation: marquee 40s linear infinite;
+        }
+        .hover\:pause:hover {
+            animation-play-state: paused;
+        }
+        .ticker-wrap.group:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 40;
+        }
+    </style>
+    
+    
+<!-- Schema Markup: ItemList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Voos Atrasados em Guarulhos - Últimos 30 Dias",
+    "description": "Lista dos voos mais atrasados em Guarulhos nos últimos 30 dias",
+    "numberOfItems": 1,
+    "itemListElement": [
+        
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "5156",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "LATAM"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "SBVC",
+                    "name": "SBVC"
+                }
+            }
+        }
+        
+    ]
+}
+</script>
+
+<!-- Schema Markup: BreadcrumbList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://matchfly.org/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Voos Atrasados",
+            "item": "https://matchfly.org/atrasados.html"
+        }
+    ]
+}
+</script>
+
+    
+    <!-- FAQ Schema Markup (JSON-LD) -->
+    
+</head>
+<body class="bg-white antialiased">
+    
+    <!-- Header Sticky -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm backdrop-blur-md bg-white/95">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21l2-6 9-3-9-3-2-6-2 7-6 2 6 2 2 7z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-black text-blue-950">MatchFly</h1>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">ANAC COMPLIANCE</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-sm font-semibold text-gray-700 hover:text-blue-900 transition-colors inline-flex items-center"><i data-lucide="home" class="w-5 h-5 inline-block mr-1"></i>Início</a>
+                    <a href="/cancelados.html" class="text-sm font-semibold text-gray-700 hover:text-red-600 transition-colors inline-flex items-center"><i data-lucide="x-circle" class="w-5 h-5 inline-block mr-1"></i>Cancelados</a>
+                    <a href="/atrasados.html" class="text-sm font-semibold text-gray-700 hover:text-orange-600 transition-colors inline-flex items-center"><i data-lucide="alert-triangle" class="w-5 h-5 inline-block mr-1"></i>Atrasados</a>
+                </nav>
+                
+                <!-- Menu Mobile -->
+                <nav class="md:hidden">
+                    <div class="flex items-center space-x-3">
+                        <a href="/" class="text-xs font-semibold text-gray-700" aria-label="Início"><i data-lucide="home" class="w-5 h-5 inline-block"></i></a>
+                        <a href="/cancelados.html" class="text-xs font-semibold text-gray-700" aria-label="Cancelados"><i data-lucide="x-circle" class="w-5 h-5 inline-block"></i></a>
+                        <a href="/atrasados.html" class="text-xs font-semibold text-gray-700" aria-label="Atrasados"><i data-lucide="alert-triangle" class="w-5 h-5 inline-block"></i></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    
+<div class="w-full bg-amber-900 text-white border-b border-amber-800 shadow-md relative z-40">
+    <div class="flex items-center h-10">
+        <div class="bg-amber-950 px-4 h-full flex items-center gap-2 z-10 shrink-0 font-bold text-xs uppercase tracking-wider">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            <span class="md:hidden">ATRASADOS</span>
+            <span class="hidden md:inline">Últimos Atrasos</span>
+        </div>
+        
+        <div class="ticker-wrap group cursor-default">
+            <div class="animate-marquee hover:pause flex items-center gap-8 px-4">
+                
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-amber-200">5156</span>
+                        <span class="text-white">SBVC</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">16:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-amber-200">5156</span>
+                        <span class="text-white">SBVC</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">16:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- Breadcrumbs -->
+    
+    <nav class="bg-gray-50 border-b border-gray-200 py-3">
+        <div class="container mx-auto px-4">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li><a href="/" class="text-blue-600 hover:text-blue-800">Início</a></li>
+                <li class="text-gray-400">/</li>
+                <li class="text-gray-700">Atrasados</li>
+            </ol>
+        </div>
+    </nav>
+    
+    
+    <!-- Main Content -->
+    <main>
+        
+<!-- Hero Section -->
+<section class="bg-gradient-to-b from-orange-50 to-white py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-orange-900 mb-4">
+                Voos que Mais Atrasam em Guarulhos: Monitoramento em Tempo Real
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-700 mb-6">
+                Evite Conexões Perdidas e Garanta Seus Direitos (EC 261 + ANAC 400)
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                1 voos atrasados identificados. Verifique se seu voo está na lista e garanta sua indenização de até <strong class="text-orange-900">R$ 10.000</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Lista de Voos Atrasados -->
+<section class="container mx-auto px-4 py-12 max-w-7xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <div class="bg-white rounded-2xl shadow-lg border-2 border-orange-100 overflow-hidden hover:shadow-2xl transition-all">
+            <!-- Header Card -->
+            <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-b-2 border-orange-200 p-5">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center space-x-2 min-w-0 flex-1">
+                        <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-orange-900" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
+                            </svg>
+                        </div>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider truncate">LATAM</span>
+                    </div>
+                    <span class="px-3 py-1 bg-orange-500 text-white text-xs font-black rounded-full uppercase tracking-wider shadow-md">
+                        Atrasado
+                    </span>
+                </div>
+                
+                <h3 class="text-3xl font-black text-orange-900 tracking-tight">
+                    5156
+                </h3>
+            </div>
+
+            <!-- Body Card -->
+            <div class="p-5 bg-white">
+                <div class="space-y-3 mb-4">
+                    <!-- Destino -->
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs text-gray-500 font-medium">Destino:</span>
+                        <span class="text-sm font-bold text-gray-900">SBVC (SBVC)</span>
+                    </div>
+                    
+                    <!-- Data, horário e estatísticas 30d -->
+                    <div class="text-right min-w-[100px]">
+                        <div class="text-xs text-slate-500 font-medium mb-0.5">
+                            16/01
+                        </div>
+                        <div class="text-xl font-bold text-slate-800 leading-none">
+                            16:15
+                        </div>
+                        <div class="text-[10px] text-slate-400 uppercase tracking-wide mb-2">Previsto</div>
+                        <div class="flex items-center justify-end gap-2">
+                            
+                            
+                            
+                            <span class="text-[10px] text-slate-300">Sem histórico recente</span>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Button (Alta Conversão) -->
+                <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5"
+                   target="_blank"
+                   rel="noopener sponsored"
+                   class="block w-full py-4 px-6 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-black text-center rounded-xl shadow-xl hover:shadow-2xl transition-all hover:scale-105 text-lg">
+                    <i data-lucide="circle-dollar-sign" class="w-5 h-5 inline-block mr-1 align-middle"></i> Verificar Indenização (R$ 10.000)
+                </a>
+                
+                <!-- Link Interno -->
+                <div class="mt-3 text-center">
+                    <a href="/voo/voo-latam-5156-gru-cancelado.html" class="text-sm text-blue-600 hover:text-blue-800 font-semibold">
+                        Ver detalhes completos →
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!-- FAQ Section (Simplificada) -->
+<section class="container mx-auto px-4 py-12 max-w-7xl">
+    <div class="mt-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
+        <h2 class="text-2xl font-bold mb-6">Direitos do Passageiro para Voos Atrasados</h2>
+        
+        <div class="space-y-4">
+            <div class="faq-item">
+                <h3 class="font-bold text-lg text-blue-900">A partir de quanto tempo de atraso gera indenização?</h3>
+                <p class="text-gray-700">Atrasos superiores a 4 horas permitem que o passageiro solicite indenização por danos morais. Além disso, a companhia deve fornecer assistência material (alimentação e comunicação) conforme o tempo de espera. 
+                <a href="https://www.airhelp.com/en-int/?ref=matchfly" class="text-blue-600 underline font-bold">Calcule sua compensação agora.</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section (Original - Mantida para compatibilidade) -->
+<section id="faq" class="bg-slate-50 py-20 hidden">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-orange-100 rounded-full mb-4">
+                <span class="text-xs font-bold text-orange-900 uppercase tracking-wider">Perguntas Frequentes</span>
+            </div>
+            <h3 class="text-3xl md:text-5xl font-black text-blue-950 mb-4">
+                Tire Suas Dúvidas
+            </h3>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(1)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Tenho direito a indenização por voo cancelado?</h4>
+                    <svg id="faq-icon-1" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-1" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        Sim! Segundo a Resolução ANAC 400, passageiros de voos nacionais cancelados sem aviso prévio de pelo menos 72 horas têm direito a indenização de até R$ 10.000. Para voos internacionais, a regulamentação EC 261 também garante compensação. 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Verifique seu voo gratuitamente aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(2)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Qual o valor da compensação por atraso?</h4>
+                    <svg id="faq-icon-2" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-2" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        O valor da compensação varia conforme o tipo de voo e o tempo de atraso. Voos nacionais com atraso superior a 4 horas podem gerar indenização de até R$ 10.000 (ANAC 400). Voos internacionais com atraso superior a 3 horas podem gerar compensação de até €600 (EC 261). 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Calcule seu valor aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(3)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Como recebo a indenização?</h4>
+                    <svg id="faq-icon-3" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-3" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        O processo é simples e gratuito. Você verifica seu voo, preenche um formulário online, e a AirHelp entra em contato com a companhia aérea em seu nome. Se aprovado, você recebe a indenização diretamente na sua conta. A AirHelp só recebe uma comissão se você for indenizado. 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Inicie seu processo aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA após FAQ -->
+        <div class="mt-12 text-center">
+            <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+               target="_blank" 
+               rel="noopener sponsored"
+               class="inline-flex items-center space-x-3 px-10 py-5 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group">
+                <span>Verificar Meu Voo Atrasado Agora</span>
+                <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="text-center md:text-left">
+                <p class="text-sm font-medium text-slate-300">
+                    &copy; 2026 MatchFly.
+                </p>
+                <p class="text-xs text-slate-500 mt-1">
+                    Dados públicos de voos em tempo real.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="/privacy.html" class="text-sm text-slate-400 hover:text-white transition-colors duration-200 border-b border-transparent hover:border-slate-400 pb-0.5">
+                    Política de Privacidade
+                </a>
+            </div>
+            
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-slate-800/50 text-center">
+            <p class="text-[10px] text-slate-600 max-w-2xl mx-auto">
+                O MatchFly é um portal informativo independente e não possui vínculo oficial com companhias aéreas ou com a administração aeroportuária. 
+                Os dados são fornecidos "como estão" baseados em fontes públicas.
+            </p>
+        </div>
+    </div>
+</footer>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+    
+<script>
+    function toggleFAQ(num) {
+        const content = document.getElementById('faq-content-' + num);
+        const icon = document.getElementById('faq-icon-' + num);
+        
+        if (content.classList.contains('hidden')) {
+            // Fechar todos os outros
+            for (let i = 1; i <= 3; i++) {
+                if (i !== num) {
+                    document.getElementById('faq-content-' + i).classList.add('hidden');
+                    document.getElementById('faq-icon-' + i).classList.remove('rotate-180');
+                }
+            }
+            // Abrir o selecionado
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+        }
+    }
+</script>
+
+</body>
+</html>
