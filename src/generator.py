@@ -62,6 +62,36 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def parse_flight_time(flight: Dict) -> datetime:
+    """
+    Converte data/hora do voo em datetime para ordenação (mais recente primeiro).
+    Usa data_partida (ex: "29/01") e scheduled_time (ex: "17:30").
+    Retorna datetime.min em caso de falha (voos sem data vão ao final).
+    """
+    try:
+        date_str = (flight.get('date_raw') or flight.get('data_partida') or '').strip()
+        time_str = (flight.get('scheduled_time') or '00:00').strip()
+        if not date_str:
+            return datetime.min
+        date_str = date_str.split()[0]
+        if not re.match(r'^\d{1,2}:\d{2}', time_str):
+            time_str = '00:00'
+        else:
+            time_str = time_str[:5]
+        if '/' in date_str:
+            parts = date_str.split('/')
+            if len(parts) == 2:
+                date_str = f"{date_str}/2026"
+            fmt = "%d/%m/%Y %H:%M"
+        elif '-' in date_str:
+            fmt = "%Y-%m-%d %H:%M"
+        else:
+            return datetime.min
+        return datetime.strptime(f"{date_str} {time_str}", fmt)
+    except (ValueError, TypeError, IndexError):
+        return datetime.min
+
+
 # ==============================================================================
 # DICIONÁRIOS DE TRADUÇÃO (ANAC -> IATA -> CIDADE)
 # ==============================================================================
@@ -1237,11 +1267,8 @@ class FlightPageGenerator:
             if not hasattr(self, 'generated_cities'):
                 self.generated_cities = self.generate_city_pages(self.success_pages)
             top_cities = getattr(self, 'generated_cities', [])
-            recent_pages = sorted(
-                self.success_pages,
-                key=lambda x: x.get('scheduled_time', ''),
-                reverse=True
-            )
+            # Ordenação por data/hora: mais recentes primeiro (ticker e listas)
+            recent_pages = sorted(self.success_pages, key=parse_flight_time, reverse=True)
             
             # ============================================================
             # VARIÁVEIS DINÂMICAS PARA GROWTH/REFERRAL
@@ -1892,9 +1919,11 @@ class FlightPageGenerator:
             logger.info("STEP 3.6: GERAÇÃO DE PÁGINAS DE CATEGORIA")
             logger.info("=" * 70)
             
-            # Gera listas filtradas e ordenadas
+            # Gera listas filtradas e ordenadas por data/hora (mais recentes primeiro)
             lista_cancelados = self.get_lista_cancelados(flights)
             lista_atrasados = self.get_lista_atrasados(flights)
+            lista_cancelados = sorted(lista_cancelados, key=parse_flight_time, reverse=True)
+            lista_atrasados = sorted(lista_atrasados, key=parse_flight_time, reverse=True)
             
             logger.info(f"📊 Voos cancelados filtrados: {len(lista_cancelados)}")
             logger.info(f"📊 Voos atrasados filtrados: {len(lista_atrasados)}")
