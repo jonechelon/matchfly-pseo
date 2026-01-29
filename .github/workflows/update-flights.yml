@@ -9,54 +9,63 @@ permissions:
   contents: write
 
 jobs:
-  build-and-deploy:
+  monitor-operations:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python
+      - name: Setup Python 3.12
         uses: actions/setup-python@v4
         with:
           python-version: '3.12'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pip install requests pandas jinja2 python-slugify google-auth google-auth-oauthlib google-auth-httplib2
 
-      - name: 1. Sync Data (Download CSV)
+      - name: 1. Sync Data (Download from Monitor Repo)
         run: |
           mkdir -p data
           curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
 
-      - name: 2. Convert to JSON
+      - name: 1.5. Convert CSV to JSON
         run: python scripts/sync_data.py
 
-      - name: 3. Sanitize DB
+      - name: 2. Sanitize Database
         run: python scripts/fix_database.py
 
-      - name: 4. Generate Site
+      - name: 3. Generate HTML
         run: python src/generator.py
 
-      - name: 5. Google Setup & Indexing (Optional)
+      # SOLUÇÃO DO ERRO: Removemos o 'if: secrets...' e usamos ENV
+      - name: 4. Setup Google Credentials (Optional)
         env:
           GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
         run: |
           if [ -z "$GOOGLE_JSON" ]; then
-            echo "⚠️ Secret GOOGLE_INDEXING_JSON não configurado ou vazio. Pulando indexação..."
-            exit 0
+            echo "⚠️ Secret GOOGLE_INDEXING_JSON vazia. Pulando configuração..."
+          else
+            echo "🔐 Configurando credenciais..."
+            mkdir -p credentials
+            echo "$GOOGLE_JSON" > credentials/service_account.json
+            chmod 600 credentials/service_account.json
           fi
 
-          echo "🔐 Configurando credenciais..."
-          mkdir -p credentials
-          echo "$GOOGLE_JSON" > credentials/service_account.json
+      - name: 5. Index URLs to Google (Optional)
+        env:
+          GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
+        run: |
+          if [ -z "$GOOGLE_JSON" ]; then
+            echo "⚠️ Indexação pulada (sem credenciais)."
+          else
+            echo "🔍 Enviando URLs para Google..."
+            python src/indexer.py || echo "⚠️ Erro na indexação, continuando deploy..."
+          fi
 
-          echo "🔍 Tentando indexar..."
-          python src/indexer.py || echo "⚠️ Erro na indexação, mas continuando deploy..."
-
-      - name: Commit & Deploy
+      - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'deploy: update site content (from monitor repo)'
