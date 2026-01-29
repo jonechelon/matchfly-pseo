@@ -1118,29 +1118,23 @@ class FlightPageGenerator:
     def manage_orphans(self) -> None:
         """
         STEP 3.2: Gestão de Órfãos.
-        Remove arquivos em public/voo/ que não foram regenerados.
+        Preserva arquivos antigos em public/voo/ (não regenerados nesta run) para SEO.
+        Não remove mais órfãos; apenas registra preservação.
         """
         logger.info("")
         logger.info("=" * 70)
         logger.info("STEP 3.2: GESTÃO DE ÓRFÃOS")
         logger.info("=" * 70)
         
-        # Lista todos os arquivos HTML em public/voo/
         existing_files = set(f.name for f in self.voo_dir.glob("*.html"))
-        
-        # Identifica órfãos (existem mas não foram gerados agora)
         orphans = existing_files - self.success_files
         
         if orphans:
-            logger.info(f"🗑️  Encontrados {len(orphans)} arquivos órfãos para remoção:")
+            logger.info(f"📂 {len(orphans)} arquivo(s) antigo(s) preservado(s) (histórico SEO):")
             for orphan in sorted(orphans):
-                try:
-                    orphan_path = self.voo_dir / orphan
-                    orphan_path.unlink()
-                    logger.info(f"   • Removido: {orphan}")
-                    self.stats['orphans_removed'] += 1
-                except Exception as e:
-                    logger.warning(f"   ⚠️  Erro ao remover {orphan}: {e}")
+                logger.info(f"   Arquivo antigo preservado: {orphan}")
+                # Não removemos órfãos: manter páginas passadas acessíveis para SEO
+                # orphan_path.unlink()  # REMOVIDO
         else:
             logger.info("✅ Nenhum arquivo órfão detectado")
     
