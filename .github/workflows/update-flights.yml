@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,30 +28,32 @@ jobs:
           pip install requests pandas jinja2 python-slugify
           pip install google-auth google-auth-oauthlib google-auth-httplib2 requests
 
-      # MUDANÇA CRÍTICA AQUI: Baixar o CSV do outro repositório
+      # PASSO 1: Baixar CSV do outro repositório
       - name: 1. Sync Data (Download from Monitor Repo)
         run: |
           echo "📥 Baixando CSV atualizado do repositório Monitor..."
-          # Cria a pasta data se não existir
           mkdir -p data
-          # Baixa o arquivo RAW atualizado
           curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
 
+      # PASSO 2: Converter CSV para JSON (Script Novo)
       - name: 1.5. Convert CSV to JSON
         run: |
           echo "🔄 Convertendo dados (CSV -> JSON Formatado)..."
           python scripts/sync_data.py
 
+      # PASSO 3: Limpar Dados
       - name: 2. Sanitize Database (Fix SCL Bias)
         run: |
-          echo "🧹 Higienizando banco de dados (Correção Santiago)..."
+          echo "🧹 Higienizando banco de dados..."
           python scripts/fix_database.py
 
+      # PASSO 4: Gerar Site
       - name: 3. Generate HTML (Build Site)
         run: |
           echo "🎨 Rodando gerador de páginas estáticas..."
           python src/generator.py
 
+      # PASSO 5: Credenciais Google (Opcional)
       - name: 4. Setup Google Credentials
         if: secrets.GOOGLE_INDEXING_JSON != ''
         run: |
@@ -60,12 +62,14 @@ jobs:
           echo "${{ secrets.GOOGLE_INDEXING_JSON }}" > credentials/service_account.json
           chmod 600 credentials/service_account.json
 
+      # PASSO 6: Indexar Google (Opcional)
       - name: 5. Index URLs to Google
         if: secrets.GOOGLE_INDEXING_JSON != ''
         run: |
           echo "🔍 Enviando URLs para Google Indexing API..."
           python src/indexer.py || echo "⚠️ Indexação falhou, mas continuando o deploy..."
 
+      # PASSO FINAL: Publicar (Sem [skip ci] para ativar o Cloudflare)
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
