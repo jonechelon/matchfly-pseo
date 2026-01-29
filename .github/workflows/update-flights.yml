@@ -2,14 +2,14 @@ name: GRU Operational Monitor
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # Executa a cada 15 minutos
-  workflow_dispatch:      # Permite rodar manualmente
+    - cron: '*/20 * * * *' # Executa a cada 20 minutos
+  workflow_dispatch:      # Permite rodar manualmente via interface do GitHub
 
 jobs:
   monitor-operations:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Permissão necessária para fazer commit
+      contents: write # Permissão CRÍTICA para fazer o commit de volta
     
     steps:
       - name: Checkout repository
@@ -33,15 +33,22 @@ jobs:
       - name: 1. Sync Data (Download & Convert)
         run: |
           echo "📥 Baixando e processando dados de voos..."
+          # Este script roda na raiz e salva em data/voos_atrasados_gru.csv
           python voos_proximos_finalbuild.py
 
-      - name: 2. Generate HTML (Build Site)
+      - name: 2. Sanitize Database (Fix SCL Bias)
+        run: |
+          echo "🧹 Higienizando banco de dados (Correção Santiago)..."
+          # Aplica as correções do scl_corrections.py no JSON antes de gerar o site
+          python scripts/fix_database.py
+
+      - name: 3. Generate HTML (Build Site)
         run: |
           echo "🎨 Rodando gerador de páginas estáticas..."
+          # Gera o site em public/ usando dados limpos de data/
           python src/generator.py
 
-      - name: 3. Setup Google Credentials
-        # Ajuste: Removemos ${{ }} pois o 'if' já entende variáveis automaticamente
+      - name: 4. Setup Google Credentials
         if: secrets.GOOGLE_INDEXING_JSON != ''
         run: |
           echo "🔐 Configurando credenciais do Google..."
@@ -50,8 +57,7 @@ jobs:
           chmod 600 credentials/service_account.json
           echo "✅ Credenciais salvas com segurança temporária."
 
-      - name: 4. Index URLs to Google
-        # Ajuste: Removemos ${{ }} aqui também
+      - name: 5. Index URLs to Google
         if: secrets.GOOGLE_INDEXING_JSON != ''
         run: |
           echo "🔍 Enviando URLs para Google Indexing API..."
@@ -61,7 +67,8 @@ jobs:
       - name: Auto commit reports
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: 'deploy: update site content [skip ci]'
+          commit_message: 'deploy: update site content (sanitized) [skip ci]'
+          # Monitoramos a pasta data/ e public/ para salvar as alterações
           file_pattern: 'data/flights-db.json data/voos_atrasados_gru.csv public/'
-          commit_user_name: 'Operational Bot'
-          commit_user_email: 'ops-bot@users.noreply.github.com'
+          commit_user_name: 'MatchFly Bot'
+          commit_user_email: 'bot@matchfly.org'
