@@ -8,7 +8,7 @@
 {% block breadcrumb_current %}Cancelados{% endblock %}
 
 {% block alert_ticker %}
-<div class="w-full bg-red-900 text-white border-b border-red-800 shadow-md relative z-40">
+<div class="w-full bg-red-900 text-white border-b border-red-800 shadow-md sticky top-16 z-40">
     <div class="flex items-center h-10">
         <div class="bg-red-950 px-4 h-full flex items-center gap-2 z-10 shrink-0 font-bold text-xs uppercase tracking-wider">
             <span class="relative flex h-2 w-2">
@@ -25,6 +25,7 @@
                     {% for flight in flights[:15] %}
                     <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
                         <i data-lucide="plane-off" class="w-4 h-4 text-red-300"></i>
+                        {% if flight.data_partida %}<span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">{{ flight.data_partida }}</span>{% endif %}
                         <span class="text-red-200">{{ flight.flight_number }}</span>
                         <span class="text-white">{{ flight.destination_city|default(flight.destination_iata)|default('N/A') }}</span>
                         <span class="text-xs bg-red-950/50 px-2 py-0.5 rounded text-red-200 border border-red-800">{{ flight.scheduled_time|default('--:--') }}</span>

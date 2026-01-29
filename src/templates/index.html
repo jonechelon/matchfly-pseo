@@ -111,7 +111,7 @@
     </header>
 
     <!-- Barra de Alertas Unificada (Cancelados + Atrasados) -->
-    <div class="w-full bg-slate-900 text-white border-b border-slate-800 shadow-md relative z-40">
+    <div class="w-full bg-slate-900 text-white border-b border-slate-800 shadow-md sticky top-20 z-40">
         <div class="flex items-center h-10">
             <div class="bg-slate-950 px-4 h-full flex items-center gap-2 z-10 shrink-0 font-bold text-xs uppercase tracking-wider text-blue-200">
                 <span class="relative flex h-2 w-2">
@@ -129,11 +129,13 @@
                     <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
                         {% if 'Cancelado' in page.status %}
                         <i data-lucide="x-circle" class="w-4 h-4 text-red-400"></i>
+                        {% if page.data_partida %}<span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">{{ page.data_partida }}</span>{% endif %}
                         <span class="text-red-200 font-bold">{{ page.flight_number }}</span>
                         <span class="text-slate-300">para {{ page.destination_city|default(page.destination)|default('N/A') }}</span>
                         <span class="text-xs bg-red-950/50 px-2 py-0.5 rounded text-red-300 border border-red-900/50">Cancelado</span>
                         {% else %}
                         <i data-lucide="clock-4" class="w-4 h-4 text-amber-400"></i>
+                        {% if page.data_partida %}<span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">{{ page.data_partida }}</span>{% endif %}
                         <span class="text-amber-200 font-bold">{{ page.flight_number }}</span>
                         <span class="text-slate-300">para {{ page.destination_city|default(page.destination)|default('N/A') }}</span>
                         <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-300 border border-amber-900/50">Atrasado</span>
