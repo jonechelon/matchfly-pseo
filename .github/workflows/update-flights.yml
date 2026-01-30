@@ -31,6 +31,12 @@ jobs:
           mkdir -p data
           curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
 
+      - name: 🔍 DEBUG - Inspect CSV
+        run: |
+          echo "=== ARQUIVO BAIXADO (Top 10 linhas) ==="
+          head -n 10 data/voos_atrasados_gru.csv
+          echo "======================================="
+
       - name: 1.5. Convert CSV to JSON
         run: python scripts/sync_data.py
 
