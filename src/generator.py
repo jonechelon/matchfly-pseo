@@ -540,6 +540,17 @@ ICAO_TO_IATA = {
 }
 
 
+# Fonte da verdade: voos que chegam só com número (sem prefixo IATA no CSV).
+# Baseado em pesquisa externa (horários GRU, FlightStats, ANAC) — não usar faixa numérica.
+KNOWN_NUMERIC_FLIGHTS = {
+    "0015": "Aeromexico",   # AM 15 GRU→MEX (emsampa/ANAC Z0015→MMMX)
+    "15": "Aeromexico",
+    "3609": "GOL",          # G3 3609 GRU→CWB (ANAC 3609→SBCT)
+    "4390": "Azul",         # AD 4390 GRU→CWB (FlightStats / ANAC 4390→SBCT)
+    "6805": "Air Canada",   # AC 6805 GRU→YYZ (ANAC 6805→CYYZ)
+}
+
+
 def get_iata_code(city_name: str) -> str:
     """
     Mapeia nome da cidade para código IATA com busca case-insensitive.
@@ -624,13 +635,20 @@ def infer_airline(flight_number: str, airline: Optional[str] = None) -> str:
         if flight_number_upper.startswith(prefix):
             logger.debug(f"Companhia deduzida: {flight_number} → {airline_name} (prefixo {prefix})")
             return airline_name
-    
-    # Se o voo tem apenas números (4 dígitos), pode ser difícil deduzir
-    # Retorna "Não Informado" em vez de "DESCONHECIDO"
+
+    # Fonte da verdade: voos só numéricos mapeados por pesquisa (GRU/ANAC/FlightStats)
     if flight_number_upper.isdigit():
+        clean_num = "".join(filter(str.isdigit, flight_number))
+        if clean_num:
+            from_map = KNOWN_NUMERIC_FLIGHTS.get(clean_num) or KNOWN_NUMERIC_FLIGHTS.get(
+                clean_num.lstrip("0") or "0"
+            )
+            if from_map:
+                logger.debug(f"Companhia (KNOWN_NUMERIC_FLIGHTS): {flight_number} → {from_map}")
+                return from_map
         logger.debug(f"Voo numérico sem prefixo identificável: {flight_number} → Não Informado")
         return "Não Informado"
-    
+
     # Se não conseguiu deduzir, retorna "Não Informado"
     logger.debug(f"Não foi possível deduzir companhia para: {flight_number} → Não Informado")
     return "Não Informado"
@@ -876,12 +894,20 @@ class FlightPageGenerator:
         Returns:
             True se deve gerar página, False caso contrário
         """
-        # Validação de campos obrigatórios (safe_str evita float/None)
-        required_fields = ['flight_number', 'airline', 'status']
-        for field in required_fields:
-            if not safe_str(flight.get(field)):
-                logger.debug(f"Voo inválido: campo '{field}' ausente")
-                return False
+        # Validação de campos obrigatórios (flight_number e status)
+        if not safe_str(flight.get('flight_number')):
+            logger.debug("Voo inválido: campo 'flight_number' ausente")
+            return False
+        if not safe_str(flight.get('status')):
+            logger.debug("Voo inválido: campo 'status' ausente")
+            return False
+        # airline: usa companhia inferida (KNOWN_NUMERIC_FLIGHTS / prefixo) se CSV vier vazio
+        effective_airline = infer_airline(
+            flight.get('flight_number'), flight.get('airline')
+        )
+        if not effective_airline or effective_airline in ("Não Informado", "DESCONHECIDO", "N/A"):
+            logger.debug(f"Voo inválido: companhia ausente ou não identificável ({effective_airline})")
+            return False
 
         status = safe_str(flight.get('status', '')).lower()
         delay_hours = flight.get('delay_hours', 0)
@@ -1811,7 +1837,10 @@ class FlightPageGenerator:
             
             for i, flight in enumerate(flights, 1):
                 flight_number = flight.get('flight_number', f'UNKNOWN-{i}')
-                
+                # Preenche airline quando CSV vem vazio (ex.: voos 0015, 3609, 4390, 6805)
+                if not safe_str(flight.get('airline')):
+                    flight['airline'] = infer_airline(flight_number, flight.get('airline'))
+
                 # Filtra voo
                 if not self.should_generate_page(flight):
                     self.stats['filtered_out'] += 1
