@@ -1837,11 +1837,15 @@ class FlightPageGenerator:
             
             for i, flight in enumerate(flights, 1):
                 flight_number = flight.get('flight_number', f'UNKNOWN-{i}')
-                # Preenche airline quando CSV vem vazio (ex.: voos 0015, 3609, 4390, 6805)
-                if not safe_str(flight.get('airline')):
-                    flight['airline'] = infer_airline(flight_number, flight.get('airline'))
 
-                # Filtra voo
+                # CRITICAL FIX: Tenta inferir companhia se estiver vazia ANTES de validar
+                if not flight.get('airline') or flight.get('airline') == 'nan':
+                    inferred = infer_airline(flight.get('flight_number'), "")
+                    if inferred and inferred != "Não Informado":
+                        flight['airline'] = inferred
+                        # logger.info(f"🔮 Voo {flight.get('flight_number')} recuperado como {inferred}")
+
+                # Só DEPOIS disso chama o validador
                 if not self.should_generate_page(flight):
                     self.stats['filtered_out'] += 1
                     continue
