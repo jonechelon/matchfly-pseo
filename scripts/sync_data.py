@@ -1,9 +1,16 @@
 import pandas as pd
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 import numpy as np
+
+try:
+    from zoneinfo import ZoneInfo
+    BR_TIMEZONE = ZoneInfo("America/Sao_Paulo")
+except Exception:
+    # Fallback para UTC-3 fixo se ZoneInfo falhar (ex: Python < 3.9)
+    BR_TIMEZONE = timezone(timedelta(hours=-3))
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
@@ -35,11 +42,11 @@ def sync_csv_to_json():
         }
         df = df.rename(columns={k: v for k, v in rename_map.items() if k in df.columns})
         
-        # 2. Garante Data (Fallback)
+        # 2. Garante Data (Fallback) — data de HOJE no Brasil (não no servidor UTC)
         if 'data_partida' not in df.columns:
             df['data_partida'] = ''
         
-        today_str = datetime.now().strftime('%d/%m')
+        today_str = datetime.now(BR_TIMEZONE).strftime('%d/%m')
         
         # Remove espaços e força data de hoje se vazio
         df['data_partida'] = df['data_partida'].str.strip()
@@ -63,10 +70,10 @@ def sync_csv_to_json():
         # Converte para lista de dicionários
         flights_list = df.to_dict(orient='records')
         
-        # Salva
+        # Salva (timestamp em BRT para consistência)
         final_payload = {
             "flights": flights_list,
-            "updated_at": datetime.now().isoformat()
+            "updated_at": datetime.now(BR_TIMEZONE).isoformat()
         }
 
         json_path.parent.mkdir(parents=True, exist_ok=True)
