@@ -1,72 +1,46 @@
-# Python
+# --- Python & System Defaults ---
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+.DS_Store
+Thumbs.db
 
-# Virtual Environment
+# --- Virtual Environment & Env Vars ---
 venv/
 env/
-ENV/
-env.bak/
-venv.bak/
+.env
 
-# Logs
-logs/*.log
-*.log
-*.log.*
-logs_voos_atrasados/
-logs_voos_proximos/
-logs_operational_metrics/
-
-# Dados Gerados/Temporários
-data/*.csv
-!data/.gitkeep
-data/*.backup.json
-
-# Mantemos flights-db.json e specificroutes_anac.json versionados (não ignorar data/*.json)
-
-# Sistema Operacional
-.DS_Store
-
-# IDE
+# --- IDE Settings ---
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
 
-# Environment variables
-.env
-.env.local
+# --- Logs & Debug ---
+*.log
+npm-debug.log*
 
-# Playwright
-playwright-report/
-test-results/
+# --- DATA FILES (Regra Estrita: Sem dados no GitHub) ---
+# Ignora todos os CSVs (dados brutos)
+data/*.csv
 
-# Data (tokens e temporários)
-data/*.log
-data/.azion_tokens.json
+# Ignora todos os JSONs gerados (banco de dados processado)
+data/*.json
 
-# Temporary files
-*.tmp
-*.bak
-debug_*.html
-credentials/
+# EXCEÇÃO: Se o dicionário da ANAC for um arquivo fixo necessário para rodar o script, 
+# descomente a linha abaixo para permitir que ele suba:
+#!data/specificroutes_anac.json
+
+# --- OUTPUT / GENERATED SITE (Regra Estrita: Sem HTML no GitHub) ---
+# Ignora HTMLs na raiz da pasta public (index.html, cidades.html, etc)
+public/*.html
+
+# Ignora pastas de conteúdo gerado
+public/voo/
+public/cidades/
+public/destino/
+
+# Ignora sitemap e outros arquivos gerados dinamicamente
+public/sitemap.xml
+public/robots.txt
+
+# --- BACKUPS & LIXO ---
+projects/matchfly-pseo-backup-erros/

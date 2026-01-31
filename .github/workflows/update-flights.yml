@@ -40,14 +40,12 @@ jobs:
       - name: 1.5. Convert CSV to JSON
         run: python scripts/sync_data.py
 
-      - name: 2. Sanitize Database
-        run: python scripts/fix_database.py
-
-      - name: 3. Generate HTML
+      # fix_database.py movido para matchfly-pseo-backup-erros (script pontual)
+      - name: 2. Generate HTML
         run: python src/generator.py
 
       # SOLUÇÃO DO ERRO: Removemos o 'if: secrets...' e usamos ENV
-      - name: 4. Setup Google Credentials (Optional)
+      - name: 3. Setup Google Credentials (Optional)
         env:
           GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
         run: |
@@ -60,15 +58,15 @@ jobs:
             chmod 600 credentials/service_account.json
           fi
 
-      - name: 5. Index URLs to Google (Optional)
+      # indexer.py movido para matchfly-pseo-backup-erros (integrado/legado)
+      - name: 4. Index URLs to Google (Optional)
         env:
           GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
         run: |
           if [ -z "$GOOGLE_JSON" ]; then
             echo "⚠️ Indexação pulada (sem credenciais)."
           else
-            echo "🔍 Enviando URLs para Google..."
-            python src/indexer.py || echo "⚠️ Erro na indexação, continuando deploy..."
+            echo "⚠️ Indexação desativada (indexer em backup). Configure manualmente se necessário."
           fi
 
       - name: Auto commit reports
