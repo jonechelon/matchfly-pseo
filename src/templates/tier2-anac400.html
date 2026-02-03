@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Voo {{ flight_number }} da {{ airline }} ({{ origin }} → {{ destination }}) foi cancelado ou atrasado? Indenização para voos nacionais e internacionais saindo de Guarulhos. {{ regulation }} garante até R$ 10.000.">
+    <meta name="description" content="{{ voo.seo_description }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ canonical_url }}">
     <meta name="keywords" content="voo cancelado, atraso de voo, indenização ANAC, {{ airline }}, {{ flight_number }}, compensação aérea, voos internacionais, voos nacionais, {{ regulation }}, GRU, {{ destination }}">
     
-    <title>Voo {{ flight_number }} {{ airline }} para {{ destination }} - Indenização {% if is_domestic %}ANAC 400{% else %}Internacional{% endif %} | MatchFly</title>
+    <title>{{ voo.seo_title }}</title>
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -17,69 +19,24 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Voo {{ flight_number }} {{ airline }} para {{ destination }} - Indenização {% if is_domestic %}ANAC{% else %}Internacional{% endif %}">
     
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLACEHOLDER"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PLACEHOLDER');
+    </script>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 10 L60 40 L90 40 L70 60 L75 90 L50 75 L25 90 L30 60 L10 40 L40 40 Z' fill='%231e3a8a'/></svg>">
     
-    <!-- JSON-LD Schema: BroadcastEvent -->
+    <!-- JSON-LD Schema: Flight + Breadcrumb + FAQ -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BroadcastEvent",
-        "name": "Voo {{ flight_number }} - {{ airline }}",
-        "eventStatus": "https://schema.org/EventCancelled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "startDate": "{{ departure_time }}",
-        "location": {
-            "@type": "Airport",
-            "name": "{{ origin }}",
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "{{ origin }}"
-            }
-        },
-        "organizer": {
-            "@type": "Airline",
-            "name": "{{ airline }}"
-        },
-        "description": "Voo {{ flight_number }} da {{ airline }} com status {{ status }}. Passageiros podem ter direito a compensação pela ANAC 400."
-    }
-    </script>
-    
-    <!-- JSON-LD Schema: FAQPage -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "Como receber indenização ANAC 400 por voo cancelado?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Segundo a Resolução ANAC 400, você tem direito a indenização se: (1) o voo foi cancelado ou atrasou mais de 4 horas, (2) a companhia não ofereceu assistência adequada, e (3) o problema ocorreu nos últimos 2 anos. A indenização pode chegar a R$ 10.000 por danos morais."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Quanto tempo demora para receber a compensação?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "O processo de compensação pode levar de 30 a 90 dias, dependendo da complexidade do caso. Com a ajuda de especialistas, o processo é mais rápido e suas chances de sucesso aumentam significativamente."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Preciso pagar algo para verificar se tenho direito?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Não! A avaliação inicial é 100% gratuita e sem compromisso. Você só paga se receber a compensação (modelo de sucesso). Não há custos iniciais ou taxas ocultas."
-                }
-            }
-        ]
-    }
+{{ json_ld_schema | safe }}
     </script>
     
     <style>

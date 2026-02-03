@@ -44,3 +44,8 @@ public/robots.txt
 
 # --- BACKUPS & LIXO ---
 projects/matchfly-pseo-backup-erros/
+# --- SEGURANÇA ---
+credentials/
+service_account.json
+.env
+client_secret.json

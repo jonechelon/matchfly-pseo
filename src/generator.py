@@ -1058,6 +1058,86 @@ class FlightPageGenerator:
         }
         
         return context
+
+    def _generate_robots_txt(self):
+        """Gera robots.txt na pasta public."""
+        robots_content = (
+            "User-agent: *\n"
+            "Allow: /\n\n"
+            f"Sitemap: {self.base_url}/sitemap.xml\n"
+        )
+        (self.output_dir / "robots.txt").write_text(robots_content, encoding="utf-8")
+        logging.info("🤖 robots.txt gerado.")
+
+    def _get_seo_context(self, flight: dict, slug: str) -> dict:
+        """
+        Gera dados de SEO (Schema JSON-LD, Títulos e Canonical).
+        Recebe 'slug' já calculado para garantir consistência.
+        """
+        # 1. Extração segura usando função GLOBAL safe_str
+        fnum = safe_str(flight.get('flight_number')) or "Voo"
+        airline = safe_str(flight.get('airline')) or "Companhia"
+        dest = safe_str(flight.get('destination')) or "Destino Desconhecido"
+        status = safe_str(flight.get('status')) or ""
+
+        # Validação de Edge Cases
+        if fnum == "Voo" or dest == "Destino Desconhecido":
+            logging.warning(f"⚠️ SEO Incompleto para voo: {fnum} -> {dest}")
+
+        current_year = datetime.now().year
+        flight_url = f"{self.base_url}/voo/{slug}.html"
+
+        # 2. Copywriting baseado no status do voo
+        if "Cancelado" in status or "CANCELLED" in status.upper():
+            title = f"Voo {fnum} Cancelado? Indenização e Direitos {current_year} | MatchFly"
+            desc = f"Voo {fnum} da {airline} cancelado? Veja como pedir indenização por danos morais. Análise gratuita de direitos."
+            schema_status = "https://schema.org/FlightCancelled"
+        else:
+            title = f"Voo {fnum} Atrasou? Valor da Indenização {current_year} | MatchFly"
+            desc = f"Atraso no voo {fnum} para {dest}? Saiba seus direitos e verifique se cabe indenização imediata."
+            schema_status = "https://schema.org/FlightDelayed"
+
+        # 3. Schema JSON-LD (Flight + Breadcrumb + FAQ)
+        schema = {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Home", "item": self.base_url},
+                        {"@type": "ListItem", "position": 2, "name": f"Voo {fnum}", "item": flight_url}
+                    ]
+                },
+                {
+                    "@type": "Flight",
+                    "flightNumber": fnum,
+                    "provider": {"@type": "Airline", "name": airline},
+                    "departureAirport": {"@type": "Airport", "iataCode": "GRU", "name": "Aeroporto de Guarulhos"},
+                    "arrivalAirport": {"@type": "Airport", "name": dest},
+                    "flightStatus": schema_status
+                },
+                {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": f"Tenho direito a indenização pelo voo {fnum}?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Se houve cancelamento ou atraso superior a 4 horas, você pode ter direito a indenização. Verifique gratuitamente no link."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+
+        return {
+            "page_title": title,
+            "page_description": desc,
+            "canonical_url": flight_url,
+            "json_ld_schema": json.dumps(schema, ensure_ascii=False)
+        }
     
     def generate_page_resilient(self, flight: Dict, metadata: Dict) -> bool:
         try:
@@ -1097,8 +1177,34 @@ class FlightPageGenerator:
                 'status': status,
             })
 
+            # --- LÓGICA SEO PROGRAMÁTICO (Injetar no dicionário 'voo') ---
+            # Objetivo: Capturar buscas como "Indenização voo LA1234" ou "Voo GOL 1234 Atrasado"
+            voo = {
+                'Airline': context.get('airline', ''),
+                'FlightNumber': context.get('flight_number', ''),
+                'Status': context.get('status', ''),
+                'Date': context.get('data_partida', ''),
+            }
+            # 1. Título da Página (<title>)
+            # Ex: "Indenização Voo LA3030 (Latam) - Atrasado em Guarulhos | MatchFly"
+            seo_title = f"Indenização Voo {voo.get('Airline', '')} {voo.get('FlightNumber', '')} - {voo.get('Status', '')} em Guarulhos | MatchFly"
+            # 2. Meta Description (<meta name="description">)
+            # Ex: "Teve problemas com o voo LA3030 em 15/02? Se atrasou mais de 4h, você pode ter direito a R$ 10.000. Verifique grátis agora."
+            seo_description = (
+                f"Teve problemas com o voo {voo.get('FlightNumber', '')} da {voo.get('Airline', '')} "
+                f"no dia {voo.get('Date', '')}? Se houve atraso ou cancelamento, verifique seus direitos "
+                f"de indenização imediatamente."
+            )
+            voo['seo_title'] = seo_title
+            voo['seo_description'] = seo_description
+            context['voo'] = voo
+
             # 4. Gerar HTML
             slug = self.generate_slug(flight)
+            # Injeta dados de SEO no contexto
+            seo_data = self._get_seo_context(flight, slug)
+            context.update(seo_data)
+
             filename = f"{slug}.html"
             
             template = self.jinja_env.get_template(self.template_file.name)
@@ -1956,6 +2062,7 @@ class FlightPageGenerator:
             # ============================================================
             if self.success_pages:
                 self.generate_sitemap()
+                self._generate_robots_txt()
             else:
                 logger.warning("⚠️  Nenhuma página gerada, sitemap não criado")
             

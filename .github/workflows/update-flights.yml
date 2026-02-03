@@ -1,78 +1,59 @@
-name: GRU Operational Monitor
+name: Update Flight Data & Site
 
 on:
+  # Agendamento: Roda a cada 20 minutos
   schedule:
     - cron: '*/20 * * * *'
+  
+  # Botão Manual: Permite rodar quando quiser pela aba "Actions"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  monitor-operations:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
+      # 1. Baixa o código do repositório
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python 3.12
-        uses: actions/setup-python@v4
+      # 2. Configura o Python
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+          cache: 'pip'
 
+      # 3. Instala as dependências (Correção: Usa requirements.txt para segurança)
       - name: Install dependencies
-        run: pip install requests pandas jinja2 python-slugify google-auth google-auth-oauthlib google-auth-httplib2
-
-      - name: 1. Sync Data (Download from Monitor Repo)
         run: |
-          mkdir -p data
-          curl -L -o data/voos_atrasados_gru.csv https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv
+          python -m pip install --upgrade pip
+          # Tenta instalar do arquivo requirements.txt se existir, senão instala manual
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests pandas jinja2 python-slugify openpyxl; fi
+          # Garante a ferramenta de deploy (caso não esteja no requirements)
+          pip install ghp-import
 
-      - name: 🔍 DEBUG - Inspect CSV
-        run: |
-          echo "=== ARQUIVO BAIXADO (Top 10 linhas) ==="
-          head -n 10 data/voos_atrasados_gru.csv
-          echo "======================================="
+      # 4. Roda o Scraper (Baixa CSV e converte para JSON)
+      # ATENÇÃO: Se você moveu este arquivo para a pasta 'scripts', mude para: scripts/voos_proximos_finalbuild.py
+      - name: Run Scraper (Sync Data)
+        run: python voos_proximos_finalbuild.py
 
-      - name: 1.5. Convert CSV to JSON
-        run: python scripts/sync_data.py
-
-      # fix_database.py movido para matchfly-pseo-backup-erros (script pontual)
-      - name: 2. Generate HTML
+      # 5. Roda o Gerador (Cria HTML + SEO + Sitemap)
+      - name: Run Generator (Build Site)
         run: python src/generator.py
 
-      # SOLUÇÃO DO ERRO: Removemos o 'if: secrets...' e usamos ENV
-      - name: 3. Setup Google Credentials (Optional)
-        env:
-          GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
-        run: |
-          if [ -z "$GOOGLE_JSON" ]; then
-            echo "⚠️ Secret GOOGLE_INDEXING_JSON vazia. Pulando configuração..."
-          else
-            echo "🔐 Configurando credenciais..."
-            mkdir -p credentials
-            echo "$GOOGLE_JSON" > credentials/service_account.json
-            chmod 600 credentials/service_account.json
-          fi
-
-      # indexer.py movido para matchfly-pseo-backup-erros (integrado/legado)
-      - name: 4. Index URLs to Google (Optional)
-        env:
-          GOOGLE_JSON: ${{ secrets.GOOGLE_INDEXING_JSON }}
-        run: |
-          if [ -z "$GOOGLE_JSON" ]; then
-            echo "⚠️ Indexação pulada (sem credenciais)."
-          else
-            echo "⚠️ Indexação desativada (indexer em backup). Configure manualmente se necessário."
-          fi
-
-      - name: Auto commit reports
-        uses: stefanzweifel/git-auto-commit-action@v5
+      # 6. Publica no GitHub Pages
+      # Correção Crítica: Adicionado 'cname' para não derrubar o domínio matchfly.org
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: success()
         with:
-          commit_message: 'deploy: update site content (from monitor repo)'
-          file_pattern: 'data/flights-db.json public/'
-          commit_user_name: 'MatchFly Bot'
-          commit_user_email: 'bot@matchfly.org'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          force_orphan: true # Mantém o histórico da branch de publicação limpo
+          cname: matchfly.org # <--- CRUCIAL: Mantém seu site no ar
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
