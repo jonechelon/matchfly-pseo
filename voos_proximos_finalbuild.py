@@ -14,6 +14,7 @@ import os
 import re
 import requests
 import pandas as pd
+import numpy as np
 import logging
 import datetime
 
@@ -193,6 +194,41 @@ def _scheduled_time_hhmm_from_record(record: dict) -> str:
     if re.match(r"\d{1,2}:\d{2}", s):
         return s[:5].zfill(5) if len(s) >= 5 else "00:00"
     return record.get("Horario") or "00:00"
+
+
+def _is_nullish(val):
+    """True se o valor for NaN/NaT/pd.NA/None, inaceitável para JSON/JSONB no Postgres."""
+    if val is None:
+        return True
+    try:
+        if pd.isna(val):
+            return True
+    except (TypeError, ValueError):
+        pass
+    if isinstance(val, float) and (val != val or np.isnan(val)):
+        return True
+    return False
+
+
+def sanitize_row_for_supabase(row: dict) -> dict:
+    """
+    Substitui NaN/NaT/pd.NA por None em todos os campos e dentro de raw_data.
+    Evita erro Postgres: invalid input syntax for type json, Token "NaN" is invalid.
+    """
+    if not isinstance(row, dict):
+        return row
+    out = {}
+    for k, v in row.items():
+        if isinstance(v, dict):
+            out[k] = sanitize_row_for_supabase(v)
+        elif isinstance(v, list):
+            out[k] = [
+                sanitize_row_for_supabase(x) if isinstance(x, dict) else (None if _is_nullish(x) else x)
+                for x in v
+            ]
+        else:
+            out[k] = None if _is_nullish(v) else v
+    return out
 
 
 def flight_record_to_row(record: dict) -> dict:
@@ -404,6 +440,7 @@ def main():
     to_upsert = [rec for rec in final_list if isinstance(rec, dict) and flight_unique_key(rec) in new_uids]
     if to_upsert:
         rows = [flight_record_to_row(rec) for rec in to_upsert]
+        rows = [sanitize_row_for_supabase(row) for row in rows]
         batch_size = 500
         for i in range(0, len(rows), batch_size):
             batch = rows[i : i + batch_size]
