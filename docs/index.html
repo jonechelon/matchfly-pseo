@@ -1262,7 +1262,7 @@
                         </div>
                     </div>
                     <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                        376 incidentes
+                        379 incidentes
                     </span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar js-ping-pong-scroll md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
@@ -1270,16 +1270,16 @@
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
     <div class="group perspective-1000 w-full h-[280px]">
         <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ6603">
-            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-red-200 z-10">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2 text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">KLM</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">LATAM</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="flex items-center bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg><span class="ml-1">18</span>
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">18</span>
                         </span>
-                        <span class="bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded-md uppercase">CANCELADO</span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
                 </div>
                 <div class="text-center my-2">
@@ -1293,7 +1293,7 @@
                 </div>
                 <div class="mt-auto">
                     <button type="button" onclick="document.getElementById('card-RJ6603').classList.add('rotate-y-180')"
-                            aria-label="Ver datas disponíveis" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
                     </button>
                 </div>
@@ -1309,6 +1309,18 @@
                 <div id="dates-RJ6603" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
+                onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-0302').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            03/02
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-0102').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            01/02
+        </button>
+        
+        <button type="button"
                 onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-3001').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             30/01
@@ -1321,21 +1333,9 @@
         </button>
         
         <button type="button"
-                onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-0102').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            01/02
-        </button>
-        
-        <button type="button"
                 onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-2601').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             26/01
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ6603').classList.add('hidden'); document.getElementById('times-RJ6603-0302').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            03/02
         </button>
         
         <button type="button"
@@ -1383,6 +1383,50 @@
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
+        <div id="times-RJ6603-0302" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ6603-0302').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">03/02</div>
+                
+            <a href="voo/voo-latam-rj6603-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                13:15
+            </a>
+            
+            <a href="voo/voo-latam-rj6603-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                13:15
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-RJ6603-0102" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ6603-0102').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                
+            <a href="voo/voo-delta-rj6603-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                19:40
+            </a>
+            
+            <a href="voo/voo-delta-rj6603-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                19:40
+            </a>
+            
+            </div>
+        </div>
+        
         <div id="times-RJ6603-3001" class="hidden flex flex-col h-full">
             <button type="button"
                     onclick="document.getElementById('times-RJ6603-3001').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
@@ -1427,28 +1471,6 @@
             </div>
         </div>
         
-        <div id="times-RJ6603-0102" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ6603-0102').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
-                
-            <a href="voo/voo-delta-rj6603-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:40
-            </a>
-            
-            <a href="voo/voo-delta-rj6603-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:40
-            </a>
-            
-            </div>
-        </div>
-        
         <div id="times-RJ6603-2601" class="hidden flex flex-col h-full">
             <button type="button"
                     onclick="document.getElementById('times-RJ6603-2601').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
@@ -1466,28 +1488,6 @@
             <a href="voo/voo-emirates-rj6603-gru-gig.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 20:05
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-RJ6603-0302" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ6603-0302').classList.add('hidden'); document.getElementById('dates-RJ6603').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">03/02</div>
-                
-            <a href="voo/voo-latam-rj6603-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:15
-            </a>
-            
-            <a href="voo/voo-latam-rj6603-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:15
             </a>
             
             </div>
@@ -1632,7 +1632,7 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">23</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">24</span>
                         </span>
                         <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
@@ -1670,6 +1670,18 @@
         </button>
         
         <button type="button"
+                onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-0302').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            03/02
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-0102').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            01/02
+        </button>
+        
+        <button type="button"
                 onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-3001').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             30/01
@@ -1685,18 +1697,6 @@
                 onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-2801').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             28/01
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-0302').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            03/02
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ3874').classList.add('hidden'); document.getElementById('times-RJ3874-0102').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            01/02
         </button>
         
         <button type="button"
@@ -1778,6 +1778,50 @@
             </div>
         </div>
         
+        <div id="times-RJ3874-0302" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ3874-0302').classList.add('hidden'); document.getElementById('dates-RJ3874').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">03/02</div>
+                
+            <a href="voo/voo-latam-rj3874-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                16:10
+            </a>
+            
+            <a href="voo/voo-latam-rj3874-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                16:10
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-RJ3874-0102" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ3874-0102').classList.add('hidden'); document.getElementById('dates-RJ3874').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                
+            <a href="voo/voo-latam-rj3874-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                17:35
+            </a>
+            
+            <a href="voo/voo-latam-rj3874-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                17:35
+            </a>
+            
+            </div>
+        </div>
+        
         <div id="times-RJ3874-3001" class="hidden flex flex-col h-full">
             <button type="button"
                     onclick="document.getElementById('times-RJ3874-3001').classList.add('hidden'); document.getElementById('dates-RJ3874').classList.remove('hidden');"
@@ -1839,50 +1883,6 @@
             <a href="voo/voo-delta-rj3874-gru-gig.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 16:30
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-RJ3874-0302" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ3874-0302').classList.add('hidden'); document.getElementById('dates-RJ3874').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">03/02</div>
-                
-            <a href="voo/voo-latam-rj3874-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                16:10
-            </a>
-            
-            <a href="voo/voo-latam-rj3874-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                16:10
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-RJ3874-0102" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ3874-0102').classList.add('hidden'); document.getElementById('dates-RJ3874').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
-                
-            <a href="voo/voo-latam-rj3874-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:35
-            </a>
-            
-            <a href="voo/voo-latam-rj3874-gru-gig.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:35
             </a>
             
             </div>
@@ -2031,6 +2031,11 @@
                 15:30
             </a>
             
+            <a href="voo/voo-latam-rj3874-gru-gig.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                15:30
+            </a>
+            
             </div>
         </div>
         
@@ -2062,7 +2067,7 @@
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
         </div>
         <div class="relative z-10">
-            <h3 class="text-4xl font-black text-white mb-2">+335</h3>
+            <h3 class="text-4xl font-black text-white mb-2">+337</h3>
             <p class="text-blue-200 text-sm font-medium leading-tight">
                 Outros voos para<br>
                 <span class="text-white text-lg font-bold">Rio de Janeiro</span>
@@ -2327,7 +2332,7 @@
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div><div class="ticker-loop"><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div><div class="ticker-loop"><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div><div class="ticker-loop"><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div><div class="ticker-loop"><div class="ticker-item">✈ 6170</div><div class="ticker-item">✈ 1172</div><div class="ticker-item">✈ 2307</div><div class="ticker-item">✈ 6172</div><div class="ticker-item">✈ 3586</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -2355,7 +2360,7 @@
                         </div>
                     </div>
                     <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                        45 incidentes
+                        46 incidentes
                     </span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar js-ping-pong-scroll md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
@@ -2447,7 +2452,7 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">16</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">17</span>
                         </span>
                         <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
@@ -2485,6 +2490,12 @@
         </button>
         
         <button type="button"
+                onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-0102').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            01/02
+        </button>
+        
+        <button type="button"
                 onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-3001').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             30/01
@@ -2497,9 +2508,9 @@
         </button>
         
         <button type="button"
-                onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-0102').classList.remove('hidden');"
+                onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-2701').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            01/02
+            27/01
         </button>
         
         <button type="button"
@@ -2512,12 +2523,6 @@
                 onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-2501').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             25/01
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ4126').classList.add('hidden'); document.getElementById('times-RJ4126-2701').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            27/01
         </button>
         
         <button type="button"
@@ -2558,6 +2563,28 @@
             <a href="voo/voo-latam-rj4126-gru-bsb.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 18:30
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-RJ4126-0102" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ4126-0102').classList.add('hidden'); document.getElementById('dates-RJ4126').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                
+            <a href="voo/voo-latam-rj4126-gru-bsb.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                19:15
+            </a>
+            
+            <a href="voo/voo-latam-rj4126-gru-bsb.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                19:15
             </a>
             
             </div>
@@ -2607,23 +2634,18 @@
             </div>
         </div>
         
-        <div id="times-RJ4126-0102" class="hidden flex flex-col h-full">
+        <div id="times-RJ4126-2701" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-RJ4126-0102').classList.add('hidden'); document.getElementById('dates-RJ4126').classList.remove('hidden');"
+                    onclick="document.getElementById('times-RJ4126-2701').classList.add('hidden'); document.getElementById('dates-RJ4126').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">27/01</div>
                 
             <a href="voo/voo-latam-rj4126-gru-bsb.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:15
-            </a>
-            
-            <a href="voo/voo-latam-rj4126-gru-bsb.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:15
+                18:20
             </a>
             
             </div>
@@ -2673,23 +2695,6 @@
             </div>
         </div>
         
-        <div id="times-RJ4126-2701" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ4126-2701').classList.add('hidden'); document.getElementById('dates-RJ4126').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">27/01</div>
-                
-            <a href="voo/voo-latam-rj4126-gru-bsb.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                18:20
-            </a>
-            
-            </div>
-        </div>
-        
         <div id="times-RJ4126-2301" class="hidden flex flex-col h-full">
             <button type="button"
                     onclick="document.getElementById('times-RJ4126-2301').classList.add('hidden'); document.getElementById('dates-RJ4126').classList.remove('hidden');"
@@ -2716,6 +2721,11 @@
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">19/01</div>
                 
+            <a href="voo/voo-latam-rj4126-gru-bsb.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                17:30
+            </a>
+            
             <a href="voo/voo-latam-rj4126-gru-bsb.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 17:30
@@ -2788,7 +2798,7 @@
                         </div>
                     </div>
                     <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                        15 incidentes
+                        14 incidentes
                     </span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar js-ping-pong-scroll md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
@@ -3004,7 +3014,7 @@
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
         </div>
         <div class="relative z-10">
-            <h3 class="text-4xl font-black text-white mb-2">+8</h3>
+            <h3 class="text-4xl font-black text-white mb-2">+7</h3>
             <p class="text-blue-200 text-sm font-medium leading-tight">
                 Outros voos para<br>
                 <span class="text-white text-lg font-bold">Nova York</span>
@@ -3524,7 +3534,7 @@
                         </div>
                     </div>
                     <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                        37 incidentes
+                        36 incidentes
                     </span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar js-ping-pong-scroll md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
@@ -3763,7 +3773,7 @@
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
         </div>
         <div class="relative z-10">
-            <h3 class="text-4xl font-black text-white mb-2">+29</h3>
+            <h3 class="text-4xl font-black text-white mb-2">+28</h3>
             <p class="text-blue-200 text-sm font-medium leading-tight">
                 Outros voos para<br>
                 <span class="text-white text-lg font-bold">Curitiba</span>
@@ -3771,7 +3781,7 @@
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div><div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div><div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div><div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div><div class="ticker-loop"><div class="ticker-item">✈ 7345</div><div class="ticker-item">✈ 1470</div><div class="ticker-item">✈ 7805</div><div class="ticker-item">✈ 4550</div><div class="ticker-item">✈ 4830</div><div class="ticker-item">✈ 8129</div><div class="ticker-item">✈ 3609</div><div class="ticker-item">✈ 4390</div><div class="ticker-item">✈ 3611</div><div class="ticker-item">✈ RJ9300</div><div class="ticker-item">✈ 3288</div><div class="ticker-item">✈ 7330</div><div class="ticker-item">✈ 1164</div><div class="ticker-item">✈ 6124</div><div class="ticker-item">✈ 7534</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -3789,24 +3799,124 @@
             <div class="mb-16">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div class="flex items-center gap-3 flex-wrap">
-                        <h3 class="text-2xl font-bold text-slate-800">Santiago</h3>
+                        <h3 class="text-2xl font-bold text-slate-800">Porto Seguro</h3>
                         <div class="flex flex-wrap gap-2">
                             
                             <span class="px-3 py-1 text-xs font-bold font-mono bg-blue-100 text-blue-700 rounded-full uppercase">
-                                SCL
+                                BPS
                             </span>
                             
                         </div>
                     </div>
                     <span class="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                        12 incidentes
+                        13 incidentes
                     </span>
                 </div>
                 <div class="flex overflow-x-auto gap-4 pb-4 no-scrollbar js-ping-pong-scroll md:grid md:grid-cols-2 lg:grid-cols-3 md:overflow-visible md:pb-0">
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
     <div class="group perspective-1000 w-full h-[280px]">
-        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-8096">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ4193">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">EMIRATES</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">3</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">RJ4193</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Porto Seguro</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 30/01, 26/01</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-RJ4193').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-RJ4193').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-RJ4193" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-RJ4193').classList.add('hidden'); document.getElementById('times-RJ4193-3001').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            30/01
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-RJ4193').classList.add('hidden'); document.getElementById('times-RJ4193-2601').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            26/01
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-RJ4193-3001" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ4193-3001').classList.add('hidden'); document.getElementById('dates-RJ4193').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
+                
+            <a href="voo/voo-emirates-rj4193-gru-bps.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                06:35
+            </a>
+            
+            <a href="voo/voo-emirates-rj4193-gru-bps.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                06:35
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-RJ4193-2601" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ4193-2601').classList.add('hidden'); document.getElementById('dates-RJ4193').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">26/01</div>
+                
+            <a href="voo/voo-latam-rj4193-gru-bps.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                06:35
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+                    
+                    <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ6720">
             <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2 text-gray-700">
@@ -3814,22 +3924,22 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">4</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">6</span>
                         </span>
                         <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
                 </div>
                 <div class="text-center my-2">
-                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">8096</h3>
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">RJ6720</h3>
                     <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
-                        <span>GRU</span><span class="text-gray-300">•</span><span>Santiago</span>
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Porto Seguro</span>
                     </div>
                 </div>
                 <div class="mt-3 mb-2 px-1">
-                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02, 28/01</p>
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02, 30/01, 26/01</p>
                 </div>
                 <div class="mt-auto">
-                    <button type="button" onclick="document.getElementById('card-8096').classList.add('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-RJ6720').classList.add('rotate-y-180')"
                             aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
                     </button>
@@ -3840,65 +3950,93 @@
                     <div class="flex items-center gap-2 text-slate-300">
                         <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
                     </div>
-                    <button type="button" onclick="document.getElementById('card-8096').classList.remove('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-RJ6720').classList.remove('rotate-y-180')"
                             aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
-                <div id="dates-8096" class="flex-1 overflow-y-auto custom-scrollbar">
+                <div id="dates-RJ6720" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
-                onclick="document.getElementById('dates-8096').classList.add('hidden'); document.getElementById('times-8096-0102').classList.remove('hidden');"
+                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-0102').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             01/02
         </button>
         
         <button type="button"
-                onclick="document.getElementById('dates-8096').classList.add('hidden'); document.getElementById('times-8096-2801').classList.remove('hidden');"
+                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-3001').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            28/01
+            30/01
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-2601').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            26/01
         </button>
         </div>
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
-        <div id="times-8096-0102" class="hidden flex flex-col h-full">
+        <div id="times-RJ6720-0102" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-8096-0102').classList.add('hidden'); document.getElementById('dates-8096').classList.remove('hidden');"
+                    onclick="document.getElementById('times-RJ6720-0102').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
                 
-            <a href="voo/voo-latam-8096-gru-scl.html"
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:15
+                12:35
             </a>
             
-            <a href="voo/voo-latam-8096-gru-scl.html"
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:15
+                12:35
             </a>
             
             </div>
         </div>
         
-        <div id="times-8096-2801" class="hidden flex flex-col h-full">
+        <div id="times-RJ6720-3001" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-8096-2801').classList.add('hidden'); document.getElementById('dates-8096').classList.remove('hidden');"
+                    onclick="document.getElementById('times-RJ6720-3001').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">28/01</div>
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
                 
-            <a href="voo/voo-klm-8096-gru-scl.html"
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:35
+                13:00
             </a>
             
-            <a href="voo/voo-klm-8096-gru-scl.html"
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                17:35
+                13:00
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-RJ6720-2601" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ6720-2601').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">26/01</div>
+                
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                13:15
+            </a>
+            
+            <a href="voo/voo-latam-rj6720-gru-bps.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                13:15
             </a>
             
             </div>
@@ -3910,97 +4048,20 @@
     </div>
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
-    <div class="group perspective-1000 w-full h-[280px]">
-        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-0763">
-            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
-                <div class="flex justify-between items-start">
-                    <div class="flex items-center gap-2 text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">DELTA</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">2</span>
-                        </span>
-                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
-                    </div>
-                </div>
-                <div class="text-center my-2">
-                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">0763</h3>
-                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
-                        <span>GRU</span><span class="text-gray-300">•</span><span>Santiago</span>
-                    </div>
-                </div>
-                <div class="mt-3 mb-2 px-1">
-                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02</p>
-                </div>
-                <div class="mt-auto">
-                    <button type="button" onclick="document.getElementById('card-0763').classList.add('rotate-y-180')"
-                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
-                    </button>
-                </div>
-            </div>
-            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
-                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
-                    <div class="flex items-center gap-2 text-slate-300">
-                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
-                    </div>
-                    <button type="button" onclick="document.getElementById('card-0763').classList.remove('rotate-y-180')"
-                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
-                </div>
-                <div id="dates-0763" class="flex-1 overflow-y-auto custom-scrollbar">
-                    <div class="grid grid-cols-3 gap-2">
-        <button type="button"
-                onclick="document.getElementById('dates-0763').classList.add('hidden'); document.getElementById('times-0763-0102').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            01/02
-        </button>
-        </div>
-                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
-                </div>
-                
-        <div id="times-0763-0102" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-0763-0102').classList.add('hidden'); document.getElementById('dates-0763').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
-                
-            <a href="voo/voo-delta-0763-gru-scl.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:40
-            </a>
-            
-            <a href="voo/voo-delta-0763-gru-scl.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                19:40
-            </a>
-            
-            </div>
-        </div>
-        
-            </div>
-        </div>
-    </div>
-    </div>
-                    
-                    <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
-    <a href="destino/santiago.html" class="group relative w-full h-[300px] bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-blue-700/50">
+    <a href="destino/porto-seguro.html" class="group relative w-full h-[300px] bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-blue-700/50">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
         </div>
         <div class="relative z-10">
-            <h3 class="text-4xl font-black text-white mb-2">+6</h3>
+            <h3 class="text-4xl font-black text-white mb-2">+4</h3>
             <p class="text-blue-200 text-sm font-medium leading-tight">
                 Outros voos para<br>
-                <span class="text-white text-lg font-bold">Santiago</span>
+                <span class="text-white text-lg font-bold">Porto Seguro</span>
             </p>
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div><div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div><div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ 4193</div><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div></div><div class="ticker-loop"><div class="ticker-item">✈ 4193</div><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div></div><div class="ticker-loop"><div class="ticker-item">✈ 4193</div><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -4357,11 +4418,11 @@
             <div class="mb-16">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div class="flex items-center gap-3 flex-wrap">
-                        <h3 class="text-2xl font-bold text-slate-800">Porto Seguro</h3>
+                        <h3 class="text-2xl font-bold text-slate-800">Santiago</h3>
                         <div class="flex flex-wrap gap-2">
                             
                             <span class="px-3 py-1 text-xs font-bold font-mono bg-blue-100 text-blue-700 rounded-full uppercase">
-                                BPS
+                                SCL
                             </span>
                             
                         </div>
@@ -4374,30 +4435,30 @@
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
     <div class="group perspective-1000 w-full h-[280px]">
-        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ4193">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-8096">
             <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2 text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">EMIRATES</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">LATAM</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">3</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">4</span>
                         </span>
                         <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
                 </div>
                 <div class="text-center my-2">
-                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">RJ4193</h3>
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">8096</h3>
                     <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
-                        <span>GRU</span><span class="text-gray-300">•</span><span>Porto Seguro</span>
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Santiago</span>
                     </div>
                 </div>
                 <div class="mt-3 mb-2 px-1">
-                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 30/01, 26/01</p>
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02, 28/01</p>
                 </div>
                 <div class="mt-auto">
-                    <button type="button" onclick="document.getElementById('card-RJ4193').classList.add('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-8096').classList.add('rotate-y-180')"
                             aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
                     </button>
@@ -4408,60 +4469,65 @@
                     <div class="flex items-center gap-2 text-slate-300">
                         <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
                     </div>
-                    <button type="button" onclick="document.getElementById('card-RJ4193').classList.remove('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-8096').classList.remove('rotate-y-180')"
                             aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
-                <div id="dates-RJ4193" class="flex-1 overflow-y-auto custom-scrollbar">
+                <div id="dates-8096" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
-                onclick="document.getElementById('dates-RJ4193').classList.add('hidden'); document.getElementById('times-RJ4193-3001').classList.remove('hidden');"
+                onclick="document.getElementById('dates-8096').classList.add('hidden'); document.getElementById('times-8096-0102').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            30/01
+            01/02
         </button>
         
         <button type="button"
-                onclick="document.getElementById('dates-RJ4193').classList.add('hidden'); document.getElementById('times-RJ4193-2601').classList.remove('hidden');"
+                onclick="document.getElementById('dates-8096').classList.add('hidden'); document.getElementById('times-8096-2801').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            26/01
+            28/01
         </button>
         </div>
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
-        <div id="times-RJ4193-3001" class="hidden flex flex-col h-full">
+        <div id="times-8096-0102" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-RJ4193-3001').classList.add('hidden'); document.getElementById('dates-RJ4193').classList.remove('hidden');"
+                    onclick="document.getElementById('times-8096-0102').classList.add('hidden'); document.getElementById('dates-8096').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
                 
-            <a href="voo/voo-emirates-rj4193-gru-bps.html"
+            <a href="voo/voo-latam-8096-gru-scl.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                06:35
+                17:15
             </a>
             
-            <a href="voo/voo-emirates-rj4193-gru-bps.html"
+            <a href="voo/voo-latam-8096-gru-scl.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                06:35
+                17:15
             </a>
             
             </div>
         </div>
         
-        <div id="times-RJ4193-2601" class="hidden flex flex-col h-full">
+        <div id="times-8096-2801" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-RJ4193-2601').classList.add('hidden'); document.getElementById('dates-RJ4193').classList.remove('hidden');"
+                    onclick="document.getElementById('times-8096-2801').classList.add('hidden'); document.getElementById('dates-8096').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">26/01</div>
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">28/01</div>
                 
-            <a href="voo/voo-latam-rj4193-gru-bps.html"
+            <a href="voo/voo-klm-8096-gru-scl.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                06:35
+                17:35
+            </a>
+            
+            <a href="voo/voo-klm-8096-gru-scl.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                17:35
             </a>
             
             </div>
@@ -4474,30 +4540,30 @@
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
     <div class="group perspective-1000 w-full h-[280px]">
-        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ6720">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-0763">
             <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2 text-gray-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">LATAM</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">DELTA</span>
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">6</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">2</span>
                         </span>
                         <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
                     </div>
                 </div>
                 <div class="text-center my-2">
-                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">RJ6720</h3>
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">0763</h3>
                     <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
-                        <span>GRU</span><span class="text-gray-300">•</span><span>Porto Seguro</span>
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Santiago</span>
                     </div>
                 </div>
                 <div class="mt-3 mb-2 px-1">
-                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02, 30/01, 26/01</p>
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02</p>
                 </div>
                 <div class="mt-auto">
-                    <button type="button" onclick="document.getElementById('card-RJ6720').classList.add('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-0763').classList.add('rotate-y-180')"
                             aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
                     </button>
@@ -4508,93 +4574,37 @@
                     <div class="flex items-center gap-2 text-slate-300">
                         <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
                     </div>
-                    <button type="button" onclick="document.getElementById('card-RJ6720').classList.remove('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-0763').classList.remove('rotate-y-180')"
                             aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
-                <div id="dates-RJ6720" class="flex-1 overflow-y-auto custom-scrollbar">
+                <div id="dates-0763" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
-                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-3001').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            30/01
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-0102').classList.remove('hidden');"
+                onclick="document.getElementById('dates-0763').classList.add('hidden'); document.getElementById('times-0763-0102').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             01/02
-        </button>
-        
-        <button type="button"
-                onclick="document.getElementById('dates-RJ6720').classList.add('hidden'); document.getElementById('times-RJ6720-2601').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            26/01
         </button>
         </div>
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
-        <div id="times-RJ6720-3001" class="hidden flex flex-col h-full">
+        <div id="times-0763-0102" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-RJ6720-3001').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
-                
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:00
-            </a>
-            
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:00
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-RJ6720-0102" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ6720-0102').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
+                    onclick="document.getElementById('times-0763-0102').classList.add('hidden'); document.getElementById('dates-0763').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
                 
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
+            <a href="voo/voo-delta-0763-gru-scl.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                12:35
+                19:40
             </a>
             
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
+            <a href="voo/voo-delta-0763-gru-scl.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                12:35
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-RJ6720-2601" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-RJ6720-2601').classList.add('hidden'); document.getElementById('dates-RJ6720').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">26/01</div>
-                
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:15
-            </a>
-            
-            <a href="voo/voo-latam-rj6720-gru-bps.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:15
+                19:40
             </a>
             
             </div>
@@ -4606,20 +4616,20 @@
     </div>
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
-    <a href="destino/porto-seguro.html" class="group relative w-full h-[300px] bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-blue-700/50">
+    <a href="destino/santiago.html" class="group relative w-full h-[300px] bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-blue-700/50">
         <div class="absolute inset-0 opacity-5">
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
         </div>
         <div class="relative z-10">
-            <h3 class="text-4xl font-black text-white mb-2">+3</h3>
+            <h3 class="text-4xl font-black text-white mb-2">+6</h3>
             <p class="text-blue-200 text-sm font-medium leading-tight">
                 Outros voos para<br>
-                <span class="text-white text-lg font-bold">Porto Seguro</span>
+                <span class="text-white text-lg font-bold">Santiago</span>
             </p>
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div><div class="ticker-item">✈ 4193</div></div><div class="ticker-loop"><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div><div class="ticker-item">✈ 4193</div></div><div class="ticker-loop"><div class="ticker-item">✈ RJ6271</div><div class="ticker-item">✈ 6240</div><div class="ticker-item">✈ 4193</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div><div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div><div class="ticker-loop"><div class="ticker-item">✈ 8050</div><div class="ticker-item">✈ 6293</div><div class="ticker-item">✈ 0629</div><div class="ticker-item">✈ 6314</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -5667,15 +5677,15 @@
                 <div id="dates-6718" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
-                onclick="document.getElementById('dates-6718').classList.add('hidden'); document.getElementById('times-6718-2501').classList.remove('hidden');"
-                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            25/01
-        </button>
-        
-        <button type="button"
                 onclick="document.getElementById('dates-6718').classList.add('hidden'); document.getElementById('times-6718-3001').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
             30/01
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-6718').classList.add('hidden'); document.getElementById('times-6718-2501').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            25/01
         </button>
         
         <button type="button"
@@ -5687,6 +5697,23 @@
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
+        <div id="times-6718-3001" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-6718-3001').classList.add('hidden'); document.getElementById('dates-6718').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
+                
+            <a href="voo/voo-klm-6718-gru-ams.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                21:00
+            </a>
+            
+            </div>
+        </div>
+        
         <div id="times-6718-2501" class="hidden flex flex-col h-full">
             <button type="button"
                     onclick="document.getElementById('times-6718-2501').classList.add('hidden'); document.getElementById('dates-6718').classList.remove('hidden');"
@@ -5701,23 +5728,6 @@
                 21:00
             </a>
             
-            <a href="voo/voo-klm-6718-gru-ams.html"
-               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                21:00
-            </a>
-            
-            </div>
-        </div>
-        
-        <div id="times-6718-3001" class="hidden flex flex-col h-full">
-            <button type="button"
-                    onclick="document.getElementById('times-6718-3001').classList.add('hidden'); document.getElementById('dates-6718').classList.remove('hidden');"
-                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
-            </button>
-            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
-                
             <a href="voo/voo-klm-6718-gru-ams.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 21:00
@@ -5988,7 +5998,7 @@
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div><div class="ticker-loop"><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div><div class="ticker-loop"><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div><div class="ticker-loop"><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div><div class="ticker-loop"><div class="ticker-item">✈ RJ8475</div><div class="ticker-item">✈ 3268</div><div class="ticker-item">✈ 6763</div><div class="ticker-item">✈ 8376</div><div class="ticker-item">✈ RJ7407</div><div class="ticker-item">✈ 2858</div><div class="ticker-item">✈ 3620</div><div class="ticker-item">✈ 5126</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -6410,7 +6420,7 @@
                     
                     <div class="flex-shrink-0 w-[85vw] sm:w-[350px] md:w-auto flex justify-center">
     <div class="group perspective-1000 w-full h-[280px]">
-        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-1909">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-5150">
             <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
                 <div class="flex justify-between items-start">
                     <div class="flex items-center gap-2 text-gray-700">
@@ -6424,16 +6434,16 @@
                     </div>
                 </div>
                 <div class="text-center my-2">
-                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">1909</h3>
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">5150</h3>
                     <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
                         <span>GRU</span><span class="text-gray-300">•</span><span>Recife</span>
                     </div>
                 </div>
                 <div class="mt-3 mb-2 px-1">
-                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 30/01</p>
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02</p>
                 </div>
                 <div class="mt-auto">
-                    <button type="button" onclick="document.getElementById('card-1909').classList.add('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-5150').classList.add('rotate-y-180')"
                             aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
                     </button>
@@ -6444,37 +6454,37 @@
                     <div class="flex items-center gap-2 text-slate-300">
                         <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
                     </div>
-                    <button type="button" onclick="document.getElementById('card-1909').classList.remove('rotate-y-180')"
+                    <button type="button" onclick="document.getElementById('card-5150').classList.remove('rotate-y-180')"
                             aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
                 </div>
-                <div id="dates-1909" class="flex-1 overflow-y-auto custom-scrollbar">
+                <div id="dates-5150" class="flex-1 overflow-y-auto custom-scrollbar">
                     <div class="grid grid-cols-3 gap-2">
         <button type="button"
-                onclick="document.getElementById('dates-1909').classList.add('hidden'); document.getElementById('times-1909-3001').classList.remove('hidden');"
+                onclick="document.getElementById('dates-5150').classList.add('hidden'); document.getElementById('times-5150-0102').classList.remove('hidden');"
                 class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
-            30/01
+            01/02
         </button>
         </div>
                     <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
                 </div>
                 
-        <div id="times-1909-3001" class="hidden flex flex-col h-full">
+        <div id="times-5150-0102" class="hidden flex flex-col h-full">
             <button type="button"
-                    onclick="document.getElementById('times-1909-3001').classList.add('hidden'); document.getElementById('dates-1909').classList.remove('hidden');"
+                    onclick="document.getElementById('times-5150-0102').classList.add('hidden'); document.getElementById('dates-5150').classList.remove('hidden');"
                     class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
             </button>
             <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
-                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">30/01</div>
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
                 
-            <a href="voo/voo-latam-1909-gru-rec.html"
+            <a href="voo/voo-latam-5150-gru-rec.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:35
+                20:20
             </a>
             
-            <a href="voo/voo-latam-1909-gru-rec.html"
+            <a href="voo/voo-latam-5150-gru-rec.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
-                13:35
+                20:20
             </a>
             
             </div>
@@ -6499,7 +6509,7 @@
         </div>
         <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
             <div class="animate-marquee-vertical">
-                <div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5150</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div><div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5150</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div><div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5150</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div>
+                <div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 1909</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div><div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 1909</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div><div class="ticker-loop"><div class="ticker-item">✈ 9334</div><div class="ticker-item">✈ 1909</div><div class="ticker-item">✈ 2764</div><div class="ticker-item">✈ 6143</div><div class="ticker-item">✈ 5177</div><div class="ticker-item">✈ 5172</div><div class="ticker-item">✈ 3354</div><div class="ticker-item">✈ 5223</div></div>
             </div>
         </div>
         <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
@@ -7326,7 +7336,7 @@
                     MatchFly - Informações sobre direitos de passageiros aéreos (ANAC 400)
                 </p>
                 <p class="text-blue-400 text-xs">
-                    Última atualização: 05/02/2026 às 09:04 • Todos os direitos reservados © 2026
+                    Última atualização: 05/02/2026 às 10:03 • Todos os direitos reservados © 2026
                 </p>
             </div>
         </div>
@@ -7451,7 +7461,7 @@
             <div class="absolute inset-0 opacity-20 pattern-grid-lg"></div>
             <div class="relative z-10 flex justify-between items-center">
                 <h3 class="text-base font-black text-white leading-tight tracking-tight">
-                    Seja o Herói do <span class="text-yellow-300">Área VIP T3</span>! 🦸
+                    Seja o Herói do <span class="text-yellow-300">Portão 323</span>! 🦸
                 </h3>
                 <button onclick="toggleShareWidget()" class="text-white/60 hover:text-white transition-colors p-1" aria-label="Fechar">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
@@ -7475,9 +7485,9 @@
                 <div class="flex -space-x-3 overflow-hidden p-0.5">
                     <div id="w-avatar-1" class="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 border-2 border-white ring-1 ring-green-400/30 animate-pulse flex items-center justify-center text-[10px] font-bold text-white shadow-sm">JD</div>
                     <div id="w-avatar-2" class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white ring-1 ring-blue-400/30 animate-pulse delay-75 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">AL</div>
-                    <div class="w-8 h-8 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm z-0">+40</div>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm z-0">+28</div>
                 </div>
-                <span class="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full animate-pulse whitespace-nowrap">● 40 pessoas compartilhando</span>
+                <span class="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full animate-pulse whitespace-nowrap">● 28 pessoas compartilhando</span>
             </div>
 
             <div class="space-y-2">
