@@ -229,34 +229,96 @@
         .number-pulse {
             animation: subtle-blink 2s ease-in-out infinite;
         }
+
+        /* Flip Card 3D */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .flip-card-inner { transition: transform 0.6s ease-in-out; }
+        /* FIX CRÍTICO: Desativa cliques na frente quando card está virado */
+        .flip-card-inner.rotate-y-180 .card-front { pointer-events: none; }
+
+        /* Custom Scrollbar para lista de datas */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* Mini Split-Flap (tier2) */
+        .flap-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1e293b;
+            color: #fcd34d;
+            font-weight: bold;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+        .flap-box::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: rgba(0,0,0,0.3);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
-    
-    <!-- Header Sticky Premium -->
-    <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm backdrop-blur-md bg-white/95">
-        <div class="container mx-auto px-4 py-4">
-            <div class="flex items-center justify-between">
-                <a href="/" class="flex items-center space-x-2">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21l2-6 9-3-9-3-2-6-2 7-6 2 6 2 2 7z"/>
-                        </svg>
+
+    <!-- Header Unificado (3-em-1): Logo + Ticker R$ 10.000 + Barra de Progresso -->
+    <header class="fixed top-0 inset-x-0 z-[100] bg-slate-900 shadow-lg transition-transform duration-300">
+        <div class="px-4 py-2 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="/" class="flex items-center gap-2">
+                    <div class="bg-blue-600 rounded p-1">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
                     </div>
-                    <div>
-                        <h1 class="text-xl font-black text-blue-950">MatchFly</h1>
-                        <p class="text-[10px] text-gray-500 uppercase tracking-wider">ANAC Compliance</p>
-                    </div>
+                    <span class="text-white font-black text-lg tracking-tight">MatchFly</span>
                 </a>
-                
-                <div class="flex items-center space-x-3 px-4 py-2 bg-blue-50 rounded-full border border-blue-100">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-xs font-semibold text-blue-900">Atualizado há {{ hours_ago }}h</span>
+            </div>
+
+            <div class="flex items-center gap-1 scale-90 origin-right">
+                <span class="text-[10px] text-slate-400 font-mono uppercase mr-1 hidden sm:inline">Estimado:</span>
+                <div class="flex gap-0.5">
+                    <div class="bg-slate-800 text-yellow-400 font-mono text-sm px-1 rounded border-b border-black/50">R</div>
+                    <div class="bg-slate-800 text-yellow-400 font-mono text-sm px-1 rounded border-b border-black/50">$</div>
+                </div>
+                <div class="flex gap-0.5">
+                    <div id="h-d1" class="bg-black text-white font-mono text-sm w-4 h-6 flex items-center justify-center rounded border-b border-slate-700">1</div>
+                    <div id="h-d2" class="bg-black text-white font-mono text-sm w-4 h-6 flex items-center justify-center rounded border-b border-slate-700">0</div>
+                    <div class="text-slate-500 font-bold text-xs self-end mb-1">.</div>
+                    <div id="h-d3" class="bg-black text-white font-mono text-sm w-4 h-6 flex items-center justify-center rounded border-b border-slate-700">0</div>
+                    <div id="h-d4" class="bg-black text-white font-mono text-sm w-4 h-6 flex items-center justify-center rounded border-b border-slate-700">0</div>
+                    <div id="h-d5" class="bg-black text-white font-mono text-sm w-4 h-6 flex items-center justify-center rounded border-b border-slate-700">0</div>
                 </div>
             </div>
         </div>
+
+        <div class="bg-white border-b border-slate-200 px-4 py-2 flex justify-between items-center shadow-sm">
+            <div class="flex flex-col">
+                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider leading-none mb-0.5">Validação do Caso</span>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs font-black text-slate-800">Passo 0 de 3</span>
+                    <div class="h-1 w-16 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-orange-500 w-[5%]"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-1.5 bg-green-50 px-2 py-1 rounded text-green-700 border border-green-100">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <span class="text-xs font-bold">30s</span>
+            </div>
+        </div>
     </header>
-    
+    <div class="h-[100px]"></div>
+
     <!-- Hero Section Premium -->
     <section class="relative bg-gradient-to-b from-slate-50 to-white py-12 overflow-hidden">
         <div class="absolute inset-0 opacity-5">
@@ -652,24 +714,23 @@
                     <div 
                         id="card-1" 
                         onclick="toggleCard(1)"
-                        class="card-question relative p-6 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-100"
+                        class="card-question relative p-4 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-100"
                     >
-                        <!-- Check Icon (Hidden by default) -->
-                        <div id="check-1" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
-                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div id="check-1" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         
-                        <div class="flex items-start space-x-4 pr-14">
-                            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
-                                <span class="text-2xl font-black text-blue-950">1</span>
+                        <div class="flex items-start space-x-3 pr-12">
+                            <div class="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
+                                <span class="text-lg md:text-2xl font-black text-blue-950">1</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="text-xl md:text-2xl font-black text-blue-950 mb-3 leading-tight">
+                                <h3 class="text-lg md:text-2xl font-bold text-slate-800 mb-2 leading-tight">
                                     A companhia NÃO ofereceu hotel ou alimentação?
                                 </h3>
-                                <p class="text-base text-slate-600 leading-relaxed font-medium">
+                                <p class="text-xs md:text-base text-slate-600 leading-relaxed font-medium">
                                     Segundo a ANAC 400, assistência é obrigatória em atrasos superiores a 2 horas
                                 </p>
                             </div>
@@ -680,24 +741,23 @@
                     <div 
                         id="card-2" 
                         onclick="toggleCard(2)"
-                        class="card-question relative p-6 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-50"
+                        class="card-question relative p-4 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-50"
                     >
-                        <!-- Check Icon (Hidden by default) -->
-                        <div id="check-2" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
-                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div id="check-2" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         
-                        <div class="flex items-start space-x-4 pr-14">
-                            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
-                                <span class="text-2xl font-black text-blue-950">2</span>
+                        <div class="flex items-start space-x-3 pr-12">
+                            <div class="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
+                                <span class="text-lg md:text-2xl font-black text-blue-950">2</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="text-xl md:text-2xl font-black text-blue-950 mb-3 leading-tight">
+                                <h3 class="text-lg md:text-2xl font-bold text-slate-800 mb-2 leading-tight">
                                     Seu voo foi CANCELADO ou atrasou mais de 4 horas?
                                 </h3>
-                                <p class="text-base text-slate-600 leading-relaxed font-medium">
+                                <p class="text-xs md:text-base text-slate-600 leading-relaxed font-medium">
                                     Critério principal para direito à indenização por danos morais
                                 </p>
                             </div>
@@ -708,24 +768,23 @@
                     <div 
                         id="card-3" 
                         onclick="toggleCard(3)"
-                        class="card-question relative p-6 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-50"
+                        class="card-question relative p-4 md:p-8 rounded-2xl border-4 border-gray-300 cursor-pointer transition-all duration-300 hover:shadow-xl bg-white opacity-50"
                     >
-                        <!-- Check Icon (Hidden by default) -->
-                        <div id="check-3" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
-                            <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <div id="check-3" class="absolute top-3 right-3 w-10 h-10 rounded-full bg-green-500 items-center justify-center shadow-lg hidden">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                             </svg>
                         </div>
                         
-                        <div class="flex items-start space-x-4 pr-14">
-                            <div class="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
-                                <span class="text-2xl font-black text-blue-950">3</span>
+                        <div class="flex items-start space-x-3 pr-12">
+                            <div class="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center border-2 border-blue-200 shadow-md">
+                                <span class="text-lg md:text-2xl font-black text-blue-950">3</span>
                             </div>
                             <div class="flex-1">
-                                <h3 class="text-xl md:text-2xl font-black text-blue-950 mb-3 leading-tight">
+                                <h3 class="text-lg md:text-2xl font-bold text-slate-800 mb-2 leading-tight">
                                     O problema ocorreu nos últimos 2 anos?
                                 </h3>
-                                <p class="text-base text-slate-600 leading-relaxed font-medium">
+                                <p class="text-xs md:text-base text-slate-600 leading-relaxed font-medium">
                                     Prazo legal para solicitar compensação é de até 2 anos da data do voo
                                 </p>
                             </div>
@@ -824,16 +883,16 @@
         
         <div class="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="w-full">
+                <table class="w-full min-w-[320px]">
                     <thead>
                         <tr class="bg-gradient-to-r from-blue-950 to-blue-900">
-                            <th class="px-6 py-5 text-left text-white font-black text-lg">Tempo de Atraso</th>
-                            <th class="px-6 py-5 text-left text-white font-black text-lg">Direitos Obrigatórios</th>
+                            <th class="px-2 py-2 md:px-6 md:py-5 text-left text-white font-black text-xs md:text-lg">Tempo de Atraso</th>
+                            <th class="px-2 py-2 md:px-6 md:py-5 text-left text-white font-black text-xs md:text-lg">Direitos Obrigatórios</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 rounded-xl bg-blue-100 flex items-center justify-center flex-shrink-0">
                                         <svg class="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
@@ -846,7 +905,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <ul class="space-y-2 text-gray-700">
                                     <li class="flex items-start space-x-2">
                                         <svg class="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -864,7 +923,7 @@
                             </td>
                         </tr>
                         <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 rounded-xl bg-orange-100 flex items-center justify-center flex-shrink-0">
                                         <svg class="w-7 h-7 text-orange-700" fill="currentColor" viewBox="0 0 20 20">
@@ -877,7 +936,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <ul class="space-y-2 text-gray-700">
                                     <li class="flex items-start space-x-2">
                                         <svg class="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -895,7 +954,7 @@
                             </td>
                         </tr>
                         <tr class="bg-gradient-to-r from-red-50 to-orange-50">
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-12 h-12 rounded-xl bg-red-500 flex items-center justify-center flex-shrink-0 shadow-lg">
                                         <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -908,7 +967,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-5">
+                            <td class="px-2 py-2 md:px-6 md:py-5 text-xs md:text-base">
                                 <ul class="space-y-2 text-gray-700">
                                     <li class="flex items-start space-x-2">
                                         <svg class="w-5 h-5 text-blue-900 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -1649,6 +1708,57 @@ Compartilhe com quem precisa!`;
             }
         }, 4000);
     </script>
-    
+
+    <!-- Header Ticker (Slot Machine) + FAB com SVG -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Função de Animação Slot Machine (header R$ 10.000)
+        const spinDigit = (elementId, finalVal, duration) => {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+
+            let start = Date.now();
+            const interval = setInterval(() => {
+                const timePassed = Date.now() - start;
+                if (timePassed >= duration) {
+                    clearInterval(interval);
+                    el.innerText = finalVal;
+                    el.classList.add('text-yellow-400');
+                    return;
+                }
+                el.innerText = Math.floor(Math.random() * 10);
+            }, 50);
+        };
+
+        setTimeout(() => {
+            spinDigit('h-d1', 1, 1000);
+            spinDigit('h-d2', 0, 1500);
+            spinDigit('h-d3', 0, 2000);
+            spinDigit('h-d4', 0, 2500);
+            spinDigit('h-d5', 0, 3000);
+        }, 500);
+
+        // FAB (Floating Action Button) com ícone SVG
+        const card1El = document.getElementById('card-1');
+        const fab = document.createElement('button');
+        fab.setAttribute('type', 'button');
+        fab.setAttribute('aria-label', 'Continuar Avaliação');
+        fab.className = 'fixed bottom-24 right-4 z-[90] bg-orange-600 text-white px-4 py-2.5 rounded-full shadow-xl font-bold text-xs flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 border border-orange-500';
+        fab.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg> Continuar';
+        fab.onclick = () => { if (card1El) card1El.scrollIntoView({ behavior: 'smooth', block: 'center' }); };
+        document.body.appendChild(fab);
+
+        window.addEventListener('scroll', () => {
+            if (!card1El) return;
+            const quizPos = card1El.getBoundingClientRect().top;
+            if (quizPos < -500) {
+                fab.classList.remove('translate-y-20', 'opacity-0');
+            } else {
+                fab.classList.add('translate-y-20', 'opacity-0');
+            }
+        });
+    });
+    </script>
+
 </body>
 </html>

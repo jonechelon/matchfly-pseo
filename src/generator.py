@@ -20,6 +20,7 @@ import sys
 import subprocess
 import hashlib
 import re
+from collections import defaultdict, OrderedDict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Set
@@ -119,6 +120,36 @@ def parse_flight_time(flight: Dict) -> datetime:
 
     except Exception:
         return datetime.min
+
+
+def format_date_time_fmt(flight_or_page: Dict) -> str:
+    """
+    Formata data e hora para exibição em cards: "dd/mm às HH:MM".
+    Usado na Home e em listas por cidade para mostrar ordem temporal.
+    """
+    data = safe_str(flight_or_page.get('data_partida', ''))
+    time_part = safe_str(flight_or_page.get('display_time', ''))
+    if not time_part:
+        st = safe_str(flight_or_page.get('scheduled_time', ''))
+        if st and ' ' in st:
+            time_part = st.split(' ')[-1][:5]
+        elif st and ':' in st and len(st) <= 5:
+            time_part = st[:5]
+        elif st:
+            try:
+                dt = datetime.fromisoformat(st.replace('Z', '').split('+')[0].split('.')[0])
+                time_part = dt.strftime('%H:%M')
+            except Exception:
+                pass
+    if data and '/' in data:
+        parts = data.split('/')
+        if len(parts) >= 2:
+            data = f"{parts[0]}/{parts[1]}"
+    if data and time_part:
+        return f"{data} às {time_part}"
+    if data:
+        return data
+    return ''
 
 
 # ==============================================================================
@@ -669,8 +700,8 @@ class FlightPageGenerator:
         self,
         data_file: str = "data/flights-db.json",
         template_file: str = "src/templates/tier2-anac400.html",
-        output_dir: str = "public",
-        voo_dir: str = "public/voo",
+        output_dir: str = "docs",
+        voo_dir: str = "docs/voo",
         affiliate_link: str = "",
         base_url: str = "https://matchfly.org"
     ):
@@ -777,40 +808,43 @@ class FlightPageGenerator:
         try:
             self.output_dir.mkdir(parents=True, exist_ok=True)
             self.voo_dir.mkdir(parents=True, exist_ok=True)
-            logger.info(f"✅ Pasta {self.voo_dir} pronta")
+            logger.info(f"Pasta {self.voo_dir} pronta")
+            # Infraestrutura GitHub Pages (CNAME + bypass Jekyll)
+            (self.output_dir / "CNAME").write_text("matchfly.org", encoding="utf-8")
+            (self.output_dir / ".nojekyll").touch()
             return True
         except Exception as e:
-            logger.error(f"❌ Erro ao criar pastas: {e}")
+            logger.error(f"Erro ao criar pastas: {e}")
             return False
     
     def initial_cleanup(self) -> None:
         """
         STEP 2: Initial Cleanup com auditoria.
-        Remove index.html antigo e conta arquivos em public/voo/.
+        Remove index.html antigo e conta arquivos em voo_dir.
         """
         logger.info("")
         logger.info("=" * 70)
         logger.info("STEP 2: INITIAL CLEANUP (Auditoria)")
         logger.info("=" * 70)
-        
+
         # Remove index.html antigo
         index_file = self.output_dir / "index.html"
         if index_file.exists():
             try:
                 index_file.unlink()
-                logger.info("🗑️  Removido: public/index.html (será regenerado)")
+                logger.info(f"Removido: {index_file} (será regenerado)")
             except Exception as e:
-                logger.warning(f"⚠️  Não foi possível remover index.html: {e}")
-        
-        # Conta arquivos HTML em public/voo/
+                logger.warning(f"Não foi possível remover index.html: {e}")
+
+        # Conta arquivos HTML em voo_dir
         old_files = list(self.voo_dir.glob("*.html"))
         self.stats['old_files_detected'] = len(old_files)
-        
+
         if old_files:
-            logger.info(f"📊 Detectados {len(old_files)} arquivos antigos em public/voo/")
-            logger.info("   Serão removidos automaticamente quando não regenerados.")
+            logger.info(f"Detectados {len(old_files)} arquivos antigos em {self.voo_dir}")
+            logger.info("Serão removidos automaticamente quando não regenerados.")
         else:
-            logger.info("📊 Nenhum arquivo antigo detectado em public/voo/")
+            logger.info(f"Nenhum arquivo antigo detectado em {self.voo_dir}")
     
     def load_flight_data(self) -> Optional[Dict]:
         """
@@ -899,6 +933,27 @@ class FlightPageGenerator:
             logger.error(f"Erro ao carregar dados: {e}")
             return None
     
+    def _get_effective_destination_city(self, flight: Dict) -> str:
+        """
+        Retorna a cidade de destino efetiva após correções (SCL, ANAC, IATA).
+        Mesma lógica usada em generate_page_resilient para consistência.
+        """
+        clean_fnum = "".join(filter(str.isdigit, self.safe_str(flight.get('flight_number', ''))))
+        correction_iata = CORRECTIONS_DICT.get(clean_fnum)
+        anac_iata = ANAC_DB.get(clean_fnum)
+        if correction_iata:
+            dest_iata = correction_iata
+        elif anac_iata:
+            dest_iata = anac_iata
+        else:
+            dest_iata = self.safe_str(flight.get('destination_iata')) or ''
+        dest_city = IATA_TO_CITY_NAME.get(dest_iata) or getattr(
+            enrichment_module, 'IATA_TO_CITY', {}
+        ).get(dest_iata)
+        if not dest_city:
+            dest_city = self.safe_str(flight.get('destination')) or dest_iata or "Destino Desconhecido"
+        return dest_city
+
     def should_generate_page(self, flight: Dict) -> bool:
         """
         Valida se a página do voo deve ser gerada.
@@ -969,6 +1024,10 @@ class FlightPageGenerator:
         else:
             date_suffix = f"-{flight_date.strftime('%d-%m')}"  # ex: -31-01
         return base + date_suffix
+
+    def get_city_slug(self, city_name: str) -> str:
+        """Gera slug padronizado para nome de cidade (Single Source of Truth para URLs de destino)."""
+        return slugify(safe_str(city_name) or "destino")
 
     def prepare_template_context(self, flight: Dict, metadata: Dict) -> Dict:
         """
@@ -1138,7 +1197,212 @@ class FlightPageGenerator:
             "canonical_url": flight_url,
             "json_ld_schema": json.dumps(schema, ensure_ascii=False)
         }
-    
+
+    def get_flight_card_flip_html(self, flight: dict, related_dates: list = None) -> str:
+        """
+        Card Flip 3D com navegação hierárquica: Data → Horário → Página do Voo.
+
+        Args:
+            flight: Dicionário com dados do voo
+            related_dates: Lista de tuplas (datetime_display, slug)
+                          Ex: [("03/02 14:00", "slug123"), ("03/02 18:30", "slug456")]
+        """
+        # Extração segura de dados
+        flight_num = self.safe_str(flight.get('flight_number')) or 'N/A'
+        airline = self.safe_str(flight.get('airline')) or 'Companhia'
+        origin = self.safe_str(flight.get('origin')) or 'GRU'
+        dest = self.safe_str(flight.get('destination')) or self.safe_str(flight.get('destination_iata')) or 'Destino'
+        status = self.safe_str(flight.get('status')) or 'Status'
+        status_upper = status.upper()
+
+        # ID seguro para JavaScript
+        flight_id_safe = re.sub(r'[^a-zA-Z0-9]', '', flight_num)
+
+        # Cores
+        is_delayed = 'ATRASADO' in status_upper or 'DELAYED' in status_upper
+        badge_bg = "bg-orange-100 text-orange-800" if is_delayed else "bg-red-100 text-red-800"
+        btn_bg = "bg-orange-600 hover:bg-orange-700" if is_delayed else "bg-red-600 hover:bg-red-700"
+        border_col = "border-orange-200" if is_delayed else "border-red-200"
+
+        # Ícones SVG
+        icon_plane = """<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg>"""
+        icon_clock = """<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>"""
+        icon_ban = """<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>"""
+        icon_status = icon_clock if is_delayed else icon_ban
+        icon_check = """<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>"""
+        icon_close = """<svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>"""
+        icon_back = """<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>"""
+
+        # Lógica de agrupamento
+        if not related_dates:
+            slug = self.generate_slug(flight)
+            scheduled = self.safe_str(flight.get('scheduled_time', ''))
+            if len(scheduled) >= 16:
+                date_part = f"{scheduled[8:10]}/{scheduled[5:7]}"
+                time_part = scheduled[11:16]
+                date_display = f"{date_part} {time_part}"
+            else:
+                date_display = "N/A"
+            related_dates = [(date_display, slug)]
+
+        grouped_by_date = defaultdict(list)
+        total_count = 0
+
+        for datetime_str, slug in related_dates:
+            total_count += 1
+            clean_str = datetime_str.replace("ATRASADO", "").replace("CANCELADO", "").strip()
+            parts = clean_str.split()
+            date_key = parts[0] if parts else "N/A"
+            time_val = parts[1] if len(parts) > 1 else "Ver"
+            if len(date_key) >= 5 and '/' in date_key:
+                grouped_by_date[date_key].append({'time': time_val, 'slug': slug})
+
+        # Preview de datas únicas (DD/MM) para a frente do card
+        unique_dates = set()
+        for datetime_str, _ in related_dates:
+            parts = datetime_str.split()
+            date_key = parts[0] if parts else ""
+            if len(date_key) >= 5 and "/" in date_key:
+                try:
+                    d, m = date_key.split("/")[:2]
+                    unique_dates.add((int(m), int(d)))
+                except (ValueError, IndexError):
+                    pass
+        all_dates_sorted = sorted(unique_dates, reverse=True)
+        total_unique = len(all_dates_sorted)
+        preview_5 = all_dates_sorted[:5]
+        preview_dates = ", ".join([f"{d:02d}/{m:02d}" for m, d in preview_5]) if preview_5 else ""
+        if total_unique > 5 and preview_dates:
+            preview_dates += f" <span class=\"text-blue-600 font-semibold\">(+{total_unique - 5})</span>"
+        # Ícone SVG calendário (Heroicons)
+        icon_calendar = """<svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>"""
+
+        # HTML do verso
+        dates_buttons_html = ""
+        times_containers_html = ""
+
+        for date_key, times_list in grouped_by_date.items():
+            safe_date_id = re.sub(r'[^a-zA-Z0-9]', '', date_key)
+            dates_view_id = f"dates-{flight_id_safe}"
+            times_view_id = f"times-{flight_id_safe}-{safe_date_id}"
+
+            dates_buttons_html += f"""
+        <button type="button"
+                onclick="document.getElementById('{dates_view_id}').classList.add('hidden'); document.getElementById('{times_view_id}').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            {date_key}
+        </button>
+        """
+
+            time_buttons = ""
+            for t in times_list:
+                time_buttons += f"""
+            <a href="voo/{t['slug']}.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                {t['time']}
+            </a>
+            """
+
+            times_containers_html += f"""
+        <div id="{times_view_id}" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('{times_view_id}').classList.add('hidden'); document.getElementById('{dates_view_id}').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                {icon_back} Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">{date_key}</div>
+                {time_buttons}
+            </div>
+        </div>
+        """
+
+        card_id = f"card-{flight_id_safe}"
+        dates_view_id = f"dates-{flight_id_safe}"
+
+        return f"""
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="{card_id}">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border {border_col} z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        {icon_plane}<span class="font-bold text-sm tracking-wide">{airline}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center {badge_bg} text-xs font-bold px-2 py-1 rounded-md">
+                            {icon_status}<span class="ml-1">{total_count}</span>
+                        </span>
+                        <span class="{badge_bg} text-xs font-bold px-2 py-1 rounded-md uppercase">{status_upper}</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">{flight_num}</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>{origin}</span><span class="text-gray-300">•</span><span>{dest}</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate">{icon_calendar} {preview_dates if preview_dates else 'Datas não disponíveis'}</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('{card_id}').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full {btn_bg} text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        {icon_check}Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('{card_id}').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1">{icon_close}</button>
+                </div>
+                <div id="{dates_view_id}" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">{dates_buttons_html}</div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                {times_containers_html}
+            </div>
+        </div>
+    </div>
+    """
+
+    def get_view_more_card_html(
+        self, city_name: str, total_hidden: int, hidden_flights: List[str], city_url: str
+    ) -> str:
+        """Gera card animado com ticker vertical de voos ocultos."""
+        flight_items = "".join(
+            f'<div class="ticker-item">✈ {fn}</div>' for fn in hidden_flights
+        )
+        ticker_content = f'<div class="ticker-loop">{flight_items}</div>' * 3
+        return f"""
+    <a href="{city_url}" class="group relative w-full h-[300px] bg-gradient-to-br from-blue-900 via-slate-800 to-slate-900 rounded-2xl p-6 flex flex-col justify-between overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-blue-700/50">
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle, #fff 1px, transparent 1px); background-size: 20px 20px;"></div>
+        </div>
+        <div class="relative z-10">
+            <h3 class="text-4xl font-black text-white mb-2">+{total_hidden}</h3>
+            <p class="text-blue-200 text-sm font-medium leading-tight">
+                Outros voos para<br>
+                <span class="text-white text-lg font-bold">{city_name}</span>
+            </p>
+        </div>
+        <div class="relative h-28 overflow-hidden mask-gradient-y my-3">
+            <div class="animate-marquee-vertical">
+                {ticker_content}
+            </div>
+        </div>
+        <div class="relative z-10 flex items-center text-white font-bold text-sm group-hover:translate-x-2 transition-transform duration-300">
+            Ver lista completa
+            <svg class="w-5 h-5 ml-2 group-hover:ml-3 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </div>
+    </a>
+    """
+
     def generate_page_resilient(self, flight: Dict, metadata: Dict) -> bool:
         try:
             raw_fnum = self.safe_str(flight.get('flight_number'))
@@ -1204,6 +1468,7 @@ class FlightPageGenerator:
             # Injeta dados de SEO no contexto
             seo_data = self._get_seo_context(flight, slug)
             context.update(seo_data)
+            context.update(self._get_widget_context())
 
             filename = f"{slug}.html"
             
@@ -1223,7 +1488,7 @@ class FlightPageGenerator:
             canc_30d = int(flight.get('cancelamentos_30d', 0) or 0)
             atrasos_30d = int(flight.get('atrasos_30d', 0) or 0)
 
-            self.success_pages.append({
+            page_dict = {
                 'filename': filename,
                 'slug': slug,
                 'flight_number': raw_fnum,
@@ -1240,7 +1505,9 @@ class FlightPageGenerator:
                 'atrasos_30d': atrasos_30d,
                 'url': f"/voo/{filename}",
                 'quality_score': quality
-            })
+            }
+            page_dict['date_time_fmt'] = format_date_time_fmt(page_dict)
+            self.success_pages.append(page_dict)
 
             self.stats['successes'] += 1
             return True
@@ -1363,11 +1630,31 @@ class FlightPageGenerator:
             
         except Exception as e:
             logger.error(f"❌ Erro ao gerar sitemap: {e}")
+
+    def get_premium_gate(self) -> str:
+        """Retorna um local premium aleatório para o widget (Seja o Herói do {{ gate_context }}!)."""
+        locais = [
+            'Terminal 3', 'Terminal 2', 'Portão 323', 'Portão 324',
+            'Portão 305', 'Portão 202', 'Área VIP T3'
+        ]
+        return random.choice(locais)
+
+    def _get_widget_context(self) -> Dict:
+        """Contexto global para o widget de compartilhamento (base.html): gate_context e voos_hoje_count."""
+        voos_count = getattr(self, '_total_flights', None)
+        if voos_count is None:
+            voos_count = len(getattr(self, 'success_pages', []))
+        if not voos_count:
+            voos_count = 850
+        return {
+            'gate_context': self.get_premium_gate(),
+            'voos_hoje_count': voos_count,
+        }
     
     def generate_homepage(self) -> None:
         """
-        STEP 3.4: Gera public/index.html agrupado por cidades (top destinos).
-        Usa template Jinja2 com variáveis dinâmicas para Growth/Referral.
+        STEP 3.4: Gera public/index.html com Flip Cards organizados por cidade.
+        Mantém estrutura visual: Rio de Janeiro → Cards → Ver mais.
         """
         logger.info("")
         logger.info("=" * 70)
@@ -1379,27 +1666,157 @@ class FlightPageGenerator:
             if not hasattr(self, 'generated_cities'):
                 self.generated_cities = self.generate_city_pages(self.success_pages)
             top_cities = getattr(self, 'generated_cities', [])
-            # Ordenação por data/hora: mais recentes primeiro (ticker e listas)
-            recent_pages = sorted(self.success_pages, key=parse_flight_time, reverse=True)
             
-            # ============================================================
-            # VARIÁVEIS DINÂMICAS PARA GROWTH/REFERRAL
-            # ============================================================
+            # ETAPA 1: Agrupa voos por CIDADE
+            flights_by_city = defaultdict(list)
+            for page in self.success_pages:
+                city_key = self._get_effective_destination_city(page)
+                city_key = safe_str(city_key)
+                if not city_key or city_key in ('Aguardando atualização', 'N/A', 'VAZIO'):
+                    continue
+                if self._is_city_blacklisted(city_key):
+                    continue
+                flights_by_city[city_key].append(page)
+            
+            # ETAPA 2: Top 20 cidades intercaladas (Nacional ↔ Internacional)
+            BR_IATAS = {
+                'GIG', 'SDU', 'BSB', 'CNF', 'SSA', 'REC', 'FOR',
+                'POA', 'CWB', 'FLN', 'VIX', 'GYN', 'MAO', 'BEL', 'NAT', 'CGB', 'MCZ',
+                'SLZ', 'JPA', 'AJU', 'THE', 'PVH', 'BVB', 'RBR', 'MCP', 'PMW', 'IOS',
+                'NVT', 'LDB', 'RAO', 'UDI', 'IMP', 'JDO', 'PPB', 'STM', 'TFF',
+            }
+            national_cities = []
+            international_cities = []
+            for city_name, city_flights in flights_by_city.items():
+                city_iatas_set = set()
+                for f in city_flights:
+                    iata = self.safe_str(f.get('destination_iata', ''))
+                    if iata:
+                        city_iatas_set.add(iata)
+                is_national = bool(city_iatas_set & BR_IATAS)
+                entry = (city_name, len(city_flights), city_flights)
+                if is_national:
+                    national_cities.append(entry)
+                else:
+                    international_cities.append(entry)
+            national_cities.sort(key=lambda x: x[1], reverse=True)
+            international_cities.sort(key=lambda x: x[1], reverse=True)
+            interleaved = []
+            max_len = max(len(national_cities), len(international_cities))
+            for i in range(max_len):
+                if i < len(national_cities):
+                    interleaved.append(national_cities[i])
+                if i < len(international_cities):
+                    interleaved.append(international_cities[i])
+            top_20_cities = interleaved[:20]
+
+            city_data = OrderedDict()
+            for city_name, _count, city_flights in top_20_cities:
+                iata_codes = set()
+                for f in city_flights:
+                    iata = self.safe_str(f.get('destination_iata', ''))
+                    if iata:
+                        iata_codes.add(iata)
+                city_iatas = sorted(list(iata_codes))
+                grouped_by_flight_num = defaultdict(list)
+                for flight in city_flights:
+                    num = flight.get('flight_number')
+                    if num:
+                        grouped_by_flight_num[num].append(flight)
+                groups_list = list(grouped_by_flight_num.values())
+                cancelled = []
+                delayed = []
+                for group in groups_list:
+                    statuses = [self.safe_str(f.get('status', '')).upper() for f in group]
+                    if any("CANCELADO" in s or "CANCEL" in s for s in statuses):
+                        cancelled.append(group)
+                    elif any("ATRASADO" in s or "DELAY" in s for s in statuses):
+                        delayed.append(group)
+                cancelled.sort(key=lambda g: -len(g))
+                delayed.sort(key=lambda g: -len(g))
+                selected_groups = []
+                if cancelled:
+                    selected_groups.append(cancelled[0])
+                if delayed:
+                    selected_groups.append(delayed[0])
+                if len(selected_groups) < 2:
+                    remaining_pool = (cancelled[1:] if len(cancelled) > 1 else []) + (
+                        delayed[1:] if len(delayed) > 1 else []
+                    )
+                    if not selected_groups and remaining_pool:
+                        remaining_pool.sort(key=lambda g: -len(g))
+                        selected_groups.extend(remaining_pool[:2])
+                    elif len(selected_groups) == 1 and remaining_pool:
+                        remaining_pool.sort(key=lambda g: -len(g))
+                        selected_groups.append(remaining_pool[0])
+                selected_groups = selected_groups[:2]
+                city_cards = []
+                for group in selected_groups:
+                    related_dates = []
+                    for f in group:
+                        slug = self.generate_slug(f)
+                        scheduled = self.safe_str(f.get('scheduled_time', ''))
+                        if len(scheduled) >= 16:
+                            date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
+                        elif len(scheduled) >= 10:
+                            date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
+                        else:
+                            date_display = "N/A"
+                        related_dates.append((date_display, slug))
+                    city_cards.append(self.get_flight_card_flip_html(group[0], related_dates=related_dates))
+                all_remaining = (
+                    (cancelled[1:] if len(cancelled) > 1 else [])
+                    + (delayed[1:] if len(delayed) > 1 else [])
+                )
+                if selected_groups:
+                    taken = {id(g) for g in selected_groups}
+                    all_remaining = [g for g in all_remaining if id(g) not in taken]
+                all_remaining.sort(key=lambda g: -len(g))
+                total_hidden = sum(len(g) for g in all_remaining)
+                city_url = f"destino/{self.get_city_slug(city_name)}.html"
+                if total_hidden > 0:
+                    hidden_flights = [
+                        g[0].get("flight_number", "N/A") for g in all_remaining[:15]
+                    ]
+                    city_cards.append(
+                        self.get_view_more_card_html(
+                            city_name, total_hidden, hidden_flights, city_url
+                        )
+                    )
+                city_data[city_name] = {
+                    "cards": city_cards,
+                    "iatas": city_iatas,
+                    "total_flights": len(city_flights),
+                    "url": f"destino/{self.get_city_slug(city_name)}.html",
+                }
+            
+            city_metadata = {}
+            for city_name, info in city_data.items():
+                city_metadata[city_name] = {
+                    "iata": info["iatas"][0] if info["iatas"] else "",
+                    "slug": self.get_city_slug(city_name),
+                    "count": info["total_flights"],
+                    "url": info["url"],
+                }
+            
+            # recent_pages para schema/ticker (lista plana ordenada por data)
+            all_recent = sorted(
+                [f for fl in flights_by_city.values() for f in fl],
+                key=parse_flight_time,
+                reverse=True
+            )[:20]
             
             voos_hoje_count = len(self.success_pages)
             herois_count = int(voos_hoje_count * 1.8) + random.randint(20, 35)
-            gate_options = ['Portão B12', 'Terminal 3', 'Embarque Sul', 'Portão C21']
-            gate_context = random.choice(gate_options)
+            gate_context = self.get_premium_gate()
             utm_suffix = '?utm_source=hero_gru'
             
-            # ============================================================
-            # PREPARAÇÃO DO CONTEXTO PARA TEMPLATE JINJA2
-            # ============================================================
-            
             context = {
-                # Exibe mais cidades e voos recentes na home
                 'top_cities': top_cities[:20],
-                'recent_pages': recent_pages[:12],
+                'recent_pages': all_recent,
+                'city_data': city_data,
+                'home_city_cards': city_data,
+                'city_metadata': city_metadata,
                 'voos_hoje_count': voos_hoje_count,
                 'herois_count': herois_count,
                 'gate_context': gate_context,
@@ -1410,32 +1827,20 @@ class FlightPageGenerator:
                 'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
                 'base_url': self.base_url,
             }
+            # Dados para o Widget (includes/share_widget.html)
+            context['gate_context'] = self.get_premium_gate()
+            context['voos_hoje_count'] = getattr(self, '_total_flights', None) or len(self.success_pages)
+            context['herois_count'] = random.randint(20, 50)
             
-            # ============================================================
-            # RENDERIZAÇÃO COM JINJA2
-            # ============================================================
-            
-            # Carrega template da homepage
             template = self.jinja_env.get_template('index.html')
-            
-            # Renderiza HTML
             html_content = template.render(**context)
-            
-            # Salva index.html
             index_file = self.output_dir / "index.html"
             with open(index_file, 'w', encoding='utf-8') as f:
                 f.write(html_content)
             
-            # ============================================================
-            # LOGS DE SUCESSO COM TRACKING DE GROWTH
-            # ============================================================
-            
             logger.info(f"✅ Home page gerada: {index_file}")
-            logger.info(f"   • Top cidades exibidas: {len(top_cities)} (dos {len(getattr(self, 'generated_cities', []))} destinos)")
-            logger.info(f"   • Growth Variables:")
-            logger.info(f"     - Heróis (social proof): {herois_count}")
-            logger.info(f"     - Gate context: {gate_context}")
-            logger.info(f"     - UTM suffix: {utm_suffix}")
+            logger.info(f"   • {len(city_data)} cidades (nacional/int intercaladas) com Flip Cards (2 por cidade + Ver Mais)")
+            logger.info(f"   • Growth: herois={herois_count}, gate={gate_context}")
             
         except Exception as e:
             logger.error(f"❌ Erro ao gerar home page: {e}")
@@ -1462,6 +1867,7 @@ class FlightPageGenerator:
                 'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
                 'request_path': '/privacy.html',
             }
+            context.update(self._get_widget_context())
 
             template = self.jinja_env.get_template('privacy.html')
             html_content = template.render(**context)
@@ -1470,11 +1876,33 @@ class FlightPageGenerator:
             with open(output_file, 'w', encoding='utf-8') as f:
                 f.write(html_content)
 
-            logger.info(f"✅ Página de privacidade gerada: {output_file}")
+            logger.info(f"Página de privacidade gerada: {output_file}")
 
         except Exception as e:
-            logger.error(f"❌ Erro ao gerar página de privacidade: {e}")
-    
+            logger.error(f"Erro ao gerar página de privacidade: {e}")
+
+    def generate_404(self) -> None:
+        """Gera página 404 profissional em output_dir/404.html usando base.html."""
+        logger.info("")
+        logger.info("=" * 70)
+        logger.info("STEP 3.8b: GERAÇÃO DE PÁGINA 404")
+        logger.info("=" * 70)
+        try:
+            context = {
+                'title': '404 - Página não encontrada | MatchFly',
+                'meta_desc': 'Página não encontrada. Volte ao início do MatchFly.',
+                'page_type': '404',
+                'base_url': self.base_url,
+                'request_path': '/404.html',
+            }
+            template = self.jinja_env.get_template('404.html')
+            html_content = template.render(**context)
+            output_file = self.output_dir / "404.html"
+            output_file.write_text(html_content, encoding='utf-8')
+            logger.info(f"Página 404 gerada: {output_file}")
+        except Exception as e:
+            logger.error(f"Erro ao gerar 404: {e}")
+
     def enrich_flight_with_30d_stats(self, flight: Dict) -> Dict:
         """
         Enriquece voo com contadores de 30 dias.
@@ -1633,6 +2061,8 @@ class FlightPageGenerator:
     def generate_city_pages(self, flights: List[Dict], metadata: Optional[Dict] = None) -> List[Dict]:
         """
         Gera páginas específicas por cidade de destino e retorna dados para a Home.
+        Lista TODAS as cidades presentes no banco (flights); em cada cidade só inclui
+        voos que tiveram página gerada (success_files) para evitar links quebrados.
         Ignora cidades na blacklist (ex: "Destino Desconhecido", siglas ICAO).
         """
         logger.info("=" * 70)
@@ -1640,16 +2070,20 @@ class FlightPageGenerator:
         
         city_groups = {}
         for flight in flights:
-            city = safe_str(flight.get('destination_city') or flight.get('destination'))
+            # Usa cidade efetiva (resolução IATA/ANAC) para consistência com o restante do pipeline
+            city = self._get_effective_destination_city(flight)
+            city = safe_str(city)
             if not city or city in ('Aguardando atualização', 'N/A', 'VAZIO'):
                 continue
             if self._is_city_blacklisted(city):
                 continue
 
             if city not in city_groups:
+                clean_fnum = "".join(filter(str.isdigit, self.safe_str(flight.get('flight_number', ''))))
+                dest_iata = CORRECTIONS_DICT.get(clean_fnum) or ANAC_DB.get(clean_fnum) or self.safe_str(flight.get('destination_iata')) or ''
                 city_groups[city] = {
                     'name': city,
-                    'iata': safe_str(flight.get('destination_iata')),
+                    'iata': dest_iata,
                     'flights': [],
                     'total_impact': 0
                 }
@@ -1657,10 +2091,12 @@ class FlightPageGenerator:
             enriched = self.enrich_flight_with_30d_stats(flight)
             enriched['slug'] = self.generate_slug(enriched)
             enriched['filename'] = enriched['slug'] + '.html'
-            city_groups[city]['flights'].append(enriched)
-            
-            impact = enriched.get('cancelamentos_30d', 0) * 3 + enriched.get('atrasos_30d', 0)
-            city_groups[city]['total_impact'] += impact
+            enriched['date_time_fmt'] = format_date_time_fmt(enriched)
+            # Só inclui na lista da cidade voos que tiveram página gerada (evita link quebrado)
+            if enriched['filename'] in getattr(self, 'success_files', set()):
+                city_groups[city]['flights'].append(enriched)
+                impact = enriched.get('cancelamentos_30d', 0) * 3 + enriched.get('atrasos_30d', 0)
+                city_groups[city]['total_impact'] += impact
 
         dest_dir = self.output_dir / "destino"
         dest_dir.mkdir(parents=True, exist_ok=True)
@@ -1669,13 +2105,30 @@ class FlightPageGenerator:
         for city_name, data in city_groups.items():
             if self._is_city_blacklisted(city_name):
                 continue
-            data['flights'].sort(
-                key=lambda x: (x.get('cancelamentos_30d', 0), x.get('atrasos_30d', 0)),
-                reverse=True
-            )
-            city_slug = slugify(city_name)
+            # Ordenação estrita por data/hora: mais recente no topo (reverse chronological)
+            data['flights'].sort(key=parse_flight_time, reverse=True)
+            city_slug = self.get_city_slug(city_name)
             filename = f"{city_slug}.html"
-            
+
+            # Agrupar voos por número para Flip Cards 3D (Data → Horário; um card por número)
+            flights_by_number = defaultdict(list)
+            for f in data['flights']:
+                num = f.get('flight_number')
+                slug = f.get('slug') or self.generate_slug(f)
+                scheduled = self.safe_str(f.get('scheduled_time', ''))
+                if len(scheduled) >= 16:
+                    date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
+                elif len(scheduled) >= 10:
+                    date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
+                else:
+                    date_display = "N/A"
+                flights_by_number[num].append((date_display, slug))
+            flight_cards = []
+            for num, dates_list in flights_by_number.items():
+                first_flight = next((f for f in data['flights'] if f.get('flight_number') == num), None)
+                if first_flight:
+                    flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=dates_list))
+
             context = {
                 'title': f"Voos para {city_name} com Problemas | MatchFly",
                 'h1': f"Voos para {city_name}: Relatório de Atrasos e Cancelamentos",
@@ -1684,12 +2137,14 @@ class FlightPageGenerator:
                 'page_type': 'cidade',
                 'city_name': city_name,
                 'flights': data['flights'],
+                'flight_cards': flight_cards,
                 'base_url': self.base_url,
                 'current_time': datetime.now().strftime('%d/%m/%Y %H:%M'),
                 'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
                 'request_path': f'/destino/{filename}'
             }
-            
+            context.update(self._get_widget_context())
+
             template = self.jinja_env.get_template('atrasados.html')
             html_content = template.render(**context)
             
@@ -1744,6 +2199,7 @@ class FlightPageGenerator:
             'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
             'request_path': '/cidades.html',
         }
+        context.update(self._get_widget_context())
         template = self.jinja_env.get_template('cidades.html')
         html_content = template.render(**context)
         output_file = self.output_dir / "cidades.html"
@@ -1870,13 +2326,34 @@ class FlightPageGenerator:
                 _st = safe_str(enriched.get('scheduled_time', ''))
                 enriched['display_time'] = _st.split(' ')[-1] if (_st and ' ' in _st) else (_st or '')
                 enriched['data_partida'] = safe_str(enriched.get('data_partida', ''))
+                enriched['date_time_fmt'] = format_date_time_fmt(enriched)
 
                 template_flights.append(enriched)
             
             # Gera FAQ Schema
             faq_schema = self.generate_faq_schema(category)
             
-            # Contexto para template
+            # Flip Cards: agrupa por número de voo (mesma lógica das páginas de cidade)
+            flights_by_number = defaultdict(list)
+            for f in template_flights:
+                num = f.get('flight_number')
+                if num:
+                    slug = f.get('slug') or self.generate_slug(f)
+                    scheduled = self.safe_str(f.get('scheduled_time', ''))
+                    if len(scheduled) >= 16:
+                        date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
+                    elif len(scheduled) >= 10:
+                        date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
+                    else:
+                        date_display = "N/A"
+                    flights_by_number[num].append((date_display, slug))
+            category_flight_cards = []
+            for num, dates_list in flights_by_number.items():
+                first_flight = next((x for x in template_flights if x.get('flight_number') == num), None)
+                if first_flight:
+                    category_flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=dates_list))
+            
+            # Contexto para template (inclui widget global para base.html)
             context = {
                 'title': title,
                 'h1': h1,
@@ -1884,6 +2361,7 @@ class FlightPageGenerator:
                 'meta_desc': meta_desc,
                 'page_type': page_type,
                 'flights': template_flights,
+                'flight_cards': category_flight_cards,
                 'base_url': self.base_url,
                 'current_time': datetime.now().strftime('%d/%m/%Y %H:%M'),
                 'last_update': datetime.now().strftime('%d/%m/%Y às %H:%M'),
@@ -1891,6 +2369,7 @@ class FlightPageGenerator:
                 'ticker_flights': getattr(self, 'ticker_flights', []),  # Ticker já gerado
                 'faq_schema': faq_schema,  # FAQ Schema para JSON-LD no head
             }
+            context.update(self._get_widget_context())
             
             # Carrega template de categoria
             template = self.jinja_env.get_template(f'{category}.html')
@@ -2012,6 +2491,19 @@ class FlightPageGenerator:
                 logger.info("✅ Todos os voos já têm destination_iata - pulando enriquecimento")
             
             # ============================================================
+            # REGRA DE EXCLUSÃO: Descartar voos que continuam "Destino Desconhecido"
+            # (após enriquecimento: sem cidade identificada = não gera página, sitemap, home, cidades)
+            # ============================================================
+            UNKNOWN_DESTINATION_VALUES = ("Destino Desconhecido", "Aguardando atualização", "N/A")
+            count_before_filter = len(flights)
+            flights = [f for f in flights if self._get_effective_destination_city(f) not in UNKNOWN_DESTINATION_VALUES]
+            discarded = count_before_filter - len(flights)
+            if discarded:
+                logger.info(f"📋 Excluídos {discarded} voos com Destino Desconhecido (após enriquecimento); restam {len(flights)} voos válidos.")
+            
+            self._total_flights = len(flights)
+            
+            # ============================================================
             # STEP 3.1: RENDERIZAÇÃO RESILIENTE
             # ============================================================
             logger.info("")
@@ -2044,9 +2536,11 @@ class FlightPageGenerator:
             
             # ============================================================
             # STEP 3.7: PÁGINAS DE CIDADE (antes do sitemap e da home)
+            # Consolidação: cidades.html lista TODAS as cidades do banco (flights);
+            # cada página de cidade só mostra voos que tiveram página gerada.
             # ============================================================
-            if self.success_pages:
-                self.generated_cities = self.generate_city_pages(self.success_pages, metadata)
+            if flights:
+                self.generated_cities = self.generate_city_pages(flights, metadata)
                 self.generate_all_cities_index()
             else:
                 self.generated_cities = []
@@ -2056,7 +2550,10 @@ class FlightPageGenerator:
             # ============================================================
             # Gera privacy.html sempre que houver build bem-sucedido
             self.generate_privacy_page()
-            
+
+            # STEP 3.8b: Página 404 (GitHub Pages)
+            self.generate_404()
+
             # ============================================================
             # STEP 3.3: SITEMAP
             # ============================================================
@@ -2190,8 +2687,8 @@ def main():
     generator = FlightPageGenerator(
         data_file="data/flights-db.json",
         template_file="src/templates/tier2-anac400.html",
-        output_dir="public",
-        voo_dir="public/voo",
+        output_dir="docs",
+        voo_dir="docs/voo",
         affiliate_link=AFFILIATE_LINK,
         base_url=BASE_URL
     )

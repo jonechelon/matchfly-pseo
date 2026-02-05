@@ -33,27 +33,21 @@ jobs:
           python -m pip install --upgrade pip
           # Tenta instalar do arquivo requirements.txt se existir, senão instala manual
           if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests pandas jinja2 python-slugify openpyxl; fi
-          # Garante a ferramenta de deploy (caso não esteja no requirements)
-          pip install ghp-import
 
       # 4. Roda o Scraper (Baixa CSV e converte para JSON)
       # ATENÇÃO: Se você moveu este arquivo para a pasta 'scripts', mude para: scripts/voos_proximos_finalbuild.py
       - name: Run Scraper (Sync Data)
         run: python voos_proximos_finalbuild.py
 
-      # 5. Roda o Gerador (Cria HTML + SEO + Sitemap)
+      # 5. Roda o Gerador (Cria HTML + SEO + Sitemap em docs/)
       - name: Run Generator (Build Site)
         run: python src/generator.py
 
-      # 6. Publica no GitHub Pages
-      # Correção Crítica: Adicionado 'cname' para não derrubar o domínio matchfly.org
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        if: success()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          force_orphan: true # Mantém o histórico da branch de publicação limpo
-          cname: matchfly.org # <--- CRUCIAL: Mantém seu site no ar
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
+      # 6. Commit e push da pasta docs/ na branch main (GitHub Pages via /docs)
+      - name: Commit and Push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/
+          git diff --staged --quiet || git commit -m "Auto-update: Generate site in /docs"
+          git push

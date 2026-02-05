@@ -118,87 +118,37 @@
     </div>
 </section>
 
-<!-- Lista de Voos Atrasados -->
-<section class="container mx-auto px-4 py-12 max-w-7xl">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {% for flight in flights %}
-        <div class="bg-white rounded-2xl shadow-lg border-2 border-orange-100 overflow-hidden hover:shadow-2xl transition-all">
-            <!-- Header Card -->
-            <div class="bg-gradient-to-br from-orange-50 to-orange-100 border-b-2 border-orange-200 p-5">
-                <div class="flex items-center justify-between mb-3">
-                    <div class="flex items-center space-x-2 min-w-0 flex-1">
-                        <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center flex-shrink-0">
-                            <svg class="w-5 h-5 text-orange-900" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
-                            </svg>
-                        </div>
-                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider truncate">{{ flight.airline }}</span>
-                    </div>
-                    <span class="px-3 py-1 bg-orange-500 text-white text-xs font-black rounded-full uppercase tracking-wider shadow-md">
-                        Atrasado
-                    </span>
-                </div>
-                
-                <h3 class="text-3xl font-black text-orange-900 tracking-tight">
-                    {{ flight.flight_number }}
-                </h3>
-            </div>
+<!-- Seção: Cards de Voos Atrasados (apenas Flip Cards) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    {% if flight_cards and flight_cards|length > 0 %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {% for card_html in flight_cards %}
+            <div class="flex justify-center">{{ card_html | safe }}</div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center py-12">
+            <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="text-gray-500 text-lg font-medium">Nenhum voo atrasado no momento</p>
+            <p class="text-gray-400 text-sm mt-2">Verifique outras categorias ou volte mais tarde</p>
+        </div>
+    {% endif %}
+</section>
 
-            <!-- Body Card -->
-            <div class="p-5 bg-white">
-                <div class="space-y-3 mb-4">
-                    <!-- Destino -->
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs text-gray-500 font-medium">Destino:</span>
-                        <span class="text-sm font-bold text-gray-900">{{ flight.display_destination|default(flight.destination_iata ~ ' (' ~ (flight.destination_city|default('N/A')) ~ ')') }}</span>
-                    </div>
-                    
-                    <!-- Data, horário e estatísticas 30d -->
-                    <div class="text-right min-w-[100px]">
-                        <div class="text-xs text-slate-500 font-medium mb-0.5">
-                            {{ flight.data_partida }}
-                        </div>
-                        <div class="text-xl font-bold text-slate-800 leading-none">
-                            {{ flight.display_time }}
-                        </div>
-                        <div class="text-[10px] text-slate-400 uppercase tracking-wide mb-2">Previsto</div>
-                        <div class="flex items-center justify-end gap-2">
-                            {% if flight.cancelamentos_30d > 0 %}
-                            <div class="flex items-center gap-1 text-red-600 bg-red-50 px-1.5 py-0.5 rounded text-xs" title="Cancelamentos (30d)">
-                                <i data-lucide="x-circle" class="w-3 h-3"></i>
-                                <span class="font-bold">{{ flight.cancelamentos_30d }}</span>
-                            </div>
-                            {% endif %}
-                            {% if flight.atrasos_30d > 0 %}
-                            <div class="flex items-center gap-1 text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded text-xs" title="Atrasos (30d)">
-                                <i data-lucide="clock-4" class="w-3 h-3"></i>
-                                <span class="font-bold">{{ flight.atrasos_30d }}</span>
-                            </div>
-                            {% endif %}
-                            {% if flight.cancelamentos_30d == 0 and flight.atrasos_30d == 0 %}
-                            <span class="text-[10px] text-slate-300">Sem histórico recente</span>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CTA Button (Alta Conversão) -->
-                <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5"
-                   target="_blank"
-                   rel="noopener sponsored"
-                   class="block w-full py-4 px-6 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-black text-center rounded-xl shadow-xl hover:shadow-2xl transition-all hover:scale-105 text-lg">
-                    <i data-lucide="circle-dollar-sign" class="w-5 h-5 inline-block mr-1 align-middle"></i> Verificar Indenização (R$ 10.000)
-                </a>
-                
-                <!-- Link Interno -->
-                <div class="mt-3 text-center">
-                    <a href="/voo/{{ flight.slug }}.html" class="text-sm text-blue-600 hover:text-blue-800 font-semibold">
-                        Ver detalhes completos →
-                    </a>
-                </div>
+<!-- FAQ Section (Simplificada) -->
+<section class="container mx-auto px-4 py-12 max-w-7xl">
+    <div class="mt-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
+        <h2 class="text-2xl font-bold mb-6">Direitos do Passageiro para Voos Atrasados</h2>
+        
+        <div class="space-y-4">
+            <div class="faq-item">
+                <h3 class="font-bold text-lg text-blue-900">A partir de quanto tempo de atraso gera indenização?</h3>
+                <p class="text-gray-700">Atrasos superiores a 4 horas permitem que o passageiro solicite indenização por danos morais. Além disso, a companhia deve fornecer assistência material (alimentação e comunicação) conforme o tempo de espera. 
+                <a href="https://www.airhelp.com/en-int/?ref=matchfly" class="text-blue-600 underline font-bold">Calcule sua compensação agora.</a></p>
             </div>
         </div>
-        {% endfor %}
     </div>
 </section>
 

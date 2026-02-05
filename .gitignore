@@ -18,34 +18,22 @@ env/
 *.log
 npm-debug.log*
 
-# --- DATA FILES (Regra Estrita: Sem dados no GitHub) ---
-# Ignora todos os CSVs (dados brutos)
+# --- DATA FILES ---
+# Dados brutos: não versionar
 data/*.csv
 
-# Ignora todos os JSONs gerados (banco de dados processado)
+# Banco processado (flights-db.json, etc.): ignorado para evitar dados sensíveis no repo.
+# Se data/flights-db.json for essencial para o build (ex.: CI sem scraper), descomente a exceção abaixo:
 data/*.json
+# !data/flights-db.json
 
-# EXCEÇÃO: Se o dicionário da ANAC for um arquivo fixo necessário para rodar o script, 
-# descomente a linha abaixo para permitir que ele suba:
-#!data/specificroutes_anac.json
-
-# --- OUTPUT / GENERATED SITE (Regra Estrita: Sem HTML no GitHub) ---
-# Ignora HTMLs na raiz da pasta public (index.html, cidades.html, etc)
-public/*.html
-
-# Ignora pastas de conteúdo gerado
-public/voo/
-public/cidades/
-public/destino/
-
-# Ignora sitemap e outros arquivos gerados dinamicamente
-public/sitemap.xml
-public/robots.txt
-
-# --- BACKUPS & LIXO ---
-projects/matchfly-pseo-backup-erros/
 # --- SEGURANÇA ---
 credentials/
 service_account.json
-.env
 client_secret.json
+
+# --- BACKUPS ---
+projects/matchfly-pseo-backup-erros/
+
+# --- SITE GERADO (docs/) ---
+# A pasta docs/ NÃO é ignorada: o site gerado é commitado para GitHub Pages (Source: main, /docs).
