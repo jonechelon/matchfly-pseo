@@ -196,39 +196,42 @@ def _scheduled_time_hhmm_from_record(record: dict) -> str:
     return record.get("Horario") or "00:00"
 
 
-def _is_nullish(val):
-    """True se o valor for NaN/NaT/pd.NA/None, inaceitável para JSON/JSONB no Postgres."""
+def _clean_value(val):
+    """
+    Substitui NaN/NaT/pd.NA por None para compatibilidade com Postgres JSON/JSONB.
+    Retorna None se o valor for nullish, senão retorna o valor original.
+    """
     if val is None:
-        return True
+        return None
     try:
         if pd.isna(val):
-            return True
+            return None
     except (TypeError, ValueError):
         pass
     if isinstance(val, float) and (val != val or np.isnan(val)):
-        return True
-    return False
+        return None
+    return val
 
 
 def sanitize_row_for_supabase(row: dict) -> dict:
     """
-    Substitui NaN/NaT/pd.NA por None em todos os campos e dentro de raw_data.
+    Limpeza profunda: substitui NaN/NaT/pd.NA por None em todos os campos e dentro de raw_data.
     Evita erro Postgres: invalid input syntax for type json, Token "NaN" is invalid.
     """
     if not isinstance(row, dict):
         return row
-    out = {}
+    cleaned = {}
     for k, v in row.items():
         if isinstance(v, dict):
-            out[k] = sanitize_row_for_supabase(v)
+            cleaned[k] = sanitize_row_for_supabase(v)
         elif isinstance(v, list):
-            out[k] = [
-                sanitize_row_for_supabase(x) if isinstance(x, dict) else (None if _is_nullish(x) else x)
+            cleaned[k] = [
+                sanitize_row_for_supabase(x) if isinstance(x, dict) else _clean_value(x)
                 for x in v
             ]
         else:
-            out[k] = None if _is_nullish(v) else v
-    return out
+            cleaned[k] = _clean_value(v)
+    return cleaned
 
 
 def flight_record_to_row(record: dict) -> dict:
@@ -440,11 +443,12 @@ def main():
     to_upsert = [rec for rec in final_list if isinstance(rec, dict) and flight_unique_key(rec) in new_uids]
     if to_upsert:
         rows = [flight_record_to_row(rec) for rec in to_upsert]
-        rows = [sanitize_row_for_supabase(row) for row in rows]
         batch_size = 500
         for i in range(0, len(rows), batch_size):
             batch = rows[i : i + batch_size]
-            supabase.table(SUPABASE_TABLE).upsert(batch, on_conflict=PK_COLUMNS).execute()
+            # Limpeza profunda: remove NaN de todos os campos e de raw_data (compreensão de lista)
+            cleaned_batch = [sanitize_row_for_supabase(row) for row in batch]
+            supabase.table(SUPABASE_TABLE).upsert(cleaned_batch, on_conflict=PK_COLUMNS).execute()
         logger.info("✅ Upsert no Supabase: %s voos (novos desta execução).", len(rows))
     else:
         logger.info("✅ Nenhum voo novo para enviar ao Supabase.")
