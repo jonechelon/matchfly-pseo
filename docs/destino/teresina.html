@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voos Atrasados GRU - Monitoramento e Direitos | MatchFly</title>
+    <meta name="description" content="Monitoramento em tempo real dos voos mais atrasados em Guarulhos. Verifique seus direitos e receba compensação de até R$ 10.000. Atualizado a cada 15min.">
+    
+    <!-- Canonical Tag -->
+    <link rel="canonical" href="https://matchfly.org/atrasados.html">
+    
+    <!-- Hreflang -->
+    <link rel="alternate" hreflang="x-default" href="https://matchfly.org/destino/teresina.html">
+    <link rel="alternate" hreflang="pt-BR" href="https://matchfly.org/destino/teresina.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Voos para Teresina com Problemas | MatchFly">
+    <meta property="og:description" content="Lista de voos para Teresina que atrasaram ou cancelaram recentemente. Veja se você tem direito a R$ 10.000.">
+    <meta property="og:url" content="https://matchfly.org/destino/teresina.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Voos para Teresina com Problemas | MatchFly">
+    <meta name="twitter:description" content="Lista de voos para Teresina que atrasaram ou cancelaram recentemente. Veja se você tem direito a R$ 10.000.">
+
+    <!-- Favicon SVG (avião geométrico) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z'/%3E%3C/svg%3E">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
+    
+    <!-- Animação de Marquee (Barra de Alertas) -->
+    <style>
+        @keyframes marquee {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: fit-content;
+            animation: marquee 40s linear infinite;
+        }
+        .hover\:pause:hover {
+            animation-play-state: paused;
+        }
+        .ticker-wrap.group:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 40;
+        }
+    </style>
+
+    <!-- Flip Card 3D (páginas de destino) -->
+    <style>
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden { backface-visibility: hidden; }
+        .rotate-y-180 { transform: rotateY(180deg); }
+        .flip-card-inner { transition: transform 0.6s ease-in-out; }
+        /* FIX CRÍTICO: Desativa cliques na frente quando card está virado */
+        .flip-card-inner.rotate-y-180 .card-front { pointer-events: none; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+        /* ========== MARQUEE VERTICAL SUAVE (Card Ver Mais) ========== */
+        @keyframes marqueeVertical {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(0, -33.333%, 0); }
+        }
+        .animate-marquee-vertical {
+            display: flex;
+            flex-direction: column;
+            animation: marqueeVertical 20s linear infinite;
+            will-change: transform;
+        }
+        .ticker-loop { flex-shrink: 0; }
+        .ticker-item {
+            padding: 0.375rem 0;
+            font-size: 0.875rem;
+            font-family: ui-monospace, monospace;
+            color: rgb(147 197 253);
+            white-space: nowrap;
+        }
+        .mask-gradient-y {
+            mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%);
+        }
+        .animate-marquee-vertical:hover {
+            animation-play-state: paused;
+        }
+        /* ========== SCROLL HORIZONTAL MOBILE ========== */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .snap-x { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+        .snap-x * { -webkit-tap-highlight-color: transparent; }
+        .snap-x::after { content: ''; flex: 0 0 1rem; }
+        /* ========== SCROLL SNAP DINÂMICO (aplicado via JS ao tocar) ========== */
+        .js-ping-pong-scroll.snap-x { scroll-snap-type: x mandatory; }
+        .js-ping-pong-scroll.snap-x > * { scroll-snap-align: center; }
+        .js-ping-pong-scroll { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+        .js-ping-pong-scroll * { -webkit-tap-highlight-color: transparent; }
+
+        /* ========== SCROLLBAR CUSTOMIZADA (VERSO DO CARD) ========== */
+        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
+        .scrollbar-thin::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 2px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.5); }
+
+        /* ========== FLIP CARD UTILITIES ========== */
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    </style>
+    
+    
+<!-- Schema Markup: ItemList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Voos Atrasados em Guarulhos - Últimos 30 Dias",
+    "description": "Lista dos voos mais atrasados em Guarulhos nos últimos 30 dias",
+    "numberOfItems": 6,
+    "itemListElement": [
+        
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "RJ6221",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "LATAM"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        },
+        
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "1949",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "EMIRATES"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        },
+        
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "9406",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "KLM"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        },
+        
+        {
+            "@type": "ListItem",
+            "position": 4,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "7280",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "DELTA"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        },
+        
+        {
+            "@type": "ListItem",
+            "position": 5,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "9003",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "LATAM"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        },
+        
+        {
+            "@type": "ListItem",
+            "position": 6,
+            "item": {
+                "@type": "Flight",
+                "flightNumber": "7280",
+                "airline": {
+                    "@type": "Airline",
+                    "name": "DELTA"
+                },
+                "departureAirport": {
+                    "@type": "Airport",
+                    "iataCode": "GRU",
+                    "name": "Aeroporto Internacional de Guarulhos"
+                },
+                "arrivalAirport": {
+                    "@type": "Airport",
+                    "iataCode": "THE",
+                    "name": "Teresina"
+                }
+            }
+        }
+        
+    ]
+}
+</script>
+
+<!-- Schema Markup: BreadcrumbList -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Início",
+            "item": "https://matchfly.org/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Voos Atrasados",
+            "item": "https://matchfly.org/atrasados.html"
+        }
+    ]
+}
+</script>
+
+    
+    <!-- FAQ Schema Markup (JSON-LD) -->
+    
+</head>
+<body class="bg-white antialiased">
+    
+    <!-- Header Sticky -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm backdrop-blur-md bg-white/95">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <a href="/" class="flex items-center space-x-2">
+                        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21l2-6 9-3-9-3-2-6-2 7-6 2 6 2 2 7z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-black text-blue-950">MatchFly</h1>
+                            <p class="text-[10px] text-gray-500 uppercase tracking-wider">ANAC COMPLIANCE</p>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center space-x-6">
+                    <a href="/" class="text-sm font-semibold text-gray-700 hover:text-blue-900 transition-colors inline-flex items-center"><i data-lucide="home" class="w-5 h-5 inline-block mr-1"></i>Início</a>
+                    <a href="/cidades.html" class="text-sm font-semibold text-gray-700 hover:text-blue-900 transition-colors inline-flex items-center"><i data-lucide="map-pin" class="w-5 h-5 inline-block mr-1"></i>Cidades</a>
+                    <a href="/cancelados.html" class="text-sm font-semibold text-gray-700 hover:text-red-600 transition-colors inline-flex items-center"><i data-lucide="x-circle" class="w-5 h-5 inline-block mr-1"></i>Cancelados</a>
+                    <a href="/atrasados.html" class="text-sm font-semibold text-gray-700 hover:text-orange-600 transition-colors inline-flex items-center"><i data-lucide="alert-triangle" class="w-5 h-5 inline-block mr-1"></i>Atrasados</a>
+                </nav>
+                
+                <!-- Menu Mobile -->
+                <nav class="md:hidden">
+                    <div class="flex items-center space-x-3">
+                        <a href="/" class="text-xs font-semibold text-gray-700" aria-label="Início"><i data-lucide="home" class="w-5 h-5 inline-block"></i></a>
+                        <a href="/cidades.html" class="text-xs font-semibold text-gray-700" aria-label="Cidades"><i data-lucide="map-pin" class="w-5 h-5 inline-block"></i></a>
+                        <a href="/cancelados.html" class="text-xs font-semibold text-gray-700" aria-label="Cancelados"><i data-lucide="x-circle" class="w-5 h-5 inline-block"></i></a>
+                        <a href="/atrasados.html" class="text-xs font-semibold text-gray-700" aria-label="Atrasados"><i data-lucide="alert-triangle" class="w-5 h-5 inline-block"></i></a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    
+<div class="w-full bg-amber-900 text-white border-b border-amber-800 shadow-md sticky top-16 z-40">
+    <div class="flex items-center h-10">
+        <div class="bg-amber-950 px-4 h-full flex items-center gap-2 z-10 shrink-0 font-bold text-xs uppercase tracking-wider">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+            </span>
+            <span class="md:hidden">ATRASADOS</span>
+            <span class="hidden md:inline">Últimos Atrasos</span>
+        </div>
+        
+        <div class="ticker-wrap group cursor-default">
+            <div class="animate-marquee hover:pause flex items-center gap-8 px-4">
+                
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">03/02</span>
+                        <span class="text-amber-200">RJ6221</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-03 16:10</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">01/02</span>
+                        <span class="text-amber-200">1949</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-01 19:50</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">01/02</span>
+                        <span class="text-amber-200">9406</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-01 13:20</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">24/01</span>
+                        <span class="text-amber-200">7280</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-24 21:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">24/01</span>
+                        <span class="text-amber-200">9003</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-24 20:00</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">16/01</span>
+                        <span class="text-amber-200">7280</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-16 21:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">03/02</span>
+                        <span class="text-amber-200">RJ6221</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-03 16:10</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">01/02</span>
+                        <span class="text-amber-200">1949</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-01 19:50</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">01/02</span>
+                        <span class="text-amber-200">9406</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-02-01 13:20</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">24/01</span>
+                        <span class="text-amber-200">7280</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-24 21:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">24/01</span>
+                        <span class="text-amber-200">9003</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-24 20:00</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                    <div class="flex items-center gap-2 text-sm font-medium opacity-90 hover:opacity-100 transition-opacity">
+                        <i data-lucide="clock-4" class="w-4 h-4 text-amber-300"></i>
+                        <span class="text-[10px] bg-white/10 px-1.5 rounded text-white/80 font-mono mr-1">16/01</span>
+                        <span class="text-amber-200">7280</span>
+                        <span class="text-white">Teresina</span>
+                        <span class="text-xs bg-amber-950/50 px-2 py-0.5 rounded text-amber-200 border border-amber-800">2026-01-16 21:15</span>
+                    </div>
+                    <span class="text-amber-700/50">•</span>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- Breadcrumbs -->
+    
+    <nav class="bg-gray-50 border-b border-gray-200 py-3">
+        <div class="container mx-auto px-4">
+            <ol class="flex items-center space-x-2 text-sm">
+                <li><a href="/" class="text-blue-600 hover:text-blue-800">Início</a></li>
+                <li class="text-gray-400">/</li>
+                <li class="text-gray-700">Atrasados</li>
+            </ol>
+        </div>
+    </nav>
+    
+    
+    <!-- Main Content -->
+    <main>
+        
+<!-- Hero Section -->
+<section class="bg-gradient-to-b from-orange-50 to-white py-16">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-orange-900 mb-4">
+                Voos que Mais Atrasam em Guarulhos: Monitoramento em Tempo Real
+            </h1>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-700 mb-6">
+                Evite Conexões Perdidas e Garanta Seus Direitos (EC 261 + ANAC 400)
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                6 voos atrasados identificados. Verifique se seu voo está na lista e garanta sua indenização de até <strong class="text-orange-900">R$ 10.000</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Seção: Cards de Voos Atrasados (apenas Flip Cards) -->
+<section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-RJ6221">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">LATAM</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">1</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">RJ6221</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Teresina</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 03/02</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-RJ6221').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-RJ6221').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-RJ6221" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-RJ6221').classList.add('hidden'); document.getElementById('times-RJ6221-0302').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            03/02
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-RJ6221-0302" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-RJ6221-0302').classList.add('hidden'); document.getElementById('dates-RJ6221').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">03/02</div>
+                
+            <a href="voo/voo-latam-rj6221-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                16:10
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+            
+            <div class="flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-1949">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">EMIRATES</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">1</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">1949</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Teresina</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-1949').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-1949').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-1949" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-1949').classList.add('hidden'); document.getElementById('times-1949-0102').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            01/02
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-1949-0102" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-1949-0102').classList.add('hidden'); document.getElementById('dates-1949').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                
+            <a href="voo/voo-emirates-1949-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                19:50
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+            
+            <div class="flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-9406">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">KLM</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">1</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">9406</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Teresina</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 01/02</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-9406').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-9406').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-9406" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-9406').classList.add('hidden'); document.getElementById('times-9406-0102').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            01/02
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-9406-0102" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-9406-0102').classList.add('hidden'); document.getElementById('dates-9406').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">01/02</div>
+                
+            <a href="voo/voo-klm-9406-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                13:20
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+            
+            <div class="flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-7280">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">DELTA</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">2</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">7280</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Teresina</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 24/01, 16/01</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-7280').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-7280').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-7280" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-7280').classList.add('hidden'); document.getElementById('times-7280-2401').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            24/01
+        </button>
+        
+        <button type="button"
+                onclick="document.getElementById('dates-7280').classList.add('hidden'); document.getElementById('times-7280-1601').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            16/01
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-7280-2401" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-7280-2401').classList.add('hidden'); document.getElementById('dates-7280').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">24/01</div>
+                
+            <a href="voo/voo-delta-7280-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                21:15
+            </a>
+            
+            </div>
+        </div>
+        
+        <div id="times-7280-1601" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-7280-1601').classList.add('hidden'); document.getElementById('dates-7280').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">16/01</div>
+                
+            <a href="voo/voo-delta-7280-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                21:15
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+            
+            <div class="flex justify-center">
+    <div class="group perspective-1000 w-full h-[280px]">
+        <div class="flip-card-inner relative w-full h-full transform-style-3d shadow-sm hover:shadow-md transition-shadow rounded-2xl" id="card-9003">
+            <div class="card-front absolute w-full h-full backface-hidden bg-white rounded-2xl p-5 flex flex-col justify-between border border-orange-200 z-10">
+                <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2 text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" /></svg><span class="font-bold text-sm tracking-wide">LATAM</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="flex items-center bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span class="ml-1">1</span>
+                        </span>
+                        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-md uppercase">ATRASADO</span>
+                    </div>
+                </div>
+                <div class="text-center my-2">
+                    <h3 class="text-4xl font-black text-gray-900 tracking-tighter">9003</h3>
+                    <div class="flex items-center justify-center gap-2 text-gray-500 text-xs font-medium mt-1 uppercase tracking-widest">
+                        <span>GRU</span><span class="text-gray-300">•</span><span>Teresina</span>
+                    </div>
+                </div>
+                <div class="mt-3 mb-2 px-1">
+                    <p class="text-xs text-gray-500 font-medium truncate"><svg class="w-3.5 h-3.5 inline-block mr-1 text-gray-500 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg> 24/01</p>
+                </div>
+                <div class="mt-auto">
+                    <button type="button" onclick="document.getElementById('card-9003').classList.add('rotate-y-180')"
+                            aria-label="Ver datas disponíveis" class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl shadow-sm transition-all transform active:scale-95 flex items-center justify-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" /></svg>Verificar Indenização
+                    </button>
+                </div>
+            </div>
+            <div class="absolute w-full h-full backface-hidden rotate-y-180 bg-slate-800 rounded-2xl p-4 flex flex-col border border-slate-700 text-white shadow-xl">
+                <div class="flex justify-between items-center mb-3 pb-2 border-b border-slate-600">
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <span class="font-bold text-xs uppercase tracking-wide">Selecione</span>
+                    </div>
+                    <button type="button" onclick="document.getElementById('card-9003').classList.remove('rotate-y-180')"
+                            aria-label="Voltar" class="text-slate-400 hover:text-white transition-colors p-1"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+                </div>
+                <div id="dates-9003" class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="grid grid-cols-3 gap-2">
+        <button type="button"
+                onclick="document.getElementById('dates-9003').classList.add('hidden'); document.getElementById('times-9003-2401').classList.remove('hidden');"
+                class="flex flex-col items-center justify-center p-2 rounded bg-slate-700 hover:bg-slate-600 border border-slate-600 transition-all text-white font-bold text-xs">
+            24/01
+        </button>
+        </div>
+                    <div class="mt-4 text-center"><p class="text-[10px] text-slate-500">Escolha a data do voo</p></div>
+                </div>
+                
+        <div id="times-9003-2401" class="hidden flex flex-col h-full">
+            <button type="button"
+                    onclick="document.getElementById('times-9003-2401').classList.add('hidden'); document.getElementById('dates-9003').classList.remove('hidden');"
+                    class="flex items-center text-[10px] text-slate-400 hover:text-white mb-2 self-start uppercase tracking-wider">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg> Voltar
+            </button>
+            <div class="flex-1 overflow-y-auto custom-scrollbar pr-1">
+                <div class="text-center mb-2 text-sm font-bold text-white border-b border-slate-600 pb-1">24/01</div>
+                
+            <a href="voo/voo-latam-9003-gru-the.html"
+               class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
+                20:00
+            </a>
+            
+            </div>
+        </div>
+        
+            </div>
+        </div>
+    </div>
+    </div>
+            
+        </div>
+    
+</section>
+
+<!-- FAQ Section (Simplificada) -->
+<section class="container mx-auto px-4 py-12 max-w-7xl">
+    <div class="mt-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
+        <h2 class="text-2xl font-bold mb-6">Direitos do Passageiro para Voos Atrasados</h2>
+        
+        <div class="space-y-4">
+            <div class="faq-item">
+                <h3 class="font-bold text-lg text-blue-900">A partir de quanto tempo de atraso gera indenização?</h3>
+                <p class="text-gray-700">Atrasos superiores a 4 horas permitem que o passageiro solicite indenização por danos morais. Além disso, a companhia deve fornecer assistência material (alimentação e comunicação) conforme o tempo de espera. 
+                <a href="https://www.airhelp.com/en-int/?ref=matchfly" class="text-blue-600 underline font-bold">Calcule sua compensação agora.</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section (Simplificada) -->
+<section class="container mx-auto px-4 py-12 max-w-7xl">
+    <div class="mt-12 p-6 bg-gray-50 rounded-xl border border-gray-200">
+        <h2 class="text-2xl font-bold mb-6">Direitos do Passageiro para Voos Atrasados</h2>
+        
+        <div class="space-y-4">
+            <div class="faq-item">
+                <h3 class="font-bold text-lg text-blue-900">A partir de quanto tempo de atraso gera indenização?</h3>
+                <p class="text-gray-700">Atrasos superiores a 4 horas permitem que o passageiro solicite indenização por danos morais. Além disso, a companhia deve fornecer assistência material (alimentação e comunicação) conforme o tempo de espera. 
+                <a href="https://www.airhelp.com/en-int/?ref=matchfly" class="text-blue-600 underline font-bold">Calcule sua compensação agora.</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section (Original - Mantida para compatibilidade) -->
+<section id="faq" class="bg-slate-50 py-20 hidden">
+    <div class="container mx-auto px-4 max-w-4xl">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-orange-100 rounded-full mb-4">
+                <span class="text-xs font-bold text-orange-900 uppercase tracking-wider">Perguntas Frequentes</span>
+            </div>
+            <h3 class="text-3xl md:text-5xl font-black text-blue-950 mb-4">
+                Tire Suas Dúvidas
+            </h3>
+        </div>
+
+        <div class="space-y-4">
+            <!-- FAQ Item 1 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(1)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Tenho direito a indenização por voo cancelado?</h4>
+                    <svg id="faq-icon-1" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-1" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        Sim! Segundo a Resolução ANAC 400, passageiros de voos nacionais cancelados sem aviso prévio de pelo menos 72 horas têm direito a indenização de até R$ 10.000. Para voos internacionais, a regulamentação EC 261 também garante compensação. 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Verifique seu voo gratuitamente aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(2)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Qual o valor da compensação por atraso?</h4>
+                    <svg id="faq-icon-2" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-2" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        O valor da compensação varia conforme o tipo de voo e o tempo de atraso. Voos nacionais com atraso superior a 4 horas podem gerar indenização de até R$ 10.000 (ANAC 400). Voos internacionais com atraso superior a 3 horas podem gerar compensação de até €600 (EC 261). 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Calcule seu valor aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
+                <button onclick="toggleFAQ(3)" class="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-orange-50 transition-colors group">
+                    <h4 class="text-lg font-bold text-blue-950 pr-4">Como recebo a indenização?</h4>
+                    <svg id="faq-icon-3" class="w-5 h-5 text-orange-900 flex-shrink-0 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div id="faq-content-3" class="hidden px-6 pb-5">
+                    <p class="text-gray-600 leading-relaxed">
+                        O processo é simples e gratuito. Você verifica seu voo, preenche um formulário online, e a AirHelp entra em contato com a companhia aérea em seu nome. Se aprovado, você recebe a indenização diretamente na sua conta. A AirHelp só recebe uma comissão se você for indenizado. 
+                        <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+                           target="_blank" 
+                           rel="noopener sponsored"
+                           class="text-orange-600 hover:text-orange-800 font-semibold underline">
+                            Inicie seu processo aqui
+                        </a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA após FAQ -->
+        <div class="mt-12 text-center">
+            <a href="https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&a_aid=69649260287c5&a_bid=c63de166&utm_medium=affiliate&utm_source=pap&utm_campaign=aff-69649260287c5" 
+               target="_blank" 
+               rel="noopener sponsored"
+               class="inline-flex items-center space-x-3 px-10 py-5 bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold text-lg rounded-full shadow-2xl hover:shadow-3xl transition-all hover:scale-105 group">
+                <span>Verificar Meu Voo Atrasado Agora</span>
+                <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-12 border-t border-slate-800">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <div class="text-center md:text-left">
+                <p class="text-sm font-medium text-slate-300">
+                    &copy; 2026 MatchFly.
+                </p>
+                <p class="text-xs text-slate-500 mt-1">
+                    Dados públicos de voos em tempo real.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="/privacy.html" class="text-sm text-slate-400 hover:text-white transition-colors duration-200 border-b border-transparent hover:border-slate-400 pb-0.5">
+                    Política de Privacidade
+                </a>
+            </div>
+            
+        </div>
+        
+        <div class="mt-8 pt-8 border-t border-slate-800/50 text-center">
+            <p class="text-[10px] text-slate-600 max-w-2xl mx-auto">
+                O MatchFly é um portal informativo independente e não possui vínculo oficial com companhias aéreas ou com a administração aeroportuária. 
+                Os dados são fornecidos "como estão" baseados em fontes públicas.
+            </p>
+        </div>
+    </div>
+</footer>
+
+    <div id="share-widget" class="fixed bottom-6 left-6 z-[100] flex flex-col items-start gap-4 font-sans group">
+
+    <div id="share-bubble" class="bg-white rounded-2xl shadow-2xl border border-slate-100 w-[320px] transform transition-all duration-500 origin-bottom-left scale-0 opacity-0 absolute bottom-20 left-0 overflow-hidden hidden">
+
+        <div class="bg-gradient-to-r from-blue-950 to-blue-800 p-3 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20 pattern-grid-lg"></div>
+            <div class="relative z-10 flex justify-between items-center">
+                <h3 class="text-base font-black text-white leading-tight tracking-tight">
+                    Seja o Herói do <span class="text-yellow-300">Área VIP T3</span>! 🦸
+                </h3>
+                <button onclick="toggleShareWidget()" class="text-white/60 hover:text-white transition-colors p-1" aria-label="Fechar">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="p-4">
+            <div class="bg-red-50 border border-red-100 shadow-sm shadow-red-50 rounded-lg p-2.5 mb-3 flex items-start gap-2">
+                <div class="bg-red-100 p-1 rounded-full text-red-600 animate-pulse shrink-0">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                </div>
+                <div>
+                    <p class="text-slate-700 text-xs leading-snug">
+                        Detectamos <span class="font-black text-red-600 animate-pulse">602 voos</span> com problemas e alguém ao lado pode perder <strong class="text-green-700">R$ 10.000</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-3 hover:scale-105 transition-transform">
+                <div class="flex -space-x-3 overflow-hidden p-0.5">
+                    <div id="w-avatar-1" class="w-8 h-8 rounded-full bg-gradient-to-br from-green-400 to-green-600 border-2 border-white ring-1 ring-green-400/30 animate-pulse flex items-center justify-center text-[10px] font-bold text-white shadow-sm">JD</div>
+                    <div id="w-avatar-2" class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white ring-1 ring-blue-400/30 animate-pulse delay-75 flex items-center justify-center text-[10px] font-bold text-white shadow-sm">AL</div>
+                    <div class="w-8 h-8 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm z-0">+12</div>
+                </div>
+                <span class="text-[10px] font-bold text-green-700 bg-green-50 px-2 py-0.5 rounded-full animate-pulse whitespace-nowrap">● 34 pessoas compartilhando</span>
+            </div>
+
+            <div class="space-y-2">
+                <a href="https://api.whatsapp.com/send?text=%F0%9F%9A%A8%20Alerta%20MatchFly%3A%20Olha%20isso!%20Tem%20602%20voos%20com%20problemas%20em%20Guarulhos%20agora.%20V%C3%AA%20se%20o%20seu%20t%C3%A1%20na%20lista%3A%20https%3A%2F%2Fmatchfly.org" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-[#25D366] hover:bg-[#1da851] text-white text-xs font-bold py-2.5 rounded-xl shadow hover:shadow-md transition-all hover:-translate-y-0.5 gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    Avisar no WhatsApp
+                </a>
+                <a href="https://twitter.com/intent/tweet?text=%F0%9F%9A%A8%20Utilidade%20p%C3%BAblica%20em%20GRU%3A%20tem%20602%20voos%20com%20problemas.%20Verifiquem%20seus%20direitos%3A%20https%3A%2F%2Fmatchfly.org%20%23MatchFly" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center w-full bg-slate-900 hover:bg-black text-white text-xs font-bold py-2.5 rounded-xl shadow hover:shadow-md transition-all hover:-translate-y-0.5 gap-2">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    Postar no X
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="toggleShareWidget()" class="relative group" aria-label="Abrir opções de compartilhamento">
+        <div class="absolute inset-0 bg-blue-600 rounded-full blur opacity-40 group-hover:opacity-75 transition-opacity animate-pulse"></div>
+        <div class="relative bg-gradient-to-br from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white w-14 h-14 rounded-full shadow-xl flex items-center justify-center transition-transform transform group-hover:scale-110">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+            <span class="absolute -top-1 -right-1 bg-red-500 w-4 h-4 rounded-full border-2 border-white flex items-center justify-center">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+        </div>
+    </button>
+</div>
+
+<script>
+function toggleShareWidget() {
+    var bubble = document.getElementById('share-bubble');
+    if (!bubble) return;
+    bubble.classList.remove('hidden');
+    if (bubble.classList.contains('scale-0')) {
+        bubble.classList.remove('scale-0', 'opacity-0');
+        bubble.classList.add('scale-100', 'opacity-100');
+    } else {
+        bubble.classList.remove('scale-100', 'opacity-100');
+        bubble.classList.add('scale-0', 'opacity-0');
+    }
+}
+
+setTimeout(function() {
+    var bubble = document.getElementById('share-bubble');
+    if (bubble) {
+        bubble.classList.remove('hidden');
+        if (bubble.classList.contains('scale-0')) {
+            toggleShareWidget();
+        }
+    }
+}, 15000);
+
+(function() {
+    var initials = ['MJ', 'RK', 'SP', 'TR', 'LB', 'CF', 'AB', 'GV', 'DR', 'PH'];
+    var idx = 0;
+    setInterval(function() {
+        var el1 = document.getElementById('w-avatar-1');
+        var el2 = document.getElementById('w-avatar-2');
+        var bubble = document.getElementById('share-bubble');
+        if (el1 && el2 && bubble && bubble.classList.contains('scale-100')) {
+            el1.innerText = initials[idx % initials.length];
+            el2.innerText = initials[(idx + 1) % initials.length];
+            idx++;
+        }
+    }, 3000);
+})();
+</script>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>lucide.createIcons();</script>
+    
+<script>
+    function toggleFAQ(num) {
+        const content = document.getElementById('faq-content-' + num);
+        const icon = document.getElementById('faq-icon-' + num);
+        
+        if (content.classList.contains('hidden')) {
+            // Fechar todos os outros
+            for (let i = 1; i <= 3; i++) {
+                if (i !== num) {
+                    document.getElementById('faq-content-' + i).classList.add('hidden');
+                    document.getElementById('faq-icon-' + i).classList.remove('rotate-180');
+                }
+            }
+            // Abrir o selecionado
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+        }
+    }
+</script>
+
+</body>
+</html>
