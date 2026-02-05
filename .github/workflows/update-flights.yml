@@ -8,16 +8,16 @@ on:
   # Botão Manual: Permite rodar quando quiser pela aba "Actions"
   workflow_dispatch:
 
+env:
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+
 permissions:
   contents: write
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    env:
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-    
     steps:
       # 1. Baixa o código do repositório
       - name: Checkout repository

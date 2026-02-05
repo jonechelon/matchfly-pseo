@@ -904,6 +904,9 @@ class FlightPageGenerator:
         try:
             url = os.environ.get("SUPABASE_URL") or os.environ.get("SUPABASE_SERVICE_URL")
             key = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_ANON_KEY")
+            has_url = bool(url and url.strip())
+            has_key = bool(key and key.strip())
+            logger.info("Supabase env: SUPABASE_URL=%s SUPABASE_KEY=%s", has_url, has_key)
             if url and key:
                 try:
                     from supabase import create_client
@@ -924,6 +927,7 @@ class FlightPageGenerator:
                     data = file_data.get("data", {})
             else:
                 self._loaded_from_supabase = False
+                logger.info("Supabase não configurado: usando JSON local %s", self.data_file)
                 file_data = self._load_flight_data_from_file()
                 if file_data is None:
                     return None
