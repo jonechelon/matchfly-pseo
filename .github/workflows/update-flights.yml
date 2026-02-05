@@ -14,6 +14,9 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
     
     steps:
       # 1. Baixa o código do repositório
@@ -27,24 +30,22 @@ jobs:
           python-version: '3.12'
           cache: 'pip'
 
-      # 3. Instala as dependências (Correção: Usa requirements.txt para segurança)
+      # 3. Instala dependências (requirements.txt inclui supabase e python-dotenv)
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # Tenta instalar do arquivo requirements.txt se existir, senão instala manual
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; else pip install requests pandas jinja2 python-slugify openpyxl; fi
+          pip install -r requirements.txt
 
-      # 4. Roda o Scraper (Baixa CSV e converte para JSON)
-      # ATENÇÃO: Se você moveu este arquivo para a pasta 'scripts', mude para: scripts/voos_proximos_finalbuild.py
-      - name: Run Scraper (Sync Data)
+      # 4. Sync Data: conecta no Supabase, baixa voos existentes, merge com CSV, upsert apenas novos
+      - name: Run Scraper (Sync Data to Supabase)
         run: python voos_proximos_finalbuild.py
 
-      # 5. Roda o Gerador (Cria HTML + SEO + Sitemap em docs/)
+      # 5. Gera o site: busca voos do Supabase e gera HTML + SEO + Sitemap em docs/
       - name: Run Generator (Build Site)
         run: python src/generator.py
 
-      # 6. Commit e push da pasta docs/ na branch main (GitHub Pages via /docs)
-      - name: Commit and Push changes
+      # 6. Deploy Docs: commit e push apenas da pasta docs/ (GitHub Pages)
+      - name: Commit and Push docs
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 Script de Sincronização - MatchFly PSEO
-Versão: Ingestão Cumulativa + Retenção 6 Meses + Higiene de Duplicatas
+Versão: Ingestão Cumulativa + Retenção 6 Meses + Supabase
 - Merge com chave única estrita: FlightNumber + Date + Time (ex: RJ2379_2026-01-30_15:20)
-- Número do voo normalizado (remove espaços) para evitar duplicatas
-- Se o UID já existir: SOBRESCREVE com dados mais recentes (nunca duplica)
-- Remove voos com scheduled_time anterior a 6 meses
+- Dados persistentes no Supabase (tabela flights); sem arquivo JSON local.
+- Fetch: baixa voos existentes do Supabase antes de processar (mantém histórico).
+- Save: upsert apenas dos novos voos capturados nesta execução.
+- Remove voos com scheduled_time anterior a 6 meses (na memória; histórico no banco).
 """
 
 import sys
@@ -13,19 +14,27 @@ import os
 import re
 import requests
 import pandas as pd
-import json
 import logging
 import datetime
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
+from supabase import create_client
 
 # Configuração de Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Configurações (CSV e JSON em data/)
+# Configurações (CSV em data/; banco no Supabase)
 REMOTE_CSV_URL = "https://raw.githubusercontent.com/jonechelon/gru-flight-reliability-monitor/main/voos_atrasados_gru.csv"
 DATA_DIR = "data"
 CSV_OUTPUT_NAME = "voos_atrasados_gru.csv"
-JSON_OUTPUT_PATH = "data/flights-db.json"
+SUPABASE_TABLE = "flights"
+PK_COLUMNS = "data_captura,flight_number,scheduled_time"
 
 # Retenção: voos com scheduled_time anterior a este limite são removidos
 RETENTION_MONTHS = 6
@@ -153,20 +162,100 @@ def flight_unique_key(record: dict) -> str:
     return f"{num}_{date_part}_{time_part}"
 
 
-def load_existing_db(path_json: str) -> dict:
-    """Carrega data/flights-db.json existente. Retorna {'flights': [], 'metadata': {}} se vazio ou inexistente."""
-    if not os.path.exists(path_json):
-        return {"flights": [], "metadata": {}}
+def _safe_str(val):
+    if val is None:
+        return ""
+    s = str(val).strip()
+    if s.lower() == "nan":
+        return ""
+    return s
+
+
+def _data_captura_from_record(record: dict) -> str:
+    st = record.get("scheduled_time") or record.get("scheduled_time_iso") or ""
+    dt = parse_scheduled_time(st)
+    if dt:
+        return dt.strftime("%Y-%m-%d")
+    dc = record.get("Data_Captura") or record.get("data_captura") or ""
+    if isinstance(dc, str) and "-" in dc and len(dc) >= 10:
+        return dc[:10]
+    return dc or "1970-01-01"
+
+
+def _scheduled_time_hhmm_from_record(record: dict) -> str:
+    st = record.get("scheduled_time") or record.get("scheduled_time_iso") or ""
+    dt = parse_scheduled_time(st)
+    if dt:
+        return dt.strftime("%H:%M")
+    s = str(st).strip()
+    if " " in s and len(s) >= 16:
+        return s[11:16]
+    if re.match(r"\d{1,2}:\d{2}", s):
+        return s[:5].zfill(5) if len(s) >= 5 else "00:00"
+    return record.get("Horario") or "00:00"
+
+
+def flight_record_to_row(record: dict) -> dict:
+    """Mapeia um dict de voo (formato interno) para uma linha da tabela Supabase flights."""
+    data_captura = _data_captura_from_record(record)
+    flight_number = flight_number_for_uid(record)
+    if not flight_number:
+        flight_number = _safe_str(record.get("flight_number") or record.get("Numero_Voo") or "")
+    scheduled_time = _scheduled_time_hhmm_from_record(record)
+    return {
+        "data_captura": data_captura,
+        "flight_number": flight_number,
+        "scheduled_time": scheduled_time,
+        "horario": _safe_str(record.get("Horario") or record.get("scheduled_time")),
+        "companhia": _safe_str(record.get("Companhia") or record.get("airline")),
+        "numero_voo": _safe_str(record.get("Numero_Voo") or record.get("flight_number")),
+        "operado_por": _safe_str(record.get("Operado_Por") or ""),
+        "status": _safe_str(record.get("status") or record.get("Status") or ""),
+        "data_partida": _safe_str(record.get("data_partida") or record.get("Data_Partida") or ""),
+        "hora_partida": _safe_str(record.get("Hora_Partida") or record.get("scheduled_time") or ""),
+        "airline": _safe_str(record.get("airline") or record.get("Companhia") or ""),
+        "delay_hours": float(record.get("delay_hours", 0)) if record.get("delay_hours") is not None else 0.0,
+        "destination_iata": record.get("destination_iata") and _safe_str(record["destination_iata"]) or None,
+        "destination": record.get("destination") and _safe_str(record["destination"]) or None,
+        "destination_city": record.get("destination_city") and _safe_str(record["destination_city"]) or None,
+        "raw_data": record,
+    }
+
+
+def row_to_flight_record(row: dict) -> dict:
+    """Converte uma linha Supabase (snake_case) em dict de voo para merge. Preferência por raw_data."""
+    if isinstance(row.get("raw_data"), dict):
+        return row["raw_data"]
+    return {
+        "Data_Captura": row.get("data_captura"),
+        "Horario": row.get("horario") or row.get("scheduled_time"),
+        "Companhia": row.get("companhia") or row.get("airline"),
+        "Numero_Voo": row.get("numero_voo") or row.get("flight_number"),
+        "Operado_Por": row.get("operado_por"),
+        "Status": row.get("status"),
+        "Data_Partida": row.get("data_partida"),
+        "Hora_Partida": row.get("hora_partida"),
+        "flight_number": row.get("flight_number"),
+        "airline": row.get("airline"),
+        "status": row.get("status"),
+        "scheduled_time": row.get("scheduled_time"),
+        "data_partida": row.get("data_partida"),
+        "delay_hours": row.get("delay_hours"),
+        "destination_iata": row.get("destination_iata"),
+        "destination": row.get("destination"),
+        "destination_city": row.get("destination_city"),
+    }
+
+
+def fetch_existing_flights_from_supabase(client) -> list:
+    """Baixa todos os voos da tabela flights. Retorna lista de dict (formato de voo para merge)."""
     try:
-        with open(path_json, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except (json.JSONDecodeError, IOError) as e:
-        logger.warning(f"⚠️ Não foi possível ler JSON existente: {e}. Iniciando do zero.")
-        return {"flights": [], "metadata": {}}
-    flights = data.get('flights') or data.get('data') or []
-    if not isinstance(flights, list):
-        flights = []
-    return {"flights": flights, "metadata": data.get("metadata", {})}
+        resp = client.table(SUPABASE_TABLE).select("*").execute()
+        rows = resp.data or []
+        return [row_to_flight_record(r) for r in rows if isinstance(r, dict)]
+    except Exception as e:
+        logger.warning("⚠️ Não foi possível buscar voos existentes no Supabase: %s. Iniciando do zero.", e)
+        return []
 
 
 def apply_retention_6_months(flights: list) -> list:
@@ -189,14 +278,26 @@ def apply_retention_6_months(flights: list) -> list:
 
 
 def main():
-    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO (INGESTÃO CUMULATIVA + 6 MESES)")
+    logger.info("🚀 MATCHFLY - SINCRONIZAÇÃO (SUPABASE + INGESTÃO CUMULATIVA + 6 MESES)")
     
     base_dir = os.getcwd()
     os.makedirs(os.path.join(base_dir, DATA_DIR), exist_ok=True)
     path_csv = os.path.join(base_dir, DATA_DIR, CSV_OUTPUT_NAME)
-    path_json = os.path.join(base_dir, JSON_OUTPUT_PATH)
-    
-    # 1. Download
+
+    # 0. Conexão Supabase
+    url = os.environ.get("SUPABASE_URL") or os.environ.get("SUPABASE_SERVICE_URL")
+    key = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_ANON_KEY")
+    if not url or not key:
+        logger.error("🛑 Defina SUPABASE_URL e SUPABASE_KEY (ou SUPABASE_SERVICE_ROLE_KEY) no .env ou GitHub Secrets.")
+        sys.exit(1)
+    supabase = create_client(url, key)
+    logger.info("✅ Conectado ao Supabase")
+
+    # 1. Fetch voos existentes (histórico no site)
+    existing_flights = fetch_existing_flights_from_supabase(supabase)
+    logger.info("📥 Voos existentes no banco: %s", len(existing_flights))
+
+    # 2. Download CSV
     try:
         logger.info("⬇️ Baixando CSV...")
         response = requests.get(REMOTE_CSV_URL, timeout=30)
@@ -207,7 +308,7 @@ def main():
         logger.error(f"🛑 Erro no download: {e}")
         sys.exit(1)
 
-    # 2. Leitura e normalização do CSV
+    # 3. Leitura e normalização do CSV
     try:
         try:
             df = pd.read_csv(path_csv, sep=None, engine='python')
@@ -278,40 +379,38 @@ def main():
         logger.error(f"🛑 Erro ao processar CSV: {e}")
         sys.exit(1)
 
-    # 3. Merge com banco existente (UID estrito: FlightNumber + Date + Time)
+    # 4. Merge com voos existentes (UID estrito: FlightNumber + Date + Time)
     # Se o UID já existir, SOBRESCREVE com os dados mais recentes. NÃO cria nova entrada.
-    existing = load_existing_db(path_json)
     unique_db = {}
-    for rec in existing["flights"]:
+    for rec in existing_flights:
         if isinstance(rec, dict):
             uid = flight_unique_key(rec)
             unique_db[uid] = rec
+    new_uids = set()
     for rec in new_records:
         if isinstance(rec, dict):
             uid = flight_unique_key(rec)
-            unique_db[uid] = rec  # sobrescreve: mesmo UID = update, nunca duplica
+            unique_db[uid] = rec
+            new_uids.add(uid)
 
     merged_list = list(unique_db.values())
-    logger.info(f"📦 Merge: {len(existing['flights'])} existentes + {len(new_records)} novos → {len(merged_list)} únicos (UID: flight+date+time)")
+    logger.info("📦 Merge: %s existentes + %s novos → %s únicos (UID: flight+date+time)",
+                len(existing_flights), len(new_records), len(merged_list))
 
-    # 4. Retenção 6 meses
+    # 5. Retenção 6 meses (em memória; histórico permanece no banco)
     final_list = apply_retention_6_months(merged_list)
 
-    # 5. Salvar JSON
-    final_structure = {
-        "flights": final_list,
-        "metadata": {
-            "generated_at": datetime.datetime.now().isoformat(),
-            "count": len(final_list),
-            "source": "voos_proximos_finalbuild.py (cumulative)",
-            "retention_months": RETENTION_MONTHS,
-        }
-    }
-    os.makedirs(os.path.dirname(path_json), exist_ok=True)
-    with open(path_json, 'w', encoding='utf-8') as f:
-        json.dump(final_structure, f, indent=2, ensure_ascii=False)
-    
-    logger.info(f"✅ JSON salvo com {len(final_list)} voos (histórico cumulativo, retenção 6 meses).")
+    # 6. Upsert apenas dos novos voos capturados nesta execução
+    to_upsert = [rec for rec in final_list if isinstance(rec, dict) and flight_unique_key(rec) in new_uids]
+    if to_upsert:
+        rows = [flight_record_to_row(rec) for rec in to_upsert]
+        batch_size = 500
+        for i in range(0, len(rows), batch_size):
+            batch = rows[i : i + batch_size]
+            supabase.table(SUPABASE_TABLE).upsert(batch, on_conflict=PK_COLUMNS).execute()
+        logger.info("✅ Upsert no Supabase: %s voos (novos desta execução).", len(rows))
+    else:
+        logger.info("✅ Nenhum voo novo para enviar ao Supabase.")
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ Version: 2.0.0
 
 import json
 import logging
+import os
 import random
 import sys
 import subprocess
@@ -28,6 +29,12 @@ from slugify import slugify
 from jinja2 import Environment, FileSystemLoader, Template
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
+
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 # Importa módulo de enriquecimento
 import copy
@@ -743,6 +750,8 @@ class FlightPageGenerator:
         # Tracking de arquivos gerados com sucesso
         self.success_files: Set[str] = set()
         self.success_pages: List[Dict] = []
+        # True quando dados foram carregados do Supabase (não gravar JSON enriquecido)
+        self._loaded_from_supabase = False
     
         # Banco de rotas da ANAC (já traduzido para IATA)
         self.anac_db: Dict[str, str] = self.load_anac_database()
@@ -846,33 +855,80 @@ class FlightPageGenerator:
         else:
             logger.info(f"Nenhum arquivo antigo detectado em {self.voo_dir}")
     
+    def _row_to_flight_dict(self, row: dict) -> dict:
+        """Converte uma linha Supabase (snake_case) em dict de voo. Preferência por raw_data."""
+        if isinstance(row.get("raw_data"), dict):
+            return row["raw_data"].copy()
+        return {
+            "Data_Captura": row.get("data_captura"),
+            "Horario": row.get("horario") or row.get("scheduled_time"),
+            "Companhia": row.get("companhia") or row.get("airline"),
+            "Numero_Voo": row.get("numero_voo") or row.get("flight_number"),
+            "Operado_Por": row.get("operado_por"),
+            "Status": row.get("status"),
+            "Data_Partida": row.get("data_partida"),
+            "Hora_Partida": row.get("hora_partida"),
+            "flight_number": row.get("flight_number"),
+            "airline": row.get("airline"),
+            "status": row.get("status"),
+            "scheduled_time": row.get("scheduled_time"),
+            "data_partida": row.get("data_partida"),
+            "delay_hours": row.get("delay_hours"),
+            "destination_iata": row.get("destination_iata"),
+            "destination": row.get("destination"),
+            "destination_city": row.get("destination_city"),
+        }
+
+    def _load_flight_data_from_file(self) -> Optional[Dict]:
+        """Lê JSON do data_file. Retorna {'raw_flights': [...], 'data': {...}} ou None."""
+        if not self.data_file.exists():
+            return None
+        with open(self.data_file, "r", encoding="utf-8") as f:
+            raw_data = json.load(f)
+        if isinstance(raw_data, list):
+            return {"raw_flights": raw_data, "data": {}}
+        if isinstance(raw_data, dict):
+            raw_flights = raw_data.get("flights") or raw_data.get("data") or []
+            return {"raw_flights": raw_flights, "data": raw_data}
+        return {"raw_flights": [], "data": {}}
+
     def load_flight_data(self) -> Optional[Dict]:
         """
-        Carrega e NORMALIZA chaves do JSON (PT -> EN).
-
-        Suporta dados brutos (CSV PT-BR exportado para JSON) onde as colunas vêm
-        com nomes como `Companhia`, `Numero_Voo`, etc.
+        Carrega e NORMALIZA dados de voos.
+        Se SUPABASE_URL e SUPABASE_KEY estiverem definidos, busca da tabela flights.
+        Caso contrário, lê do arquivo JSON (data_file).
 
         Returns:
             Dicionário com dados normalizados ou None em caso de erro
         """
         try:
-            if not self.data_file.exists():
-                return None
-            
-            with open(self.data_file, 'r', encoding='utf-8') as f:
-                raw_data = json.load(f)
-
-            # CORREÇÃO: Verifica se é Lista (novo formato) ou Dict (velho formato)
-            if isinstance(raw_data, list):
-                raw_flights = raw_data
-                data = {}
-            elif isinstance(raw_data, dict):
-                raw_flights = raw_data.get('flights') or raw_data.get('data') or []
-                data = raw_data
+            url = os.environ.get("SUPABASE_URL") or os.environ.get("SUPABASE_SERVICE_URL")
+            key = os.environ.get("SUPABASE_KEY") or os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("SUPABASE_ANON_KEY")
+            if url and key:
+                try:
+                    from supabase import create_client
+                    client = create_client(url, key)
+                    resp = client.table("flights").select("*").execute()
+                    rows = resp.data or []
+                    raw_flights = [self._row_to_flight_dict(r) for r in rows if isinstance(r, dict)]
+                    data = {"flights": raw_flights, "metadata": {}}
+                    self._loaded_from_supabase = True
+                    logger.info("📥 Dados carregados do Supabase: %s voos", len(raw_flights))
+                except Exception as e:
+                    logger.warning("⚠️ Fallback para JSON após erro no Supabase: %s", e)
+                    self._loaded_from_supabase = False
+                    file_data = self._load_flight_data_from_file()
+                    if file_data is None:
+                        return None
+                    raw_flights = file_data.get("raw_flights", [])
+                    data = file_data.get("data", {})
             else:
-                raw_flights = []
-                data = {}
+                self._loaded_from_supabase = False
+                file_data = self._load_flight_data_from_file()
+                if file_data is None:
+                    return None
+                raw_flights = file_data.get("raw_flights", [])
+                data = file_data.get("data", {})
 
             # Normalização de Chaves (Polyglot)
             normalized_flights: List[Dict] = []
@@ -2479,14 +2535,17 @@ class FlightPageGenerator:
                 enrichment_module.analyze_failure_rate(flights, "DEPOIS")
                 logger.info(f"✅ Enriquecimento concluído: {stats['enriched']} recuperados.")
                 
-                # Salva dados enriquecidos de volta no JSON (Persistência Permanente)
-                try:
-                    data['flights'] = flights
-                    with open(self.data_file, 'w', encoding='utf-8') as f:
-                        json.dump(data, f, ensure_ascii=False, indent=2)
-                    logger.info(f"✅ Dados enriquecidos salvos em: {self.data_file}")
-                except Exception as e:
-                    logger.error(f"❌ Erro ao salvar dados enriquecidos: {e}")
+                # Salva dados enriquecidos apenas quando a fonte é JSON local (não Supabase)
+                if not getattr(self, "_loaded_from_supabase", False):
+                    try:
+                        data["flights"] = flights
+                        with open(self.data_file, "w", encoding="utf-8") as f:
+                            json.dump(data, f, ensure_ascii=False, indent=2)
+                        logger.info("✅ Dados enriquecidos salvos em: %s", self.data_file)
+                    except Exception as e:
+                        logger.error("❌ Erro ao salvar dados enriquecidos: %s", e)
+                else:
+                    logger.info("✅ Dados enriquecidos em memória (fonte: Supabase; não gravando JSON)")
             else:
                 logger.info("✅ Todos os voos já têm destination_iata - pulando enriquecimento")
             

@@ -5,35 +5,42 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# --- Virtual Environment & Env Vars ---
+# --- Virtual Environment & Secrets (CRÍTICO) ---
 venv/
 env/
 .env
+.env.*
 
 # --- IDE Settings ---
 .vscode/
 .idea/
+.cursor/
 
 # --- Logs & Debug ---
 *.log
 npm-debug.log*
 
 # --- DATA FILES ---
-# Dados brutos: não versionar
+# CSVs brutos (não versionar)
 data/*.csv
 
-# Banco processado (flights-db.json, etc.): ignorado para evitar dados sensíveis no repo.
-# Se data/flights-db.json for essencial para o build (ex.: CI sem scraper), descomente a exceção abaixo:
+# Banco de dados Local (não versionar)
+# Como usamos Supabase, o JSON local é apenas temporário/cache
 data/*.json
-# !data/flights-db.json
 
-# --- SEGURANÇA ---
+# --- SEGURANÇA (Chaves e Tokens) ---
 credentials/
 service_account.json
 client_secret.json
 
-# --- BACKUPS ---
+# --- BACKUPS & LIXO ---
 projects/matchfly-pseo-backup-erros/
+_internal_docs/archive/
 
-# --- SITE GERADO (docs/) ---
-# A pasta docs/ NÃO é ignorada: o site gerado é commitado para GitHub Pages (Source: main, /docs).
+# --- LEGACY (Limpeza) ---
+# Garante que a antiga pasta public nunca suba por engano
+public/
+
+# --- GITHUB PAGES ---
+# A pasta docs/ NÃO está listada aqui propositalmente.
+# Ela DEVE ser commitada para o site funcionar.
