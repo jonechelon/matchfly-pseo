@@ -27,6 +27,8 @@ data/*.csv
 # Banco de dados Local (não versionar)
 # Como usamos Supabase, o JSON local é apenas temporário/cache
 data/*.json
+# Exceção: arquivo necessário para enriquecimento ANAC
+!data/specificroutes_anac.json
 
 # --- SEGURANÇA (Chaves e Tokens) ---
 credentials/
