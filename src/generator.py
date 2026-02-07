@@ -69,6 +69,10 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Paginação Supabase: controle de lotes e limite total (evita timeout / Free Tier)
+BATCH_SIZE = 1000
+MAX_TOTAL_FETCH = 15000
+
 
 def safe_str(val):
     """Converte qualquer valor para string limpa, evitando erro de float/None."""
@@ -911,12 +915,43 @@ class FlightPageGenerator:
                 try:
                     from supabase import create_client
                     client = create_client(url, key)
-                    resp = client.table("flights").select("*").execute()
-                    rows = resp.data or []
-                    raw_flights = [self._row_to_flight_dict(r) for r in rows if isinstance(r, dict)]
+                    all_flights: List[dict] = []
+                    offset = 0
+                    while True:
+                        start = offset
+                        end = offset + BATCH_SIZE - 1
+                        logger.info(
+                            "Baixando lote %s-%s... (Total atual: %s)",
+                            start,
+                            end,
+                            len(all_flights),
+                        )
+                        resp = (
+                            client.table("flights")
+                            .select("*")
+                            .order("data_captura", desc=True)
+                            .range(start, end)
+                            .execute()
+                        )
+                        rows = resp.data or []
+                        batch = [self._row_to_flight_dict(r) for r in rows if isinstance(r, dict)]
+                        all_flights.extend(batch)
+                        if len(rows) < BATCH_SIZE:
+                            break
+                        if len(all_flights) >= MAX_TOTAL_FETCH:
+                            logger.warning(
+                                "Trava de segurança atingida: %s registros (parando paginação)",
+                                MAX_TOTAL_FETCH,
+                            )
+                            break
+                        offset += BATCH_SIZE
+                    raw_flights = all_flights
                     data = {"flights": raw_flights, "metadata": {}}
                     self._loaded_from_supabase = True
-                    logger.info("📥 Dados carregados do Supabase: %s voos", len(raw_flights))
+                    logger.info(
+                        "📥 Total final carregado do Supabase: %s registros",
+                        len(all_flights),
+                    )
                 except Exception as e:
                     logger.warning("⚠️ Fallback para JSON após erro no Supabase: %s", e)
                     self._loaded_from_supabase = False
