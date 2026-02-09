@@ -748,7 +748,8 @@ class FlightPageGenerator:
             'failures': 0,
             'orphans_removed': 0,
             'old_files_detected': 0,
-            'filtered_out': 0
+            'filtered_out': 0,
+            'duplicates_skipped': 0
         }
         
         # Tracking de arquivos gerados com sucesso
@@ -1096,9 +1097,9 @@ class FlightPageGenerator:
     
     def generate_slug(self, flight: Dict) -> str:
         """
-        Gera slug de URL amigável para SEO, único por voo+data.
-        Formato: voo-{airline}-{number}-{origin}-{dest}-{dd}-{mm}
-        Ex.: voo-latam-1470-gru-cwb-31-01.html
+        Gera slug de URL amigável para SEO, único por voo+data+horário.
+        Formato: voo-{airline}-{number}-{origin}-{dest}-{dd}-{mm}-{HHMM}
+        Ex.: voo-latam-3000-gru-mao-08-02-0800 (evita colisão no mesmo dia).
         """
         airline = self.safe_str(flight.get('airline', ''))
         number = self.safe_str(flight.get('flight_number', ''))
@@ -1115,10 +1116,33 @@ class FlightPageGenerator:
         base = f"voo-{slugify(airline)}-{slugify(number)}-{slugify(origin)}-{slugify(dest)}"
         flight_date = parse_flight_time(flight)
         if flight_date == datetime.min:
-            date_suffix = ""  # fallback: comportamento antigo (sem data no nome)
-        else:
-            date_suffix = f"-{flight_date.strftime('%d-%m')}"  # ex: -31-01
-        return base + date_suffix
+            # Fallback: tenta data/hora por chaves alternativas (ex.: API retorna data_captura)
+            date_iso = safe_str(
+                flight.get('Data_Captura') or flight.get('data_captura')
+                or flight.get('scraped_at') or flight.get('data_partida') or flight.get('date_raw') or ''
+            )
+            time_str = safe_str(flight.get('scheduled_time') or flight.get('Horario') or '00:00')
+            if len(time_str) > 5:
+                time_str = time_str[:5]
+            try:
+                if date_iso and '-' in date_iso:
+                    date_clean = date_iso.replace('T', ' ').split(' ')[0]
+                    flight_date = datetime.strptime(f"{date_clean} {time_str}", "%Y-%m-%d %H:%M")
+                elif date_iso and '/' in date_iso:
+                    parts = date_iso.split('/')
+                    if len(parts) == 3:
+                        flight_date = datetime.strptime(f"{parts[2]}-{parts[1]}-{parts[0]} {time_str}", "%Y-%m-%d %H:%M")
+                    elif len(parts) >= 2:
+                        flight_date = datetime.strptime(f"{datetime.now().year}-{parts[1]}-{parts[0]} {time_str}", "%Y-%m-%d %H:%M")
+                if flight_date != datetime.min:
+                    return f"{base}-{flight_date.strftime('%d-%m-%H%M')}"
+            except Exception:
+                pass
+            # Último recurso: sufixo único para evitar colisão
+            raw = f"{flight.get('scheduled_time') or ''}_{date_iso}_{flight.get('flight_number') or number}"
+            return f"{base}-{hashlib.md5(raw.encode()).hexdigest()[:6]}"
+        date_suffix = flight_date.strftime('%d-%m-%H%M')
+        return f"{base}-{date_suffix}"
 
     def get_city_slug(self, city_name: str) -> str:
         """Gera slug padronizado para nome de cidade (Single Source of Truth para URLs de destino)."""
@@ -1293,7 +1317,7 @@ class FlightPageGenerator:
             "json_ld_schema": json.dumps(schema, ensure_ascii=False)
         }
 
-    def get_flight_card_flip_html(self, flight: dict, related_dates: list = None) -> str:
+    def get_flight_card_flip_html(self, flight: dict, related_dates: list = None, link_prefix: str = "") -> str:
         """
         Card Flip 3D com navegação hierárquica: Data → Horário → Página do Voo.
 
@@ -1301,6 +1325,7 @@ class FlightPageGenerator:
             flight: Dicionário com dados do voo
             related_dates: Lista de tuplas (datetime_display, slug)
                           Ex: [("03/02 14:00", "slug123"), ("03/02 18:30", "slug456")]
+            link_prefix: Prefixo do href (ex: "" para docs/, "../" para docs/destino/)
         """
         # Extração segura de dados
         flight_num = self.safe_str(flight.get('flight_number')) or 'N/A'
@@ -1330,7 +1355,7 @@ class FlightPageGenerator:
 
         # Lógica de agrupamento
         if not related_dates:
-            slug = self.generate_slug(flight)
+            slug = flight.get('slug') or self.generate_slug(flight)
             scheduled = self.safe_str(flight.get('scheduled_time', ''))
             if len(scheduled) >= 16:
                 date_part = f"{scheduled[8:10]}/{scheduled[5:7]}"
@@ -1392,7 +1417,7 @@ class FlightPageGenerator:
             time_buttons = ""
             for t in times_list:
                 time_buttons += f"""
-            <a href="voo/{t['slug']}.html"
+            <a href="{link_prefix}voo/{t['slug']}.html"
                class="block w-full text-center py-2 mb-2 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-colors">
                 {t['time']}
             </a>
@@ -1560,13 +1585,22 @@ class FlightPageGenerator:
 
             # 4. Gerar HTML
             slug = self.generate_slug(flight)
+            filename = f"{slug}.html"
+
+            # Verificação de duplicatas (evita sobrescrever voos do mesmo dia/horário)
+            if filename in self.success_files:
+                logger.warning(
+                    f"⚠️  DUPLICATA DETECTADA e IGNORADA: {filename} "
+                    f"(Voo: {raw_fnum}, Status: {status})"
+                )
+                self.stats['duplicates_skipped'] = self.stats.get('duplicates_skipped', 0) + 1
+                return False
+
             # Injeta dados de SEO no contexto
             seo_data = self._get_seo_context(flight, slug)
             context.update(seo_data)
             context.update(self._get_widget_context())
 
-            filename = f"{slug}.html"
-            
             template = self.jinja_env.get_template(self.template_file.name)
             with open(self.voo_dir / filename, 'w', encoding='utf-8') as f:
                 f.write(template.render(**context))
@@ -1817,7 +1851,9 @@ class FlightPageGenerator:
                 for flight in city_flights:
                     num = flight.get('flight_number')
                     if num:
-                        grouped_by_flight_num[num].append(flight)
+                        clean_num = "".join(filter(str.isdigit, str(num)))
+                        if clean_num:
+                            grouped_by_flight_num[clean_num].append(flight)
                 groups_list = list(grouped_by_flight_num.values())
                 cancelled = []
                 delayed = []
@@ -1849,7 +1885,7 @@ class FlightPageGenerator:
                 for group in selected_groups:
                     related_dates = []
                     for f in group:
-                        slug = self.generate_slug(f)
+                        slug = f.get('slug') or self.generate_slug(f)
                         scheduled = self.safe_str(f.get('scheduled_time', ''))
                         if len(scheduled) >= 16:
                             date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
@@ -1858,7 +1894,7 @@ class FlightPageGenerator:
                         else:
                             date_display = "N/A"
                         related_dates.append((date_display, slug))
-                    city_cards.append(self.get_flight_card_flip_html(group[0], related_dates=related_dates))
+                    city_cards.append(self.get_flight_card_flip_html(group[0], related_dates=related_dates, link_prefix=""))
                 all_remaining = (
                     (cancelled[1:] if len(cancelled) > 1 else [])
                     + (delayed[1:] if len(delayed) > 1 else [])
@@ -2129,10 +2165,16 @@ class FlightPageGenerator:
         # Seleciona 10 aleatórios do TOP 20
         ticker_flights = random.sample(top_20, min(10, len(top_20)))
         
-        # Adiciona slug para cada voo
+        # Resolver slug a partir das páginas realmente geradas (evita 404)
         for flight in ticker_flights:
-            flight['slug'] = self.generate_slug(flight)
-        
+            match = next(
+                (p for p in self.success_pages
+                 if p.get('flight_number') == flight.get('flight_number')
+                 and self.safe_str(p.get('destination_iata')) == self.safe_str(flight.get('destination_iata'))),
+                None
+            )
+            flight['slug'] = match['slug'] if match else self.generate_slug(flight)
+
         return ticker_flights
     
     # Blacklist de cidades inválidas - não gerar páginas para estes nomes
@@ -2184,7 +2226,7 @@ class FlightPageGenerator:
                 }
             
             enriched = self.enrich_flight_with_30d_stats(flight)
-            enriched['slug'] = self.generate_slug(enriched)
+            enriched['slug'] = flight.get('slug') or self.generate_slug(enriched)
             enriched['filename'] = enriched['slug'] + '.html'
             enriched['date_time_fmt'] = format_date_time_fmt(enriched)
             # Só inclui na lista da cidade voos que tiveram página gerada (evita link quebrado)
@@ -2206,23 +2248,29 @@ class FlightPageGenerator:
             filename = f"{city_slug}.html"
 
             # Agrupar voos por número para Flip Cards 3D (Data → Horário; um card por número)
-            flights_by_number = defaultdict(list)
+            # Usar dict por slug para garantir unicidade (evita horários duplicados)
+            flights_by_number = defaultdict(dict)
             for f in data['flights']:
                 num = f.get('flight_number')
-                slug = f.get('slug') or self.generate_slug(f)
-                scheduled = self.safe_str(f.get('scheduled_time', ''))
-                if len(scheduled) >= 16:
-                    date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
-                elif len(scheduled) >= 10:
-                    date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
-                else:
-                    date_display = "N/A"
-                flights_by_number[num].append((date_display, slug))
+                if num:
+                    clean_num = "".join(filter(str.isdigit, str(num)))
+                    if clean_num:
+                        slug = f.get('slug') or self.generate_slug(f)
+                        scheduled = self.safe_str(f.get('scheduled_time', ''))
+                        if len(scheduled) >= 16:
+                            date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
+                        elif len(scheduled) >= 10:
+                            date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
+                        else:
+                            date_display = "N/A"
+                        if slug not in flights_by_number[clean_num]:
+                            flights_by_number[clean_num][slug] = date_display
             flight_cards = []
-            for num, dates_list in flights_by_number.items():
-                first_flight = next((f for f in data['flights'] if f.get('flight_number') == num), None)
+            for clean_num, slug_to_date in flights_by_number.items():
+                related_dates = [(date_display, slug) for slug, date_display in slug_to_date.items()]
+                first_flight = next((f for f in data['flights'] if "".join(filter(str.isdigit, str(f.get('flight_number') or ''))) == clean_num), None)
                 if first_flight:
-                    flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=dates_list))
+                    flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=related_dates, link_prefix="../"))
 
             context = {
                 'title': f"Voos para {city_name} com Problemas | MatchFly",
@@ -2397,7 +2445,14 @@ class FlightPageGenerator:
                     continue
 
                 enriched = self.enrich_flight_with_30d_stats(flight)
-                enriched['slug'] = self.generate_slug(enriched)
+                match = next(
+                    (p for p in self.success_pages
+                     if p.get('flight_number') == flight.get('flight_number')
+                     and self.safe_str(p.get('destination_iata')) == self.safe_str(flight.get('destination_iata'))
+                     and self.safe_str(p.get('scheduled_time')) == self.safe_str(flight.get('scheduled_time'))),
+                    None
+                )
+                enriched['slug'] = match['slug'] if match else self.generate_slug(enriched)
                 enriched['airline'] = airline
 
                 iata = safe_str(enriched.get('destination_iata', ''))
@@ -2446,7 +2501,7 @@ class FlightPageGenerator:
             for num, dates_list in flights_by_number.items():
                 first_flight = next((x for x in template_flights if x.get('flight_number') == num), None)
                 if first_flight:
-                    category_flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=dates_list))
+                    category_flight_cards.append(self.get_flight_card_flip_html(first_flight, related_dates=dates_list, link_prefix=""))
             
             # Contexto para template (inclui widget global para base.html)
             context = {
@@ -2737,6 +2792,7 @@ class FlightPageGenerator:
         logger.info(f"   • Sucessos:             {self.stats['successes']} páginas")
         logger.info(f"   • Falhas:               {self.stats['failures']} páginas")
         logger.info(f"   • Filtrados (< 15min):  {self.stats['filtered_out']} voos")
+        logger.info(f"   • Duplicatas ignoradas: {self.stats.get('duplicates_skipped', 0)} voos")
         logger.info(f"   • Órfãos removidos:     {self.stats['orphans_removed']} arquivos")
         logger.info(f"   • Sitemap:              Atualizado com {self.stats['successes']} URLs")
         logger.info("")
