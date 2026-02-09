@@ -797,6 +797,24 @@ class FlightPageGenerator:
         """Converte qualquer valor para string limpa, evitando erro de float/None."""
         return safe_str(val)
 
+    def normalize_flight_number(self, flight_number: str) -> str:
+        """
+        Normaliza flight_number para formato consistente (apenas dígitos).
+
+        Exemplos:
+            "RJ3874" → "3874"
+            "rj6721" → "6721"
+            "LA 8058" → "8058"
+            "3874" → "3874"
+
+        Mantém apenas dígitos para evitar duplicatas por variações de prefixo.
+        """
+        if not flight_number:
+            return ""
+        cleaned = str(flight_number).strip()
+        digits_only = "".join(filter(str.isdigit, cleaned))
+        return digits_only
+
     def setup_and_validate(self) -> bool:
         """
         STEP 1: Setup & Validação.
@@ -864,16 +882,18 @@ class FlightPageGenerator:
         """Converte uma linha Supabase (snake_case) em dict de voo. Preferência por raw_data."""
         if isinstance(row.get("raw_data"), dict):
             return row["raw_data"].copy()
+        raw_flight_number = safe_str(row.get("flight_number") or row.get("numero_voo") or "")
+        normalized_flight_number = self.normalize_flight_number(raw_flight_number)
         return {
             "Data_Captura": row.get("data_captura"),
             "Horario": row.get("horario") or row.get("scheduled_time"),
             "Companhia": row.get("companhia") or row.get("airline"),
-            "Numero_Voo": row.get("numero_voo") or row.get("flight_number"),
+            "Numero_Voo": normalized_flight_number,
             "Operado_Por": row.get("operado_por"),
             "Status": row.get("status"),
             "Data_Partida": row.get("data_partida"),
             "Hora_Partida": row.get("hora_partida"),
-            "flight_number": row.get("flight_number"),
+            "flight_number": normalized_flight_number,
             "airline": row.get("airline"),
             "status": row.get("status"),
             "scheduled_time": row.get("scheduled_time"),
@@ -979,9 +999,17 @@ class FlightPageGenerator:
 
                 norm = fdata.copy()
 
+                # Obter flight_number original (Numero_Voo, flight_number ou Número Voo)
+                raw_flight_number = safe_str(
+                    fdata.get('Numero_Voo') or fdata.get('flight_number')
+                )
+                if not raw_flight_number and 'Número Voo' in fdata:
+                    raw_flight_number = safe_str(fdata.get('Número Voo'))
+                # Normalizar: apenas dígitos (evita duplicatas rj3874 vs 3874)
+                norm['flight_number'] = self.normalize_flight_number(raw_flight_number)
+                norm['flight_number_original'] = raw_flight_number
+
                 # Mapeia chaves PT -> EN se necessário (safe_str evita float/None)
-                if 'Numero_Voo' in fdata:
-                    norm['flight_number'] = safe_str(fdata.get('Numero_Voo'))
                 if 'Companhia' in fdata:
                     norm['airline'] = safe_str(fdata.get('Companhia'))
                 if 'Status' in fdata:
@@ -994,8 +1022,6 @@ class FlightPageGenerator:
                     norm['data_partida'] = safe_str(fdata.get('Data_Partida'))
 
                 # Sinônimos comuns (robustez extra)
-                if not norm.get('flight_number') and 'Número Voo' in fdata:
-                    norm['flight_number'] = safe_str(fdata.get('Número Voo'))
                 if not norm.get('airline') and 'Cia' in fdata:
                     norm['airline'] = safe_str(fdata.get('Cia'))
                 if not norm.get('scheduled_time') and 'Hora' in fdata:
@@ -2166,11 +2192,14 @@ class FlightPageGenerator:
         ticker_flights = random.sample(top_20, min(10, len(top_20)))
         
         # Resolver slug a partir das páginas realmente geradas (evita 404)
+        # Match mais robusto: normalizar número e considerar horário
         for flight in ticker_flights:
             match = next(
                 (p for p in self.success_pages
-                 if p.get('flight_number') == flight.get('flight_number')
-                 and self.safe_str(p.get('destination_iata')) == self.safe_str(flight.get('destination_iata'))),
+                 if "".join(filter(str.isdigit, str(p.get('flight_number', '')))) ==
+                    "".join(filter(str.isdigit, str(flight.get('flight_number', ''))))
+                 and self.safe_str(p.get('destination_iata')) == self.safe_str(flight.get('destination_iata'))
+                 and self.safe_str(p.get('scheduled_time', '')) == self.safe_str(flight.get('scheduled_time', ''))),
                 None
             )
             flight['slug'] = match['slug'] if match else self.generate_slug(flight)
