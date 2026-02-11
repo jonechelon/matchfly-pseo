@@ -14,7 +14,6 @@ env/
 # --- IDE Settings ---
 .vscode/
 .idea/
-.cursor/
 
 # --- Logs & Debug ---
 *.log
@@ -27,6 +26,8 @@ data/*.csv
 # Banco de dados Local (não versionar)
 # Como usamos Supabase, o JSON local é apenas temporário/cache
 data/*.json
+docs/voo/*.html
+
 # Exceção: arquivo necessário para enriquecimento ANAC
 !data/specificroutes_anac.json
 
