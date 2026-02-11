@@ -401,6 +401,69 @@
             </div>
             
             
+            <!-- ============================================================ -->
+            <!-- PARÁGRAFO INTRODUTÓRIO ÚNICO - FASE 3 (Anti-Thin Content)   -->
+            <!-- ============================================================ -->
+            <div class="mb-10">
+                <div class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-blue-50/50 to-white border-2 border-blue-200 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-out p-8 group">
+                    
+                    <!-- Círculo decorativo superior esquerdo -->
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-blue-500 opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity duration-500"></div>
+                    
+                    <!-- Círculo decorativo inferior direito -->
+                    <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-400 opacity-5 rounded-full blur-2xl group-hover:opacity-10 transition-opacity duration-500"></div>
+                    
+                    <!-- Badge "Contexto do Voo" -->
+                    <div class="relative z-10 flex items-center gap-3 mb-6">
+                        <!-- Ícone informativo -->
+                        <div class="flex items-center justify-center w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        
+                        <!-- Texto do badge -->
+                        <div>
+                            <h3 class="text-sm font-bold text-blue-700 uppercase tracking-widest">Contexto do Voo</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Análise detalhada do incidente</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Conteúdo principal (texto gerado pelo Python) -->
+                    <div class="relative z-10 mb-6">
+                        <div class="prose prose-lg prose-blue max-w-none text-gray-800 leading-relaxed [&>p]:mb-0">
+                            <p>Em 19/01/2026, o voo 1924 operado pela LATAM registrou atraso de 1h na rota GRU-GIG, com partida originalmente prevista para 17:30. Com 6 episódios de atraso no último mês, este voo requer atenção redobrada de passageiros que dependem de conexões ou compromissos profissionais no destino. Como se trata de um voo doméstico, os passageiros têm direito à assistência material, reacomodação, reembolso integral e comunicação adequada conforme a Resolução 400 da ANAC. Passageiros afetados há 23 dias ainda podem reivindicar compensação, seguindo os prazos e procedimentos previstos na legislação brasileira. Nessas situações, é recomendável guardar cartões de embarque, comprovantes de gastos com alimentação, transporte ou hospedagem e registrar protocolos de atendimento, pois esses documentos fortalecem o pedido de compensação financeira. Ao reunir provas do prejuízo e da falha na prestação do serviço, o passageiro aumenta significativamente as chances de obter uma indenização justa, seja em negociação direta com a companhia aérea ou em eventual ação judicial.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Linha separadora -->
+                    <div class="relative z-10 border-t border-blue-200/50 my-6"></div>
+                    
+                    <!-- Rodapé informativo -->
+                    <div class="relative z-10 flex flex-wrap items-center justify-between gap-4 text-xs">
+                        <!-- Selo "Informações verificadas" -->
+                        <div class="flex items-center gap-2 px-4 py-2 bg-green-50 border border-green-200 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-semibold text-green-700">Informações verificadas</span>
+                        </div>
+                        
+                        <!-- Timestamp de atualização -->
+                        <div class="flex items-center gap-2 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="font-medium">Atualizado <time datetime="11/02/2026 23:02">11/02/2026 23:02</time></span>
+                        </div>
+                    </div>
+                    
+                    <!-- Elemento decorativo de borda (linha azul sutil) -->
+                    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent"></div>
+                </div>
+            </div>
+            <!-- ============================================================ -->
+            
             <!-- Informações do Voo - Card Premium -->
             <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden mb-12">
                 <div class="bg-gradient-to-r from-blue-950 to-blue-900 px-6 py-4">
@@ -1082,7 +1145,7 @@
             <div class="border-t border-blue-800 pt-8 text-center">
                 <p class="text-blue-300 text-sm mb-2">MatchFly • Voo 1924 • LATAM</p>
                 <p class="text-blue-400 text-xs">
-                    Gerado em: 2026-02-11 22:23:44 • Dados atualizados: 2026-02-11T22:23:44.607812+00:00
+                    Gerado em: 2026-02-11 23:02:53 • Dados atualizados: 2026-02-11T23:02:53.684933+00:00
                 </p>
             </div>
         </div>
