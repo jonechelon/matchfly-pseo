@@ -1639,6 +1639,25 @@ class FlightPageGenerator:
                 logger.warning(f"Erro ao calcular tempo desde voo: {e}")
                 context['tempo_desde_voo'] = "recentemente"
 
+            # 4. Parágrafo introdutório único (120-180 palavras)
+            # Usa voo enriquecido com estatísticas de 30 dias e metadados de contexto.
+            enriched_input = {
+                **flight,
+                'flight_number': context.get('flight_number', self.safe_str(flight.get('flight_number'))),
+                'status': status,
+                'airline_name': context.get('airline_name'),
+                'airline': context.get('airline', self.safe_str(flight.get('airline'))),
+                'destination_city': dest_city,
+                'destination': dest_city,
+                'destination_iata': dest_iata,
+                'display_time': context.get('display_time') or self.safe_str(flight.get('scheduled_time')) or '',
+                'data_voo_completa': context.get('data_voo_completa', 'N/A'),
+                'tempo_desde_voo': context.get('tempo_desde_voo', 'recentemente'),
+            }
+            enriched = self.enrich_flight_with_30d_stats(enriched_input)
+            context['intro_paragrafo_unico'] = self.generate_unique_intro(enriched)
+            context['current_time'] = datetime.now().strftime('%d/%m/%Y %H:%M')
+
             # Log de validação
             logger.debug(
                 f"✅ FASE 3 - Voo {context.get('flight_number', 'N/A')}: "
@@ -2207,6 +2226,202 @@ class FlightPageGenerator:
             enriched['destination_iata'] = get_iata_code(safe_str(enriched.get('destination', '')))
         
         return enriched
+    
+    def generate_unique_intro(self, flight: Dict) -> str:
+        """
+        Gera parágrafo introdutório único (120-180 palavras) baseado no histórico do voo.
+        Objetivo: Evitar penalização por thin content (aumenta unicidade).
+        
+        Args:
+            flight: Dicionário com dados enriquecidos do voo
+            
+        Returns:
+            String com parágrafo HTML formatado (2-3 sentenças estendidas)
+        """
+        # ========= EXTRAÇÃO SEGURA DE VARIÁVEIS =========
+        flight_number = self.safe_str(
+            flight.get('flight_number')
+            or flight.get('FlightNumber')
+            or flight.get('flightNumber')
+        )
+        airline_name = self.safe_str(
+            flight.get('airline_name')
+            or flight.get('airline')
+            or flight.get('Airline')
+        )
+        destination_city = self.safe_str(
+            flight.get('destination_city')
+            or flight.get('destination')
+        )
+        destination_iata = self.safe_str(flight.get('destination_iata') or '')
+        display_time = self.safe_str(
+            flight.get('display_time')
+            or flight.get('scheduled_time')
+        )
+        data_voo_completa = self.safe_str(flight.get('data_voo_completa') or '')
+        tempo_desde_voo = self.safe_str(flight.get('tempo_desde_voo') or '')
+        status_raw = self.safe_str(flight.get('status') or '')
+        status_lower = status_raw.lower()
+        
+        # Estatísticas de 30 dias (com defaults robustos)
+        try:
+            cancelamentos_30d = int(flight.get('cancelamentos_30d', 0) or 0)
+        except Exception:
+            cancelamentos_30d = 0
+        try:
+            atrasos_30d = int(flight.get('atrasos_30d', 0) or 0)
+        except Exception:
+            atrasos_30d = 0
+        
+        delay_hours_val = flight.get('delay_hours', 0)
+        try:
+            delay_hours = float(delay_hours_val or 0)
+        except Exception:
+            delay_hours = 0.0
+        
+        # Fallbacks básicos
+        if not airline_name:
+            airline_name = "a companhia aérea"
+        if not destination_city and not destination_iata:
+            destination_city = "seu destino"
+        route_label = destination_iata or destination_city or "destino final"
+        if not data_voo_completa or data_voo_completa == "N/A":
+            data_voo_completa = "recentemente"
+        
+        # ========= CÁLCULO DE TEMPO DESDE O VOO =========
+        from datetime import datetime
+        dias_desde_voo = None
+        data_partida = self.safe_str(flight.get('data_partida') or '')
+        if data_partida and '/' in data_partida:
+            try:
+                parts = data_partida.split('/')
+                if len(parts) >= 2:
+                    day, month = int(parts[0]), int(parts[1])
+                    year = int(parts[2]) if len(parts) >= 3 else datetime.now().year
+                    data_voo = datetime(year, month, day)
+                    hoje = datetime.now()
+                    dias_desde_voo = (hoje - data_voo).days
+            except Exception:
+                dias_desde_voo = None
+        
+        # Define janela textual para o tempo desde o incidente
+        if dias_desde_voo is None or dias_desde_voo < 0:
+            tempo_val = "poucos dias"
+            tempo_bucket_sentence = (
+                "O incidente ocorreu recentemente, ainda dentro do prazo ideal para organizar documentos e buscar indenização junto à companhia."
+            )
+        elif dias_desde_voo <= 7:
+            tempo_val = "poucos dias" if dias_desde_voo == 0 else f"{dias_desde_voo} dias"
+            tempo_bucket_sentence = (
+                f"O incidente ocorreu há {tempo_val}, ainda dentro do prazo ideal para solicitar indenização e registrar formalmente a reclamação."
+            )
+        elif dias_desde_voo <= 30:
+            tempo_val = f"{dias_desde_voo} dias"
+            tempo_bucket_sentence = (
+                f"Passageiros afetados há {tempo_val} ainda podem reivindicar compensação, seguindo os prazos e procedimentos previstos na legislação brasileira."
+            )
+        else:
+            meses = max(1, dias_desde_voo // 30)
+            tempo_val = f"{meses} meses"
+            tempo_bucket_sentence = (
+                f"Embora o incidente tenha ocorrido há {tempo_val}, os direitos de indenização por danos morais seguem válidos conforme jurisprudência brasileira."
+            )
+        
+        if not tempo_desde_voo:
+            tempo_desde_voo = tempo_val
+        
+        # ========= 1. STATUS DO VOO =========
+        if 'cancel' in status_lower:
+            status_sentence = (
+                f"O voo {flight_number} da {airline_name} com destino a {destination_city or route_label} "
+                f"foi cancelado em {data_voo_completa}, afetando passageiros que planejavam viajar às {display_time}."
+            )
+        else:
+            delay_text = f"{delay_hours:.0f}h" if delay_hours >= 1 else "várias horas"
+            status_sentence = (
+                f"Em {data_voo_completa}, o voo {flight_number} operado pela {airline_name} registrou atraso de "
+                f"{delay_text} na rota GRU-{route_label}, com partida originalmente prevista para {display_time}."
+            )
+        
+        # ========= 2. FREQUÊNCIA DE PROBLEMAS (30 DIAS) =========
+        if cancelamentos_30d >= 3:
+            freq_sentence = (
+                f"Este voo apresenta histórico de {cancelamentos_30d} cancelamentos nos últimos 30 dias, "
+                "sendo considerado de alto risco para o planejamento de viagens e conexões mais apertadas."
+            )
+        elif atrasos_30d >= 5:
+            freq_sentence = (
+                f"Com {atrasos_30d} episódios de atraso no último mês, este voo requer atenção redobrada "
+                "de passageiros que dependem de conexões ou compromissos profissionais no destino."
+            )
+        else:
+            freq_sentence = (
+                "Apesar do problema reportado neste trecho específico, o voo mantém relativa regularidade operacional, "
+                "com poucos incidentes documentados recentemente no histórico de 30 dias."
+            )
+        
+        # ========= 3. TIPO DE VOO (NACIONAL vs INTERNACIONAL) =========
+        is_national = destination_iata in BRAZILIAN_AIRPORTS
+        if is_national:
+            tipo_sentence = (
+                "Como se trata de um voo doméstico, os passageiros têm direito à assistência material, "
+                "reacomodação, reembolso integral e comunicação adequada conforme a Resolução 400 da ANAC."
+            )
+        else:
+            tipo_sentence = (
+                "Por se tratar de um voo internacional partindo do Brasil, aplicam-se as regras da Resolução 400 da ANAC "
+                "e, em algumas rotas operadas por companhias europeias, também o Regulamento CE 261/2004."
+            )
+        
+        # ========= 4. TEMPO DESDE O INCIDENTE (JANELAS LEGAIS) =========
+        tempo_sentence = tempo_bucket_sentence
+        
+        # ========= 5. DIREITOS E ESTRATÉGIA DO PASSAGEIRO =========
+        rights_sentence = (
+            "Nessas situações, é recomendável guardar cartões de embarque, comprovantes de gastos com alimentação, transporte ou hospedagem "
+            "e registrar protocolos de atendimento, pois esses documentos fortalecem o pedido de compensação financeira."
+        )
+        
+        extra_sentence = (
+            "Ao reunir provas do prejuízo e da falha na prestação do serviço, o passageiro aumenta significativamente as chances de obter "
+            "uma indenização justa, seja em negociação direta com a companhia aérea ou em eventual ação judicial."
+        )
+        
+        # Monta parágrafo completo e controla o comprimento (120-180 palavras)
+        sentences = [
+            status_sentence,
+            freq_sentence,
+            tipo_sentence,
+            tempo_sentence,
+            rights_sentence,
+        ]
+        paragraph = " ".join(sentences)
+        words = paragraph.split()
+        
+        # Se muito curto, adiciona sentença extra
+        if len(words) < 120:
+            paragraph = paragraph + " " + extra_sentence
+            words = paragraph.split()
+        
+        # Se muito longo, trunca de forma inteligente (até o ponto final mais próximo)
+        if len(words) > 180:
+            # Trunca em 180 palavras
+            truncated = " ".join(words[:180])
+            
+            # Procura o último ponto final antes do limite
+            last_period = truncated.rfind('.')
+            
+            if last_period > 0:
+                # Corta até o último ponto (incluindo o ponto)
+                paragraph = truncated[:last_period + 1]
+            else:
+                # Se não houver ponto, mantém truncado com reticências
+                paragraph = truncated + "..."
+        else:
+            # Comprimento ideal (120-180 palavras) - mantém completo
+            paragraph = paragraph
+        
+        return f"<p>{paragraph}</p>"
     
     def get_lista_cancelados(self, flights: List[Dict]) -> List[Dict]:
         """
