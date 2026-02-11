@@ -1,94 +1,94 @@
-# Google Indexing API - Guia de Configuração
+# Google Indexing API - Setup Guide
 
-Este guia explica como configurar e usar o script `src/indexer.py` para enviar URLs recém-geradas automaticamente para a Google Indexing API.
+This guide explains how to configure and use the `src/indexer.py` script to automatically send newly generated URLs to the Google Indexing API.
 
-## 📋 Índice
+## 📋 Index
 
-1. [Pré-requisitos](#pré-requisitos)
-2. [Configuração da Service Account](#configuração-da-service-account)
-3. [Instalação de Dependências](#instalação-de-dependências)
-4. [Uso Local](#uso-local)
-5. [Configuração no GitHub Actions](#configuração-no-github-actions)
+1. [Prerequisites](#prerequisites)
+2. [Service Account Configuration](#service-account-configuration)
+3. [Install Dependencies](#install-dependencies)
+4. [Local Usage](#local-usage)
+5. [GitHub Actions Configuration](#github-actions-configuration)
 6. [Troubleshooting](#troubleshooting)
 
 ---
 
-## Pré-requisitos
+## Prerequisites
 
 - Python 3.8+
-- Conta Google Cloud Platform (GCP)
-- Projeto no Google Cloud Console
-- Google Search Console configurado para o domínio
+- Google Cloud Platform (GCP) account
+- Project in Google Cloud Console
+- Google Search Console configured for the domain
 
 ---
 
-## Configuração da Service Account
+## Service Account Configuration
 
-### Passo 1: Criar Service Account no Google Cloud Console
+### Step 1: Create Service Account in Google Cloud Console
 
-1. Acesse o [Google Cloud Console](https://console.cloud.google.com/)
-2. Selecione seu projeto (ou crie um novo)
-3. Navegue até **IAM & Admin** → **Service Accounts**
-4. Clique em **Create Service Account**
-5. Preencha:
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Select your project (or create a new one)
+3. Navigate to **IAM & Admin** → **Service Accounts**
+4. Click **Create Service Account**
+5. Fill in:
    - **Name**: `matchfly-indexing-service`
-   - **Description**: `Service account para Google Indexing API`
-6. Clique em **Create and Continue**
+   - **Description**: `Service account for Google Indexing API`
+6. Click **Create and Continue**
 
-### Passo 2: Conceder Permissões
+### Step 2: Grant Permissions
 
-1. Na tela de **Grant this service account access to project**:
-   - Role: **Editor** (ou mínimo necessário)
-2. Clique em **Continue** → **Done**
+1. On the **Grant this service account access to project** screen:
+   - Role: **Editor** (or minimum necessary)
+2. Click **Continue** → **Done**
 
-### Passo 3: Criar e Baixar Chave JSON
+### Step 3: Create and Download JSON Key
 
-1. Na lista de Service Accounts, clique na conta criada
-2. Vá para a aba **Keys**
-3. Clique em **Add Key** → **Create new key**
-4. Selecione **JSON**
-5. Clique em **Create**
-6. O arquivo JSON será baixado automaticamente
+1. In the Service Accounts list, click the created account
+2. Go to the **Keys** tab
+3. Click **Add Key** → **Create new key**
+4. Select **JSON**
+5. Click **Create**
+6. The JSON file will be downloaded automatically
 
-### Passo 4: Habilitar Google Indexing API
+### Step 4: Enable Google Indexing API
 
-1. No Google Cloud Console, vá para **APIs & Services** → **Library**
-2. Busque por **"Indexing API"**
-3. Clique em **Google Indexing API**
-4. Clique em **Enable**
+1. In Google Cloud Console, go to **APIs & Services** → **Library**
+2. Search for **"Indexing API"**
+3. Click **Google Indexing API**
+4. Click **Enable**
 
-### Passo 5: Verificar Propriedade no Google Search Console
+### Step 5: Verify Property in Google Search Console
 
-1. Acesse o [Google Search Console](https://search.google.com/search-console)
-2. Selecione sua propriedade (domínio)
-3. Vá para **Settings** → **Users and permissions**
-4. Adicione o email da Service Account (formato: `nome@projeto.iam.gserviceaccount.com`)
-5. Conceda permissão de **Owner** ou **Full**
+1. Go to [Google Search Console](https://search.google.com/search-console)
+2. Select your property (domain)
+3. Go to **Settings** → **Users and permissions**
+4. Add the Service Account email (format: `name@project.iam.gserviceaccount.com`)
+5. Grant **Owner** or **Full** permission
 
-### Passo 6: Salvar Credenciais Localmente
+### Step 6: Save Credentials Locally
 
-1. Renomeie o arquivo JSON baixado para `service_account.json`
-2. Crie o diretório `credentials/` na raiz do projeto (se não existir)
-3. Mova o arquivo para `credentials/service_account.json`
+1. Rename the downloaded JSON file to `service_account.json`
+2. Create the `credentials/` directory at project root (if it doesn't exist)
+3. Move the file to `credentials/service_account.json`
 
 ```bash
 mkdir -p credentials
-mv ~/Downloads/seu-projeto-xxxxx.json credentials/service_account.json
+mv ~/Downloads/your-project-xxxxx.json credentials/service_account.json
 ```
 
-**⚠️ IMPORTANTE:** O arquivo `credentials/` está no `.gitignore` e **NÃO** será commitado no Git.
+**⚠️ IMPORTANT:** The `credentials/` folder is in `.gitignore` and will **NOT** be committed to Git.
 
 ---
 
-## Instalação de Dependências
+## Install Dependencies
 
-As dependências já estão listadas no `requirements.txt`. Para instalar:
+Dependencies are already listed in `requirements.txt`. To install:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Ou instale apenas as dependências do Google Indexing API:
+Or install only Google Indexing API dependencies:
 
 ```bash
 pip install google-auth google-auth-oauthlib google-auth-httplib2 requests
@@ -96,37 +96,37 @@ pip install google-auth google-auth-oauthlib google-auth-httplib2 requests
 
 ---
 
-## Uso Local
+## Local Usage
 
-### Execução Manual
+### Manual Execution
 
-Após gerar as páginas com `src/generator.py`, execute o indexer:
+After generating pages with `src/generator.py`, run the indexer:
 
 ```bash
 python3 src/indexer.py
 ```
 
-### Execução via Pipeline
+### Execution via Pipeline
 
-O script `run_pipeline.sh` já inclui a indexação automaticamente:
+The `run_pipeline.sh` script already includes indexing automatically:
 
 ```bash
 ./run_pipeline.sh
 ```
 
-O script verifica se o arquivo de credenciais existe antes de tentar indexar. Se não existir, ele apenas avisa e continua o pipeline normalmente.
+The script checks if the credentials file exists before attempting to index. If it doesn't exist, it just warns and continues the pipeline normally.
 
-### Comportamento do Script
+### Script Behavior
 
-- ✅ **Lê** `docs/sitemap.xml` gerado pelo `generator.py`
-- ✅ **Filtra** apenas URLs de voos (contém `/voo/`)
-- ✅ **Autentica** usando `credentials/service_account.json`
-- ✅ **Envia** requisições `URL_UPDATED` para cada URL
-- ✅ **Rate Limiting**: 100ms entre requisições, 1s entre lotes de 100 URLs
-- ✅ **Tratamento de Erros**: Continua mesmo se algumas URLs falharem
-- ✅ **Logging**: Gera `indexer.log` com detalhes
+- ✅ **Reads** `docs/sitemap.xml` generated by `generator.py`
+- ✅ **Filters** only flight URLs (contains `/voo/`)
+- ✅ **Authenticates** using `credentials/service_account.json`
+- ✅ **Sends** `URL_UPDATED` requests for each URL
+- ✅ **Rate Limiting**: 100ms between requests, 1s between batches of 100 URLs
+- ✅ **Error Handling**: Continues even if some URLs fail
+- ✅ **Logging**: Generates `indexer.log` with details
 
-### Exemplo de Saída
+### Example Output
 
 ```
 ╔════════════════════════════════════════════════════════════════════╗
@@ -134,66 +134,66 @@ O script verifica se o arquivo de credenciais existe antes de tentar indexar. Se
 ╚════════════════════════════════════════════════════════════════════╝
 
 ======================================================================
-STEP 1: LEITURA DO SITEMAP
+STEP 1: READING SITEMAP
 ======================================================================
-📖 Lendo sitemap: docs/sitemap.xml
-✅ 25 URLs de voos extraídas do sitemap
-📊 Total de URLs para indexar: 25
+📖 Reading sitemap: docs/sitemap.xml
+✅ 25 flight URLs extracted from sitemap
+📊 Total URLs to index: 25
 
 ======================================================================
-STEP 2: AUTENTICAÇÃO
+STEP 2: AUTHENTICATION
 ======================================================================
-🔐 Autenticando com Service Account: credentials/service_account.json
-✅ Autenticação bem-sucedida
+🔐 Authenticating with Service Account: credentials/service_account.json
+✅ Authentication successful
 
 ======================================================================
-STEP 3: INDEXAÇÃO DE URLs
+STEP 3: URL INDEXING
 ======================================================================
-📤 Iniciando indexação de 25 URLs...
-   Rate limiting: 0.1s entre requisições
-   Lotes de até 100 URLs
+📤 Starting indexing of 25 URLs...
+   Rate limiting: 0.1s between requests
+   Batches of up to 100 URLs
 
-[1/25] Indexando: https://matchfly.org/voo/voo-latam-la3090-gru-atrasado.html
-✅ URL indexada: https://matchfly.org/voo/voo-latam-la3090-gru-atrasado.html
-[2/25] Indexando: https://matchfly.org/voo/voo-gol-g31447-gru-cancelado.html
+[1/25] Indexing: https://matchfly.org/voo/voo-latam-la3090-gru-atrasado.html
+✅ URL indexed: https://matchfly.org/voo/voo-latam-la3090-gru-atrasado.html
+[2/25] Indexing: https://matchfly.org/voo/voo-gol-g31447-gru-cancelado.html
 ...
 
 ╔════════════════════════════════════════════════════════════════════╗
-║                    ✅ INDEXAÇÃO FINALIZADA!                       ║
+║                    ✅ INDEXING COMPLETED!                         ║
 ╚════════════════════════════════════════════════════════════════════╝
 
-📊 SUMÁRIO:
-   • URLs processadas:  25
-   • Sucessos:          25
-   • Falhas:            0
+📊 SUMMARY:
+   • URLs processed:  25
+   • Successes:        25
+   • Failures:         0
 
-🎉 URLs enviadas com sucesso para a Google Indexing API!
+🎉 URLs successfully sent to Google Indexing API!
 ```
 
 ---
 
-## Configuração no GitHub Actions
+## GitHub Actions Configuration
 
-### Passo 1: Criar GitHub Secret
+### Step 1: Create GitHub Secret
 
-1. No seu repositório GitHub, vá para **Settings** → **Secrets and variables** → **Actions**
-2. Clique em **New repository secret**
+1. In your GitHub repository, go to **Settings** → **Secrets and variables** → **Actions**
+2. Click **New repository secret**
 3. Configure:
    - **Name**: `GOOGLE_SERVICE_ACCOUNT_JSON`
-   - **Secret**: Cole o conteúdo completo do arquivo `service_account.json`
-4. Clique em **Add secret**
+   - **Secret**: Paste the complete content of the `service_account.json` file
+4. Click **Add secret**
 
-### Passo 2: Verificar Workflow
+### Step 2: Verify Workflow
 
-O workflow `.github/workflows/update-flights.yml` já está configurado para:
+The `.github/workflows/update-flights.yml` workflow is already configured to:
 
-1. ✅ Instalar dependências do Google Auth
-2. ✅ Criar arquivo de credenciais a partir do secret
-3. ✅ Executar o indexer após gerar as páginas
+1. ✅ Install Google Auth dependencies
+2. ✅ Create credentials file from secret
+3. ✅ Run indexer after generating pages
 
-**O workflow só executa a indexação se o secret estiver configurado.** Se não estiver, o pipeline continua normalmente sem erros.
+**The workflow only runs indexing if the secret is configured.** If not, the pipeline continues normally without errors.
 
-### Estrutura do Workflow
+### Workflow Structure
 
 ```yaml
 - name: 3. Setup Google Service Account (Optional)
@@ -205,103 +205,103 @@ O workflow `.github/workflows/update-flights.yml` já está configurado para:
 - name: 4. Index URLs to Google (Optional)
   if: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON != '' }}
   run: |
-    python src/indexer.py || echo "⚠️  Indexação falhou ou não configurada (continuando...)"
+    python src/indexer.py || echo "⚠️  Indexing failed or not configured (continuing...)"
 ```
 
 ---
 
 ## Troubleshooting
 
-### Erro: "Arquivo de credenciais não encontrado"
+### Error: "Credentials file not found"
 
-**Causa:** O arquivo `credentials/service_account.json` não existe.
+**Cause:** The `credentials/service_account.json` file doesn't exist.
 
-**Solução:**
-1. Verifique se o arquivo foi criado corretamente
-2. Verifique o caminho: deve ser `credentials/service_account.json` na raiz do projeto
-3. O script continuará normalmente sem indexar (não quebra o pipeline)
-
----
-
-### Erro: "Invalid credentials" ou "Authentication failed"
-
-**Causa:** O arquivo JSON está corrompido ou inválido.
-
-**Solução:**
-1. Verifique se o arquivo JSON está completo e válido
-2. Tente abrir o JSON em um editor para validar a sintaxe
-3. Refaça o download da chave no Google Cloud Console
+**Solution:**
+1. Verify the file was created correctly
+2. Check path: should be `credentials/service_account.json` at project root
+3. Script will continue normally without indexing (doesn't break pipeline)
 
 ---
 
-### Erro: "Permission denied" ou "403 Forbidden"
+### Error: "Invalid credentials" or "Authentication failed"
 
-**Causa:** A Service Account não tem permissão no Google Search Console.
+**Cause:** JSON file is corrupted or invalid.
 
-**Solução:**
-1. Acesse o Google Search Console
-2. Vá para **Settings** → **Users and permissions**
-3. Adicione o email da Service Account (formato: `nome@projeto.iam.gserviceaccount.com`)
-4. Conceda permissão de **Owner** ou **Full**
-
----
-
-### Erro: "API not enabled"
-
-**Causa:** A Google Indexing API não está habilitada no projeto.
-
-**Solução:**
-1. Acesse o Google Cloud Console
-2. Vá para **APIs & Services** → **Library**
-3. Busque por **"Indexing API"**
-4. Clique em **Enable**
+**Solution:**
+1. Verify JSON file is complete and valid
+2. Try opening JSON in an editor to validate syntax
+3. Re-download the key from Google Cloud Console
 
 ---
 
-### Erro: "Rate limit exceeded" (429)
+### Error: "Permission denied" or "403 Forbidden"
 
-**Causa:** Muitas requisições em pouco tempo.
+**Cause:** Service Account doesn't have permission in Google Search Console.
 
-**Solução:**
-- O script já implementa rate limiting automático
-- Se persistir, aumente os delays em `src/indexer.py`:
+**Solution:**
+1. Go to Google Search Console
+2. Go to **Settings** → **Users and permissions**
+3. Add Service Account email (format: `name@project.iam.gserviceaccount.com`)
+4. Grant **Owner** or **Full** permission
+
+---
+
+### Error: "API not enabled"
+
+**Cause:** Google Indexing API is not enabled in the project.
+
+**Solution:**
+1. Go to Google Cloud Console
+2. Go to **APIs & Services** → **Library**
+3. Search for **"Indexing API"**
+4. Click **Enable**
+
+---
+
+### Error: "Rate limit exceeded" (429)
+
+**Cause:** Too many requests in short time.
+
+**Solution:**
+- Script already implements automatic rate limiting
+- If persists, increase delays in `src/indexer.py`:
   ```python
-  DELAY_BETWEEN_REQUESTS = 0.2  # Aumentar para 200ms
-  DELAY_BETWEEN_BATCHES = 2.0   # Aumentar para 2 segundos
+  DELAY_BETWEEN_REQUESTS = 0.2  # Increase to 200ms
+  DELAY_BETWEEN_BATCHES = 2.0   # Increase to 2 seconds
   ```
 
 ---
 
-### URLs não aparecem no Google Search Console
+### URLs don't appear in Google Search Console
 
-**Causa:** A indexação pode levar alguns minutos ou horas.
+**Cause:** Indexing may take a few minutes or hours.
 
-**Solução:**
-1. Aguarde algumas horas após a execução
-2. Verifique no Google Search Console → **URL Inspection**
-3. Use a ferramenta "Request Indexing" manualmente para testar
-4. Verifique os logs em `indexer.log` para confirmar que as requisições foram enviadas
-
----
-
-## Limites e Cotas da API
-
-- **Máximo de requisições por dia**: Depende do seu plano do Google Cloud
-- **Rate limiting**: O script implementa delays automáticos
-- **Tipos de notificação**: `URL_UPDATED` (para novas/atualizadas) ou `URL_DELETED` (para removidas)
+**Solution:**
+1. Wait a few hours after execution
+2. Check in Google Search Console → **URL Inspection**
+3. Use "Request Indexing" tool manually to test
+4. Check logs in `indexer.log` to confirm requests were sent
 
 ---
 
-## Segurança
+## API Limits and Quotas
 
-✅ **O arquivo `credentials/` está no `.gitignore`** - nunca será commitado
-✅ **GitHub Secrets são criptografados** - seguros para uso em workflows
-✅ **Service Account tem permissões mínimas** - apenas Indexing API
-✅ **Script verifica credenciais antes de usar** - não quebra o pipeline se faltar
+- **Maximum requests per day**: Depends on your Google Cloud plan
+- **Rate limiting**: Script implements automatic delays
+- **Notification types**: `URL_UPDATED` (for new/updated) or `URL_DELETED` (for removed)
 
 ---
 
-## Referências
+## Security
+
+✅ **The `credentials/` folder is in `.gitignore`** - will never be committed
+✅ **GitHub Secrets are encrypted** - safe for use in workflows
+✅ **Service Account has minimum permissions** - only Indexing API
+✅ **Script checks credentials before using** - doesn't break pipeline if missing
+
+---
+
+## References
 
 - [Google Indexing API Documentation](https://developers.google.com/search/apis/indexing-api/v3/using-api)
 - [Service Account Setup Guide](https://cloud.google.com/iam/docs/service-accounts)
@@ -309,14 +309,14 @@ O workflow `.github/workflows/update-flights.yml` já está configurado para:
 
 ---
 
-## Suporte
+## Support
 
-Se encontrar problemas, verifique:
-1. Logs em `indexer.log`
-2. Logs do GitHub Actions (se executando no CI/CD)
-3. Status da API no Google Cloud Console
-4. Permissões no Google Search Console
+If you encounter issues, check:
+1. Logs in `indexer.log`
+2. GitHub Actions logs (if running in CI/CD)
+3. API status in Google Cloud Console
+4. Permissions in Google Search Console
 
 ---
 
-**Última atualização:** 2026-01-22
+**Last updated:** 2026-01-22

@@ -1,29 +1,29 @@
-# 🎨 Guia Visual - Historical Importer
+# 🎨 Visual Guide - Historical Importer
 
-## 📺 O Que Você Verá na Tela
+## 📺 What You'll See on Screen
 
-### 1️⃣ Executando a Importação
+### 1️⃣ Running the Import
 
 ```bash
 $ python run_historical_import.py
 ```
 
-**Saída Esperada**:
+**Expected Output**:
 
 ```
 ╔════════════════════════════════════════════════════════════════════╗
-║               🔄 MATCHFLY - IMPORTAÇÃO HISTÓRICA                  ║
+║               🔄 MATCHFLY - HISTORICAL IMPORT                     ║
 ╚════════════════════════════════════════════════════════════════════╝
 
-Este script vai:
-  1. Importar dados históricos da ANAC (últimos 30 dias)
-  2. Gerar páginas HTML com os dados importados
-  3. Validar o resultado
+This script will:
+  1. Import historical ANAC data (last 30 days)
+  2. Generate HTML pages with imported data
+  3. Validate the result
 
-Deseja continuar? [S/n]: s
+Continue? [Y/n]: y
 
 ======================================================================
-🚀 STEP 1: Importando dados históricos da ANAC
+🚀 STEP 1: Importing historical ANAC data
 ======================================================================
 
 
@@ -31,82 +31,82 @@ Deseja continuar? [S/n]: s
 ║            🚀 MATCHFLY HISTORICAL IMPORTER - ANAC VRA             ║
 ╚════════════════════════════════════════════════════════════════════╝
 
-🎯 Configuração:
-   • Aeroporto:      SBGR (Guarulhos)
-   • Atraso mínimo:  15 minutos
-   • Período:        Últimos 30 dias
-   • Output:         data/flights-db.json
+🎯 Configuration:
+   • Airport:         SBGR (Guarulhos)
+   • Minimum delay:   15 minutes
+   • Period:          Last 30 days
+   • Output:          data/flights-db.json
 
 ======================================================================
-STEP 1: CARREGANDO BANCO DE DADOS EXISTENTE
+STEP 1: LOADING EXISTING DATABASE
 ======================================================================
-📚 Voos existentes carregados: 2
+📚 Existing flights loaded: 2
 
 ======================================================================
-STEP 2: IDENTIFICANDO ARQUIVOS DA ANAC
+STEP 2: IDENTIFYING ANAC FILES
 ======================================================================
-🔍 Identificando arquivos ANAC disponíveis...
-📅 Períodos a buscar: 202601, 202512
+🔍 Identifying available ANAC files...
+📅 Periods to search: 202601, 202512
    • https://sistemas.anac.gov.br/.../VRA_202601.csv
    • https://sistemas.anac.gov.br/.../VRA_202512.csv
 
 ======================================================================
-STEP 3: DOWNLOAD E PROCESSAMENTO
+STEP 3: DOWNLOAD AND PROCESSING
 ======================================================================
-📥 Baixando: https://sistemas.anac.gov.br/.../VRA_202601.csv
-✅ Download concluído: VRA_202601.csv (45.32 MB)
-📊 Processando: VRA_202601.csv
-   ✅ Encoding detectado: latin-1
-   📈 Total de linhas: 123,456
-   🔑 Colunas identificadas: ['airline_code', 'flight_number', ...]
-   🛫 Voos de SBGR: 8,234
-   ⏱️  Calculando atrasos...
-   ✅ Voos atrasados (>15min): 1,456
+📥 Downloading: https://sistemas.anac.gov.br/.../VRA_202601.csv
+✅ Download completed: VRA_202601.csv (45.32 MB)
+📊 Processing: VRA_202601.csv
+   ✅ Encoding detected: latin-1
+   📈 Total rows: 123,456
+   🔑 Columns identified: ['airline_code', 'flight_number', ...]
+   🛫 SBGR flights: 8,234
+   ⏱️  Calculating delays...
+   ✅ Delayed flights (>15min): 1,456
 
-📥 Baixando: https://sistemas.anac.gov.br/.../VRA_202512.csv
-✅ Download concluído: VRA_202512.csv (48.91 MB)
-📊 Processando: VRA_202512.csv
-   ✅ Encoding detectado: latin-1
-   📈 Total de linhas: 134,567
-   🔑 Colunas identificadas: ['airline_code', 'flight_number', ...]
-   🛫 Voos de SBGR: 9,123
-   ⏱️  Calculando atrasos...
-   ✅ Voos atrasados (>15min): 1,234
-
-======================================================================
-STEP 4: MESCLANDO COM BANCO DE DADOS
-======================================================================
-🔄 Mesclando 2,690 novos voos com banco existente...
-✅ Banco de dados atualizado: 2,690 novos voos adicionados
-   Total no banco: 2,692 voos
+📥 Downloading: https://sistemas.anac.gov.br/.../VRA_202512.csv
+✅ Download completed: VRA_202512.csv (48.91 MB)
+📊 Processing: VRA_202512.csv
+   ✅ Encoding detected: latin-1
+   📈 Total rows: 134,567
+   🔑 Columns identified: ['airline_code', 'flight_number', ...]
+   🛫 SBGR flights: 9,123
+   ⏱️  Calculating delays...
+   ✅ Delayed flights (>15min): 1,234
 
 ======================================================================
-STEP 5: LIMPEZA
+STEP 4: MERGING WITH DATABASE
 ======================================================================
-🧹 Arquivos temporários removidos
+🔄 Merging 2,690 new flights with existing database...
+✅ Database updated: 2,690 new flights added
+   Total in database: 2,692 flights
+
+======================================================================
+STEP 5: CLEANUP
+======================================================================
+🧹 Temporary files removed
 
 ╔════════════════════════════════════════════════════════════════════╗
-║                     ✅ IMPORTAÇÃO FINALIZADA!                     ║
+║                     ✅ IMPORT COMPLETED!                           ║
 ╚════════════════════════════════════════════════════════════════════╝
 
-📊 SUMÁRIO DA IMPORTAÇÃO:
-   • Arquivos baixados:        2
-   • Total de linhas lidas:    258,023
-   • Voos de SBGR:             17,357
-   • Voos com atraso >15min:   2,690
-   • Voos importados (novos):  2,690
-   • Duplicatas ignoradas:     0
-   • Erros:                    12
+📊 IMPORT SUMMARY:
+   • Files downloaded:        2
+   • Total rows read:         258,023
+   • SBGR flights:             17,357
+   • Flights with delay >15min: 2,690
+   • Flights imported (new):   2,690
+   • Duplicates ignored:       0
+   • Errors:                   12
 
-📁 Banco de dados: data/flights-db.json
+📁 Database: data/flights-db.json
 
-🎉 SUCESSO! Dados históricos importados com sucesso!
-🚀 Execute python src/generator.py para gerar as páginas.
-🔔 Som de sucesso tocado!
+🎉 SUCCESS! Historical data imported successfully!
+🚀 Run python src/generator.py to generate pages.
+🔔 Success sound played!
 
 
 ======================================================================
-🚀 STEP 2: Gerando páginas HTML
+🚀 STEP 2: Generating HTML pages
 ======================================================================
 
 
@@ -116,117 +116,117 @@ STEP 5: LIMPEZA
 
 
 ======================================================================
-STEP 1: SETUP & VALIDAÇÃO
+STEP 1: SETUP & VALIDATION
 ======================================================================
-✅ Affiliate link configurada: https://www.airhelp.com/...
-✅ Pasta docs/voo pronta
+✅ Affiliate link configured: https://www.airhelp.com/...
+✅ docs/voo folder ready
 
 ======================================================================
-STEP 2: INITIAL CLEANUP (Auditoria)
+STEP 2: INITIAL CLEANUP (Audit)
 ======================================================================
-🗑️  Removido: docs/index.html (será regenerado)
-📊 Detectados 2 arquivos antigos em docs/voo/
-   Serão removidos automaticamente quando não regenerados.
+🗑️  Removed: docs/index.html (will be regenerated)
+📊 Detected 2 old files in docs/voo/
+   Will be automatically removed when not regenerated.
 
 ======================================================================
-STEP 3: WORKFLOW DE GERAÇÃO
+STEP 3: GENERATION WORKFLOW
 ======================================================================
-📊 Total de voos carregados: 2692
+📊 Total flights loaded: 2692
 
-🔄 Iniciando renderização resiliente...
+🔄 Starting resilient rendering...
 ----------------------------------------------------------------------
-[1/2692] Processando 1234...
-✅ Sucesso: voo-gol-1234-gru-atrasado.html
-[2/2692] Processando 5678...
-✅ Sucesso: voo-azul-5678-gru-cancelado.html
-[3/2692] Processando 9012...
-✅ Sucesso: voo-latam-9012-gru-atrasado.html
+[1/2692] Processing 1234...
+✅ Success: voo-gol-1234-gru-atrasado.html
+[2/2692] Processing 5678...
+✅ Success: voo-azul-5678-gru-cancelado.html
+[3/2692] Processing 9012...
+✅ Success: voo-latam-9012-gru-atrasado.html
 ...
-[2690/2692] Processando 4567...
-✅ Sucesso: voo-gol-4567-gru-atrasado.html
-[2691/2692] Processando 8901...
-✅ Sucesso: voo-azul-8901-gru-atrasado.html
-[2692/2692] Processando 2345...
-✅ Sucesso: voo-latam-2345-gru-cancelado.html
+[2690/2692] Processing 4567...
+✅ Success: voo-gol-4567-gru-atrasado.html
+[2691/2692] Processing 8901...
+✅ Success: voo-azul-8901-gru-atrasado.html
+[2692/2692] Processing 2345...
+✅ Success: voo-latam-2345-gru-cancelado.html
 
 ======================================================================
-STEP 3.2: GESTÃO DE ÓRFÃOS
+STEP 3.2: ORPHAN MANAGEMENT
 ======================================================================
-🗑️  Encontrados 2 arquivos órfãos para remoção:
-   • Removido: voo-air-france-0459-gru-atrasado.html
-   • Removido: voo-klm-0792-gru-atrasado.html
+🗑️  Found 2 orphan files for removal:
+   • Removed: voo-air-france-0459-gru-atrasado.html
+   • Removed: voo-klm-0792-gru-atrasado.html
 
 ======================================================================
-STEP 3.3: GERAÇÃO DE SITEMAP
+STEP 3.3: SITEMAP GENERATION
 ======================================================================
-✅ Sitemap gerado: docs/sitemap.xml
-   • URLs incluídas: 2691 (1 home + 2690 voos)
+✅ Sitemap generated: docs/sitemap.xml
+   • URLs included: 2691 (1 home + 2690 flights)
 
 ======================================================================
-STEP 3.4: GERAÇÃO DE HOME PAGE
+STEP 3.4: HOME PAGE GENERATION
 ======================================================================
-✅ Home page gerada: docs/index.html
-   • Voos exibidos: 20 (dos 2690 totais)
+✅ Home page generated: docs/index.html
+   • Flights displayed: 20 (of 2690 total)
    • Growth Variables:
-     - Heróis (social proof): 4868
-     - Gate context: Portão B12
+     - Heroes (social proof): 4868
+     - Gate context: Gate B12
      - UTM suffix: ?utm_source=hero_gru
 
 ╔════════════════════════════════════════════════════════════════════╗
-║                       ✅ BUILD FINALIZADO!                        ║
+║                       ✅ BUILD COMPLETED!                          ║
 ╚════════════════════════════════════════════════════════════════════╝
 
-📊 SUMÁRIO DO BUILD:
-   • Voos processados:     2692
-   • Sucessos:             2690 páginas
-   • Falhas:               2 páginas
-   • Filtrados (< 15min):  0 voos
-   • Órfãos removidos:     2 arquivos
-   • Sitemap:              Atualizado com 2690 URLs
+📊 BUILD SUMMARY:
+   • Flights processed:     2692
+   • Successes:             2690 pages
+   • Failures:              2 pages
+   • Filtered (< 15min):    0 flights
+   • Orphans removed:       2 files
+   • Sitemap:               Updated with 2690 URLs
 
 📁 Output:
-   • Páginas de voos:      docs/voo/
-   • Home page:            docs/index.html
-   • Sitemap:              docs/sitemap.xml
+   • Flight pages:         docs/voo/
+   • Home page:             docs/index.html
+   • Sitemap:               docs/sitemap.xml
 
-🎉 Build concluído com sucesso!
-🌐 Abra docs/index.html no navegador
+🎉 Build completed successfully!
+🌐 Open docs/index.html in browser
 
-✅ MatchFly: Dicionário IATA expandido com sucesso!
+✅ MatchFly: IATA dictionary expanded successfully!
 
 
 ======================================================================
-🔍 STEP 3: Validando resultado
+🔍 STEP 3: Validating result
 ======================================================================
 
-✅ Validação concluída!
+✅ Validation completed!
 
-📊 Resultado:
-   • Páginas de voos geradas: 2690
+📊 Result:
+   • Flight pages generated: 2690
    • Index.html: ✓
    • Sitemap.xml: ✓
 
-🎉 SUCESSO! Importação e geração concluídas!
+🎉 SUCCESS! Import and generation completed!
 
-🌐 Para visualizar:
+🌐 To view:
    open docs/index.html
 
-📦 Para fazer deploy:
+📦 To deploy:
    git add .
-   git commit -m "feat: importar dados históricos ANAC"
+   git commit -m "feat: import ANAC historical data"
    git push
 
 ```
 
 ---
 
-## 🗂️ Estrutura de Arquivos Gerados
+## 🗂️ Generated File Structure
 
-### Antes da Importação:
+### Before Import:
 
 ```
 data/
-  └── flights-db.json (2 voos)
+  └── flights-db.json (2 flights)
 
 docs/
   ├── index.html
@@ -236,32 +236,32 @@ docs/
       └── voo-klm-0792-gru-atrasado.html
 ```
 
-### Depois da Importação:
+### After Import:
 
 ```
 data/
-  └── flights-db.json (2.692 voos) ← ✨ Atualizado!
+  └── flights-db.json (2,692 flights) ← ✨ Updated!
 
 docs/
-  ├── index.html ← ✨ Regenerado!
-  ├── sitemap.xml ← ✨ Atualizado com 2.690 URLs!
+  ├── index.html ← ✨ Regenerated!
+  ├── sitemap.xml ← ✨ Updated with 2,690 URLs!
   └── voo/
-      ├── voo-gol-1234-gru-atrasado.html ← 🆕 Novo!
-      ├── voo-gol-1235-gru-atrasado.html ← 🆕 Novo!
-      ├── voo-azul-5678-gru-cancelado.html ← 🆕 Novo!
-      ├── voo-azul-5679-gru-atrasado.html ← 🆕 Novo!
-      ├── voo-latam-9012-gru-atrasado.html ← 🆕 Novo!
-      ├── voo-latam-9013-gru-atrasado.html ← 🆕 Novo!
-      └── ... (2.690 páginas HTML!) ← 🆕 Novo!
+      ├── voo-gol-1234-gru-atrasado.html ← 🆕 New!
+      ├── voo-gol-1235-gru-atrasado.html ← 🆕 New!
+      ├── voo-azul-5678-gru-cancelado.html ← 🆕 New!
+      ├── voo-azul-5679-gru-atrasado.html ← 🆕 New!
+      ├── voo-latam-9012-gru-atrasado.html ← 🆕 New!
+      ├── voo-latam-9013-gru-atrasado.html ← 🆕 New!
+      └── ... (2,690 HTML pages!) ← 🆕 New!
 
-historical_importer.log ← 🆕 Log detalhado
+historical_importer.log ← 🆕 Detailed log
 ```
 
 ---
 
-## 📄 Exemplo de Arquivo `flights-db.json` Atualizado
+## 📄 Example Updated `flights-db.json` File
 
-### Antes (2 voos):
+### Before (2 flights):
 
 ```json
 {
@@ -302,7 +302,7 @@ historical_importer.log ← 🆕 Log detalhado
 }
 ```
 
-### Depois (2.692 voos):
+### After (2,692 flights):
 
 ```json
 {
@@ -339,7 +339,7 @@ historical_importer.log ← 🆕 Log detalhado
       "scheduled_date": "2025-12-16",
       "actual_date": "2025-12-16"
     },
-    // ... +2.688 voos
+    // ... +2,688 flights
   ],
   "metadata": {
     "last_import": "2026-01-12T10:30:15",
@@ -360,43 +360,43 @@ historical_importer.log ← 🆕 Log detalhado
 
 ---
 
-## 🌐 Exemplo de `index.html` Gerado
+## 🌐 Example Generated `index.html`
 
-Quando você abrir `docs/index.html`, verá:
+When you open `docs/index.html`, you'll see:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                                                              │
-│              ✈️ MatchFly - Voos com Problemas               │
+│              ✈️ MatchFly - Flights with Problems            │
 │                                                              │
-│        Verifique se você tem direito a indenização          │
-│                    de até R$ 10.000                          │
+│        Check if you have the right to compensation          │
+│                    of up to R$ 10,000                       │
 │                                                              │
 │  ┌─────────────────────┐  ┌─────────────────────┐          │
-│  │ GOL 1234           │  │ AZUL 5678           │          │
-│  │ Atrasado           │  │ Cancelado           │          │
-│  │ ⏱️ Atraso: 0.75h   │  │ ⏱️ Cancelado        │          │
-│  │ 🔗 Ver detalhes → │  │ 🔗 Ver detalhes →  │          │
+│  │ GOL 1234           │  │ AZUL 5678            │          │
+│  │ Delayed            │  │ Cancelled            │          │
+│  │ ⏱️ Delay: 0.75h   │  │ ⏱️ Cancelled         │          │
+│  │ 🔗 View details → │  │ 🔗 View details →   │          │
 │  └─────────────────────┘  └─────────────────────┘          │
 │                                                              │
 │  ┌─────────────────────┐  ┌─────────────────────┐          │
-│  │ LATAM 9012         │  │ GOL 3456            │          │
-│  │ Atrasado           │  │ Atrasado            │          │
-│  │ ⏱️ Atraso: 1.2h    │  │ ⏱️ Atraso: 0.5h     │          │
-│  │ 🔗 Ver detalhes → │  │ 🔗 Ver detalhes →  │          │
+│  │ LATAM 9012         │  │ GOL 3456             │          │
+│  │ Delayed            │  │ Delayed              │          │
+│  │ ⏱️ Delay: 1.2h    │  │ ⏱️ Delay: 0.5h      │          │
+│  │ 🔗 View details → │  │ 🔗 View details →   │          │
 │  └─────────────────────┘  └─────────────────────┘          │
 │                                                              │
-│  ... (20 voos mais recentes exibidos)                       │
+│  ... (20 most recent flights displayed)                      │
 │                                                              │
-│  Gerado em: 12/01/2026 10:45                                │
-│  Total de voos: 2690                                         │
+│  Generated on: 01/12/2026 10:45                             │
+│  Total flights: 2690                                         │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 📊 Exemplo de `sitemap.xml` Gerado
+## 📊 Example Generated `sitemap.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -419,135 +419,135 @@ Quando você abrir `docs/index.html`, verá:
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
-  <!-- ... +2.688 URLs -->
+  <!-- ... +2,688 URLs -->
 </urlset>
 ```
 
 ---
 
-## 📝 Exemplo de Página de Voo Individual
+## 📝 Example Individual Flight Page
 
-Quando você abrir `docs/voo/voo-gol-1234-gru-atrasado.html`:
+When you open `docs/voo/voo-gol-1234-gru-atrasado.html`:
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                                                              │
-│        🛫 Voo GOL 1234 - Guarulhos → Rio de Janeiro         │
+│        🛫 Flight GOL 1234 - Guarulhos → Rio de Janeiro      │
 │                                                              │
-│  ⚠️ Status: Atrasado (45 minutos)                           │
+│  ⚠️ Status: Delayed (45 minutes)                            │
 │                                                              │
-│  📅 Data: 15/12/2025                                         │
-│  ⏰ Previsto: 08:30                                          │
-│  ⏰ Real: 09:15                                              │
-│  ⏱️ Atraso: 45 minutos (0.75h)                              │
+│  📅 Date: 12/15/2025                                         │
+│  ⏰ Scheduled: 08:30                                         │
+│  ⏰ Actual: 09:15                                            │
+│  ⏱️ Delay: 45 minutes (0.75h)                               │
 │                                                              │
-│  ✈️ Origem: GRU (Guarulhos)                                 │
-│  🏙️ Destino: Rio de Janeiro                                 │
-│  🏢 Companhia: GOL                                           │
+│  ✈️ Origin: GRU (Guarulhos)                                │
+│  🏙️ Destination: Rio de Janeiro                            │
+│  🏢 Airline: GOL                                             │
 │                                                              │
 │  ┌────────────────────────────────────────────────┐        │
 │  │                                                │        │
-│  │  💰 Você pode ter direito a indenização       │        │
-│  │      de até R$ 10.000!                         │        │
+│  │  💰 You may have the right to compensation     │        │
+│  │      of up to R$ 10,000!                       │        │
 │  │                                                │        │
-│  │  📋 Regulamentação: ANAC 400                   │        │
-│  │  (voo nacional)                                │        │
+│  │  📋 Regulation: ANAC 400                       │        │
+│  │  (domestic flight)                            │        │
 │  │                                                │        │
-│  │  [Verificar meu direito agora →]              │        │
-│  │  ↑ Link para AirHelp com dados pré-preenchidos│        │
+│  │  [Check my right now →]                       │        │
+│  │  ↑ Link to AirHelp with pre-filled data       │        │
 │  │                                                │        │
 │  └────────────────────────────────────────────────┘        │
 │                                                              │
-│  📊 Informações reportadas há 2 horas                        │
-│  🔔 Última atualização: 12/01/2026 às 10:45                 │
+│  📊 Information reported 2 hours ago                        │
+│  🔔 Last update: 01/12/2026 at 10:45                      │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🎯 Métricas de Sucesso
+## 🎯 Success Metrics
 
 ### SEO Impact
 
-**Antes**:
-- 2-3 páginas indexáveis
-- Pouco conteúdo
-- Sitemap com 3 URLs
+**Before**:
+- 2-3 indexable pages
+- Little content
+- Sitemap with 3 URLs
 
-**Depois**:
-- 2.690 páginas indexáveis! 🎉
-- Conteúdo rico e único por voo
-- Sitemap com 2.691 URLs
-- Melhor cobertura de long-tail keywords
+**After**:
+- 2,690 indexable pages! 🎉
+- Rich and unique content per flight
+- Sitemap with 2,691 URLs
+- Better long-tail keyword coverage
 
 ### User Experience
 
-**Antes**:
-- Apenas voos ativos no momento
-- Informação limitada
+**Before**:
+- Only active flights at the moment
+- Limited information
 
-**Depois**:
-- Histórico completo de 30 dias
-- Mais chances do usuário encontrar seu voo
-- Mais páginas de entrada via Google
+**After**:
+- Complete 30-day history
+- More chances for user to find their flight
+- More entry pages via Google
 
-### Monetização
+### Monetization
 
-**Antes**:
-- 2-3 oportunidades de conversão
+**Before**:
+- 2-3 conversion opportunities
 
-**Depois**:
-- 2.690 oportunidades de conversão! 🎉
-- Link de afiliado em cada página
-- Dados pré-preenchidos no funil (↑ conversão)
+**After**:
+- 2,690 conversion opportunities! 🎉
+- Affiliate link on each page
+- Pre-filled data in funnel (↑ conversion)
 
 ---
 
-## 🚀 Comandos Rápidos
+## 🚀 Quick Commands
 
 ```bash
-# Importação completa (recomendado)
+# Complete import (recommended)
 python run_historical_import.py
 
-# Ou manual
-python src/historical_importer.py  # Importar
-python src/generator.py            # Gerar
+# Or manual
+python src/historical_importer.py  # Import
+python src/generator.py            # Generate
 
-# Visualizar
+# View
 open docs/index.html
 
-# Testar
+# Test
 pytest tests/test_historical_importer.py -v
 
-# Ver logs
+# View logs
 tail -f historical_importer.log
 tail -f generator.log
 ```
 
 ---
 
-## 🎉 Resultado Final
+## 🎉 Final Result
 
 ```
-ANTES: 3 páginas HTML 😐
-DEPOIS: 2.690 páginas HTML! 🚀🎉
+BEFORE: 3 HTML pages 😐
+AFTER: 2,690 HTML pages! 🚀🎉
 
-ANTES: Sitemap com 3 URLs 😐
-DEPOIS: Sitemap com 2.691 URLs! 🚀🎉
+BEFORE: Sitemap with 3 URLs 😐
+AFTER: Sitemap with 2,691 URLs! 🚀🎉
 
-ANTES: Conteúdo limitado 😐
-DEPOIS: Base robusta de conteúdo SEO! 🚀🎉
+BEFORE: Limited content 😐
+AFTER: Robust SEO content base! 🚀🎉
 ```
 
 ---
 
-**🔔 Som de sucesso tocado ao finalizar!**
+**🔔 Success sound played when finished!**
 
-*Glass.aiff - o som de vitória do macOS* 🎵
+*Glass.aiff - the macOS victory sound* 🎵
 
 ---
 
-**Desenvolvido com ❤️ pela equipe MatchFly**
+**Developed with ❤️ by the MatchFly team**
 
-*12 de Janeiro de 2026*
+*January 12, 2026*

@@ -1,127 +1,127 @@
-# 🎯 Expansão do Dicionário IATA - MatchFly
+# 🎯 IATA Dictionary Expansion - MatchFly
 
-## ✅ Implementação Concluída
+## ✅ Implementation Completed
 
-### 📋 Mudanças Implementadas
+### 📋 Implemented Changes
 
-#### 1. **Dicionário IATA Expandido** 
-Expandido de ~30 para **40+ destinos principais**, incluindo:
+#### 1. **Expanded IATA Dictionary** 
+Expanded from ~30 to **40+ main destinations**, including:
 
-**Internacionais:**
-- Europa: Paris (CDG), Lisboa (LIS), Madrid (MAD), Londres (LHR), Frankfurt (FRA), etc.
-- América do Sul: Buenos Aires (EZE), Santiago (SCL), Montevidéu (MVD), etc.
-- América do Norte: Miami (MIA), Nova York (JFK), Orlando (MCO), Panamá (PTY), etc.
+**International:**
+- Europe: Paris (CDG), Lisbon (LIS), Madrid (MAD), London (LHR), Frankfurt (FRA), etc.
+- South America: Buenos Aires (EZE), Santiago (SCL), Montevideo (MVD), etc.
+- North America: Miami (MIA), New York (JFK), Orlando (MCO), Panama (PTY), etc.
 
-**Nacionais (principais fluxos de GRU):**
+**National (main GRU flows):**
 - Rio de Janeiro (GIG), Brasília (BSB), Belo Horizonte (CNF)
 - Salvador (SSA), Fortaleza (FOR), Recife (REC), Porto Alegre (POA)
 - Curitiba (CWB), Florianópolis (FLN), Goiânia (GYN), Cuiabá (CGB)
 - Manaus (MAO), Belém (BEL), Natal (NAT), Maceió (MCZ)
 - Vitória (VIX), Foz do Iguaçu (IGU), Porto Seguro (BPS), Aracaju (AJU)
 
-#### 2. **Busca Case-Insensitive e Strip()**
-A função `get_iata_code()` agora:
-- Aceita qualquer formato: `"PARIS"`, `"Paris"`, `"paris"`, `"  Paris  "`
-- Remove espaços extras automaticamente
-- Converte para lowercase antes de buscar no dicionário
-- **Resultado:** 100% de compatibilidade com dados do scraper
+#### 2. **Case-Insensitive Search and Strip()**
+The `get_iata_code()` function now:
+- Accepts any format: `"PARIS"`, `"Paris"`, `"paris"`, `"  Paris  "`
+- Automatically removes extra spaces
+- Converts to lowercase before searching dictionary
+- **Result:** 100% compatibility with scraper data
 
-#### 3. **Fallback Dinâmico Implementado**
-- Se cidade não estiver no dicionário: `arrivalAirportIata` fica vazio
-- `departureAirportIata=GRU` sempre presente no link
-- Usuário pode preencher manualmente no funil da AirHelp
-- Zero fricção na experiência
+#### 3. **Dynamic Fallback Implemented**
+- If city is not in dictionary: `arrivalAirportIata` stays empty
+- `departureAirportIata=GRU` always present in link
+- User can fill manually in AirHelp funnel
+- Zero friction in experience
 
-#### 4. **Mensagem de Sucesso e Som**
-- Mensagem no terminal: `"✅ MatchFly: Dicionário IATA expandido com sucesso!"`
-- Som de sucesso: `Glass.aiff` toca automaticamente (macOS)
+#### 4. **Success Message and Sound**
+- Terminal message: `"✅ MatchFly: IATA dictionary expanded successfully!"`
+- Success sound: `Glass.aiff` plays automatically (macOS)
 
-### 🧪 Testes Implementados
+### 🧪 Implemented Tests
 
-Foram criados testes específicos para validar:
-- ✅ Busca case-insensitive
-- ✅ Remoção de espaços extras
-- ✅ Mapeamento de destinos internacionais
-- ✅ Mapeamento de destinos nacionais
-- ✅ Fallback para cidades não mapeadas
-- ✅ Detecção de voos domésticos vs internacionais
+Specific tests were created to validate:
+- ✅ Case-insensitive search
+- ✅ Removal of extra spaces
+- ✅ International destination mapping
+- ✅ National destination mapping
+- ✅ Fallback for unmapped cities
+- ✅ Domestic vs international flight detection
 
-**Resultado dos testes:** ✅ 7/7 passando
+**Test results:** ✅ 7/7 passing
 
-### 📊 Impacto na Conversão
+### 📊 Conversion Impact
 
-#### Antes:
+#### Before:
 ```
-Link genérico: https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU
+Generic link: https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU
 ```
-👎 Usuário precisa preencher destino manualmente
+👎 User needs to fill destination manually
 
-#### Depois:
+#### After:
 ```
-Link otimizado: https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&arrivalAirportIata=CDG&a_aid=...
+Optimized link: https://funnel.airhelp.com/claims/new/trip-details?lang=pt-br&departureAirportIata=GRU&arrivalAirportIata=CDG&a_aid=...
 ```
-👍 Formulário pré-preenchido → **Aumento esperado de 30-50% na conversão**
+👍 Pre-filled form → **Expected 30-50% increase in conversion**
 
-### 🔍 Exemplo Real
+### 🔍 Real Example
 
-**Voo Air France 0459 (GRU → Paris):**
-- Scraper detecta: `"destination": "Paris"`
-- Sistema mapeia: `Paris → CDG`
-- Link gerado: `...&arrivalAirportIata=CDG&...`
-- ✅ Formulário AirHelp totalmente preenchido!
+**Air France Flight 0459 (GRU → Paris):**
+- Scraper detects: `"destination": "Paris"`
+- System maps: `Paris → CDG`
+- Generated link: `...&arrivalAirportIata=CDG&...`
+- ✅ AirHelp form fully pre-filled!
 
-**Voo KLM 0792 (GRU → Amsterdã):**
-- Scraper detecta: `"destination": "Amsterdã"`
-- Sistema mapeia: `Amsterdã → AMS` (com acento!)
-- Link gerado: `...&arrivalAirportIata=AMS&...`
-- ✅ Funciona perfeitamente!
+**KLM Flight 0792 (GRU → Amsterdam):**
+- Scraper detects: `"destination": "Amsterdã"`
+- System maps: `Amsterdã → AMS` (with accent!)
+- Generated link: `...&arrivalAirportIata=AMS&...`
+- ✅ Works perfectly!
 
-### 📁 Arquivos Modificados
+### 📁 Modified Files
 
 1. **`src/generator.py`**
-   - Dicionário `CITY_TO_IATA` expandido (linha 45-74)
-   - Função `get_iata_code()` com busca case-insensitive (linha 118-143)
-   - Mensagem de sucesso e som adicionados (linha 869-881)
+   - Expanded `CITY_TO_IATA` dictionary (line 45-74)
+   - `get_iata_code()` function with case-insensitive search (line 118-143)
+   - Success message and sound added (line 869-881)
 
 2. **`tests/test_generator.py`**
-   - Testes de validação case-insensitive adicionados
-   - Testes de mapeamento IATA
-   - Testes de detecção de voos domésticos
+   - Case-insensitive validation tests added
+   - IATA mapping tests
+   - Domestic flight detection tests
 
-### 🚀 Como Testar
+### 🚀 How to Test
 
 ```bash
-# 1. Executar o gerador
+# 1. Run generator
 python src/generator.py
 
-# 2. Verificar os logs
-# Procurar por: "✅ MatchFly: Dicionário IATA expandido com sucesso!"
+# 2. Check logs
+# Look for: "✅ MatchFly: IATA dictionary expanded successfully!"
 
-# 3. Verificar os links gerados
-# Abrir: docs/voo/*.html
-# Buscar por: "funnel.airhelp.com/claims/new/trip-details"
-# Confirmar: "&arrivalAirportIata=CDG" (ou outro código IATA)
+# 3. Check generated links
+# Open: docs/voo/*.html
+# Search for: "funnel.airhelp.com/claims/new/trip-details"
+# Confirm: "&arrivalAirportIata=CDG" (or other IATA code)
 
-# 4. Executar testes
+# 4. Run tests
 python -m unittest tests.test_generator -v
 ```
 
-### 📈 Próximos Passos Recomendados
+### 📈 Recommended Next Steps
 
-1. **Monitorar Taxa de Conversão:**
-   - Comparar CTR antes/depois da expansão
-   - Acompanhar preenchimentos completos no funil
+1. **Monitor Conversion Rate:**
+   - Compare CTR before/after expansion
+   - Track complete form fills in funnel
 
-2. **Expandir Dicionário Gradualmente:**
-   - Adicionar destinos conforme aparecerem nos dados
-   - Usar logs de "cidade não mapeada" para identificar gaps
+2. **Expand Dictionary Gradually:**
+   - Add destinations as they appear in data
+   - Use "unmapped city" logs to identify gaps
 
 3. **A/B Testing:**
-   - Testar com/sem pré-preenchimento
-   - Medir impacto real na conversão
+   - Test with/without pre-filling
+   - Measure real conversion impact
 
 ---
 
-**Data de Implementação:** 2026-01-12  
-**Status:** ✅ **Concluído e Testado**  
-**Desenvolvedor:** Senior Python Developer
+**Implementation Date:** 2026-01-12  
+**Status:** ✅ **Completed and Tested**  
+**Developer:** Senior Python Developer

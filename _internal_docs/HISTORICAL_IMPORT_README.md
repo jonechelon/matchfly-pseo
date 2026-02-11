@@ -1,126 +1,126 @@
-# 🚀 Importação Histórica ANAC - Quick Start
+# 🚀 ANAC Historical Import - Quick Start
 
-## 📥 O Que É?
+## 📥 What Is It?
 
-Script automatizado que **baixa dados oficiais da ANAC** e popula o MatchFly com **voos atrasados dos últimos 30 dias** em Guarulhos (GRU).
+Automated script that **downloads official ANAC data** and populates MatchFly with **delayed flights from the last 30 days** in Guarulhos (GRU).
 
-### ✨ Recursos
+### ✨ Features
 
-- ✅ Download automático de CSVs da ANAC (Dados Abertos)
-- ✅ Filtragem inteligente (apenas SBGR + atraso > 15min)
-- ✅ Mapeamento automático de companhias aéreas (G3→GOL, etc.)
-- ✅ Integração com dicionário CITY_TO_IATA
-- ✅ Prevenção de duplicatas
-- ✅ Som de sucesso (Glass.aiff) 🔔
+- ✅ Automatic download of ANAC CSVs (Open Data)
+- ✅ Smart filtering (only SBGR + delay > 15min)
+- ✅ Automatic airline mapping (G3→GOL, etc.)
+- ✅ Integration with CITY_TO_IATA dictionary
+- ✅ Duplicate prevention
+- ✅ Success sound (Glass.aiff) 🔔
 
 ---
 
-## ⚡ Uso Rápido
+## ⚡ Quick Usage
 
-### Opção 1: Script Automatizado (Recomendado)
+### Option 1: Automated Script (Recommended)
 
 ```bash
-# Importa + Gera páginas + Valida (tudo automático)
+# Import + Generate pages + Validate (all automatic)
 python run_historical_import.py
 ```
 
-### Opção 2: Passo a Passo Manual
+### Option 2: Manual Step by Step
 
 ```bash
-# 1. Importar dados históricos
+# 1. Import historical data
 python src/historical_importer.py
 
-# 2. Gerar páginas HTML
+# 2. Generate HTML pages
 python src/generator.py
 
-# 3. Visualizar resultado
+# 3. View result
 open docs/index.html
 ```
 
 ---
 
-## 📊 Exemplo de Resultado
+## 📊 Example Result
 
 ```
-📊 SUMÁRIO DA IMPORTAÇÃO:
-   • Arquivos baixados:        2
-   • Total de linhas lidas:    234,567
-   • Voos de SBGR:             15,432
-   • Voos com atraso >15min:   2,345
-   • Voos importados (novos):  2,345
-   • Duplicatas ignoradas:     0
+📊 IMPORT SUMMARY:
+   • Files downloaded:        2
+   • Total rows read:         234,567
+   • SBGR flights:            15,432
+   • Flights with delay >15min: 2,345
+   • Flights imported (new):  2,345
+   • Duplicates ignored:      0
 
-🎉 SUCESSO! Dados históricos importados!
+🎉 SUCCESS! Historical data imported!
 ```
 
-Depois da importação, você terá:
-- **2.345 páginas HTML** geradas em `docs/voo/`
-- **sitemap.xml** atualizado
-- **index.html** com os 20 voos mais recentes
+After import, you'll have:
+- **2,345 HTML pages** generated in `docs/voo/`
+- **sitemap.xml** updated
+- **index.html** with the 20 most recent flights
 
 ---
 
-## 🔧 Configuração
+## 🔧 Configuration
 
-### Mudar Aeroporto
+### Change Airport
 
-Edite `src/historical_importer.py` (linha ~655):
+Edit `src/historical_importer.py` (line ~655):
 
 ```python
 importer = ANACHistoricalImporter(
     airport_code="SBSP",  # Congonhas
-    # ou "SBBR" (Brasília), "SBGL" (Galeão), etc.
+    # or "SBBR" (Brasília), "SBGL" (Galeão), etc.
 )
 ```
 
-### Ajustar Período
+### Adjust Period
 
 ```python
 importer = ANACHistoricalImporter(
-    days_lookback=60,  # Últimos 60 dias (padrão: 30)
+    days_lookback=60,  # Last 60 days (default: 30)
 )
 ```
 
-### Ajustar Filtro de Atraso
+### Adjust Delay Filter
 
 ```python
 importer = ANACHistoricalImporter(
-    min_delay_minutes=30,  # Apenas atrasos > 30min (padrão: 15)
+    min_delay_minutes=30,  # Only delays > 30min (default: 15)
 )
 ```
 
 ---
 
-## 📚 Documentação Completa
+## 📚 Complete Documentation
 
-Para detalhes técnicos completos, consulte:
+For complete technical details, see:
 
-👉 **[docs/HISTORICAL_IMPORTER_GUIDE.md](docs/HISTORICAL_IMPORTER_GUIDE.md)**
+👉 **[_internal_docs/HISTORICAL_IMPORTER_GUIDE.md](HISTORICAL_IMPORTER_GUIDE.md)**
 
 ---
 
-## 🧪 Testes
+## 🧪 Tests
 
 ```bash
-# Rodar todos os testes
+# Run all tests
 pytest tests/test_historical_importer.py -v
 
-# Rodar testes específicos
+# Run specific tests
 pytest tests/test_historical_importer.py::TestAirlineMapping -v
 ```
 
 ---
 
-## 📦 Dependências
+## 📦 Dependencies
 
-Automaticamente instaladas pelo script:
+Automatically installed by script:
 
-- `pandas` - Processamento de CSVs
-- `requests` - Download de arquivos
-- `beautifulsoup4` - Parse de HTML (opcional)
+- `pandas` - CSV processing
+- `requests` - File download
+- `beautifulsoup4` - HTML parsing (optional)
 
 ```bash
-# Ou instale manualmente
+# Or install manually
 pip install -r requirements.txt
 ```
 
@@ -128,80 +128,80 @@ pip install -r requirements.txt
 
 ## ⚠️ Troubleshooting
 
-### Erro: "Arquivo não encontrado (HTTP 404)"
+### Error: "File not found (HTTP 404)"
 
-**Normal para os primeiros dias do mês.** A ANAC publica os dados com alguns dias de atraso.
+**Normal for first days of the month.** ANAC publishes data with some delay.
 
-**Solução**: O script automaticamente usa o mês anterior.
+**Solution**: Script automatically uses previous month.
 
-### Erro: "pandas não encontrado"
+### Error: "pandas not found"
 
-**Solução**: O script instala automaticamente. Se falhar:
+**Solution**: Script installs automatically. If it fails:
 
 ```bash
 pip install pandas
 ```
 
-### Nenhum voo importado (0 novos)
+### No flights imported (0 new)
 
-**Causas possíveis**:
-1. Todos os voos já existem no banco (duplicatas) ✅
-2. Não houve voos atrasados no período 
-3. Filtro muito restritivo
+**Possible causes**:
+1. All flights already exist in database (duplicates) ✅
+2. No delayed flights in period 
+3. Filter too restrictive
 
-**Solução**: Verifique `historical_importer.log` para detalhes.
+**Solution**: Check `historical_importer.log` for details.
 
 ---
 
-## 📁 Arquivos Criados
+## 📁 Files Created
 
 ```
 data/
-  └── flights-db.json           # Banco de dados (atualizado)
+  └── flights-db.json           # Database (updated)
 
 docs/
-  ├── index.html                # Home page (regenerada)
-  ├── sitemap.xml               # Sitemap (atualizado)
+  ├── index.html                # Home page (regenerated)
+  ├── sitemap.xml               # Sitemap (updated)
   └── voo/
       ├── voo-gol-1234-gru-atrasado.html
       ├── voo-azul-5678-gru-cancelado.html
-      └── ...                   # Milhares de páginas
+      └── ...                   # Thousands of pages
 
-historical_importer.log         # Logs detalhados
+historical_importer.log         # Detailed logs
 ```
 
 ---
 
-## 🎯 Próximos Passos
+## 🎯 Next Steps
 
-Após importar com sucesso:
+After successful import:
 
-1. **Visualize localmente**:
+1. **View locally**:
    ```bash
    open docs/index.html
    ```
 
-2. **Faça deploy**:
+2. **Deploy**:
    ```bash
    git add .
-   git commit -m "feat: importar dados históricos ANAC (30 dias)"
+   git commit -m "feat: import ANAC historical data (30 days)"
    git push
    ```
 
-3. **Configure GitHub Actions** para importar automaticamente:
-   - Adicione cronjob em `.github/workflows/update-flights.yml`
-   - Execute importação diária às 06:00 UTC
+3. **Configure GitHub Actions** to import automatically:
+   - Add cronjob in `.github/workflows/update-flights.yml`
+   - Run daily import at 06:00 UTC
 
 ---
 
-## 🔗 Links Úteis
+## 🔗 Useful Links
 
-- **Dados Abertos ANAC**: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
-- **Documentação Técnica**: [docs/HISTORICAL_IMPORTER_GUIDE.md](docs/HISTORICAL_IMPORTER_GUIDE.md)
-- **Testes**: [tests/test_historical_importer.py](tests/test_historical_importer.py)
+- **ANAC Open Data**: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
+- **Technical Documentation**: [_internal_docs/HISTORICAL_IMPORTER_GUIDE.md](HISTORICAL_IMPORTER_GUIDE.md)
+- **Tests**: [tests/test_historical_importer.py](tests/test_historical_importer.py)
 
 ---
 
-**Desenvolvido com ❤️ pela equipe MatchFly**
+**Developed with ❤️ by the MatchFly team**
 
-*Data: 12 de Janeiro de 2026*
+*Date: January 12, 2026*

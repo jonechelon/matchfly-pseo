@@ -1,194 +1,194 @@
-# 📖 Guia do Dicionário IATA - MatchFly
+# 📖 IATA Dictionary Guide - MatchFly
 
-## 🎯 Objetivo
+## 🎯 Objective
 
-O dicionário `CITY_TO_IATA` mapeia nomes de cidades para códigos IATA de aeroportos, permitindo que o link do funil da AirHelp seja pré-preenchido automaticamente, aumentando a taxa de conversão.
+The `CITY_TO_IATA` dictionary maps city names to IATA airport codes, allowing the AirHelp funnel link to be automatically pre-filled, increasing conversion rate.
 
-## 📍 Localização
+## 📍 Location
 
-**Arquivo:** `src/generator.py`  
-**Linhas:** 45-74 (dicionário) e 118-143 (função de busca)
+**File:** `src/generator.py`  
+**Lines:** 45-74 (dictionary) and 118-143 (search function)
 
-## 🔧 Como Funciona
+## 🔧 How It Works
 
-### 1. Busca Case-Insensitive
+### 1. Case-Insensitive Search
 
-A função `get_iata_code()` normaliza a entrada antes de buscar:
+The `get_iata_code()` function normalizes input before searching:
 
 ```python
-# Todas essas entradas retornam "CDG":
+# All these inputs return "CDG":
 get_iata_code("Paris")      # → "CDG"
 get_iata_code("PARIS")      # → "CDG"
 get_iata_code("paris")      # → "CDG"
 get_iata_code("  Paris  ")  # → "CDG"
 ```
 
-### 2. Formato do Dicionário
+### 2. Dictionary Format
 
 ```python
 CITY_TO_IATA = {
-    # Todas as chaves devem estar em LOWERCASE
-    "paris": "CDG",           # ✅ Correto
-    "rio de janeiro": "GIG",  # ✅ Correto
-    "foz do iguaçu": "IGU",   # ✅ Aceita acentos
+    # All keys must be in LOWERCASE
+    "paris": "CDG",           # ✅ Correct
+    "rio de janeiro": "GIG",  # ✅ Correct
+    "foz do iguaçu": "IGU",   # ✅ Accepts accents
     
-    # ❌ NÃO use maiúsculas nas chaves:
-    # "PARIS": "CDG",         # Errado
-    # "Paris": "CDG",         # Errado
+    # ❌ DON'T use uppercase in keys:
+    # "PARIS": "CDG",         # Wrong
+    # "Paris": "CDG",         # Wrong
 }
 ```
 
-### 3. Fallback Automático
+### 3. Automatic Fallback
 
-Se a cidade não estiver no dicionário:
-- O código IATA fica vazio no link
-- `departureAirportIata=GRU` sempre presente
-- Usuário pode preencher manualmente no funil
+If city is not in dictionary:
+- IATA code stays empty in link
+- `departureAirportIata=GRU` always present
+- User can fill manually in funnel
 
-## ➕ Como Adicionar Novos Destinos
+## ➕ How to Add New Destinations
 
-### Passo 1: Identificar Cidade e Código IATA
+### Step 1: Identify City and IATA Code
 
-Consulte os logs do generator para ver cidades não mapeadas:
+Check generator logs to see unmapped cities:
 
 ```bash
 grep "Cidade não mapeada" generator.log
 ```
 
-Pesquise o código IATA em:
+Search IATA code at:
 - [IATA Airport Codes](https://www.iata.org/en/publications/directories/code-search/)
 - [Wikipedia - List of IATA codes](https://en.wikipedia.org/wiki/List_of_IATA_airport_codes)
 
-### Passo 2: Adicionar ao Dicionário
+### Step 2: Add to Dictionary
 
-Edite `src/generator.py` e adicione a nova entrada:
+Edit `src/generator.py` and add new entry:
 
 ```python
 CITY_TO_IATA = {
-    # ... entradas existentes ...
+    # ... existing entries ...
     
-    # Nova entrada (sempre lowercase!)
+    # New entry (always lowercase!)
     "nova cidade": "ABC",
-    "new city": "ABC",  # Adicione variações se necessário
+    "new city": "ABC",  # Add variations if needed
 }
 ```
 
-### Passo 3: Atualizar Lista de Aeroportos Brasileiros (se aplicável)
+### Step 3: Update Brazilian Airports List (if applicable)
 
-Se for um aeroporto brasileiro, adicione também em `BRAZILIAN_AIRPORTS`:
+If it's a Brazilian airport, also add to `BRAZILIAN_AIRPORTS`:
 
 ```python
 BRAZILIAN_AIRPORTS = {
-    "GRU", "GIG", "BSB", "SSA", # ... existentes ...
-    "ABC",  # Novo aeroporto brasileiro
+    "GRU", "GIG", "BSB", "SSA", # ... existing ...
+    "ABC",  # New Brazilian airport
 }
 ```
 
-### Passo 4: Testar
+### Step 4: Test
 
 ```bash
-# Teste manual
+# Manual test
 python test_iata_mapping.py
 
-# Teste unitário
+# Unit test
 python -m unittest tests.test_generator -v
 
-# Teste completo
+# Complete test
 python src/generator.py
 ```
 
-## 📋 Checklist de Manutenção
+## 📋 Maintenance Checklist
 
-Ao adicionar novos destinos:
+When adding new destinations:
 
-- [ ] Chave do dicionário em **lowercase**
-- [ ] Código IATA em **UPPERCASE** (padrão IATA)
-- [ ] Adicionar variações comuns (com/sem acento, português/inglês)
-- [ ] Se brasileiro, adicionar em `BRAZILIAN_AIRPORTS`
-- [ ] Executar `test_iata_mapping.py` para validar
-- [ ] Verificar logs do generator após deploy
+- [ ] Dictionary key in **lowercase**
+- [ ] IATA code in **UPPERCASE** (IATA standard)
+- [ ] Add common variations (with/without accent, Portuguese/English)
+- [ ] If Brazilian, add to `BRAZILIAN_AIRPORTS`
+- [ ] Run `test_iata_mapping.py` to validate
+- [ ] Check generator logs after deploy
 
-## 🌍 Destinos Atualmente Cobertos
+## 🌍 Currently Covered Destinations
 
-### Internacionais (20+)
-- **Europa:** Paris, Lisboa, Madrid, Londres, Frankfurt, Roma, Barcelona, Amsterdã, Zurique, Milão
-- **América do Sul:** Buenos Aires, Santiago, Lima, Bogotá, Montevidéu
-- **América do Norte:** Miami, Nova York, Orlando, Los Angeles, Toronto, Cidade do México, Panamá
+### International (20+)
+- **Europe:** Paris, Lisbon, Madrid, London, Frankfurt, Rome, Barcelona, Amsterdam, Zurich, Milan
+- **South America:** Buenos Aires, Santiago, Lima, Bogotá, Montevideo
+- **North America:** Miami, New York, Orlando, Los Angeles, Toronto, Mexico City, Panama
 
-### Nacionais (20+)
-- **Sudeste:** Rio de Janeiro, Belo Horizonte, Vitória
-- **Sul:** Porto Alegre, Curitiba, Florianópolis, Foz do Iguaçu
-- **Nordeste:** Salvador, Fortaleza, Recife, Natal, Maceió, Aracaju, Porto Seguro
-- **Norte:** Manaus, Belém
-- **Centro-Oeste:** Brasília, Goiânia, Cuiabá, Campo Grande
+### National (20+)
+- **Southeast:** Rio de Janeiro, Belo Horizonte, Vitória
+- **South:** Porto Alegre, Curitiba, Florianópolis, Foz do Iguaçu
+- **Northeast:** Salvador, Fortaleza, Recife, Natal, Maceió, Aracaju, Porto Seguro
+- **North:** Manaus, Belém
+- **Central-West:** Brasília, Goiânia, Cuiabá, Campo Grande
 
-## 🔍 Monitoramento
+## 🔍 Monitoring
 
-### Ver cidades não mapeadas nos logs:
+### See unmapped cities in logs:
 
 ```bash
 grep "Cidade não mapeada" generator.log | sort | uniq -c | sort -rn
 ```
 
-### Ver estatísticas de mapeamento:
+### See mapping statistics:
 
 ```bash
 python test_iata_mapping.py
 ```
 
-### Verificar links gerados:
+### Check generated links:
 
 ```bash
-# Ver todos os links de afiliado gerados
+# See all generated affiliate links
 grep -r "arrivalAirportIata=" docs/voo/*.html | grep -o "arrivalAirportIata=[A-Z]*" | sort | uniq -c
 ```
 
 ## 🐛 Troubleshooting
 
-### Problema: Cidade não está sendo mapeada
+### Problem: City is not being mapped
 
-**Solução:**
-1. Verifique se a chave está em lowercase no dicionário
-2. Verifique se há acentos ou caracteres especiais
-3. Teste com `get_iata_code("nome da cidade")` diretamente
+**Solution:**
+1. Verify key is lowercase in dictionary
+2. Check for accents or special characters
+3. Test with `get_iata_code("city name")` directly
 
-### Problema: Link sem código IATA de destino
+### Problem: Link without destination IATA code
 
-**Causa:** Cidade não mapeada (comportamento esperado - fallback)
+**Cause:** Unmapped city (expected behavior - fallback)
 
-**Solução:** Adicione a cidade ao dicionário seguindo o guia acima
+**Solution:** Add city to dictionary following guide above
 
-### Problema: Código IATA errado
+### Problem: Wrong IATA code
 
-**Solução:**
-1. Verifique se o código IATA está correto em [IATA.org](https://www.iata.org/)
-2. Corrija no dicionário
-3. Execute `python src/generator.py` novamente
+**Solution:**
+1. Verify IATA code is correct at [IATA.org](https://www.iata.org/)
+2. Fix in dictionary
+3. Run `python src/generator.py` again
 
-## 📊 Métricas de Sucesso
+## 📊 Success Metrics
 
-Monitore estas métricas para avaliar o impacto:
+Monitor these metrics to evaluate impact:
 
-1. **Taxa de mapeamento:** Quantos % dos voos têm código IATA mapeado
-2. **CTR do link AirHelp:** Taxa de cliques no botão CTA
-3. **Conversão no funil:** % de usuários que completam o formulário
-4. **Comissões AirHelp:** Aumento nas comissões recebidas
+1. **Mapping rate:** What % of flights have mapped IATA code
+2. **AirHelp link CTR:** Click-through rate on CTA button
+3. **Funnel conversion:** % of users who complete form
+4. **AirHelp commissions:** Increase in received commissions
 
-## 📚 Referências
+## 📚 References
 
 - [IATA Airport Codes](https://www.iata.org/en/publications/directories/code-search/)
 - [AirHelp API Documentation](https://funnel.airhelp.com/claims/new/trip-details)
-- [MatchFly Generator Architecture](GENERATOR_V2_ARCHITECTURE.md)
+- [MatchFly Generator Architecture](GENERATOR_GUIDE.md)
 
-## 🆘 Suporte
+## 🆘 Support
 
-Se encontrar problemas ou tiver dúvidas:
-1. Verifique os logs: `generator.log`
-2. Execute os testes: `python test_iata_mapping.py`
-3. Consulte este guia
-4. Revise o código em `src/generator.py` (bem documentado)
+If you encounter issues or have questions:
+1. Check logs: `generator.log`
+2. Run tests: `python test_iata_mapping.py`
+3. Consult this guide
+4. Review code in `src/generator.py` (well documented)
 
 ---
 
-**Última atualização:** 2026-01-12  
-**Versão do Generator:** 2.0.0
+**Last updated:** 2026-01-12  
+**Generator Version:** 2.0.0

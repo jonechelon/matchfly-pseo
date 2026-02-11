@@ -1,57 +1,57 @@
-# 📚 MatchFly Historical Importer - Guia de Uso
+# 📚 MatchFly Historical Importer - Usage Guide
 
-## 🎯 Visão Geral
+## 🎯 Overview
 
-O **Historical Importer** é um script de engenharia de dados que baixa e importa dados históricos oficiais da ANAC (Agência Nacional de Aviação Civil) para popular o banco de dados do MatchFly com voos atrasados dos últimos 30 dias.
+The **Historical Importer** is a data engineering script that downloads and imports official historical data from ANAC (Agência Nacional de Aviação Civil) to populate the MatchFly database with delayed flights from the last 30 days.
 
-### Fonte de Dados
+### Data Source
 
-- **Origem**: Portal Brasileiro de Dados Abertos da ANAC
-- **Dataset**: VRA (Voo Regular Ativo)
-- **URL Base**: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
-- **Formato**: CSV mensal com todos os voos operados no Brasil
+- **Origin**: ANAC Brazilian Open Data Portal
+- **Dataset**: VRA (Voo Regular Ativo - Regular Active Flight)
+- **Base URL**: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
+- **Format**: Monthly CSV with all flights operated in Brazil
 
-## 🚀 Como Usar
+## 🚀 How to Use
 
-### 1. Instalação de Dependências
+### 1. Install Dependencies
 
 ```bash
-# Certifique-se de que o pandas está instalado
+# Make sure pandas is installed
 pip install -r requirements.txt
 ```
 
-### 2. Execução Básica
+### 2. Basic Execution
 
 ```bash
-# Importa dados dos últimos 30 dias de voos atrasados em Guarulhos
+# Imports data from last 30 days of delayed flights in Guarulhos
 python src/historical_importer.py
 ```
 
-### 3. Gerar Páginas Após Importação
+### 3. Generate Pages After Import
 
 ```bash
-# Após importar, gere as páginas HTML
+# After importing, generate HTML pages
 python src/generator.py
 ```
 
-## ⚙️ Configuração
+## ⚙️ Configuration
 
-### Parâmetros Principais (editáveis em `main()`)
+### Main Parameters (editable in `main()`)
 
 ```python
 importer = ANACHistoricalImporter(
-    output_file="data/flights-db.json",  # Arquivo de saída
-    airport_code="SBGR",                 # Código ICAO do aeroporto
-    min_delay_minutes=15,                # Atraso mínimo para considerar
-    days_lookback=30                     # Quantos dias no passado buscar
+    output_file="data/flights-db.json",  # Output file
+    airport_code="SBGR",                 # Airport ICAO code
+    min_delay_minutes=15,                # Minimum delay to consider
+    days_lookback=30                     # How many days in the past to search
 )
 ```
 
-### Customizações
+### Customizations
 
-#### Mudar Aeroporto
+#### Change Airport
 
-Para importar dados de outro aeroporto, altere o `airport_code`:
+To import data from another airport, change `airport_code`:
 
 ```python
 airport_code="SBSP"  # Congonhas (São Paulo)
@@ -59,150 +59,150 @@ airport_code="SBBR"  # Brasília
 airport_code="SBGL"  # Galeão (Rio de Janeiro)
 ```
 
-#### Ajustar Período
+#### Adjust Period
 
-Para importar mais ou menos dias:
-
-```python
-days_lookback=60  # Últimos 60 dias
-days_lookback=7   # Última semana
-```
-
-#### Ajustar Filtro de Atraso
-
-Para mudar o critério de atraso mínimo:
+To import more or fewer days:
 
 ```python
-min_delay_minutes=30  # Apenas atrasos > 30 minutos
-min_delay_minutes=60  # Apenas atrasos > 1 hora
+days_lookback=60  # Last 60 days
+days_lookback=7   # Last week
 ```
 
-## 📊 Funcionamento
+#### Adjust Delay Filter
 
-### Workflow do Importer
+To change minimum delay criteria:
+
+```python
+min_delay_minutes=30  # Only delays > 30 minutes
+min_delay_minutes=60  # Only delays > 1 hour
+```
+
+## 📊 How It Works
+
+### Importer Workflow
 
 ```
 ┌─────────────────────────────────────────────────┐
-│ STEP 1: Carrega banco de dados existente       │
+│ STEP 1: Load existing database                 │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
-│ STEP 2: Identifica arquivos ANAC disponíveis   │
-│  • Calcula meses a buscar (mês atual + anterior)│
-│  • Gera URLs de download                        │
+│ STEP 2: Identify available ANAC files         │
+│  • Calculates months to search (current + previous)│
+│  • Generates download URLs                     │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
-│ STEP 3: Download e Processamento               │
-│  ├─ Download de CSVs mensais da ANAC           │
-│  ├─ Parse com pandas (encoding automático)     │
-│  ├─ Identificação inteligente de colunas       │
-│  ├─ Filtro 1: Aeroporto de origem = SBGR       │
-│  ├─ Cálculo de atrasos                         │
-│  ├─ Filtro 2: Atraso > 15 minutos              │
-│  ├─ Filtro 3: Últimos 30 dias                  │
-│  └─ Mapeamento para formato MatchFly           │
+│ STEP 3: Download and Processing               │
+│  ├─ Download monthly CSVs from ANAC          │
+│  ├─ Parse with pandas (automatic encoding)     │
+│  ├─ Intelligent column identification          │
+│  ├─ Filter 1: Origin airport = SBGR          │
+│  ├─ Delay calculation                         │
+│  ├─ Filter 2: Delay > 15 minutes             │
+│  ├─ Filter 3: Last 30 days                    │
+│  └─ Mapping to MatchFly format                │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
-│ STEP 4: Mesclagem com banco existente          │
-│  • Evita duplicatas por ID único                │
-│  • Adiciona apenas voos novos                   │
+│ STEP 4: Merge with existing database          │
+│  • Avoids duplicates by unique ID              │
+│  • Adds only new flights                       │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
-│ STEP 5: Limpeza de arquivos temporários        │
+│ STEP 5: Cleanup temporary files                │
 └─────────────────────────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────┐
-│ STEP 6: Sumário + Som de Sucesso 🔔            │
+│ STEP 6: Summary + Success Sound 🔔            │
 └─────────────────────────────────────────────────┘
 ```
 
-### Mapeamento de Dados
+### Data Mapping
 
-O script converte automaticamente os campos da ANAC para o formato MatchFly:
+The script automatically converts ANAC fields to MatchFly format:
 
-| Campo ANAC                    | Campo MatchFly      | Transformação                          |
+| ANAC Field                    | MatchFly Field      | Transformation                          |
 |-------------------------------|---------------------|----------------------------------------|
-| `Sigla Empresa ICAO`          | `airline`           | Mapeia via dicionário (G3→GOL, etc.)   |
-| `Numero Voo`                  | `flight_number`     | Remove prefixos, zeros à esquerda      |
+| `Sigla Empresa ICAO`          | `airline`           | Maps via dictionary (G3→GOL, etc.)   |
+| `Numero Voo`                  | `flight_number`     | Removes prefixes, leading zeros        |
 | `Aeroporto Origem (ICAO)`     | `origin`            | SBGR → GRU                             |
-| `Cidade Destino`              | `destination`       | Usa dicionário CITY_TO_IATA            |
-| `Data/Hora Prevista`          | `scheduled_time`    | Parse para HH:MM                       |
-| `Data/Hora Real`              | `actual_time`       | Parse para HH:MM                       |
-| Diferença calculada           | `delay_min`         | (Real - Previsto) em minutos           |
-| Diferença calculada           | `delay_hours`       | (Real - Previsto) em horas (decimal)   |
-| Baseado no atraso             | `status`            | "Atrasado" ou "Cancelado"              |
+| `Cidade Destino`              | `destination`       | Uses CITY_TO_IATA dictionary           |
+| `Data/Hora Prevista`          | `scheduled_time`    | Parse to HH:MM                         |
+| `Data/Hora Real`              | `actual_time`       | Parse to HH:MM                         |
+| Calculated difference         | `delay_min`         | (Actual - Scheduled) in minutes        |
+| Calculated difference         | `delay_hours`       | (Actual - Scheduled) in hours (decimal)│
+| Based on delay                | `status`            | "Atrasado" or "Cancelado"              |
 
-## 🗺️ Mapeamento de Companhias Aéreas
+## 🗺️ Airline Mapping
 
-O script inclui dicionário completo de companhias:
+The script includes complete airline dictionary:
 
-### Brasileiras
+### Brazilian
 - **G3** → GOL
 - **AD** → AZUL  
 - **LA/JJ** → LATAM
 - **2Z** → Voepass
 
-### Internacionais (Europa)
+### International (Europe)
 - **AF** → Air France
 - **KL** → KLM
 - **LH** → Lufthansa
 - **BA** → British Airways
 - **TP** → TAP Portugal
-- E mais...
+- And more...
 
-### Internacionais (Américas)
+### International (Americas)
 - **AR** → Aerolíneas Argentinas
 - **AA** → American Airlines
 - **DL** → Delta
 - **UA** → United Airlines
 - **CM** → Copa Airlines
-- E mais...
+- And more...
 
-## 📋 Logs e Rastreamento
+## 📋 Logs and Tracking
 
-### Arquivo de Log
+### Log File
 
-Todas as operações são registradas em:
+All operations are logged in:
 
 ```
 historical_importer.log
 ```
 
-### Exemplo de Log de Sucesso
+### Example Success Log
 
 ```
-2026-01-12 10:30:15 - INFO - 🔍 Identificando arquivos ANAC disponíveis...
-2026-01-12 10:30:15 - INFO - 📅 Períodos a buscar: 202601, 202512
-2026-01-12 10:30:16 - INFO - 📥 Baixando: https://...VRA_202601.csv
-2026-01-12 10:30:45 - INFO - ✅ Download concluído: VRA_202601.csv (45.32 MB)
-2026-01-12 10:31:00 - INFO - 📊 Processando: VRA_202601.csv
-2026-01-12 10:31:02 - INFO -    📈 Total de linhas: 123,456
-2026-01-12 10:31:03 - INFO -    🛫 Voos de SBGR: 8,234
-2026-01-12 10:31:15 - INFO -    ✅ Voos atrasados (>15min): 1,456
-2026-01-12 10:31:20 - INFO - ✅ Banco de dados atualizado: 1,456 novos voos adicionados
-2026-01-12 10:31:20 - INFO -    Total no banco: 1,458 voos
-2026-01-12 10:31:20 - INFO - 🔔 Som de sucesso tocado!
+2026-01-12 10:30:15 - INFO - 🔍 Identifying available ANAC files...
+2026-01-12 10:30:15 - INFO - 📅 Periods to search: 202601, 202512
+2026-01-12 10:30:16 - INFO - 📥 Downloading: https://...VRA_202601.csv
+2026-01-12 10:30:45 - INFO - ✅ Download completed: VRA_202601.csv (45.32 MB)
+2026-01-12 10:31:00 - INFO - 📊 Processing: VRA_202601.csv
+2026-01-12 10:31:02 - INFO -    📈 Total rows: 123,456
+2026-01-12 10:31:03 - INFO -    🛫 SBGR flights: 8,234
+2026-01-12 10:31:15 - INFO -    ✅ Delayed flights (>15min): 1,456
+2026-01-12 10:31:20 - INFO - ✅ Database updated: 1,456 new flights added
+2026-01-12 10:31:20 - INFO -    Total in database: 1,458 flights
+2026-01-12 10:31:20 - INFO - 🔔 Success sound played!
 ```
 
-## 🎨 Recursos Avançados
+## 🎨 Advanced Features
 
-### 1. Identificação Inteligente de Colunas
+### 1. Intelligent Column Identification
 
-O script usa **padrões flexíveis** para identificar colunas, mesmo que a ANAC mude os nomes:
+The script uses **flexible patterns** to identify columns, even if ANAC changes names:
 
 ```python
-# Busca por múltiplos padrões
+# Search for multiple patterns
 'airline_code': ['sigla', 'empresa', 'companhia', 'icao_empresa']
 'flight_number': ['numero_voo', 'voo', 'flight']
 # ... etc
 ```
 
-### 2. Detecção Automática de Encoding
+### 2. Automatic Encoding Detection
 
-Tenta múltiplos encodings automaticamente:
+Tries multiple encodings automatically:
 
 ```python
 for encoding in ['latin-1', 'utf-8', 'iso-8859-1']:
@@ -213,19 +213,19 @@ for encoding in ['latin-1', 'utf-8', 'iso-8859-1']:
         continue
 ```
 
-### 3. Prevenção de Duplicatas
+### 3. Duplicate Prevention
 
-Cada voo recebe um ID único baseado em:
+Each flight receives a unique ID based on:
 
 ```
 ID = airline + flight_number + scheduled_date
 ```
 
-Exemplo: `gol-1234-2025-12-15`
+Example: `gol-1234-2025-12-15`
 
-### 4. Integração com Dicionário CITY_TO_IATA
+### 4. Integration with CITY_TO_IATA Dictionary
 
-Reutiliza o dicionário do `generator.py` para mapear cidades:
+Reuses dictionary from `generator.py` to map cities:
 
 ```python
 from generator import get_iata_code, CITY_TO_IATA
@@ -233,136 +233,136 @@ from generator import get_iata_code, CITY_TO_IATA
 destination_iata = get_iata_code("Paris")  # → "CDG"
 ```
 
-## 📊 Estatísticas Geradas
+## 📊 Generated Statistics
 
-Ao final, o script exibe:
+At the end, the script displays:
 
 ```
-📊 SUMÁRIO DA IMPORTAÇÃO:
-   • Arquivos baixados:        2
-   • Total de linhas lidas:    234,567
-   • Voos de SBGR:             15,432
-   • Voos com atraso >15min:   2,345
-   • Voos importados (novos):  2,345
-   • Duplicatas ignoradas:     0
-   • Erros:                    12
+📊 IMPORT SUMMARY:
+   • Files downloaded:        2
+   • Total rows read:         234,567
+   • SBGR flights:            15,432
+   • Flights with delay >15min: 2,345
+   • Flights imported (new):  2,345
+   • Duplicates ignored:      0
+   • Errors:                  12
 ```
 
 ## ⚠️ Troubleshooting
 
-### Erro: "pandas não encontrado"
+### Error: "pandas not found"
 
-**Solução**: O script instala automaticamente. Se falhar:
+**Solution**: Script installs automatically. If it fails:
 
 ```bash
 pip install pandas
 ```
 
-### Erro: "Arquivo não encontrado (HTTP 404)"
+### Error: "File not found (HTTP 404)"
 
-**Causa**: A ANAC ainda não publicou os dados do mês atual.
+**Cause**: ANAC hasn't published current month data yet.
 
-**Solução**: Normal para os primeiros dias do mês. O script continuará com o mês anterior.
+**Solution**: Normal for first days of the month. Script will continue with previous month.
 
-### Erro: "Não foi possível identificar colunas necessárias"
+### Error: "Could not identify required columns"
 
-**Causa**: A ANAC mudou drasticamente a estrutura do CSV.
+**Cause**: ANAC drastically changed CSV structure.
 
-**Solução**: Abra o CSV manualmente e atualize os padrões em `_identify_columns()`.
+**Solution**: Open CSV manually and update patterns in `_identify_columns()`.
 
-### Nenhum voo importado (0 novos)
+### No flights imported (0 new)
 
-**Causas possíveis**:
-1. Todos os voos já existem no banco (duplicatas)
-2. Não houve voos atrasados no período
-3. Filtro muito restritivo (ex: `min_delay_minutes` muito alto)
+**Possible causes**:
+1. All flights already exist in database (duplicates)
+2. No delayed flights in period
+3. Filter too restrictive (e.g.: `min_delay_minutes` too high)
 
-**Solução**: Verifique os logs para detalhes.
+**Solution**: Check logs for details.
 
-## 🔧 Customização Avançada
+## 🔧 Advanced Customization
 
-### Adicionar Nova Companhia Aérea
+### Add New Airline
 
-Edite o dicionário `AIRLINE_MAPPING`:
+Edit the `AIRLINE_MAPPING` dictionary:
 
 ```python
 AIRLINE_MAPPING = {
     # ...
-    "XY": "Nova Companhia",  # Adicione aqui
+    "XY": "New Airline",  # Add here
 }
 ```
 
-### Mudar Formato de Data
+### Change Date Format
 
-Edite `parse_datetime()` para aceitar novos formatos:
+Edit `parse_datetime()` to accept new formats:
 
 ```python
 for date_format in ['%d/%m/%Y', '%Y-%m-%d', '%d-%m-%Y']:
-    # Adicione novo formato aqui
+    # Add new format here
 ```
 
-### Adicionar Campos Customizados
+### Add Custom Fields
 
-No método `_process_row()`, adicione novos campos:
+In `_process_row()` method, add new fields:
 
 ```python
 flight = {
-    # ... campos existentes ...
-    'custom_field': row.get('coluna_anac', ''),
+    # ... existing fields ...
+    'custom_field': row.get('anac_column', ''),
 }
 ```
 
 ## 📈 Performance
 
-### Tempos Médios
+### Average Times
 
-| Operação                  | Tempo Médio    |
+| Operation                  | Average Time    |
 |---------------------------|----------------|
-| Download de 1 CSV (50MB)  | ~30-60s        |
-| Processamento de 1 CSV    | ~15-30s        |
-| Mesclagem com banco       | <5s            |
-| **Total (1 mês)**         | **~1-2 minutos**|
-| **Total (2 meses)**       | **~3-4 minutos**|
+| Download 1 CSV (50MB)    | ~30-60s        |
+| Process 1 CSV             | ~15-30s        |
+| Merge with database       | <5s            |
+| **Total (1 month)**      | **~1-2 minutes**|
+| **Total (2 months)**      | **~3-4 minutes**|
 
-### Otimizações
+### Optimizations
 
-- Usa `pandas` para processamento eficiente
-- Download com streaming (não sobrecarrega RAM)
-- Cache de voos existentes em memória
-- Logs com níveis (INFO/DEBUG)
+- Uses `pandas` for efficient processing
+- Download with streaming (doesn't overload RAM)
+- Cache existing flights in memory
+- Logs with levels (INFO/DEBUG)
 
-## 🎯 Próximos Passos
+## 🎯 Next Steps
 
-Após importar os dados históricos:
+After importing historical data:
 
-1. **Gere as páginas HTML**:
+1. **Generate HTML pages**:
    ```bash
    python src/generator.py
    ```
 
-2. **Verifique o resultado**:
+2. **Check result**:
    ```bash
    open docs/index.html
    ```
 
-3. **Deploy para produção**:
+3. **Deploy to production**:
    ```bash
-   # Se usando GitHub Actions
+   # If using GitHub Actions
    git add .
-   git commit -m "feat: importar dados históricos ANAC"
+   git commit -m "feat: import ANAC historical data"
    git push
    ```
 
-## 📞 Suporte
+## 📞 Support
 
-Para dúvidas ou problemas:
+For questions or issues:
 
-1. Verifique `historical_importer.log`
-2. Execute com `python -v src/historical_importer.py` para mais detalhes
-3. Consulte a documentação da ANAC: https://www.gov.br/anac/pt-br/assuntos/dados-abertos
+1. Check `historical_importer.log`
+2. Run with `python -v src/historical_importer.py` for more details
+3. Consult ANAC documentation: https://www.gov.br/anac/pt-br/assuntos/dados-abertos
 
 ---
 
-**Desenvolvido com ❤️ pela equipe MatchFly**
+**Developed with ❤️ by the MatchFly team**
 
-*Última atualização: 12 de Janeiro de 2026*
+*Last updated: January 12, 2026*

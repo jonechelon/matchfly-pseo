@@ -1,91 +1,91 @@
-# Deploy MatchFly – GitHub Pages via pasta `/docs`
+# MatchFly Deploy – GitHub Pages via `/docs` folder
 
-**Última atualização:** Fevereiro 2026
+**Last updated:** February 2026
 
-O site MatchFly é publicado usando **GitHub Pages** com a pasta **`/docs`** da branch **`main`** como raiz do site. Não há uso de Netlify nem da branch `gh-pages`.
-
----
-
-## 1. Modelo de deploy
-
-- **Fonte do site:** branch `main`, pasta `docs/`
-- **Como o conteúdo chega em `docs/`:**
-  - Local: você roda `python src/generator.py`, que escreve em `docs/`
-  - CI: o workflow `.github/workflows/update-flights.yml` roda o generator e faz commit + push das alterações em `docs/` na `main`
-
-O GitHub serve tudo que está em `docs/` em `https://<user>.github.io/<repo>/` ou, com domínio custom, em `https://matchfly.org`.
+The MatchFly site is published using **GitHub Pages** with the **`/docs`** folder from the **`main`** branch as the site root. There is no use of Netlify or the `gh-pages` branch.
 
 ---
 
-## 2. Configuração no GitHub
+## 1. Deploy Model
 
-1. Repositório → **Settings** → **Pages**.
-2. Em **Build and deployment**:
+- **Site source:** branch `main`, folder `docs/`
+- **How content reaches `docs/`:**
+  - Local: you run `python src/generator.py`, which writes to `docs/`
+  - CI: the `.github/workflows/update-flights.yml` workflow runs the generator and commits + pushes changes to `docs/` on `main`
+
+GitHub serves everything in `docs/` at `https://<user>.github.io/<repo>/` or, with custom domain, at `https://matchfly.org`.
+
+---
+
+## 2. GitHub Configuration
+
+1. Repository → **Settings** → **Pages**.
+2. Under **Build and deployment**:
    - **Source:** Deploy from a branch
    - **Branch:** `main`
    - **Folder:** `/docs`
-3. Salvar. O site passará a ser servido a partir da pasta `docs/`.
+3. Save. The site will now be served from the `docs/` folder.
 
 ---
 
-## 3. Domínio custom (matchfly.org)
+## 3. Custom Domain (matchfly.org)
 
-Para que o site responda em `https://matchfly.org`:
+For the site to respond at `https://matchfly.org`:
 
-1. **CNAME no repositório**  
-   O generator escreve em `docs/CNAME` o conteúdo `matchfly.org` (uma linha, sem `https://` e sem barra no final). Esse arquivo deve estar em `docs/` e versionado.
+1. **CNAME in repository**  
+   The generator writes `matchfly.org` to `docs/CNAME` (one line, without `https://` and without trailing slash). This file must be in `docs/` and versioned.
 
-2. **DNS no provedor do domínio**  
-   Configure um registro **CNAME** (ou A/AAAA conforme a documentação do GitHub) apontando o domínio para o endereço do GitHub Pages (ex.: `<user>.github.io`). Detalhes: [GitHub – Configuring a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
+2. **DNS at domain provider**  
+   Configure a **CNAME** record (or A/AAAA per GitHub documentation) pointing the domain to the GitHub Pages address (e.g., `<user>.github.io`). Details: [GitHub – Configuring a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site).
 
 3. **HTTPS**  
-   O GitHub Pages oferece HTTPS para domínios custom; pode levar alguns minutos até o certificado ser provisionado.
+   GitHub Pages provides HTTPS for custom domains; it may take a few minutes for the certificate to be provisioned.
 
 ---
 
-## 4. Arquivo `.nojekyll`
+## 4. `.nojekyll` File
 
-O GitHub Pages, por padrão, processa o site com Jekyll. O Jekyll ignora pastas e arquivos que começam com `_`.
+GitHub Pages, by default, processes the site with Jekyll. Jekyll ignores folders and files starting with `_`.
 
-- O generator cria um arquivo **vazio** `docs/.nojekyll`.
-- Com isso, o Jekyll é desativado e a pasta `docs/` é servida como está (incluindo qualquer conteúdo com `_` no nome no futuro).
+- The generator creates an **empty** `docs/.nojekyll` file.
+- This disables Jekyll and the `docs/` folder is served as-is (including any content with `_` in the name in the future).
 
 ---
 
-## 5. Workflow de CI (update-flights.yml)
+## 5. CI Workflow (update-flights.yml)
 
-Fluxo resumido:
+Summary flow:
 
-| Step | Ação |
-|------|------|
-| 1 | Checkout do repositório |
-| 2 | Setup Python 3.12 (cache pip) |
+| Step | Action |
+|------|--------|
+| 1 | Repository checkout |
+| 2 | Setup Python 3.12 (pip cache) |
 | 3 | `pip install -r requirements.txt` |
-| 4 | `python voos_proximos_finalbuild.py` (sincroniza dados → `data/flights-db.json`) |
-| 5 | `python src/generator.py` (gera todo o site em `docs/`) |
-| 6 | `git add docs/` → commit (se houver mudanças) → `git push` |
+| 4 | `python voos_proximos_finalbuild.py` (syncs data → `data/flights-db.json`) |
+| 5 | `python src/generator.py` (generates entire site in `docs/`) |
+| 6 | `git add docs/` → commit (if there are changes) → `git push` |
 
-O job usa `permissions: contents: write` para poder fazer push na `main`. O commit só ocorre se houver alterações em `docs/` (`git diff --staged --quiet || git commit ...`).
+The job uses `permissions: contents: write` to be able to push to `main`. The commit only occurs if there are changes in `docs/` (`git diff --staged --quiet || git commit ...`).
 
 ---
 
-## 6. Como rodar localmente
+## 6. Running Locally
 
-1. **Gerar o site em `docs/`:**
+1. **Generate site in `docs/`:**
    ```bash
    python src/generator.py
    ```
-2. **Pré-requisito:** existir `data/flights-db.json` (gerado por `voos_proximos_finalbuild.py` ou por import histórico).
-3. **Visualizar:** abrir `docs/index.html` no navegador ou servir a pasta `docs/` com um servidor local (ex.: `python -m http.server --directory docs 8000`).
+2. **Prerequisite:** `data/flights-db.json` must exist (generated by `voos_proximos_finalbuild.py` or historical import).
+3. **View:** open `docs/index.html` in browser or serve the `docs/` folder with a local server (e.g., `python -m http.server --directory docs 8000`).
 
-Não é necessário Netlify, Vercel nem branch `gh-pages` para o deploy atual.
+Netlify, Vercel, or `gh-pages` branch are not needed for the current deploy.
 
 ---
 
-## 7. Checklist pós-deploy
+## 7. Post-Deploy Checklist
 
 - [ ] Settings → Pages: Source = branch `main`, folder `/docs`
-- [ ] Arquivo `docs/CNAME` existe e contém apenas `matchfly.org`
-- [ ] Arquivo `docs/.nojekyll` existe (vazio)
-- [ ] Após o workflow rodar, `docs/` contém `index.html`, `sitemap.xml`, `robots.txt`, `404.html` e as subpastas `voo/` e `destino/`
-- [ ] Domínio custom configurado no DNS e HTTPS ativo (se usar matchfly.org)
+- [ ] File `docs/CNAME` exists and contains only `matchfly.org`
+- [ ] File `docs/.nojekyll` exists (empty)
+- [ ] After workflow runs, `docs/` contains `index.html`, `sitemap.xml`, `robots.txt`, `404.html` and subfolders `voo/` and `destino/`
+- [ ] Custom domain configured in DNS and HTTPS active (if using matchfly.org)

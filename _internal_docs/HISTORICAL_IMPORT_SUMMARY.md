@@ -1,196 +1,196 @@
-# 📊 Sumário: Importador Histórico ANAC - Implementado com Sucesso! ✅
+# 📊 Summary: ANAC Historical Importer - Successfully Implemented! ✅
 
-## 🎯 Objetivo Alcançado
+## 🎯 Objective Achieved
 
-Criado sistema completo de importação de dados históricos da ANAC (Agência Nacional de Aviação Civil) para popular o MatchFly com **30 dias de voos atrasados em Guarulhos**.
+Created complete system for importing historical data from ANAC (Agência Nacional de Aviação Civil) to populate MatchFly with **30 days of delayed flights in Guarulhos**.
 
 ---
 
-## 📦 Arquivos Criados
+## 📦 Files Created
 
-### 1. Script Principal
-**`src/historical_importer.py`** (655 linhas)
-- ✅ Download automático de CSVs da ANAC
-- ✅ Processamento com pandas
-- ✅ Filtragem inteligente (SBGR + atraso > 15min)
-- ✅ Mapeamento de 25+ companhias aéreas
-- ✅ Integração com `CITY_TO_IATA` do generator
-- ✅ Prevenção de duplicatas
-- ✅ Logs detalhados
-- ✅ Som de sucesso (Glass.aiff) 🔔
+### 1. Main Script
+**`src/historical_importer.py`** (655 lines)
+- ✅ Automatic download of ANAC CSVs
+- ✅ Processing with pandas
+- ✅ Smart filtering (SBGR + delay > 15min)
+- ✅ Mapping of 25+ airlines
+- ✅ Integration with `CITY_TO_IATA` from generator
+- ✅ Duplicate prevention
+- ✅ Detailed logs
+- ✅ Success sound (Glass.aiff) 🔔
 
-### 2. Script de Automação
-**`run_historical_import.py`** (100 linhas)
-- Workflow completo: Importar → Gerar → Validar
-- Interface amigável com prompts
-- Validação automática de resultado
+### 2. Automation Script
+**`run_historical_import.py`** (100 lines)
+- Complete workflow: Import → Generate → Validate
+- User-friendly interface with prompts
+- Automatic result validation
 
-### 3. Testes Unitários
-**`tests/test_historical_importer.py`** (350+ linhas)
-- 11 classes de teste
-- 30+ casos de teste
-- Cobertura completa:
-  - Mapeamento de companhias
-  - Parse de datas/horas
-  - Cálculo de atrasos
-  - Geração de IDs únicos
-  - Normalização de colunas
-  - Identificação de colunas
-  - URLs de download
+### 3. Unit Tests
+**`tests/test_historical_importer.py`** (350+ lines)
+- 11 test classes
+- 30+ test cases
+- Complete coverage:
+  - Airline mapping
+  - Date/time parsing
+  - Delay calculation
+  - Unique ID generation
+  - Column normalization
+  - Column identification
+  - Download URLs
 
-### 4. Documentação Completa
-**`docs/HISTORICAL_IMPORTER_GUIDE.md`** (500+ linhas)
-- Guia técnico detalhado
-- Diagramas de workflow
-- Tabelas de mapeamento
-- Troubleshooting completo
-- Exemplos de customização
-- Métricas de performance
+### 4. Complete Documentation
+**`_internal_docs/HISTORICAL_IMPORTER_GUIDE.md`** (500+ lines)
+- Detailed technical guide
+- Workflow diagrams
+- Mapping tables
+- Complete troubleshooting
+- Customization examples
+- Performance metrics
 
-### 5. README Rápido
+### 5. Quick README
 **`HISTORICAL_IMPORT_README.md`**
 - Quick start guide
-- Comandos essenciais
-- Configuração básica
-- Links úteis
+- Essential commands
+- Basic configuration
+- Useful links
 
-### 6. Dependência Atualizada
+### 6. Updated Dependency
 **`requirements.txt`**
-- ✅ Adicionado `pandas==2.2.3`
+- ✅ Added `pandas==2.2.3`
 
 ---
 
-## 🚀 Funcionalidades Implementadas
+## 🚀 Implemented Features
 
-### Download Inteligente
+### Smart Download
 ```python
-# Calcula automaticamente meses necessários
-# Hoje: 12/01/2026 → Busca: 202601 + 202512
+# Automatically calculates necessary months
+# Today: 01/12/2026 → Searches: 202601 + 202512
 urls = importer.get_anac_download_urls()
 ```
 
-### Mapeamento de Companhias (25+ Airlines)
+### Airline Mapping (25+ Airlines)
 ```python
 AIRLINE_MAPPING = {
-    # Brasileiras
+    # Brazilian
     "G3": "GOL",
     "AD": "AZUL", 
     "LA": "LATAM",
     
-    # Europa
+    # Europe
     "AF": "Air France",
     "KL": "KLM",
     "LH": "Lufthansa",
     
-    # Américas
+    # Americas
     "AA": "American Airlines",
     "DL": "Delta",
-    # ... e mais
+    # ... and more
 }
 ```
 
-### Identificação Flexível de Colunas
+### Flexible Column Identification
 ```python
-# Busca por padrões, não nomes exatos
+# Searches by patterns, not exact names
 'airline_code': ['sigla', 'empresa', 'companhia', 'icao_empresa']
 'flight_number': ['numero_voo', 'voo', 'flight']
 ```
 
-### Parse Multi-Formato de Datas
+### Multi-Format Date Parsing
 ```python
-# Aceita múltiplos formatos automaticamente
+# Accepts multiple formats automatically
 formats = ['%d/%m/%Y', '%Y-%m-%d', '%d-%m-%Y']
 times = ['%H:%M', '%H:%M:%S']
 ```
 
-### Integração com Gerador
+### Generator Integration
 ```python
 from generator import get_iata_code, CITY_TO_IATA
 
 destination_iata = get_iata_code("Paris")  # → "CDG"
 ```
 
-### Prevenção de Duplicatas
+### Duplicate Prevention
 ```python
-# ID único: airline-flight_number-scheduled_date
+# Unique ID: airline-flight_number-scheduled_date
 flight_id = "gol-1234-2025-12-15"
 ```
 
 ---
 
-## 📊 Fluxo de Dados
+## 📊 Data Flow
 
 ```
 ┌─────────────────────────────────────────────┐
-│  ANAC VRA (Dados Abertos)                   │
+│  ANAC VRA (Open Data)                      │
 │  https://sistemas.anac.gov.br/...           │
-│  CSV: ~50MB/mês, ~100k+ linhas              │
+│  CSV: ~50MB/month, ~100k+ rows             │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  Historical Importer                        │
-│  • Download automático                      │
-│  • Parse com pandas                         │
-│  • Identificação de colunas flexível        │
+│  Historical Importer                       │
+│  • Automatic download                      │
+│  • Parse with pandas                       │
+│  • Flexible column identification          │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  Filtragem Tripla                           │
-│  1. Aeroporto = SBGR (Guarulhos)            │
-│  2. Atraso > 15 minutos                     │
-│  3. Últimos 30 dias                         │
-│  Resultado: ~2.000-5.000 voos               │
+│  Triple Filtering                           │
+│  1. Airport = SBGR (Guarulhos)             │
+│  2. Delay > 15 minutes                     │
+│  3. Last 30 days                           │
+│  Result: ~2,000-5,000 flights              │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  Mapeamento para MatchFly                   │
-│  • ICAO → Nome companhia (G3→GOL)           │
-│  • Cidade → IATA (Paris→CDG)                │
-│  • SBGR → GRU                               │
-│  • Cálculo de delay em horas/minutos        │
+│  Mapping to MatchFly                       │
+│  • ICAO → Airline name (G3→GOL)            │
+│  • City → IATA (Paris→CDG)                 │
+│  • SBGR → GRU                              │
+│  • Delay calculation in hours/minutes      │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  data/flights-db.json                       │
-│  • Merge sem duplicatas                     │
-│  • Metadata com estatísticas                │
+│  data/flights-db.json                      │
+│  • Merge without duplicates                │
+│  • Metadata with statistics                │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  Generator (src/generator.py)               │
-│  • Gera HTML para cada voo                  │
-│  • Sitemap.xml atualizado                   │
-│  • Index.html com 20 mais recentes          │
+│  Generator (src/generator.py)              │
+│  • Generates HTML for each flight          │
+│  • Updated sitemap.xml                     │
+│  • Index.html with 20 most recent          │
 └─────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────┐
-│  docs/                                    │
-│  ├── index.html                             │
-│  ├── sitemap.xml                            │
-│  └── voo/                                   │
-│      ├── voo-gol-1234-gru-atrasado.html     │
-│      └── ... (2.000-5.000 páginas)          │
+│  docs/                                     │
+│  ├── index.html                            │
+│  ├── sitemap.xml                           │
+│  └── voo/                                  │
+│      ├── voo-gol-1234-gru-atrasado.html    │
+│      └── ... (2,000-5,000 pages)           │
 └─────────────────────────────────────────────┘
 ```
 
 ---
 
-## ⚡ Como Usar
+## ⚡ How to Use
 
-### Opção 1: Automático (Recomendado)
+### Option 1: Automatic (Recommended)
 ```bash
 python run_historical_import.py
 ```
 
-### Opção 2: Manual
+### Option 2: Manual
 ```bash
-# 1. Importar dados
+# 1. Import data
 python src/historical_importer.py
 
-# 2. Gerar páginas
+# 2. Generate pages
 python src/generator.py
 
-# 3. Visualizar
+# 3. View
 open docs/index.html
 ```
 
@@ -198,127 +198,127 @@ open docs/index.html
 
 ## 📈 Performance
 
-| Operação                  | Tempo Médio    |
+| Operation                  | Average Time    |
 |---------------------------|----------------|
-| Download de 1 CSV (50MB)  | ~30-60s        |
-| Processamento de 1 CSV    | ~15-30s        |
-| Mesclagem com banco       | <5s            |
-| **Total (2 meses)**       | **~3-4 minutos**|
+| Download 1 CSV (50MB)    | ~30-60s        |
+| Process 1 CSV             | ~15-30s        |
+| Merge with database       | <5s            |
+| **Total (2 months)**     | **~3-4 minutes**|
 
-**Output Esperado**:
-- 2.000-5.000 voos importados
-- 2.000-5.000 páginas HTML geradas
-- Sitemap com todas as URLs
-- Index com 20 mais recentes
+**Expected Output**:
+- 2,000-5,000 flights imported
+- 2,000-5,000 HTML pages generated
+- Sitemap with all URLs
+- Index with 20 most recent
 
 ---
 
-## 🔧 Configurações Customizáveis
+## 🔧 Customizable Settings
 
-### Mudar Aeroporto
+### Change Airport
 ```python
 airport_code="SBSP"  # Congonhas
 airport_code="SBBR"  # Brasília
 airport_code="SBGL"  # Galeão (RJ)
 ```
 
-### Ajustar Período
+### Adjust Period
 ```python
-days_lookback=60  # Últimos 60 dias
-days_lookback=7   # Última semana
+days_lookback=60  # Last 60 days
+days_lookback=7   # Last week
 ```
 
-### Ajustar Filtro
+### Adjust Filter
 ```python
-min_delay_minutes=30  # Atrasos > 30min
-min_delay_minutes=60  # Atrasos > 1h
+min_delay_minutes=30  # Delays > 30min
+min_delay_minutes=60  # Delays > 1h
 ```
 
 ---
 
-## 🧪 Testes
+## 🧪 Tests
 
 ```bash
-# Rodar todos os testes
+# Run all tests
 pytest tests/test_historical_importer.py -v
 
-# Rodar categoria específica
+# Run specific category
 pytest tests/test_historical_importer.py::TestAirlineMapping -v
 ```
 
-**Cobertura de Testes**:
-- ✅ Mapeamento de companhias (3 testes)
-- ✅ Parse de datas/horas (5 testes)
-- ✅ Cálculo de atrasos (3 testes)
-- ✅ Geração de IDs únicos (3 testes)
-- ✅ Normalização de colunas (4 testes)
-- ✅ URLs de download (2 testes)
-- ✅ Identificação de colunas (2 testes)
-- ✅ Inicialização (2 testes)
+**Test Coverage**:
+- ✅ Airline mapping (3 tests)
+- ✅ Date/time parsing (5 tests)
+- ✅ Delay calculation (3 tests)
+- ✅ Unique ID generation (3 tests)
+- ✅ Column normalization (4 tests)
+- ✅ Download URLs (2 tests)
+- ✅ Column identification (2 tests)
+- ✅ Initialization (2 tests)
 
 ---
 
-## 📚 Documentação
+## 📚 Documentation
 
-### Guias Criados
+### Created Guides
 1. **Quick Start**: `HISTORICAL_IMPORT_README.md`
-2. **Guia Técnico Completo**: `docs/HISTORICAL_IMPORTER_GUIDE.md`
-3. **Este Sumário**: `HISTORICAL_IMPORT_SUMMARY.md`
+2. **Complete Technical Guide**: `_internal_docs/HISTORICAL_IMPORTER_GUIDE.md`
+3. **This Summary**: `HISTORICAL_IMPORT_SUMMARY.md`
 
-### Links Úteis
-- Dados Abertos ANAC: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
-- Portal ANAC: https://sistemas.anac.gov.br/dadosabertos/
+### Useful Links
+- ANAC Open Data: https://www.gov.br/anac/pt-br/assuntos/dados-abertos/arquivos/vra/
+- ANAC Portal: https://sistemas.anac.gov.br/dadosabertos/
 
 ---
 
-## ✅ Checklist de Implementação
+## ✅ Implementation Checklist
 
-### Código
-- ✅ Script principal (`src/historical_importer.py`)
-- ✅ Script de automação (`run_historical_import.py`)
-- ✅ Testes unitários completos (30+ casos)
-- ✅ Logs detalhados
-- ✅ Tratamento de erros robusto
+### Code
+- ✅ Main script (`src/historical_importer.py`)
+- ✅ Automation script (`run_historical_import.py`)
+- ✅ Complete unit tests (30+ cases)
+- ✅ Detailed logs
+- ✅ Robust error handling
 
-### Funcionalidades
-- ✅ Download automático de CSVs da ANAC
-- ✅ Parse multi-formato de datas/horas
-- ✅ Identificação flexível de colunas
-- ✅ Filtragem tripla (aeroporto + atraso + período)
-- ✅ Mapeamento de 25+ companhias aéreas
-- ✅ Integração com `CITY_TO_IATA`
-- ✅ Prevenção de duplicatas
-- ✅ Cálculo de atrasos em minutos/horas
-- ✅ Detecção de voos cancelados
-- ✅ Som de sucesso (Glass.aiff)
+### Features
+- ✅ Automatic download of ANAC CSVs
+- ✅ Multi-format date/time parsing
+- ✅ Flexible column identification
+- ✅ Triple filtering (airport + delay + period)
+- ✅ Mapping of 25+ airlines
+- ✅ Integration with `CITY_TO_IATA`
+- ✅ Duplicate prevention
+- ✅ Delay calculation in minutes/hours
+- ✅ Cancelled flight detection
+- ✅ Success sound (Glass.aiff)
 
-### Documentação
-- ✅ Guia técnico completo (500+ linhas)
+### Documentation
+- ✅ Complete technical guide (500+ lines)
 - ✅ Quick start guide
-- ✅ Sumário executivo
-- ✅ Diagramas de fluxo
-- ✅ Tabelas de mapeamento
-- ✅ Exemplos de customização
-- ✅ Troubleshooting completo
+- ✅ Executive summary
+- ✅ Flow diagrams
+- ✅ Mapping tables
+- ✅ Customization examples
+- ✅ Complete troubleshooting
 
-### Qualidade
-- ✅ Código documentado (docstrings)
-- ✅ Type hints onde apropriado
-- ✅ Logs estruturados
-- ✅ Estatísticas detalhadas
-- ✅ Validações robustas
-- ✅ Tratamento de erros
+### Quality
+- ✅ Documented code (docstrings)
+- ✅ Type hints where appropriate
+- ✅ Structured logs
+- ✅ Detailed statistics
+- ✅ Robust validations
+- ✅ Error handling
 
-### Dependências
-- ✅ `pandas` adicionado ao `requirements.txt`
-- ✅ Instalação automática se ausente
-- ✅ Imports opcionais com fallback
+### Dependencies
+- ✅ `pandas` added to `requirements.txt`
+- ✅ Automatic installation if missing
+- ✅ Optional imports with fallback
 
 ---
 
-## 🎉 Resultado Final
+## 🎉 Final Result
 
-### Antes (Scraper em Tempo Real)
+### Before (Real-Time Scraper)
 ```json
 {
   "flights": [
@@ -331,17 +331,17 @@ pytest tests/test_historical_importer.py::TestAirlineMapping -v
   ]
 }
 ```
-**Limitação**: Apenas 2-3 voos ativos no momento do scraping
+**Limitation**: Only 2-3 active flights at scraping time
 
-### Depois (Com Importador Histórico)
+### After (With Historical Importer)
 ```json
 {
   "flights": [
-    // 2.000-5.000 voos dos últimos 30 dias
+    // 2,000-5,000 flights from last 30 days
     { "flight_number": "1234", "airline": "GOL", ... },
     { "flight_number": "5678", "airline": "AZUL", ... },
     { "flight_number": "9012", "airline": "LATAM", ... },
-    // ... milhares de voos
+    // ... thousands of flights
   ],
   "metadata": {
     "last_import": "2026-01-12T10:30:15",
@@ -351,19 +351,19 @@ pytest tests/test_historical_importer.py::TestAirlineMapping -v
   }
 }
 ```
-**Resultado**: Banco robusto com milhares de páginas SEO-optimized
+**Result**: Robust database with thousands of SEO-optimized pages
 
 ---
 
-## 🚀 Próximos Passos Sugeridos
+## 🚀 Suggested Next Steps
 
-### 1. Automatização com GitHub Actions
+### 1. Automation with GitHub Actions
 ```yaml
 # .github/workflows/import-historical.yml
 name: Import Historical Data
 on:
   schedule:
-    - cron: '0 6 * * *'  # Diário às 06:00 UTC
+    - cron: '0 6 * * *'  # Daily at 06:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -390,75 +390,75 @@ jobs:
           git push
 ```
 
-### 2. Dashboard de Estatísticas
-- Criar página `/stats.html` com métricas:
-  - Total de voos importados
-  - Companhias com mais atrasos
-  - Horários com mais problemas
-  - Tendências mensais
+### 2. Statistics Dashboard
+- Create `/stats.html` page with metrics:
+  - Total imported flights
+  - Airlines with most delays
+  - Times with most problems
+  - Monthly trends
 
-### 3. API REST (Opcional)
+### 3. REST API (Optional)
 - Endpoint `/api/flights?airline=GOL&period=30d`
-- Formato JSON para integrações externas
+- JSON format for external integrations
 
-### 4. Alertas Inteligentes
-- Notificar quando companhia específica tem muitos atrasos
-- Email semanal com resumo de importações
+### 4. Smart Alerts
+- Notify when specific airline has many delays
+- Weekly email with import summary
 
 ---
 
-## 📝 Notas Técnicas
+## 📝 Technical Notes
 
-### Formato dos CSVs da ANAC
+### ANAC CSV Format
 ```
 Sigla Empresa ICAO;Numero Voo;Aeroporto Origem;Aeroporto Destino;...
 G3;1234;SBGR;SBGL;15/12/2025;14:30;15/12/2025;16:45;...
 ```
 
-### Tratamento de Edge Cases
-- ✅ Datas em múltiplos formatos
-- ✅ Encodings diferentes (latin-1, utf-8)
-- ✅ Colunas com nomes variados
-- ✅ Voos cancelados vs atrasados
-- ✅ Números de voo com/sem prefixo ICAO
-- ✅ Destinos sem mapeamento IATA
+### Edge Case Handling
+- ✅ Dates in multiple formats
+- ✅ Different encodings (latin-1, utf-8)
+- ✅ Columns with varied names
+- ✅ Cancelled vs delayed flights
+- ✅ Flight numbers with/without ICAO prefix
+- ✅ Destinations without IATA mapping
 
-### Otimizações Implementadas
-- Streaming de downloads (não sobrecarrega RAM)
-- Cache de voos existentes em memória
-- Processamento em chunks (pandas)
-- Logs com níveis (DEBUG/INFO/ERROR)
-
----
-
-## 🏆 Conquistas
-
-✅ **Script de engenharia de dados de nível sênior**
-✅ **655 linhas de código Python bem documentado**
-✅ **30+ testes unitários com pytest**
-✅ **500+ linhas de documentação técnica**
-✅ **Integração perfeita com sistema existente**
-✅ **Logs detalhados e rastreamento completo**
-✅ **Tratamento robusto de erros e edge cases**
-✅ **Performance otimizada (3-4min para importar 2 meses)**
-✅ **Som de sucesso para feedback UX** 🔔
+### Implemented Optimizations
+- Streaming downloads (doesn't overload RAM)
+- Cache existing flights in memory
+- Chunk processing (pandas)
+- Logs with levels (DEBUG/INFO/ERROR)
 
 ---
 
-## 📞 Suporte
+## 🏆 Achievements
 
-Em caso de dúvidas ou problemas:
-
-1. Verifique `historical_importer.log`
-2. Execute testes: `pytest tests/test_historical_importer.py -v`
-3. Consulte documentação: `docs/HISTORICAL_IMPORTER_GUIDE.md`
+✅ **Senior-level data engineering script**
+✅ **655 lines of well-documented Python code**
+✅ **30+ unit tests with pytest**
+✅ **500+ lines of technical documentation**
+✅ **Perfect integration with existing system**
+✅ **Detailed logs and complete tracking**
+✅ **Robust error handling and edge cases**
+✅ **Optimized performance (3-4min to import 2 months)**
+✅ **Success sound for UX feedback** 🔔
 
 ---
 
-**Status**: ✅ **IMPLEMENTADO COM SUCESSO!**
+## 📞 Support
 
-**Data**: 12 de Janeiro de 2026
-**Desenvolvido por**: MatchFly Team (Engenharia de Dados)
-**Tecnologias**: Python 3.10+, pandas, requests, ANAC Dados Abertos
+For questions or issues:
 
-🎉 **Pronto para produção!**
+1. Check `historical_importer.log`
+2. Run tests: `pytest tests/test_historical_importer.py -v`
+3. Consult documentation: `_internal_docs/HISTORICAL_IMPORTER_GUIDE.md`
+
+---
+
+**Status**: ✅ **SUCCESSFULLY IMPLEMENTED!**
+
+**Date**: January 12, 2026
+**Developed by**: MatchFly Team (Data Engineering)
+**Technologies**: Python 3.10+, pandas, requests, ANAC Open Data
+
+🎉 **Ready for production!**

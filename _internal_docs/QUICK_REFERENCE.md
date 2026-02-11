@@ -3,52 +3,52 @@
 ## 🎯 TL;DR
 
 ```bash
-# Importar dados históricos da ANAC (30 dias) + Gerar páginas
+# Import historical ANAC data (30 days) + Generate pages
 python run_historical_import.py
 
-# Resultado: 2.000-5.000 páginas HTML geradas automaticamente
+# Result: 2,000-5,000 HTML pages generated automatically
 ```
 
 ---
 
-## 📚 Arquivos Criados
+## 📚 Files Created
 
-| Arquivo | Linhas | Descrição |
-|---------|--------|-----------|
-| `src/historical_importer.py` | 655 | Script principal de importação |
-| `tests/test_historical_importer.py` | 350+ | Testes unitários completos |
-| `docs/HISTORICAL_IMPORTER_GUIDE.md` | 500+ | Guia técnico detalhado |
-| `examples/import_example.py` | 200+ | Exemplos de uso |
-| `run_historical_import.py` | 100 | Script de automação |
-| `HISTORICAL_IMPORT_README.md` | 200+ | Quick start |
-| `HISTORICAL_IMPORT_SUMMARY.md` | 400+ | Sumário executivo |
-| `VISUAL_GUIDE.md` | 300+ | Guia visual |
-| `requirements.txt` | - | ✏️ Adicionado pandas |
+| File | Lines | Description |
+|------|-------|-------------|
+| `src/historical_importer.py` | 655 | Main import script |
+| `tests/test_historical_importer.py` | 350+ | Complete unit tests |
+| `_internal_docs/HISTORICAL_IMPORTER_GUIDE.md` | 500+ | Detailed technical guide |
+| `examples/import_example.py` | 200+ | Usage examples |
+| `run_historical_import.py` | 100 | Automation script |
+| `_internal_docs/HISTORICAL_IMPORT_README.md` | 200+ | Quick start |
+| `_internal_docs/HISTORICAL_IMPORT_SUMMARY.md` | 400+ | Executive summary |
+| `_internal_docs/VISUAL_GUIDE.md` | 300+ | Visual guide |
+| `requirements.txt` | - | ✏️ Added pandas |
 
-**Total**: 2.400+ linhas de código + documentação
+**Total**: 2,400+ lines of code + documentation
 
 ---
 
-## 🚀 Comandos Essenciais
+## 🚀 Essential Commands
 
-### Importar Dados
+### Import Data
 
 ```bash
-# Opção 1: Automático (recomendado)
+# Option 1: Automatic (recommended)
 python run_historical_import.py
 
-# Opção 2: Manual
+# Option 2: Manual
 python src/historical_importer.py
 python src/generator.py
 ```
 
-### Testar
+### Test
 
 ```bash
 pytest tests/test_historical_importer.py -v
 ```
 
-### Visualizar
+### View
 
 ```bash
 open docs/index.html
@@ -56,110 +56,110 @@ open docs/index.html
 
 ---
 
-## ⚙️ Configuração Rápida
+## ⚙️ Quick Configuration
 
-Edite `src/historical_importer.py` (linha ~655):
+Edit `src/historical_importer.py` (line ~655):
 
 ```python
-# Mudar aeroporto
+# Change airport
 airport_code="SBSP"  # Congonhas
 
-# Ajustar período
-days_lookback=60  # 60 dias
+# Adjust period
+days_lookback=60  # 60 days
 
-# Ajustar filtro
-min_delay_minutes=30  # Atrasos > 30min
+# Adjust filter
+min_delay_minutes=30  # Delays > 30min
 ```
 
 ---
 
-## 📊 O Que Faz
+## 📊 What It Does
 
 ```
-ANAC CSV (100k+ voos/mês)
+ANAC CSV (100k+ flights/month)
          ↓
-Filtra: SBGR + atraso >15min + últimos 30 dias
+Filters: SBGR + delay >15min + last 30 days
          ↓
-Mapeia: G3→GOL, Paris→CDG, SBGR→GRU
+Maps: G3→GOL, Paris→CDG, SBGR→GRU
          ↓
-flights-db.json (2.000-5.000 voos)
+flights-db.json (2,000-5,000 flights)
          ↓
 generator.py
          ↓
-docs/ (2.000-5.000 páginas HTML)
+docs/ (2,000-5,000 HTML pages)
 ```
 
 ---
 
-## ✅ Recursos
+## ✅ Features
 
-- ✅ Download automático de CSVs da ANAC
-- ✅ Filtragem inteligente (aeroporto + atraso + período)
-- ✅ Mapeamento de 25+ companhias aéreas
-- ✅ Integração com CITY_TO_IATA
-- ✅ Prevenção de duplicatas
-- ✅ Logs detalhados
-- ✅ 30+ testes unitários
-- ✅ Som de sucesso 🔔
+- ✅ Automatic download of ANAC CSVs
+- ✅ Smart filtering (airport + delay + period)
+- ✅ Mapping of 25+ airlines
+- ✅ Integration with CITY_TO_IATA
+- ✅ Duplicate prevention
+- ✅ Detailed logs
+- ✅ 30+ unit tests
+- ✅ Success sound 🔔
 
 ---
 
 ## 📁 Output
 
 ```
-data/flights-db.json     ← 2.000-5.000 voos
+data/flights-db.json     ← 2,000-5,000 flights
 docs/index.html        ← Home page
-docs/sitemap.xml       ← Sitemap (2.000-5.000 URLs)
-docs/voo/*.html        ← 2.000-5.000 páginas de voos
+docs/sitemap.xml       ← Sitemap (2,000-5,000 URLs)
+docs/voo/*.html        ← 2,000-5,000 flight pages
 ```
 
 ---
 
-## 🔗 Links Úteis
+## 🔗 Useful Links
 
-- **Quick Start**: [HISTORICAL_IMPORT_README.md](HISTORICAL_IMPORT_README.md)
-- **Guia Técnico**: [docs/HISTORICAL_IMPORTER_GUIDE.md](docs/HISTORICAL_IMPORTER_GUIDE.md)
-- **Sumário**: [HISTORICAL_IMPORT_SUMMARY.md](HISTORICAL_IMPORT_SUMMARY.md)
-- **Visual**: [VISUAL_GUIDE.md](VISUAL_GUIDE.md)
-- **Testes**: [tests/test_historical_importer.py](tests/test_historical_importer.py)
-- **Exemplos**: [examples/import_example.py](examples/import_example.py)
+- **Quick Start**: [_internal_docs/HISTORICAL_IMPORT_README.md](HISTORICAL_IMPORT_README.md)
+- **Technical Guide**: [_internal_docs/HISTORICAL_IMPORTER_GUIDE.md](HISTORICAL_IMPORTER_GUIDE.md)
+- **Summary**: [_internal_docs/HISTORICAL_IMPORT_SUMMARY.md](HISTORICAL_IMPORT_SUMMARY.md)
+- **Visual**: [_internal_docs/VISUAL_GUIDE.md](VISUAL_GUIDE.md)
+- **Tests**: [tests/test_historical_importer.py](tests/test_historical_importer.py)
+- **Examples**: [examples/import_example.py](examples/import_example.py)
 
 ---
 
 ## 🆘 Troubleshooting
 
-| Problema | Solução |
-|----------|---------|
-| pandas não encontrado | `pip install pandas` |
-| HTTP 404 | Normal para início do mês, usa mês anterior |
-| 0 voos importados | Todos já existem (duplicatas) |
-| Erros no CSV | Verifica `historical_importer.log` |
+| Problem | Solution |
+|---------|----------|
+| pandas not found | `pip install pandas` |
+| HTTP 404 | Normal at start of month, uses previous month |
+| 0 flights imported | All already exist (duplicates) |
+| CSV errors | Check `historical_importer.log` |
 
 ---
 
-## 📈 Impacto
+## 📈 Impact
 
-| Métrica | Antes | Depois |
-|---------|-------|--------|
-| Páginas HTML | 2-3 | 2.000-5.000 🚀 |
-| URLs no Sitemap | 3 | 2.000-5.000 🚀 |
-| Voos no banco | 2-3 | 2.000-5.000 🚀 |
-| Conteúdo SEO | Limitado | Rico 🚀 |
+| Metric | Before | After |
+|--------|--------|-------|
+| HTML Pages | 2-3 | 2,000-5,000 🚀 |
+| URLs in Sitemap | 3 | 2,000-5,000 🚀 |
+| Flights in DB | 2-3 | 2,000-5,000 🚀 |
+| SEO Content | Limited | Rich 🚀 |
 
 ---
 
-## 🎯 Próximos Passos
+## 🎯 Next Steps
 
-1. Execute: `python run_historical_import.py`
-2. Valide: `open docs/index.html`
+1. Run: `python run_historical_import.py`
+2. Validate: `open docs/index.html`
 3. Deploy: `git add . && git commit -m "feat: add ANAC importer" && git push`
 
 ---
 
-**Status**: ✅ Pronto para produção
+**Status**: ✅ Ready for production
 
-**Data**: 12 de Janeiro de 2026
+**Date**: January 12, 2026
 
-**Tech Stack**: Python 3.10+ | pandas | ANAC VRA | 655 linhas
+**Tech Stack**: Python 3.10+ | pandas | ANAC VRA | 655 lines
 
-🎉 **Sistema completo implementado com sucesso!**
+🎉 **Complete system successfully implemented!**

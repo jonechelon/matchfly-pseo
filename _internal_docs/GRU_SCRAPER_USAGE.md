@@ -1,88 +1,88 @@
-# GRU Airport Flight Scraper - Guia de Uso
+# GRU Airport Flight Scraper - Usage Guide
 
-## 📖 Visão Geral
+## 📖 Overview
 
-O **GRU Flight Scraper** é um scraper profissional desenvolvido para extrair dados de voos do Aeroporto Internacional de Guarulhos (GRU). O scraper implementa múltiplas estratégias para descobrir e utilizar endpoints de API oculta, sem necessidade de Selenium.
+The **GRU Flight Scraper** is a professional scraper developed to extract flight data from Guarulhos International Airport (GRU). The scraper implements multiple strategies to discover and use hidden API endpoints, without needing Selenium.
 
-## ✨ Características
+## ✨ Features
 
-### 🔍 Descoberta Inteligente de API
-- Tenta múltiplos endpoints comuns de API
-- Parseia dados JSON embutidos no HTML quando necessário
-- Se a coleta falhar: retorna lista vazia e registra erro crítico (sem dados fake)
+### 🔍 Intelligent API Discovery
+- Tries multiple common API endpoints
+- Parses JSON data embedded in HTML when needed
+- If collection fails: returns empty list and logs critical error (no fake data)
 
-### 🛡️ Tratamento Robusto de Erros
-- Try-catch em todos os pontos críticos
-- Logging detalhado de todos os erros
-- Graceful degradation (continua mesmo com falhas parciais)
+### 🛡️ Robust Error Handling
+- Try-catch at all critical points
+- Detailed logging of all errors
+- Graceful degradation (continues even with partial failures)
 
-### 📊 Filtragem Inteligente
-- Filtra voos **Cancelados**
-- Filtra voos **Atrasados** (atraso > 2 horas)
-- Calcula atraso em horas automaticamente
+### 📊 Smart Filtering
+- Filters **Cancelled** flights
+- Filters **Delayed** flights (delay > 2 hours)
+- Automatically calculates delay in hours
 
-### 📝 Logging Completo
-- Logs no console (stdout)
-- Logs em arquivo (`gru_scraper.log`)
-- Diferentes níveis: INFO, WARNING, ERROR, DEBUG
+### 📝 Complete Logging
+- Logs to console (stdout)
+- Logs to file (`gru_scraper.log`)
+- Different levels: INFO, WARNING, ERROR, DEBUG
 
-## 🚀 Como Usar
+## 🚀 How to Use
 
-### 1. Instalação das Dependências
+### 1. Install Dependencies
 
 ```bash
 cd ~/matchfly
 
-# Criar ambiente virtual
+# Create virtual environment
 python3 -m venv venv
 
-# Ativar ambiente virtual
+# Activate virtual environment
 source venv/bin/activate  # Linux/macOS
-# ou
+# or
 venv\Scripts\activate     # Windows
 
-# Instalar dependências
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Executar o Scraper
+### 2. Run the Scraper
 
-**Método 1: Script Runner (Recomendado)**
+**Method 1: Script Runner (Recommended)**
 ```bash
 python3 voos_proximos_finalbuild.py
 ```
 
-**Método 2: Diretamente**
+**Method 2: Directly**
 ```bash
 python3 src/scrapers/gru_flights_scraper.py
 ```
 
-**Método 3: Como Módulo**
+**Method 3: As Module**
 ```bash
 python3 -m src.scrapers.gru_flights_scraper
 ```
 
-### 3. Usar Programaticamente
+### 3. Use Programmatically
 
 ```python
 from src.scrapers.gru_flights_scraper import GRUFlightScraper
 
-# Criar instância do scraper
+# Create scraper instance
 scraper = GRUFlightScraper(output_file="data/flights-db.json")
 
-# Executar scraping completo
+# Run complete scraping
 scraper.run()
 
-# Ou usar métodos individuais
+# Or use individual methods
 flights = scraper.fetch_flights()
 filtered = scraper.filter_flights(flights)
 scraper.save_to_json(filtered)
 ```
 
-## 📁 Arquivos Gerados
+## 📁 Generated Files
 
 ### `data/flights-db.json`
-Arquivo principal com os dados dos voos:
+Main file with flight data:
 
 ```json
 {
@@ -106,130 +106,130 @@ Arquivo principal com os dados dos voos:
 ```
 
 ### `gru_scraper.log`
-Arquivo de log com histórico de execuções:
+Log file with execution history:
 
 ```
-2026-01-11 18:34:34,243 - scrapers.gru_flights_scraper - INFO - 🚀 GRU Airport Flight Scraper - Iniciando
-2026-01-11 18:34:34,246 - scrapers.gru_flights_scraper - INFO - 🔍 Iniciando descoberta de API endpoints...
-2026-01-11 18:34:35,008 - scrapers.gru_flights_scraper - INFO - ✅ Scraping concluído com sucesso!
+2026-01-11 18:34:34,243 - scrapers.gru_flights_scraper - INFO - 🚀 GRU Airport Flight Scraper - Starting
+2026-01-11 18:34:34,246 - scrapers.gru_flights_scraper - INFO - 🔍 Starting API endpoint discovery...
+2026-01-11 18:34:35,008 - scrapers.gru_flights_scraper - INFO - ✅ Scraping completed successfully!
 ```
 
-## 🔧 Configuração Avançada
+## 🔧 Advanced Configuration
 
-### Personalizar Output
+### Customize Output
 
 ```python
-# Mudar caminho do arquivo de saída
+# Change output file path
 scraper = GRUFlightScraper(output_file="custom/path/flights.json")
 
-# Modificar filtros
+# Modify filters
 def custom_filter(flight):
-    return flight['delay_hours'] > 3  # Apenas atrasos > 3h
+    return flight['delay_hours'] > 3  # Only delays > 3h
 
 all_flights = scraper.fetch_flights()
 custom_filtered = [f for f in all_flights if custom_filter(f)]
 scraper.save_to_json(custom_filtered)
 ```
 
-### Adicionar Novos Endpoints
+### Add New Endpoints
 
-Edite a lista `API_ENDPOINTS` na classe:
+Edit the `API_ENDPOINTS` list in the class:
 
 ```python
 API_ENDPOINTS = [
     "/pt-br/api/voos/partidas",
-    "/seu/novo/endpoint",
+    "/your/new/endpoint",
 ]
 ```
 
-### Ajustar Logging
+### Adjust Logging
 
 ```python
 import logging
 
-# Mudar nível de log para DEBUG
+# Change log level to DEBUG
 logging.getLogger('scrapers.gru_flights_scraper').setLevel(logging.DEBUG)
 
-# Desabilitar logs no console
+# Disable console logs
 logger.handlers = [h for h in logger.handlers if not isinstance(h, logging.StreamHandler)]
 ```
 
-## 🏗️ Arquitetura do Código
+## 🏗️ Code Architecture
 
-### Classes Principais
+### Main Classes
 
 #### `GRUFlightScraper`
-Classe principal que gerencia todo o processo de scraping.
+Main class that manages the entire scraping process.
 
-**Métodos Públicos:**
-- `run()` - Executa o scraper completo
-- `fetch_flights()` - Busca dados de voos
-- `filter_flights(flights)` - Filtra voos por critérios
-- `save_to_json(flights)` - Salva dados em JSON
+**Public Methods:**
+- `run()` - Runs the complete scraper
+- `fetch_flights()` - Fetches flight data
+- `filter_flights(flights)` - Filters flights by criteria
+- `save_to_json(flights)` - Saves data to JSON
 
-**Métodos Internos:**
-- `_extract_next_build_id(html)` - Captura o `buildId` do Next.js no HTML
-- `fetch_next_data_endpoint(build_id)` - Usa `/_next/data/{buildId}/...` para buscar JSON
-- `_filter_only_today(flights)` - Mantém apenas voos com data de hoje
-- `discover_api_endpoint()` - Descobre endpoints válidos
-- `scrape_html_fallback()` - Fallback quando API não está disponível
-- `_parse_flight(flight_data)` - Parseia dados individuais de voo
-- `_parse_datetime(dt_string)` - Parseia strings de data/hora
-- `_parse_embedded_data(data)` - Extrai dados JSON do HTML
+**Internal Methods:**
+- `_extract_next_build_id(html)` - Captures Next.js `buildId` from HTML
+- `fetch_next_data_endpoint(build_id)` - Uses `/_next/data/{buildId}/...` to fetch JSON
+- `_filter_only_today(flights)` - Keeps only flights with today's date
+- `discover_api_endpoint()` - Discovers valid endpoints
+- `scrape_html_fallback()` - Fallback when API is not available
+- `_parse_flight(flight_data)` - Parses individual flight data
+- `_parse_datetime(dt_string)` - Parses date/time strings
+- `_parse_embedded_data(data)` - Extracts JSON data from HTML
 
-### Fluxo de Execução
+### Execution Flow
 
 ```
-1. Inicialização
-   └─ Configura headers e sessão HTTP
+1. Initialization
+   └─ Configures headers and HTTP session
 
-2. Descoberta de API
-   ├─ Testa endpoints conhecidos
-   ├─ Valida respostas JSON
-   └─ Retorna primeiro endpoint válido
+2. API Discovery
+   ├─ Tests known endpoints
+   ├─ Validates JSON responses
+   └─ Returns first valid endpoint
 
-3. Coleta de Dados
-   ├─ Sessão com Cloudscraper (cookies/JS challenges automaticamente)
-   ├─ Carrega `/pt-br/voos` para obter `buildId` e tenta `/_next/data/{buildId}/pt-br/voos.json`
-   ├─ Se API encontrada: usa endpoint
-   ├─ Se API não encontrada: parseia HTML
-   └─ Se falha total: retorna lista vazia e registra erro crítico (sem dados fake)
+3. Data Collection
+   ├─ Session with Cloudscraper (cookies/JS challenges automatically)
+   ├─ Loads `/pt-br/voos` to get `buildId` and tries `/_next/data/{buildId}/pt-br/voos.json`
+   ├─ If API found: uses endpoint
+   ├─ If API not found: parses HTML
+   └─ If total failure: returns empty list and logs critical error (no fake data)
 
-4. Processamento
-   ├─ Normaliza dados de voos
-   ├─ Calcula atrasos
-   └─ Parseia horários
+4. Processing
+   ├─ Normalizes flight data
+   ├─ Calculates delays
+   └─ Parses times
 
-4b. Filtro de Data
-   └─ Mantém apenas voos com data de hoje para evitar persistência de voos antigos
+4b. Date Filter
+   └─ Keeps only flights with today's date to avoid persistence of old flights
 
-5. Filtragem
-   ├─ Identifica voos cancelados
-   ├─ Identifica voos atrasados > 2h
-   └─ Retorna lista filtrada
+5. Filtering
+   ├─ Identifies cancelled flights
+   ├─ Identifies delayed flights > 2h
+   └─ Returns filtered list
 
-6. Persistência
-   ├─ Adiciona metadados
-   ├─ Formata JSON com indentação
-   └─ Salva em arquivo
+6. Persistence
+   ├─ Adds metadata
+   ├─ Formats JSON with indentation
+   └─ Saves to file
 ```
 
 ## 🐛 Troubleshooting
 
-### Erro: ModuleNotFoundError
+### Error: ModuleNotFoundError
 
-**Causa:** Dependências não instaladas
+**Cause:** Dependencies not installed
 
-**Solução:**
+**Solution:**
 ```bash
 pip install -r requirements.txt
 ```
 
-### Erro: Permission Denied ao salvar JSON
+### Error: Permission Denied when saving JSON
 
-**Causa:** Pasta `data/` não existe ou sem permissão
+**Cause:** `data/` folder doesn't exist or no permission
 
-**Solução:**
+**Solution:**
 ```bash
 mkdir -p data
 chmod 755 data
@@ -237,105 +237,104 @@ chmod 755 data
 
 ### Warning: urllib3 OpenSSL
 
-**Causa:** Versão antiga do OpenSSL/LibreSSL
+**Cause:** Old OpenSSL/LibreSSL version
 
-**Solução:** Não afeta funcionalidade, mas pode atualizar:
+**Solution:** Doesn't affect functionality, but can update:
 ```bash
 pip install --upgrade urllib3
 ```
 
-### Nenhum dado extraído
+### No data extracted
 
-**Causa:** Site mudou estrutura ou API indisponível
+**Cause:** Site changed structure or API unavailable
 
-**Solução:**
-1. Verifique logs para detalhes
-2. Atualize endpoints na lista `API_ENDPOINTS`
-3. Use modo DEBUG para análise:
+**Solution:**
+1. Check logs for details
+2. Update endpoints in `API_ENDPOINTS` list
+3. Use DEBUG mode for analysis:
    ```python
    logger.setLevel(logging.DEBUG)
    ```
 
-### Rate Limiting / Bloqueio
+### Rate Limiting / Blocking
 
-**Causa:** Muitas requisições em curto período
+**Cause:** Too many requests in short period
 
-**Solução:** Adicione delays entre requisições:
+**Solution:** Add delays between requests:
 ```python
 import time
-time.sleep(2)  # 2 segundos entre requisições
+time.sleep(2)  # 2 seconds between requests
 ```
 
 ## 📈 Performance
 
-### Métricas Típicas
-- **Tempo de execução:** ~1-5 segundos
-- **Requisições HTTP:** 3-10 (dependendo de endpoints testados)
-- **Memória:** < 50MB
-- **Tamanho do arquivo JSON:** ~1-10KB (varia com número de voos)
+### Typical Metrics
+- **Execution time:** ~1-5 seconds
+- **HTTP requests:** 3-10 (depending on endpoints tested)
+- **Memory:** < 50MB
+- **JSON file size:** ~1-10KB (varies with number of flights)
 
-### Otimizações Implementadas
-- ✅ Sessão HTTP reutilizável
-- ✅ Timeout em todas as requisições
-- ✅ Lazy evaluation de dados
-- ✅ Early return em descoberta de API
+### Implemented Optimizations
+- ✅ Reusable HTTP session
+- ✅ Timeout on all requests
+- ✅ Lazy evaluation of data
+- ✅ Early return in API discovery
 
-## 🔐 Segurança
+## 🔐 Security
 
-### Práticas Implementadas
-- ✅ Validação de dados de entrada
-- ✅ Sanitização de strings
-- ✅ Headers de User-Agent realista
-- ✅ Timeouts para prevenir hanging
-- ✅ Sem credenciais hardcoded
+### Implemented Practices
+- ✅ Input data validation
+- ✅ String sanitization
+- ✅ Realistic User-Agent headers
+- ✅ Timeouts to prevent hanging
+- ✅ No hardcoded credentials
 
-### Recomendações
-- 🔸 Respeite robots.txt do site
-- 🔸 Implemente rate limiting em produção
-- 🔸 Use proxy se necessário
-- 🔸 Monitore logs de erro
+### Recommendations
+- 🔸 Respect site robots.txt
+- 🔸 Implement rate limiting in production
+- 🔸 Use proxy if needed
+- 🔸 Monitor error logs
 
-## 🚀 Próximos Passos
+## 🚀 Next Steps
 
-### Melhorias Sugeridas
-- [ ] Implementar cache de requisições
-- [ ] Adicionar suporte a proxy
-- [ ] Criar scheduler para execução automática
-- [ ] Adicionar testes unitários
-- [ ] Implementar retry com backoff exponencial
-- [ ] Adicionar suporte a múltiplos aeroportos
-- [ ] Criar API REST para consumir dados
-- [ ] Dashboard web para visualização
+### Suggested Improvements
+- [ ] Implement request caching
+- [ ] Add proxy support
+- [ ] Create scheduler for automatic execution
+- [ ] Add unit tests
+- [ ] Implement retry with exponential backoff
+- [ ] Add support for multiple airports
+- [ ] Create REST API to consume data
+- [ ] Web dashboard for visualization
 
-### Integrações Possíveis
-- 📧 Notificações por email (voos cancelados)
-- 💬 Bot Telegram/WhatsApp
-- 📊 Dashboard Grafana
-- 🔔 Alertas em tempo real
-- 🗄️ Banco de dados (PostgreSQL/MongoDB)
+### Possible Integrations
+- 📧 Email notifications (cancelled flights)
+- 💬 Telegram/WhatsApp bot
+- 📊 Grafana dashboard
+- 🔔 Real-time alerts
+- 🗄️ Database (PostgreSQL/MongoDB)
 
-## 📚 Recursos Adicionais
+## 📚 Additional Resources
 
-### Documentação
+### Documentation
 - [BeautifulSoup4 Docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 - [Cloudscraper](https://github.com/VeNoMouS/cloudscraper)
 - [Python Logging](https://docs.python.org/3/library/logging.html)
 
-### Ferramentas Úteis
-- **Insomnia/Postman:** Testar APIs manualmente
-- **Chrome DevTools:** Inspecionar chamadas de rede
-- **jq:** Processar JSON na linha de comando
+### Useful Tools
+- **Insomnia/Postman:** Test APIs manually
+- **Chrome DevTools:** Inspect network calls
+- **jq:** Process JSON on command line
 
-## 👥 Suporte
+## 👥 Support
 
-Para dúvidas ou problemas:
-1. Verifique os logs em `gru_scraper.log`
-2. Consulte esta documentação
-3. Abra uma issue no repositório
+For questions or issues:
+1. Check logs in `gru_scraper.log`
+2. Consult this documentation
+3. Open an issue in the repository
 
 ---
 
-**Versão:** 1.0.0  
-**Última Atualização:** 2026-01-11  
-**Licença:** MIT
-
+**Version:** 1.0.0  
+**Last Updated:** 2026-01-11  
+**License:** MIT

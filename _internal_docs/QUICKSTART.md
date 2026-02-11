@@ -1,45 +1,45 @@
 # 🚀 Quick Start - GRU Airport Scraper
 
-## Setup Rápido (5 minutos)
+## Quick Setup (5 minutes)
 
-### 1️⃣ Clone e Configure
+### 1️⃣ Clone and Configure
 
 ```bash
 cd ~/matchfly
 
-# Criar ambiente virtual
+# Create virtual environment
 python3 -m venv venv
 source venv/bin/activate
 
-# Instalar dependências
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2️⃣ Execute o Scraper
+### 2️⃣ Run the Scraper
 
 ```bash
 python3 voos_proximos_finalbuild.py
 ```
 
-### 3️⃣ Verifique os Resultados
+### 3️⃣ Check Results
 
 ```bash
-# Ver dados extraídos
+# View extracted data
 cat data/flights-db.json
 
-# Ver logs
+# View logs
 cat gru_scraper.log
 ```
 
-## 📊 O que o Scraper Faz?
+## 📊 What Does the Scraper Do?
 
-1. 🔍 **Descobre** endpoints de API do site gru.com.br
-2. 📡 **Extrai** dados de voos (número, companhia, horários, status)
-3. 🔎 **Filtra** apenas voos Cancelados ou Atrasados > 2h
-4. 💾 **Salva** em `data/flights-db.json`
-5. 📝 **Registra** tudo em `gru_scraper.log`
+1. 🔍 **Discovers** API endpoints from gru.com.br
+2. 📡 **Extracts** flight data (number, airline, times, status)
+3. 🔎 **Filters** only Cancelled or Delayed > 2h flights
+4. 💾 **Saves** to `data/flights-db.json`
+5. 📝 **Logs** everything to `gru_scraper.log`
 
-## 📁 Estrutura de Output
+## 📁 Output Structure
 
 ```json
 {
@@ -62,19 +62,19 @@ cat gru_scraper.log
 }
 ```
 
-## 🎯 Casos de Uso
+## 🎯 Use Cases
 
-### Uso Básico
+### Basic Usage
 ```bash
 python3 voos_proximos_finalbuild.py
 ```
 
-### Exemplos Interativos
+### Interactive Examples
 ```bash
 python3 examples/example_usage.py
 ```
 
-### Modo Programático
+### Programmatic Mode
 ```python
 from src.scrapers import GRUFlightScraper
 
@@ -82,42 +82,42 @@ scraper = GRUFlightScraper()
 scraper.run()
 ```
 
-## 🛠️ Customização Rápida
+## 🛠️ Quick Customization
 
-### Mudar arquivo de saída
+### Change output file
 ```python
 scraper = GRUFlightScraper(output_file="custom/path.json")
 ```
 
-### Filtro customizado
+### Custom filter
 ```python
 flights = scraper.fetch_flights()
 custom = [f for f in flights if f['delay_hours'] > 3]
 scraper.save_to_json(custom)
 ```
 
-### Ativar modo DEBUG
+### Enable DEBUG mode
 ```python
 import logging
 logging.getLogger('scrapers.gru_flights_scraper').setLevel(logging.DEBUG)
 ```
 
-## 📚 Próximos Passos
+## 📚 Next Steps
 
-- 📖 Leia a [documentação completa](docs/GRU_SCRAPER_USAGE.md)
-- 🔍 Explore os [exemplos](examples/example_usage.py)
-- ⚙️ Veja o [código fonte](src/scrapers/gru_flights_scraper.py)
+- 📖 Read the [complete documentation](_internal_docs/GRU_SCRAPER_USAGE.md)
+- 🔍 Explore the [examples](examples/example_usage.py)
+- ⚙️ See the [source code](src/scrapers/gru_flights_scraper.py)
 
-## ❓ Problemas?
+## ❓ Problems?
 
 ```bash
-# Reinstalar dependências
+# Reinstall dependencies
 pip install -r requirements.txt --force-reinstall
 
-# Verificar logs
+# Check logs
 tail -f gru_scraper.log
 
-# Modo debug
+# Debug mode
 python3 -c "
 from src.scrapers import GRUFlightScraper
 import logging
@@ -127,19 +127,18 @@ scraper.run()
 "
 ```
 
-## ✨ Características
+## ✨ Features
 
-- ✅ **Sem Selenium** - Rápido e leve
-- ✅ **API Discovery** - Encontra endpoints automaticamente
-- ✅ **Robusto** - Tratamento completo de erros
-- ✅ **Logging** - Console + arquivo
-- ✅ **Filtros** - Cancelados e atrasados
-- ✅ **JSON** - Formato estruturado
-- ✅ **Modular** - Fácil de estender
+- ✅ **No Selenium** - Fast and lightweight
+- ✅ **API Discovery** - Finds endpoints automatically
+- ✅ **Robust** - Complete error handling
+- ✅ **Logging** - Console + file
+- ✅ **Filters** - Cancelled and delayed flights
+- ✅ **JSON** - Structured format
+- ✅ **Modular** - Easy to extend
 
 ---
 
-**Tempo total**: ~5 minutos  
-**Dificuldade**: ⭐ Fácil  
-**Requisitos**: Python 3.9+
-
+**Total time**: ~5 minutes  
+**Difficulty**: ⭐ Easy  
+**Requirements**: Python 3.9+

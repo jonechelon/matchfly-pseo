@@ -2,14 +2,14 @@
 
 ## ✅ Completed Fixes
 
-### 1. Cursor Chat Model Alias Bypass
-**Problem**: Cursor's internal validator was blocking `sonar` and `sonar-pro` model names with `ERROR_BAD_MODEL_NAME`.
+### 1. IDE Chat Model Alias Bypass
+**Problem**: IDE's internal validator was blocking `sonar` and `sonar-pro` model names with `ERROR_BAD_MODEL_NAME`.
 
-**Solution**: Implemented model alias bypass by setting model to `gpt-4o` while keeping `openai.baseURL` as `https://api.perplexity.ai/v1`. This allows Cursor to pass validation, and Perplexity processes the request using your Pro credits.
+**Solution**: Implemented model alias bypass by setting model to `gpt-4o` while keeping `openai.baseURL` as `https://api.perplexity.ai/v1`. This allows IDE to pass validation, and Perplexity processes the request using your Pro credits.
 
 **Files Updated**:
 - `.cursor/settings.json` - Project settings
-- `~/Library/Application Support/Cursor/User/settings.json` - Global settings
+- `~/Library/Application Support/IDE/User/settings.json` - Global settings
 
 **Configuration**:
 ```json
@@ -23,8 +23,8 @@
 ```
 
 **How It Works**:
-1. Cursor sees `gpt-4o` as a valid model name (passes validation)
-2. Cursor sends request to `https://api.perplexity.ai/v1/chat/completions` with model `gpt-4o`
+1. IDE sees `gpt-4o` as a valid model name (passes validation)
+2. IDE sends request to `https://api.perplexity.ai/v1/chat/completions` with model `gpt-4o`
 3. Perplexity API receives the request and processes it using your Pro credits
 4. Perplexity returns results as if using `sonar-pro`
 
@@ -92,7 +92,7 @@ Authorization: Bearer <PERPLEXITY_API_KEY>
 ```
 matchfly-pseo/
 ├── .cursor/
-│   └── settings.json                    # Project Cursor settings (model alias bypass)
+│   └── settings.json                    # Project IDE settings (model alias bypass)
 ├── src/
 │   └── perplexity_search_service.js     # NEW: Search service module
 ├── verify_pplx.js                        # Updated: Removed invalid models
@@ -103,8 +103,8 @@ matchfly-pseo/
 
 ## 🧪 Testing
 
-### Test Cursor Chat
-1. Restart Cursor completely (`Cmd+Q`, wait, reopen)
+### Test IDE Chat
+1. Restart IDE completely (`Cmd+Q`, wait, reopen)
 2. Open a new chat
 3. Verify model shows as `gpt-4o` but requests go to Perplexity
 4. Test a query - should work without `ERROR_BAD_MODEL_NAME`
@@ -139,14 +139,14 @@ node src/perplexity_search_service.js
 
 ## 🚀 Next Steps
 
-1. **Restart Cursor** to apply model alias bypass
+1. **Restart IDE** to apply model alias bypass
 2. **Test Chat** to verify `ERROR_BAD_MODEL_NAME` is resolved
 3. **Test Search Service** with `node test_perplexity_search.js`
 4. **Integrate Search** into MatchFly project as needed
 
 ## ⚠️ Important Notes
 
-- The model alias bypass (`gpt-4o`) is a workaround for Cursor's validation
+- The model alias bypass (`gpt-4o`) is a workaround for IDE's validation
 - Perplexity will process requests correctly regardless of the model name sent
 - Always use environment variables for API keys in production
 - Search service is ready for integration into MatchFly workflows
