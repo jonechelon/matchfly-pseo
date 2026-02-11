@@ -1587,6 +1587,66 @@ class FlightPageGenerator:
                 'status': status,
             })
 
+            # ========== VARIÁVEIS CONTEXTUAIS FASE 3 (Anti-Thin Content) ==========
+
+            # 1. Nome da companhia (para uso dinâmico no template)
+            context['airline_name'] = self.safe_str(flight.get('airline', 'companhia'))
+
+            # 2. Data formatada brasileira completa (DD/MM/AAAA)
+            data_partida = self.safe_str(flight.get('data_partida', ''))
+            if data_partida and '/' in data_partida:
+                parts = data_partida.split('/')
+                if len(parts) == 2:  # Formato DD/MM
+                    context['data_voo_completa'] = f"{data_partida}/2026"
+                else:  # Já tem ano (DD/MM/AAAA)
+                    context['data_voo_completa'] = data_partida
+            else:
+                context['data_voo_completa'] = 'N/A'
+
+            # 3. Tempo desde o voo (para criar urgência contextual)
+            try:
+                if data_partida and '/' in data_partida:
+                    parts = data_partida.split('/')
+                    if len(parts) >= 2:
+                        day, month = int(parts[0]), int(parts[1])
+                        year = int(parts[2]) if len(parts) == 3 else 2026
+
+                        from datetime import datetime
+
+                        data_voo = datetime(year, month, day)
+                        hoje = datetime.now()
+                        dias_desde_voo = (hoje - data_voo).days
+
+                        # Formata texto amigável
+                        if dias_desde_voo < 0:
+                            context['tempo_desde_voo'] = f"voo agendado para {data_partida}"
+                        elif dias_desde_voo == 0:
+                            context['tempo_desde_voo'] = "voo hoje"
+                        elif dias_desde_voo == 1:
+                            context['tempo_desde_voo'] = "há 1 dia"
+                        elif dias_desde_voo < 30:
+                            context['tempo_desde_voo'] = f"há {dias_desde_voo} dias"
+                        elif dias_desde_voo < 60:
+                            context['tempo_desde_voo'] = "há 1 mês"
+                        else:
+                            meses = dias_desde_voo // 30
+                            context['tempo_desde_voo'] = f"há {meses} meses"
+                    else:
+                        context['tempo_desde_voo'] = "recentemente"
+                else:
+                    context['tempo_desde_voo'] = "recentemente"
+            except Exception as e:
+                logger.warning(f"Erro ao calcular tempo desde voo: {e}")
+                context['tempo_desde_voo'] = "recentemente"
+
+            # Log de validação
+            logger.debug(
+                f"✅ FASE 3 - Voo {context.get('flight_number', 'N/A')}: "
+                f"airline={context['airline_name']}, "
+                f"data={context['data_voo_completa']}, "
+                f"tempo={context['tempo_desde_voo']}"
+            )
+
             # --- LÓGICA SEO PROGRAMÁTICO (Injetar no dicionário 'voo') ---
             # Objetivo: Capturar buscas como "Indenização voo LA1234" ou "Voo GOL 1234 Atrasado"
             voo = {
@@ -1758,9 +1818,64 @@ class FlightPageGenerator:
             for page in self.success_pages:
                 url_elem = ET.SubElement(urlset, 'url')
                 ET.SubElement(url_elem, 'loc').text = self.base_url + page['url']
-                ET.SubElement(url_elem, 'lastmod').text = datetime.now().strftime('%Y-%m-%d')
+
+                # Busca dados completos do voo para calcular lastmod real.
+                flight_number = self.safe_str(page.get('flight_number', ''))
+                flight_data = page  # fallback
+
+                if hasattr(self, 'processed_flights') and flight_number:
+                    for flight in self.processed_flights:
+                        if self.safe_str(flight.get('flight_number', '')) == flight_number:
+                            flight_data = flight
+                            break
+
+                # Normaliza horário para HH:MM antes do parser legado.
+                # Alguns voos chegam com "YYYY-MM-DD HH:MM" em scheduled_time,
+                # o que quebrava o parse_flight_time (cortando para "YYYY-").
+                sched_candidate_raw = self.safe_str(
+                    flight_data.get('scheduled_time')
+                    or flight_data.get('Horario')
+                    or flight_data.get('horario')
+                    or ''
+                ) if isinstance(flight_data, dict) else ''
+                normalized_time = ''
+                if sched_candidate_raw:
+                    if ' ' in sched_candidate_raw:
+                        normalized_time = sched_candidate_raw.split(' ')[-1][:5]
+                    elif 'T' in sched_candidate_raw:
+                        normalized_time = sched_candidate_raw.split('T')[-1][:5]
+                    else:
+                        normalized_time = sched_candidate_raw[:5]
+
+                flight_data_for_parse = flight_data
+                if isinstance(flight_data, dict):
+                    flight_data_for_parse = dict(flight_data)
+                    if normalized_time:
+                        flight_data_for_parse['scheduled_time'] = normalized_time
+                        flight_data_for_parse['Horario'] = normalized_time
+
+                flight_date = parse_flight_time(flight_data_for_parse)
+                if flight_date != datetime.min:
+                    lastmod_str = flight_date.strftime('%Y-%m-%d')
+                else:
+                    lastmod_str = datetime.now().strftime('%Y-%m-%d')
+                ET.SubElement(url_elem, 'lastmod').text = lastmod_str
+
+                days_old = (datetime.now() - flight_date).days if flight_date != datetime.min else 999
+                if days_old <= 7:
+                    priority = '1.0'
+                elif days_old <= 30:
+                    priority = '0.8'
+                else:
+                    priority = '0.5'
+                ET.SubElement(url_elem, 'priority').text = priority
+
                 ET.SubElement(url_elem, 'changefreq').text = 'daily'
-                ET.SubElement(url_elem, 'priority').text = '0.8'
+
+                if days_old <= 7:
+                    logger.debug(
+                        f"Voo recente: {flight_number} - {lastmod_str} (priority {priority})"
+                    )
             
             # Formata XML
             xml_str = minidom.parseString(ET.tostring(urlset)).toprettyxml(indent="  ")
@@ -2683,6 +2798,8 @@ class FlightPageGenerator:
             if discarded:
                 logger.info(f"📋 Excluídos {discarded} voos com Destino Desconhecido (após enriquecimento); restam {len(flights)} voos válidos.")
             
+            # Mantém dataset completo processado para enrich no sitemap (lastmod real por voo).
+            self.processed_flights = flights
             self._total_flights = len(flights)
             
             # ============================================================
