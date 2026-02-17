@@ -755,6 +755,8 @@ class FlightPageGenerator:
         # Tracking de arquivos gerados com sucesso
         self.success_files: Set[str] = set()
         self.success_pages: List[Dict] = []
+        # Cache de slugs para evitar colisões e garantir consistência
+        self.slug_cache: Dict[str, str] = {}  # {flight_key: slug_gerado}
         # True quando dados foram carregados do Supabase (não gravar JSON enriquecido)
         self._loaded_from_supabase = False
     
@@ -1123,52 +1125,45 @@ class FlightPageGenerator:
     
     def generate_slug(self, flight: Dict) -> str:
         """
-        Gera slug de URL amigável para SEO, único por voo+data+horário.
-        Formato: voo-{airline}-{number}-{origin}-{dest}-{dd}-{mm}-{HHMM}
-        Ex.: voo-latam-3000-gru-mao-08-02-0800 (evita colisão no mesmo dia).
+        Gera slug único e consistente usando hash MD5 de 6 dígitos.
+        Normaliza horário para HH:MM antes do hash (evita duplicatas por segundos/ms).
         """
-        airline = self.safe_str(flight.get('airline', ''))
-        number = self.safe_str(flight.get('flight_number', ''))
-        origin = self.safe_str(flight.get('origin', 'GRU'))
-        dest = self.safe_str(flight.get('destination_iata', ''))
+        airline = slugify(self.safe_str(flight.get('airline', 'voo')))
+        number = self.safe_str(flight.get('flight_number', 'desconhecido'))
+        origin = slugify(self.safe_str(flight.get('origin', 'GRU')))
+        dest_iata = self.safe_str(flight.get('destination_iata', ''))
+        dest_name = self.safe_str(flight.get('destination', ''))
+        dest = slugify(dest_iata or dest_name or 'atrasado')
 
-        if not airline:
-            airline = "voo"
-        if not number:
-            number = "desconhecido"
-        if not dest:
-            dest = "atrasado"  # fallback quando não há IATA
+        base = f"voo-{airline}-{number}-{origin}-{dest}"
 
-        base = f"voo-{slugify(airline)}-{slugify(number)}-{slugify(origin)}-{slugify(dest)}"
-        flight_date = parse_flight_time(flight)
-        if flight_date == datetime.min:
-            # Fallback: tenta data/hora por chaves alternativas (ex.: API retorna data_captura)
-            date_iso = safe_str(
-                flight.get('Data_Captura') or flight.get('data_captura')
-                or flight.get('scraped_at') or flight.get('data_partida') or flight.get('date_raw') or ''
-            )
-            time_str = safe_str(flight.get('scheduled_time') or flight.get('Horario') or '00:00')
-            if len(time_str) > 5:
-                time_str = time_str[:5]
-            try:
-                if date_iso and '-' in date_iso:
-                    date_clean = date_iso.replace('T', ' ').split(' ')[0]
-                    flight_date = datetime.strptime(f"{date_clean} {time_str}", "%Y-%m-%d %H:%M")
-                elif date_iso and '/' in date_iso:
-                    parts = date_iso.split('/')
-                    if len(parts) == 3:
-                        flight_date = datetime.strptime(f"{parts[2]}-{parts[1]}-{parts[0]} {time_str}", "%Y-%m-%d %H:%M")
-                    elif len(parts) >= 2:
-                        flight_date = datetime.strptime(f"{datetime.now().year}-{parts[1]}-{parts[0]} {time_str}", "%Y-%m-%d %H:%M")
-                if flight_date != datetime.min:
-                    return f"{base}-{flight_date.strftime('%d-%m-%H%M')}"
-            except Exception:
-                pass
-            # Último recurso: sufixo único para evitar colisão
-            raw = f"{flight.get('scheduled_time') or ''}_{date_iso}_{flight.get('flight_number') or number}"
-            return f"{base}-{hashlib.md5(raw.encode()).hexdigest()[:6]}"
-        date_suffix = flight_date.strftime('%d-%m-%H%M')
-        return f"{base}-{date_suffix}"
+        # NORMALIZAÇÃO: Remove segundos/ms do horário antes do hash
+        scheduled = self.safe_str(flight.get('scheduled_time', ''))
+        normalized_time = ''
+
+        if scheduled:
+            # Suporta múltiplos formatos:
+            # - "2026-02-17T14:00:00.123Z" → "14:00"
+            # - "2026-02-17 14:00:05" → "14:00"
+            # - "14:00:30" → "14:00"
+            if 'T' in scheduled:
+                time_part = scheduled.split('T')[-1].split('.')[0]  # Remove ms
+                normalized_time = time_part[:5]  # Pega HH:MM
+            elif ' ' in scheduled:
+                time_part = scheduled.split(' ')[-1]
+                normalized_time = time_part[:5]
+            elif ':' in scheduled:
+                normalized_time = scheduled[:5]
+
+        # Hash de unicidade (data + HH:MM normalizado + número)
+        unique_data = (
+            f"{self.safe_str(flight.get('data_partida', ''))}:"
+            f"{normalized_time}:"
+            f"{number}"
+        )
+        hash_suffix = hashlib.md5(unique_data.encode()).hexdigest()[:6]
+
+        return f"{base}-{hash_suffix}"
 
     def get_city_slug(self, city_name: str) -> str:
         """Gera slug padronizado para nome de cidade (Single Source of Truth para URLs de destino)."""
@@ -1689,7 +1684,20 @@ class FlightPageGenerator:
             context['voo'] = voo
 
             # 4. Gerar HTML
-            slug = self.generate_slug(flight)
+            flight_key = (
+                f"{raw_fnum}:{self.safe_str(flight.get('data_partida', ''))}:"
+                f"{self.safe_str(flight.get('scheduled_time', ''))}"
+            )
+
+            # Verifica cache antes de gerar novo slug
+            if flight_key in self.slug_cache:
+                slug = self.slug_cache[flight_key]
+                logger.debug(f"✅ Slug recuperado do cache: {slug}")
+            else:
+                slug = self.generate_slug(flight)
+                self.slug_cache[flight_key] = slug
+                logger.debug(f"🆕 Slug gerado e cacheado: {slug}")
+
             filename = f"{slug}.html"
 
             # Verificação de duplicatas (evita sobrescrever voos do mesmo dia/horário)
@@ -2522,17 +2530,28 @@ class FlightPageGenerator:
         ticker_flights = random.sample(top_20, min(10, len(top_20)))
         
         # Resolver slug a partir das páginas realmente geradas (evita 404)
-        # Match mais robusto: normalizar número e considerar horário
         for flight in ticker_flights:
-            match = next(
-                (p for p in self.success_pages
-                 if "".join(filter(str.isdigit, str(p.get('flight_number', '')))) ==
-                    "".join(filter(str.isdigit, str(flight.get('flight_number', ''))))
-                 and self.safe_str(p.get('destination_iata')) == self.safe_str(flight.get('destination_iata'))
-                 and self.safe_str(p.get('scheduled_time', '')) == self.safe_str(flight.get('scheduled_time', ''))),
-                None
+            raw_fnum = self.safe_str(flight.get('flight_number', ''))
+            clean_fnum = "".join(filter(str.isdigit, raw_fnum))
+            dest_iata = self.safe_str(flight.get('destination_iata', ''))
+
+            # Tenta match usando cache primeiro
+            flight_key = (
+                f"{raw_fnum}:{self.safe_str(flight.get('data_partida', ''))}:"
+                f"{self.safe_str(flight.get('scheduled_time', ''))}"
             )
-            flight['slug'] = match['slug'] if match else self.generate_slug(flight)
+
+            if flight_key in self.slug_cache:
+                flight['slug'] = self.slug_cache[flight_key]
+            else:
+                # Fallback: busca em success_pages por número + IATA
+                match = next(
+                    (p for p in self.success_pages
+                     if "".join(filter(str.isdigit, str(p.get('flight_number', '')))) == clean_fnum
+                     and self.safe_str(p.get('destination_iata')) == dest_iata),
+                    None
+                )
+                flight['slug'] = match['slug'] if match else self.generate_slug(flight)
 
         return ticker_flights
     
@@ -2607,14 +2626,21 @@ class FlightPageGenerator:
             filename = f"{city_slug}.html"
 
             # Agrupar voos por número para Flip Cards 3D (Data → Horário; um card por número)
-            # Usar dict por slug para garantir unicidade (evita horários duplicados)
             flights_by_number = defaultdict(dict)
             for f in data['flights']:
                 num = f.get('flight_number')
                 if num:
                     clean_num = "".join(filter(str.isdigit, str(num)))
                     if clean_num:
-                        slug = f.get('slug') or self.generate_slug(f)
+                        # Usa cache ou slug existente no objeto
+                        slug = f.get('slug')
+                        if not slug:
+                            flight_key = (
+                                f"{num}:{self.safe_str(f.get('data_partida', ''))}:"
+                                f"{self.safe_str(f.get('scheduled_time', ''))}"
+                            )
+                            slug = self.slug_cache.get(flight_key) or self.generate_slug(f)
+
                         scheduled = self.safe_str(f.get('scheduled_time', ''))
                         if len(scheduled) >= 16:
                             date_display = f"{scheduled[8:10]}/{scheduled[5:7]} {scheduled[11:16]}"
@@ -2622,6 +2648,7 @@ class FlightPageGenerator:
                             date_display = f"{scheduled[8:10]}/{scheduled[5:7]}"
                         else:
                             date_display = "N/A"
+
                         if slug not in flights_by_number[clean_num]:
                             flights_by_number[clean_num][slug] = date_display
             flight_cards = []
