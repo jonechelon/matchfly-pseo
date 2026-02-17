@@ -37,25 +37,34 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/curitiba.html</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/navegantes.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/recife.html</loc>
+<<<<<<< HEAD
+=======
+    <loc>https://matchfly.org/destino/curitiba.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://matchfly.org/destino/belo-horizonte.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <loc>https://matchfly.org/destino/recife.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/salvador.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -85,12 +94,89 @@
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/destino/foz-do-iguacu.html</loc>
+=======
+    <loc>https://matchfly.org/destino/uberlandia.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/paris.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/porto-seguro.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/nova-york.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/maceio.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/buenos-aires.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/florianopolis.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/juazeiro-do-norte.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/foz-do-iguacu.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/miami.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/joao-pessoa.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/sao-luis.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/atlanta.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/uberlandia.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
@@ -98,6 +184,9 @@
   </url>
   <url>
     <loc>https://matchfly.org/destino/nova-york.html</loc>
+=======
+    <loc>https://matchfly.org/destino/campo-grande.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -121,7 +210,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/maceio.html</loc>
+    <loc>https://matchfly.org/destino/santiago.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/amsterda.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -133,12 +228,17 @@
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/sao-luis.html</loc>
+=======
+    <loc>https://matchfly.org/destino/assuncao.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/buenos-aires.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
@@ -152,6 +252,9 @@
   </url>
   <url>
     <loc>https://matchfly.org/destino/miami.html</loc>
+=======
+    <loc>https://matchfly.org/destino/boston.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -163,37 +266,67 @@
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/joao-pessoa.html</loc>
+=======
+    <loc>https://matchfly.org/destino/washington.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/manaus.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/toronto.html</loc>
+=======
+    <loc>https://matchfly.org/destino/goiania.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/santiago.html</loc>
+=======
+    <loc>https://matchfly.org/destino/lisboa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/amsterda.html</loc>
+=======
+    <loc>https://matchfly.org/destino/ilheus.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/campo-grande.html</loc>
+=======
+    <loc>https://matchfly.org/destino/cidade-do-mexico.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/boston.html</loc>
+=======
+    <loc>https://matchfly.org/destino/madrid.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -211,6 +344,7 @@
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/goiania.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
@@ -277,7 +411,63 @@
     <priority>0.85</priority>
   </url>
   <url>
+=======
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <loc>https://matchfly.org/destino/frankfurt.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/destino/milao.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/cordoba.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/guz.html</loc>
+=======
+    <loc>https://matchfly.org/destino/porto-velho.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/chicago.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/guz.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+<<<<<<< HEAD
+=======
+    <loc>https://matchfly.org/destino/belem.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/barcelona.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/houston.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -295,30 +485,14 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/guz.html</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/chicago.html</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/barcelona.html</loc>
-    <lastmod>2026-02-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <loc>https://matchfly.org/destino/tff.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/destino/belem.html</loc>
     <lastmod>2026-02-17</lastmod>
     <changefreq>daily</changefreq>
@@ -326,41 +500,65 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-4c150f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3945-gru-gig-0c2a7e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3945-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-588c17.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3352-gru-gig-72456d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3352-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8062-gru-mgf-baf6bc.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8062-gru-mgf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4710-gru-cwb-06f801.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4710-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3945-gru-gig-b8f5bc.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -368,77 +566,125 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-9254-gru-gig-193762.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9254-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8652-gru-sdu-2749e4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8652-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8652-gru-sdu-eb51da.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8471-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8471-gru-gig-5c444b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-8175-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-8175-gru-gig-604545.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7702-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7702-gru-gig-dbc3cc.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-7586-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-7586-gru-gig-102e90.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7355-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-7586-gru-gig-39e967.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-7269-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7355-gru-gig-521d43.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7355-gru-gig-d52efb.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6647-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-7269-gru-gig-bd47d1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6125-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-b91eaf.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-4abf8e.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -458,65 +704,105 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6647-gru-sdu-d9ee08.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4771-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6125-gru-sdu-94a0f8.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4672-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu-7ef13f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu-8772b3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4305-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4771-gru-gig-6c10c3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3550-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4771-gru-gig-88cb89.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3368-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4672-gru-gig-dbdbf0.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3340-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-72ba9f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-1922-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-37514c.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8897-gru-fra.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4305-gru-gig-ebde62.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8445-gru-lis.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-e504f0.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -536,47 +822,75 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-3550-gru-sdu-dae919.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8194-gru-mia.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-3368-gru-gig-c43372.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8146-gru-lis.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3340-gru-gig-183479.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6250-gru-fra.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-1922-gru-gig-477f50.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6062-gru-mia.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8897-gru-fra-579cb7.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-2414-gru-cdg.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8445-gru-lis-036a5c.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-9254-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8194-gru-mia-7315b5.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9254-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8146-gru-lis-5f6baa.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -614,53 +928,339 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-9072-gru-gig-f263d5.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-9072-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8522-gru-gig-429479.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8522-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-dacd56.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6193-gru-slz.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4771-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-3c6360.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4771-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-2c5822.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-4771-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-1578d0.html</loc>
     <lastmod>2026-02-16</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-14d5f7.html</loc>
+    <lastmod>2026-02-16</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-4070-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-acae06.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3698-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-6694-gru-ssa.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6061-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5251-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4190-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3834-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3401-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3376-gru-rec.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3334-gru-vix.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3316-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3276-gru-atrasado.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3014-gru-aep.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-1805-gru-jfk.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1251-gru-cnf.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-0090-gru-eze.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9809-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9700-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8490-gru-lim.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-7741-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7741-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7392-gru-sdu.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7364-gru-udi.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7344-gru-sdu.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7277-gru-mcz.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7269-gru-gig.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-acae06.html</loc>
+    <loc>https://matchfly.org/voo/voo-emirates-7260-gru-bsb.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-6513-gru-cwb.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6248-gru-lim.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-6238-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-6238-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6238-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5232-gru-sdu.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5178-gru-cwb.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4672-gru-gig.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4655-gru-gyn.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4307-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-4307-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3974-gru-sdu.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3947-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-3947-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3946-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-3945-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-63506b.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -668,11 +1268,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6647-gru-sdu-dc993a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3368-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6647-gru-sdu-ffa02c.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -1184,287 +1788,481 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-2044-gru-gig-b32eab.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-2044-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2044-gru-gig-104989.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-2044-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2044-gru-gig-c1c00e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2044-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-1924-gru-gig-293015.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-1924-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1244-gru-sdu-730c8e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1244-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9306-gru-fln-20dc46.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9306-gru-fln.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9251-gru-rec-eb0321.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9251-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8662-gru-udi-be4cd1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8662-gru-udi.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8646-gru-slz-57d61b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8646-gru-slz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8443-gru-udi-6cfe04.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8443-gru-udi.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8423-gru-atrasado-6e97e1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8423-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8355-gru-udi-ba4223.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8355-gru-udi.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8144-gru-poa-efc420.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8144-gru-poa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8133-gru-fln-b02474.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8133-gru-fln.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8063-gru-mao-2fdb4c.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8063-gru-mao.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8020-gru-rec-e5af63.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8020-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8013-gru-atrasado-99872b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8013-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7703-gru-aep-fa93b4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7703-gru-aep.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7673-gru-mcz-ea4526.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7673-gru-mcz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7643-gru-cnf-2e5691.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7643-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7628-gru-jpa-14feb3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7628-gru-jpa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7614-gru-cor-709c7f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7614-gru-cor.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-6396-gru-vix-8a4529.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-6396-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6234-gru-poa-5d0e40.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6234-gru-poa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6204-gru-gyn-85897c.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6204-gru-gyn.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5177-gru-rec-18e0ff.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5177-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5164-gru-cnf-b2da76.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5164-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4729-gru-vix-978f64.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4729-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4545-gru-mao-b39edb.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4545-gru-mao.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4522-gru-pnz-410fdb.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4522-gru-pnz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4186-gru-gig-96d60d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4186-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4132-gru-cgb-10138d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4132-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-4108-gru-aju-f0475f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-4108-gru-aju.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-3741-gru-aju-08cbf6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-3741-gru-aju.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-3645-gru-aju-48a85b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-3645-gru-aju.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3556-gru-cnf-dff5f8.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3556-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3224-gru-aju-eef76f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3224-gru-aju.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2691-gru-cgr-6e9b9c.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2691-gru-cgr.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-1985-gru-vix-a1fa50.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-1985-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1632-gru-jpa-e7d180.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1632-gru-jpa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-1538-gru-aju-b51d8a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-1538-gru-aju.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1496-gru-cgr-2fcb83.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1496-gru-cgr.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-1450-gru-gyn-be5d23.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-1450-gru-gyn.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1318-gru-vix-422e0a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1318-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1146-gru-atrasado-a42beb.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1146-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7536-gru-gig-847f5e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7536-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7536-gru-gig-9fa887.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7260-gru-bsb.html</loc>
+    <lastmod>2026-02-16</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7255-gru-iad.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-7269-gru-gig-29be9a.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -1484,29 +2282,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7255-gru-iad-cfe8a6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6751-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6751-gru-sdu-7b9120.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6221-gru-the.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-2f27ba.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6221-gru-the.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-6221-gru-the-f36763.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5538-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-1bba6b.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -1520,17 +2334,79 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-4672-gru-gig-4f4067.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-4672-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-20e80a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4227-gru-gig.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-3874-gru-gig.html</loc>
+    <lastmod>2026-02-17</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1924-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-9961-gru-cdg.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-6189-gru-udi.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-5804-gru-nvt.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5344-gru-poa.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-5002-gru-cdg.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-2864-gru-poa.html</loc>
+    <lastmod>2026-02-13</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-9254-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4307-gru-gig-12e472.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -1640,17 +2516,61 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8476-gru-cgr-fd4e5e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8476-gru-cgr.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-12</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7260-gru-bsb-45afc4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3366-gru-gig.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7373-gru-rec.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5184-gru-igu.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4388-gru-rec.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3790-gru-cnf.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-2924-gru-rec.html</loc>
+    <lastmod>2026-02-12</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7586-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-b22fea.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -1659,10 +2579,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4672-gru-gig-154a58.html</loc>
     <lastmod>2026-02-16</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6513-gru-cwb.html</loc>
+    <lastmod>2026-02-14</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-7babca.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -1766,47 +2691,247 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6199-gru-gig-fafb57.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6199-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig-b55242.html</loc>
-    <lastmod>2026-02-15</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2347-gru-gig.html</loc>
+    <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig-c35308.html</loc>
-    <lastmod>2026-02-15</lastmod>
+    <loc>https://matchfly.org/voo/voo-latam-1925-gru-gig.html</loc>
+    <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig-22e5e3.html</loc>
-    <lastmod>2026-02-15</lastmod>
+    <loc>https://matchfly.org/voo/voo-klm-7662-gru-cgb.html</loc>
+    <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://matchfly.org/voo/voo-latam-3947-gru-gig-954acd.html</loc>
+    <loc>https://matchfly.org/voo/voo-latam-4662-gru-atrasado.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4604-gru-atrasado.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4518-gru-fln.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-2655-gru-vix.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-2020-gru-fln.html</loc>
+    <lastmod>2026-02-11</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-9080-gru-ssa.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-7763-gru-gig.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7251-gru-ssa.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9826-gru-nvt.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7660-gru-nvt.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7250-gru-lis.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3709-gru-nvt.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3408-gru-nvt.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-1658-gru-bps.html</loc>
+    <lastmod>2026-02-10</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-9700-gru-gig.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
-    <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-ccfb92.html</loc>
-    <lastmod>2026-02-17</lastmod>
+    <loc>https://matchfly.org/voo/voo-klm-6690-gru-gig.html</loc>
+    <lastmod>2026-02-09</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://matchfly.org/voo/voo-klm-4126-gru-bsb.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-3698-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig-c35308.html</loc>
+    <lastmod>2026-02-15</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-2329-gru-aju.html</loc>
+    <lastmod>2026-02-09</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-4070-gru-gig-22e5e3.html</loc>
+    <lastmod>2026-02-15</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-9310-gru-gyn.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8117-gru-jdo.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6690-gru-gig.html</loc>
+    <lastmod>2026-02-09</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-3947-gru-gig-954acd.html</loc>
+    <lastmod>2026-02-14</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-5755-gru-nvt.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4126-gru-bsb.html</loc>
+    <lastmod>2026-02-09</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-ccfb92.html</loc>
+    <lastmod>2026-02-17</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2329-gru-aju.html</loc>
+    <lastmod>2026-02-09</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2347-gru-gig-7784e2.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9173-gru-sdu.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8558-gru-sdu.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7335-gru-sdu.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6733-gru-mgf.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-6199-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1925-gru-gig-bc1944.html</loc>
     <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
@@ -1983,10 +3108,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-klm-6690-gru-gig-f539a4.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-4653-gru-gig.html</loc>
+    <lastmod>2026-02-08</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-219347.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2019,10 +3149,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-klm-4126-gru-bsb-838c5f.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8470-gru-cnf.html</loc>
+    <lastmod>2026-02-08</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-fa3c9c.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -2043,58 +3178,114 @@
   <url>
     <loc>https://matchfly.org/voo/voo-klm-2329-gru-aju-5ad59b.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5171-gru-cgr.html</loc>
+    <lastmod>2026-02-08</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-9310-gru-gyn-732781.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3686-gru-bsb.html</loc>
+    <lastmod>2026-02-08</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8117-gru-jdo-69229b.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1484-gru-bsb.html</loc>
+    <lastmod>2026-02-08</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6690-gru-gig-b3fd3c.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9832-gru-igu.html</loc>
+    <lastmod>2026-02-07</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-5755-gru-nvt-956659.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8119-gru-atrasado.html</loc>
+    <lastmod>2026-02-07</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4126-gru-bsb-46ffff.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8107-gru-mgf.html</loc>
+    <lastmod>2026-02-07</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2329-gru-aju-c07bb8.html</loc>
     <lastmod>2026-02-09</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7655-gru-igu.html</loc>
+    <lastmod>2026-02-07</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9173-gru-sdu-7f2984.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3580-gru-igu.html</loc>
+    <lastmod>2026-02-07</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9255-gru-gig.html</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-9173-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8558-gru-sdu-e157c1.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8473-gru-gig.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8490-gru-lim-e34734.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -2115,34 +3306,71 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7335-gru-sdu-66d5a0.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6112-gru-ssa.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7335-gru-sdu-02549a.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4796-gru-gig.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7277-gru-mcz-5bf84b.html</loc>
     <lastmod>2026-02-14</lastmod>
-    <priority>1.0</priority>
-    <changefreq>daily</changefreq>
-  </url>
-  <url>
-    <loc>https://matchfly.org/voo/voo-latam-7269-gru-gig-b23a2c.html</loc>
-    <lastmod>2026-02-16</lastmod>
-    <priority>1.0</priority>
-    <changefreq>daily</changefreq>
-  </url>
-  <url>
-    <loc>https://matchfly.org/voo/voo-latam-6733-gru-mgf-e17ac1.html</loc>
-    <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-4193-gru-bps.html</loc>
+    <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4070-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-7269-gru-gig-b23a2c.html</loc>
+    <lastmod>2026-02-16</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9605-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9080-gru-ssa.html</loc>
+    <lastmod>2026-02-10</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
+    <loc>https://matchfly.org/voo/voo-latam-6733-gru-mgf-e17ac1.html</loc>
+    <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8142-gru-aep.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6647-gru-sdu-0ae326.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2151,10 +3379,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-0dc1a2.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4686-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-278f95.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2187,10 +3420,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-delta-4653-gru-gig-9e44ef.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3728-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-e94fc6.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2271,10 +3509,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8470-gru-cnf-8efee1.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3665-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-6189-gru-udi-c46646.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2283,10 +3526,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5171-gru-cgr-daed6c.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3506-gru-atrasado.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-5002-gru-cdg-3e6314.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2295,10 +3543,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-3686-gru-bsb-c1e144.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3354-gru-ssa.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-2414-gru-cdg-a0a571.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2313,10 +3566,33 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-1484-gru-bsb-f5511c.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3346-gru-ssa.html</loc>
+    <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://matchfly.org/voo/voo-latam-2764-gru-rec.html</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-2601-gru-jpa.html</loc>
+    <lastmod>2026-02-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-2047-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7536-gru-gig-7faeff.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2450,11 +3726,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-9255-gru-gig-d3b740.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1885-gru-poa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-9173-gru-sdu-d3efd9.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
@@ -2726,11 +4006,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-3838-gru-atrasado-6fd0cf.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3838-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-05</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-9254-gru-gig-6ca157.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2762,23 +4046,161 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6119-gru-udi-78ba4e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6119-gru-udi.html</loc>
     <lastmod>2026-02-05</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4356-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6119-gru-udi-e860a1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4070-gru-gig.html</loc>
+    <lastmod>2026-02-15</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-2044-gru-gig.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9179-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-05</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-7b68d3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8650-gru-vix.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8438-gru-vix.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7969-gru-mad.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-2708-gru-cgb.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-0268-gru-atl.html</loc>
+    <lastmod>2026-02-05</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-8417-gru-gig.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5357-gru-sdu.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7675-gru-fln.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6619-gru-vix.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4209-gru-jpa.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3332-gru-vix.html</loc>
+    <lastmod>2026-02-04</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9300-gru-cwb.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8475-gru-cgb.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6727-gru-jpa.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6527-gru-atrasado.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6170-gru-igu.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4830-gru-cwb.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3604-gru-bel.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-7586-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-fea6e7.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2787,16 +4209,31 @@
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-4356-gru-sdu-cb1f29.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7120-gru-cgb.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-4193-gru-bps-edf39e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9728-gru-asu.html</loc>
+    <lastmod>2026-02-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-9605-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4070-gru-gig-4714e9.html</loc>
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
@@ -2829,28 +4266,48 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-9179-gru-cwb-24e3b6.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8112-gru-mex.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8650-gru-vix-c2d0a4.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-4067-gru-atrasado.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8438-gru-vix-ba1f51.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3598-gru-ssa.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7969-gru-mad-46400e.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2673-gru-jpa.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3368-gru-gig-ed20c4.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2859,28 +4316,65 @@
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-2708-gru-cgb-a98956.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-2367-gru-nvt.html</loc>
+    <lastmod>2026-02-02</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-0268-gru-atl-8a0f70.html</loc>
     <lastmod>2026-02-05</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-2047-gru-nvt.html</loc>
+    <lastmod>2026-02-06</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8558-gru-sdu-d190a9.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1300-gru-asu.html</loc>
+    <lastmod>2026-02-02</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9813-gru-gig.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6720-gru-bps.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-6603-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-8417-gru-gig-b5c9f0.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6198-gru-nvt.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-8175-gru-gig-08e17d.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2907,10 +4401,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5357-gru-sdu-9f87bb.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6184-gru-lim.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu-61e90c.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2919,34 +4418,59 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7675-gru-fln-527a27.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9837-gru-aep.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6619-gru-vix-3bb286.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9406-gru-the.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4209-gru-jpa-ae5f6a.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-9032-gru-ssa.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3332-gru-vix-74f91e.html</loc>
     <lastmod>2026-02-04</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8343-gru-ssa.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9300-gru-cwb-1ea39e.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8096-gru-scl.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9254-gru-gig-f6add3.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -2961,10 +4485,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8475-gru-cgb-8fa6bf.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7680-gru-aep.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7536-gru-gig-e6fcf9.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -2973,10 +4502,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-187a05.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5150-gru-rec.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6221-gru-the-abfca6.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -3009,46 +4543,187 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6727-gru-jpa-42915f.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4210-gru-bsb.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6527-gru-atrasado-4f69cf.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4145-gru-fln.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6170-gru-igu-cb6ff1.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4112-gru-ssa.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4830-gru-cwb-b481cf.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3232-gru-bel.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3604-gru-bel-5b3acf.html</loc>
     <lastmod>2026-02-03</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2893-gru-poa.html</loc>
+    <lastmod>2026-02-01</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8522-gru-gig-6a05bd.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2607-gru-ssa.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-2316-gru-bsb.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-1949-gru-the.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1268-gru-nvt.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-0763-gru-scl.html</loc>
+    <lastmod>2026-02-01</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8643-gru-gig.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7407-gru-cgb.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7350-gru-poa.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4656-gru-nvt.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8191-gru-pnz.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8187-gru-nvt.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8173-gru-gig.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7598-gru-fln.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5283-gru-mgf.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4682-gru-aep.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4674-gru-ssa.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1470-gru-cwb.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-aeromexico-0015-gru-mex.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-9072-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-7586-gru-gig-363d74.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-8652-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7120-gru-cgb-8dff69.html</loc>
     <lastmod>2026-02-02</lastmod>
     <priority>0.8</priority>
@@ -3086,11 +4761,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-3698-gru-gig-a86b52.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-8522-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3550-gru-sdu-0bec13.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -3098,23 +4777,150 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-2044-gru-gig-14400a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7350-gru-poa.html</loc>
+    <lastmod>2026-01-31</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-6603-gru-gig.html</loc>
+    <lastmod>2026-02-08</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-6203-gru-ios.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-2379-gru-gig.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-1244-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9728-gru-asu-770c1e.html</loc>
     <lastmod>2026-02-02</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1070-gru-gig.html</loc>
+    <lastmod>2026-01-30</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-9605-gru-nvt-4fd301.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-9175-gru-cnf.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8411-gru-nvt.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8129-gru-cwb.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8106-gru-poa.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8050-gru-igu.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-7661-gru-nvt.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6728-gru-jpa.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-6718-gru-ams.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6249-gru-nvt.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6172-gru-igu.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6143-gru-rec.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-5500-gru-ams.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5156-gru-atrasado.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-5076-gru-cnf.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4666-gru-sjp.html</loc>
+    <lastmod>2026-01-30</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4193-gru-bps.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8112-gru-mex-904cfc.html</loc>
     <lastmod>2026-02-02</lastmod>
     <priority>0.8</priority>
@@ -3674,11 +5480,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6203-gru-ios-31adc6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3404-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6112-gru-ssa-270d67.html</loc>
     <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
@@ -3722,11 +5532,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-2379-gru-gig-df821d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2307-gru-igu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-1244-gru-sdu-37d389.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -3734,17 +5548,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-1070-gru-gig-6b30bd.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1909-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-9175-gru-cnf-4e542e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1172-gru-igu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9173-gru-sdu-601be6.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
@@ -3758,11 +5580,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8411-gru-nvt-b0b837.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6203-gru-ios.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8355-gru-udi-f8b40b.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -3962,11 +5788,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5516-gru-gig-bfcfc6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5516-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu-4c5e6b.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -3986,29 +5816,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6805-gru-yyz-d9e568.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6805-gru-yyz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-6293-gru-scl-4a0520.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6293-gru-scl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4390-gru-cwb-f092dd.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4390-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3609-gru-cwb-4716dd.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3609-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-aeromexico-0015-gru-mex-171cb4.html</loc>
     <lastmod>2026-01-31</lastmod>
     <priority>0.8</priority>
@@ -4034,11 +5880,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6187-gru-mvd-a2a943.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6187-gru-mvd.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5225-gru-sdu-6ab779.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -4046,11 +5896,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4797-gru-gig-625412.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4797-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4771-gru-gig-9d55eb.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -4082,29 +5936,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8514-gru-cnf-16951b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8514-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8138-gru-aep-ac3bc1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8138-gru-aep.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-8096-gru-scl-4e04a4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-8096-gru-scl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-01</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7801-gru-gig-35635d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7801-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6805-gru-yyz-b6f664.html</loc>
     <lastmod>2026-01-29</lastmod>
     <priority>0.8</priority>
@@ -4112,23 +5982,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6089-gru-atrasado-3c03a6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6089-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5185-gru-gyn-f324c9.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5185-gru-gyn.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-3709-gru-nvt-bf9b4a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3709-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-10</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3556-gru-cnf-60860b.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -4142,11 +6024,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-0091-gru-yyz-db92a6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-0091-gru-yyz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9700-gru-gig-238ccf.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -4196,17 +6082,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6187-gru-mvd-5522b1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6187-gru-mvd.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5190-gru-mcz-f7ed66.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5190-gru-mcz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4227-gru-gig-e083ac.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -4238,17 +6132,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-2328-gru-gig-bb8651.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-2328-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-2044-gru-gig-fbfbf4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-1924-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-1924-gru-gig-111383.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -4256,35 +6158,55 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-9830-gru-vix-ab9038.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9830-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8376-gru-cgb-91417b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8376-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8225-gru-vix-12b301.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8225-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8202-gru-lim-7dfa4b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8202-gru-lim.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8121-gru-atrasado-e4c555.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8121-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8117-gru-jdo-d800c1.html</loc>
     <lastmod>2026-02-09</lastmod>
     <priority>0.8</priority>
@@ -4292,35 +6214,55 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8097-gru-nvt-1689e4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8097-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7990-gru-doh-f95397.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7990-gru-doh.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7345-gru-cwb-65d807.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7345-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6763-gru-cgb-fdb994.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6763-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6501-gru-cgb-68a6b2.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6501-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5251-gru-atrasado-675ebc.html</loc>
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
@@ -4328,11 +6270,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5250-gru-vix-85942a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5250-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5184-gru-igu-a99418.html</loc>
     <lastmod>2026-02-12</lastmod>
     <priority>1.0</priority>
@@ -4340,11 +6286,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4054-gru-cnf-139420.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4054-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3408-gru-nvt-86f054.html</loc>
     <lastmod>2026-02-10</lastmod>
     <priority>1.0</priority>
@@ -4370,17 +6320,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-2662-gru-bsb-2887df.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2662-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-2355-gru-nvt-da2d54.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-2355-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1470-gru-cwb-3c962e.html</loc>
     <lastmod>2026-01-31</lastmod>
     <priority>0.8</priority>
@@ -4388,23 +6346,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-1446-gru-bsb-230bd9.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1446-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1250-gru-fln-451c60.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1250-gru-fln.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-9813-gru-gig-63d313.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9813-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-01</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9700-gru-gig-bf1b8f.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -4412,11 +6382,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-9173-gru-sdu-6b44da.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-8558-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-8558-gru-sdu-e3d367.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
@@ -4442,11 +6416,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7347-gru-sdu-3fee77.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7347-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7335-gru-sdu-5f1ab1.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
@@ -4472,17 +6450,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6719-gru-gig-81adce.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6719-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-6603-gru-gig-1fead4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-6603-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6199-gru-gig-25c4d3.html</loc>
     <lastmod>2026-02-11</lastmod>
     <priority>1.0</priority>
@@ -4502,11 +6488,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4653-gru-gig-93fa5f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4653-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-361abd.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -4568,11 +6558,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-1070-gru-gig-a46e74.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-1070-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-9961-gru-cdg-adef07.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -4580,29 +6574,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-9334-gru-rec-41c575.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9334-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-8118-gru-mvd-7607b0.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-8118-gru-mvd.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8110-gru-ssa-5a31d9.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8110-gru-ssa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-7651-gru-vix-3f976e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-7651-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7628-gru-jpa-684852.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -4610,11 +6620,111 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7335-gru-sdu-ea476d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6504-gru-poa.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6265-gru-bsb.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5896-gru-jdo.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4198-gru-jdo.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-4169-gru-vix.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-4156-gru-cgr.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4144-gru-mao.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-3639-gru-ssa.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3586-gru-igu.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3394-gru-atrasado.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3265-gru-bsb.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-2695-gru-vix.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1588-gru-atrasado.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1578-gru-ios.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-1560-gru-jdo.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-klm-1412-gru-bsb.html</loc>
+    <lastmod>2026-01-26</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-9173-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6728-gru-jpa-f653e0.html</loc>
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
@@ -4658,71 +6768,125 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-4729-gru-vix-a5ef2d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7344-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4666-gru-sjp-188d03.html</loc>
     <lastmod>2026-01-30</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9805-gru-cnf.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4198-gru-jdo-56c17c.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8180-gru-jfk.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4169-gru-vix-e39178.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8164-gru-bos.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4156-gru-cgr-028768.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8125-gru-cwb.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-4144-gru-mao-028240.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8115-gru-jdo.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-3639-gru-ssa-9a1445.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7967-gru-mad.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3586-gru-igu-cda320.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7805-gru-cwb.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3394-gru-atrasado-023d7e.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7286-gru-vix.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3265-gru-bsb-f0438f.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6349-gru-jfk.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-2695-gru-vix-031295.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6054-gru-bos.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-2414-gru-cdg-05682c.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -4737,28 +6901,48 @@
   <url>
     <loc>https://matchfly.org/voo/voo-latam-1588-gru-atrasado-73a87f.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6050-gru-jfk.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1578-gru-ios-09022c.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5561-gru-bos.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1560-gru-jdo-863d75.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5501-gru-jfk.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-1412-gru-bsb-a51a27.html</loc>
     <lastmod>2026-01-26</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4550-gru-cwb.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-0090-gru-eze-8bc073.html</loc>
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
@@ -4767,10 +6951,15 @@
   <url>
     <loc>https://matchfly.org/voo/voo-delta-9173-gru-sdu-6bc8d7.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3268-gru-cgb.html</loc>
+    <lastmod>2026-01-25</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7347-gru-sdu-0c3497.html</loc>
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
@@ -4778,11 +6967,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-7344-gru-sdu-d55079.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7741-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-7ab67e.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -5102,11 +7295,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7361-gru-sdu-25839b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7361-gru-sdu.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7355-gru-gig-03d3c0.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -5120,11 +7317,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-7299-gru-jdo-94d6d4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-7299-gru-jdo.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-5d3a25.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -5216,17 +7417,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-9298-gru-cnf-972e8e.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9298-gru-cnf.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9003-gru-the-aea920.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9003-gru-the.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8180-gru-jfk-d40323.html</loc>
     <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
@@ -5240,17 +7449,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-7454-gru-bsb-c41142.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-7454-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-7280-gru-the-a1819f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-7280-gru-the.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7255-gru-iad-25c133.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -5258,11 +7475,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6375-gru-atl-6a6786.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6375-gru-atl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-6189-gru-udi-bb7b16.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -5270,17 +7491,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6052-gru-jfk-f67e19.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6052-gru-jfk.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5563-gru-lim-8bffe4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5563-gru-lim.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-5002-gru-cdg-e1a1e0.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -5300,23 +7529,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-3683-gru-bsb-90c0fd.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3683-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-3611-gru-cwb-9a6711.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-3611-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2858-gru-cgb-fedff2.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2858-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-2414-gru-cdg-bb50be.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -5330,29 +7571,52 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-1522-gru-atrasado-1fef09.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-1522-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-0268-gru-atl-6bd4b0.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-0268-gru-atl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-05</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9254-gru-gig-8954ae.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-8490-gru-lim.html</loc>
+    <lastmod>2026-02-14</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-delta-4548-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9173-gru-sdu-b2182e.html</loc>
     <lastmod>2026-02-08</lastmod>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8135-gru-cnf.html</loc>
+    <lastmod>2026-01-23</lastmod>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-8490-gru-lim-595016.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -5360,11 +7624,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7586-gru-gig-5947db.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6051-gru-mia.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5176-gru-mgf.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5172-gru-rec.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3724-gru-jdo.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-3558-gru-gyn.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-7269-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7355-gru-gig-a46c3a.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -5384,11 +7682,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-2d5fe4.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6721-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6690-gru-gig-594427.html</loc>
     <lastmod>2026-02-09</lastmod>
     <priority>0.8</priority>
@@ -5468,11 +7770,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5896-gru-jdo-bbb6e7.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-6719-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5176-gru-mgf-08e7e0.html</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>0.8</priority>
@@ -5546,11 +7852,21 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6271-gru-bps-220c9b.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-6690-gru-gig.html</loc>
+    <lastmod>2026-02-09</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6271-gru-bps.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4797-gru-gig-8918a1.html</loc>
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
@@ -5558,11 +7874,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-4656-gru-nvt-fb9946.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4656-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-31</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4548-gru-gig-87f396.html</loc>
     <lastmod>2026-02-16</lastmod>
     <priority>1.0</priority>
@@ -5588,23 +7908,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-2357-gru-fln-c0f57d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-2357-gru-fln.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8200-gru-pvh-065db6.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8200-gru-pvh.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8190-gru-mia-f3c4e3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8190-gru-mia.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8125-gru-cwb-59d5f5.html</loc>
     <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
@@ -5612,11 +7944,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6314-gru-scl-2e6eb3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6314-gru-scl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6051-gru-mia-7cc6e2.html</loc>
     <lastmod>2026-01-23</lastmod>
     <priority>0.8</priority>
@@ -5630,11 +7966,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-2429-gru-lim-d65046.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-2429-gru-lim.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-2316-gru-bsb-30f711.html</loc>
     <lastmod>2026-02-01</lastmod>
     <priority>0.8</priority>
@@ -5642,11 +7982,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-0629-gru-scl-32ec43.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-delta-0629-gru-scl.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6721-gru-vix-d910f0.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -5690,11 +8034,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4065-gru-gig-794312.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4065-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3947-gru-gig-ed1050.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -5714,11 +8062,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-2357-gru-fln-4e4911.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2357-gru-fln.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-22</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1924-gru-gig-0e1ed7.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -5726,11 +8078,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8349-gru-cgr-f2ebdf.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8349-gru-cgr.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7967-gru-mad-615c3d.html</loc>
     <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
@@ -5738,23 +8094,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7213-gru-iah-e8a168.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7213-gru-iah.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3828-gru-atrasado-0a3d3a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3828-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3562-gru-mao-6613cc.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3562-gru-mao.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3354-gru-ssa-96174a.html</loc>
     <lastmod>2026-02-06</lastmod>
     <priority>0.8</priority>
@@ -5804,11 +8172,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6242-gru-mvd-35411d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6242-gru-mvd.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3874-gru-gig-740ea5.html</loc>
     <lastmod>2026-02-17</lastmod>
     <priority>1.0</priority>
@@ -5816,11 +8188,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-2328-gru-gig-9e769f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-2328-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-27</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1924-gru-gig-cab184.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -5828,41 +8204,65 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-azul-1268-gru-nvt-460eae.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-azul-1268-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-02-01</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-9326-gru-mcz-4bb703.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-9326-gru-mcz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8497-gru-pvh-7c3e40.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8497-gru-pvh.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8416-gru-atrasado-265d03.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8416-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8089-gru-atrasado-0e88fc.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8089-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5152-gru-poa-45ddec.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5152-gru-poa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4666-gru-sjp-91a39c.html</loc>
     <lastmod>2026-01-30</lastmod>
     <priority>0.8</priority>
@@ -5870,11 +8270,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-3620-gru-cgb-593189.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3620-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-20</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3562-gru-mao-3befe5.html</loc>
     <lastmod>2026-01-21</lastmod>
     <priority>0.8</priority>
@@ -5972,29 +8376,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7330-gru-cwb-7f0224.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7330-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-19</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-5126-gru-cgb-511ec3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5126-gru-cgb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-19</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-klm-4172-gru-nvt-b31588.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-klm-4172-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-19</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3288-gru-cwb-30a876.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3288-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-19</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3268-gru-cgb-6060fb.html</loc>
     <lastmod>2026-01-25</lastmod>
     <priority>0.8</priority>
@@ -6002,11 +8422,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-9253-gru-gig-ea20d0.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9253-gru-gig.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9173-gru-sdu-8e3373.html</loc>
     <lastmod>2026-02-08</lastmod>
     <priority>0.8</priority>
@@ -6086,23 +8510,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-9746-gru-slz-7b7a25.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-9746-gru-slz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7534-gru-cwb-33ae14.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7534-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7110-gru-fra-726b71.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7110-gru-fra.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6719-gru-gig-d22edc.html</loc>
     <lastmod>2026-01-26</lastmod>
     <priority>0.8</priority>
@@ -6110,17 +8546,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6240-gru-bps-5dff35.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6240-gru-bps.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6124-gru-cwb-f9c718.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6124-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6061-gru-atrasado-ccc28b.html</loc>
     <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
@@ -6128,29 +8572,45 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5223-gru-rec-ae38d3.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5223-gru-rec.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3832-gru-atrasado-521d7f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3832-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-emirates-1636-gru-ssa-bbfed1.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-emirates-1636-gru-ssa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-1164-gru-cwb-ced62f.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-1164-gru-cwb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-18</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-9809-gru-gig-45e24a.html</loc>
     <lastmod>2026-02-14</lastmod>
     <priority>1.0</priority>
@@ -6194,11 +8654,15 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6099-gru-nvt-a7fec7.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6099-gru-nvt.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-17</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-4797-gru-gig-0a5468.html</loc>
     <lastmod>2026-01-28</lastmod>
     <priority>0.8</priority>
@@ -6242,17 +8706,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-7456-gru-bsb-f37d5a.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7456-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-17</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7257-gru-ord-e3c2d8.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-7257-gru-ord.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-17</lastmod>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-7255-gru-iad-ba4105.html</loc>
     <lastmod>2026-02-13</lastmod>
     <priority>1.0</priority>
@@ -6260,17 +8732,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6270-gru-atrasado-75a10d.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6270-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-17</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-6219-gru-atrasado-87c930.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-6219-gru-atrasado.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-17</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3790-gru-cnf-423884.html</loc>
     <lastmod>2026-02-12</lastmod>
     <priority>1.0</priority>
@@ -6338,23 +8818,35 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8422-gru-slz-be24e5.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8422-gru-slz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8227-gru-vix-0ce082.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8227-gru-vix.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-8072-gru-mxp-638d72.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-8072-gru-mxp.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-delta-7280-gru-the-a4c373.html</loc>
     <lastmod>2026-01-24</lastmod>
     <priority>0.8</priority>
@@ -6386,17 +8878,25 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-4413-gru-mxp-4b3038.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-4413-gru-mxp.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3856-gru-slz-dee819.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3856-gru-slz.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-16</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3604-gru-bel-64beae.html</loc>
     <lastmod>2026-02-03</lastmod>
     <priority>0.8</priority>
@@ -6434,12 +8934,19 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5219-gru-poa-560d34.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-5219-gru-poa.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-13</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
+<<<<<<< HEAD
     <loc>https://matchfly.org/voo/voo-latam-3529-gru-bsb-44ff63.html</loc>
+=======
+    <loc>https://matchfly.org/voo/voo-latam-3529-gru-bsb.html</loc>
+>>>>>>> 315611941 (fix: Re-adiciona páginas principais ao Git para GitHub Pages)
     <lastmod>2026-01-13</lastmod>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
