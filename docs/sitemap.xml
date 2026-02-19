@@ -37,13 +37,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/vitoria.html</loc>
+    <loc>https://matchfly.org/destino/brasilia.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/brasilia.html</loc>
+    <loc>https://matchfly.org/destino/vitoria.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -56,12 +56,6 @@
   </url>
   <url>
     <loc>https://matchfly.org/destino/curitiba.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/salvador.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -85,7 +79,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/teresina.html</loc>
+    <loc>https://matchfly.org/destino/salvador.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -97,13 +91,25 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/teresina.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/porto-alegre.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/nova-york.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/paris.html</loc>
+    <loc>https://matchfly.org/destino/foz-do-iguacu.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -115,7 +121,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/porto-alegre.html</loc>
+    <loc>https://matchfly.org/destino/paris.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/uberlandia.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -133,24 +145,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/uberlandia.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/foz-do-iguacu.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/sao-luis.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/maceio.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
@@ -163,37 +157,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/toronto.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/lisboa.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/santiago.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/atlanta.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/amsterda.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/washington.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -205,7 +169,25 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/aracaju.html</loc>
+    <loc>https://matchfly.org/destino/sao-luis.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/toronto.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/amsterda.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/atlanta.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -217,31 +199,19 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/lisboa.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/aracaju.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/assuncao.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/sao-jose-do-rio-preto.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/campo-grande.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/montevideu.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/manaus.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -253,19 +223,37 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/goiania.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/washington.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/manaus.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/campo-grande.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/cidade-do-mexico.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/madrid.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/goiania.html</loc>
+    <loc>https://matchfly.org/destino/montevideu.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -277,13 +265,25 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/madrid.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/ilheus.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/mendoza.html</loc>
+    <loc>https://matchfly.org/destino/houston.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/sao-jose-do-rio-preto.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -295,7 +295,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/milao.html</loc>
+    <loc>https://matchfly.org/destino/mendoza.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -313,30 +313,6 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/belem.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/houston.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/guz.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/tff.html</loc>
-    <lastmod>2026-02-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/barcelona.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
@@ -349,10 +325,40 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/milao.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/belem.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/tff.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/guz.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/palmas.html</loc>
     <lastmod>2026-02-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-7586-gru-gig-45899e.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-7586-gru-gig-42dc71.html</loc>
@@ -374,6 +380,12 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-6238-gru-gig-212cec.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-emirates-4771-gru-gig-477099.html</loc>
     <lastmod>2026-02-19</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
@@ -416,6 +428,12 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-9342-gru-aep-a1776b.html</loc>
+    <lastmod>2026-02-19</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-8142-gru-aep-c9606b.html</loc>
     <lastmod>2026-02-19</lastmod>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
@@ -3002,8 +3020,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-8142-gru-aep-1aa2c8.html</loc>
-    <lastmod>2026-02-06</lastmod>
-    <priority>0.8</priority>
+    <lastmod>2026-02-19</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
