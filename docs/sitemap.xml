@@ -55,13 +55,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/vitoria.html</loc>
+    <loc>https://matchfly.org/destino/porto-alegre.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/porto-alegre.html</loc>
+    <loc>https://matchfly.org/destino/vitoria.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -79,7 +79,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/buenos-aires.html</loc>
+    <loc>https://matchfly.org/destino/navegantes.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -91,7 +91,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/navegantes.html</loc>
+    <loc>https://matchfly.org/destino/buenos-aires.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -115,19 +115,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/teresina.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/santiago.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/goiania.html</loc>
+    <loc>https://matchfly.org/destino/teresina.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -139,13 +133,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/maceio.html</loc>
+    <loc>https://matchfly.org/destino/goiania.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/nova-york.html</loc>
+    <loc>https://matchfly.org/destino/maceio.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -157,19 +151,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/juazeiro-do-norte.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/campo-grande.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/joao-pessoa.html</loc>
+    <loc>https://matchfly.org/destino/nova-york.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -181,7 +163,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/belem.html</loc>
+    <loc>https://matchfly.org/destino/campo-grande.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -193,13 +175,37 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/juazeiro-do-norte.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/belem.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/joao-pessoa.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/paris.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/maringa.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/toronto.html</loc>
+    <loc>https://matchfly.org/destino/aracaju.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -211,7 +217,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/paris.html</loc>
+    <loc>https://matchfly.org/destino/toronto.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -229,7 +235,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/aracaju.html</loc>
+    <loc>https://matchfly.org/destino/londrina.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/boston.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -247,19 +259,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/londrina.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/boston.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/atlanta.html</loc>
+    <loc>https://matchfly.org/destino/ilheus.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -271,25 +271,13 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/assuncao.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/frankfurt.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/lisboa.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/ilheus.html</loc>
+    <loc>https://matchfly.org/destino/atlanta.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -301,31 +289,37 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/houston.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
     <loc>https://matchfly.org/destino/londres.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/nova-york-newark.html</loc>
+    <loc>https://matchfly.org/destino/assuncao.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/bogota.html</loc>
+    <loc>https://matchfly.org/destino/houston.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/frankfurt.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://matchfly.org/destino/mendoza.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/nova-york-newark.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -343,6 +337,18 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/bogota.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/porto-velho.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/palmas.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
@@ -355,13 +361,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/natal.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/porto-velho.html</loc>
+    <loc>https://matchfly.org/destino/joinville.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -373,19 +373,7 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/joinville.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/barcelona.html</loc>
-    <lastmod>2026-11-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://matchfly.org/destino/orlando.html</loc>
+    <loc>https://matchfly.org/destino/tff.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -397,13 +385,25 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://matchfly.org/destino/orlando.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/destino/barcelona.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://matchfly.org/destino/caracas.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/guz.html</loc>
+    <loc>https://matchfly.org/destino/natal.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
@@ -421,16 +421,28 @@
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/tff.html</loc>
+    <loc>https://matchfly.org/destino/uba.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://matchfly.org/destino/uba.html</loc>
+    <loc>https://matchfly.org/destino/guz.html</loc>
     <lastmod>2026-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-29f739.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  <url>
+    <loc>https://matchfly.org/voo/voo-latam-5223-gru-rec-acd964.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
+    <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-8173-gru-gig-34c192.html</loc>
@@ -1868,8 +1880,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5223-gru-rec-aedd8c.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -2630,8 +2642,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-3e429c.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -2750,8 +2762,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-3e0771.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -5378,8 +5390,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6603-gru-gig-8001c9.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -6410,8 +6422,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-80aadd.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -6440,8 +6452,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-0188ca.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -6878,8 +6890,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-80495a.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -7022,8 +7034,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-e5ad12.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -9824,8 +9836,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-112e11.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -10004,8 +10016,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-6cfc91.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -10604,8 +10616,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-28ec2f.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -10652,8 +10664,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-9cafc0.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -10820,8 +10832,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-bcf87e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -11090,8 +11102,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-14ab05.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -12836,8 +12848,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6603-gru-gig-64d1d8.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -14648,8 +14660,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-7c05b4.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -15494,8 +15506,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-cad2e0.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -15644,8 +15656,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-e8e934.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -15878,20 +15890,20 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-6603-gru-gig-335aaa.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-852878.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-0bff83.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -16124,20 +16136,20 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-6603-gru-gig-0df749.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-177d04.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-b492b9.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -19328,8 +19340,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-48299e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -20498,8 +20510,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-625f9f.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -21464,8 +21476,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-6603-gru-gig-02553b.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -21968,8 +21980,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-6603-gru-gig-bb5538.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -22154,8 +22166,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-645392.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -22538,8 +22550,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-87983e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -22676,8 +22688,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-fb7cf0.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -24518,8 +24530,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-0dc1a2.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -25340,8 +25352,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-187a05.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -25580,8 +25592,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-delta-6603-gru-gig-65230f.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -26036,8 +26048,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-6603-gru-gig-c8764f.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -26558,8 +26570,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-ed4005.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -26846,8 +26858,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-emirates-6603-gru-gig-1fead4.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -27158,8 +27170,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-fa578f.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -27500,8 +27512,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-bbeb21.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -27764,8 +27776,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-24f107.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -27908,8 +27920,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-klm-6603-gru-gig-d3453e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -28028,8 +28040,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-97999e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -28412,8 +28424,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-f2031e.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -28496,8 +28508,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-5223-gru-rec-ae38d3.html</loc>
-    <lastmod>2026-09-17</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
@@ -28556,8 +28568,8 @@
   </url>
   <url>
     <loc>https://matchfly.org/voo/voo-latam-6603-gru-gig-29d985.html</loc>
-    <lastmod>2026-09-03</lastmod>
-    <priority>0.5</priority>
+    <lastmod>2026-11-01</lastmod>
+    <priority>1.0</priority>
     <changefreq>daily</changefreq>
   </url>
   <url>
